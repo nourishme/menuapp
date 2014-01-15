@@ -1,0 +1,26 @@
+{
+  "name": "menuapp",
+  "version": "0.0.0",
+  "description": "recommend recipes for you",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nourishme/menuapp.git"
+  },
+  "keywords": [
+    "recommendation",
+    "recipe",
+    "hackreactor"
+  ],
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/nourishme/menuapp/issues"
+  },
+  "dependencies": {
+    "node": "0.0.0"
+  }
+}
