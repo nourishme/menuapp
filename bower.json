@@ -1,0 +1,20 @@
+{
+  "name": "menuapp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/nourishme/menuapp",
+  "authors": [
+    "https://github.com/nourishme/"
+  ],
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.8",
+    "topcoat": "~0.8.0"
+  }
+}
