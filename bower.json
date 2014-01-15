@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.8"
+    "angular": "~1.2.8",
+    "topcoat": "~0.8.0"
   }
 }
