@@ -1,11 +1,5 @@
 var http = require('http')
-var exports = {}
 
-exports.yumapi = apiauth = {
-  "id":'acc78ebe',
-  "key":'c2e16312871aca681f1e86a62b46c697', 
-  "token": "?_app_id=acc78ebe&_app_key=c2e16312871aca681f1e86a62b46c697"
-};
 
 exports.yumoptions = yumoptions = {
   host: 'http://api.yummly.com/v1'
