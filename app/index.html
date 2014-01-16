@@ -29,7 +29,24 @@
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements and feature detects -->
   <script src="scripts/vendor/modernizr/modernizr.js"></script>
 </head>
-<body ng-view>
+<body>
+  <div id="headcontainer">
+    <header>
+      <h1>Menu Maybe</h1>
+    </header>
+  </div>
+  
+  <div id="maincontentcontainer">
+    <div id="maincontent" ng-view>
+    </div>
+  </div>
+
+
+
+  <div id="footercontainer">
+    <footer class="group">
+    </footer>
+  </div>
 
   <!-- JavaScript at the bottom for fast page loading -->
 
@@ -49,10 +66,9 @@
   <script src="app.js"></script>
   <script src="config.js"></script>
 
-
   <script src="controllers/example.js"></script>
   <script src="controllers/recipe.js"></script>
-
+  <script src="controllers/start.js"></script>
 
 
 </body>
