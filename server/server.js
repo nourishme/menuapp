@@ -5,9 +5,9 @@
 var neo4jDB = require('./neo4jDB'),
 express = require("express"),
 path = require("path");
-routes = require('./config/routes.js');
 
 var yummly = require('./middleware/callyummly.js');
+var routes = require('./config/routes.js');
 
 var application_root = __dirname;
 
@@ -22,19 +22,25 @@ app.set('title', 'menuapp');
 /**
  * Routes
  */
-console.log(__dirname)
+
+ console.log(routes)
+
 app.use('/', express.static( __dirname+ '/../app'));
+app.use('/db', routes.dbcall );
+app.use('/apisearch', routes.yumSearch );
+app.use('/apiget', routes.yumGet );
 
-app.get('/db', function(req, res){
-  res.send(neo4jDB.goodbyeNode.data);
-});
 
-app.get('/apitest', function(req, res) {
-  // var result = 
-  yummly.searchRecipe('kale', function(result){ res.send(result)} );
-  // res.send(result);
+// app.get('/db', function(req, res){
+//   res.send(neo4jDB.goodbyeNode.data);
+// });
 
-})
+// app.get('/apitest', function(req, res) {
+//   // var result = 
+//   yummly.searchRecipe('kale', function(result){ res.send(result)} );
+//   // res.send(result);
+
+// })
 
 //Start the app by listening on <port>
 var port = 3000;
