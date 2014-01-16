@@ -1,19 +1,21 @@
 var http = require('http')
-var config = require('../configfile.js');
+var apiauth = require('../configfile.js').yumapi;
 
 exports.yumoptions = yumoptions = {
   host: 'http://api.yummly.com/v1'
 }
 
-var apiauth = config.yumapi;
+var splitupsearchterms = function(searchString) {
+  
+}
+
 
 exports.searchRecipe = searchRecipe = function(searchTerms, callback) {    
 // The base url for the Search Recipes GET is
 // http://api.yummly.com/v1/api/recipes?_app_id=app-id&_app_key=app-key&your_search_parameters
   var options = yumoptions;
-  options.path = '/api/recipes'+ apiauth.token + '&' + searchTerms;
-  console.log( apiauth );
 
+  options.path = '/api/recipes'+ apiauth.token + '&q=' + searchTerms;
   http.get( 
     options.host+options.path, 
     function(res) {
