@@ -16,13 +16,8 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!--Vendor Stylesheets -->
-  <!--   <link rel="stylesheet" href="assets/css/html5reset.css" media="all">
-  <link rel="stylesheet" href="assets/css/col.css" media="all">
-  <link rel="stylesheet" href="assets/css/8cols.css" media="all"> -->
+  <!--Stylesheets -->
   <link rel="stylesheet" href="assets/css/styles.css" media="all">
-  
-  <!--TODO: ADD TOP COAT HERE -->
   <link rel="stylesheet" href="scripts/vendor/topcoat/css/topcoat-desktop-dark.css" media="screen">
   <link rel="stylesheet" href="scripts/vendor/topcoat/css/topcoat-mobile-dark.css" media="handheld">
 
@@ -34,54 +29,7 @@
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements and feature detects -->
   <script src="scripts/vendor/modernizr/modernizr.js"></script>
 </head>
-<body>
-
-<!-- <div id="skiptomain"><a href="#maincontent">skip to main content</a></div> -->
-
-<div id="wrapper">
-  <div id="headcontainer">
-    <header>
-    <h1>Menu Maybe</h1>
-    </header>
-  </div>
-  <div id="maincontentcontainer">
-    <div id="maincontent">
-      <div class="section group">
-      <h3>Eight Columns</h3>
-      </div>
-      <div class="section group">
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="footercontainer">
-    <footer class="group">
-    </footer>
-  </div>
-</div>
+<body ng-view>
 
 
     <!-- JavaScript at the bottom for fast page loading -->
