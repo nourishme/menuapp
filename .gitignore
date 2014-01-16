@@ -2,4 +2,4 @@ node_modules
 bower_components
 app/scripts/vendor
 .DS_Store
-configfile.js
+server/config/configfile.js

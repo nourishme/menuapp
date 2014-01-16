@@ -4,7 +4,10 @@
 
 var neo4jDB = require('./neo4jDB'),
 express = require("express"),
-path = require("path");
+path = require("path"),
+auth = require("auth"),
+config = require('./config/configfile.js')
+
 
 var yummly = require('./middleware/callyummly.js');
 
@@ -15,12 +18,7 @@ var application_root = __dirname;
  */
 
 var app = express();
-
 app.set('title', 'menuapp');
-
-var application_root = __dirname;
-var app = express();
-
 
 
 /**
@@ -36,6 +34,10 @@ app.get('/apitest', function(req, res) {
   yummly.searchRecipe('kale', function(result){ res.send(result)} );
   // res.send(result);
 
+})
+
+app.get('/login', function(req, res){
+  res.send(../app/index.html)
 })
 
 //Start the app by listening on <port>
