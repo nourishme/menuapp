@@ -1,8 +1,13 @@
 
-var assert = require("chai").assert;
+var chai = require('chai');
+var assert = require('chai').assert;
 var expect = require('chai').expect;
+var sinonChai = require("sinon-chai");
 var jsc = require('jscoverage');
-var http = require('http')
+var http = require('http');
+
+chai.use(sinonChai);
+
 
 // Default to make sure mocha is working
 describe('Array', function(){
@@ -47,6 +52,12 @@ describe('The server', function(){
       });
     });
   });
+
+  it('should pull in the neo4j data', function(){
+    http.get('http://localhost:8000', function(res){
+
+    })
+  })
 });
 
 
