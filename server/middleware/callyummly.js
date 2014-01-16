@@ -1,5 +1,5 @@
 var http = require('http')
-var config = require('../configfile.js');
+var config = require('../config/configfile.js');
 
 exports.yumoptions = yumoptions = {
   host: 'http://api.yummly.com/v1'
