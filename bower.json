@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "angular": "~1.2.8",
-    "topcoat": "~0.8.0"
+    "topcoat": "~0.8.0",
+    "angular-touch": "~1.2.9"
   }
 }
