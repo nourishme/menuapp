@@ -29,7 +29,7 @@
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements and feature detects -->
   <script src="scripts/vendor/modernizr/modernizr.js"></script>
 </head>
-<body>
+<body ng-view>
   <div id="headcontainer">
     <header>
       <h1>Menu Maybe</h1>
@@ -37,7 +37,7 @@
   </div>
   
   <div id="maincontentcontainer">
-    <div id="maincontent" ng-view>
+    <div id="maincontent">
     </div>
   </div>
 
@@ -62,6 +62,7 @@
   <!-- More Scripts-->
   <script src="scripts/vendor/angular/angular.js"></script>
   <script src="scripts/vendor/angular-touch/angular-touch.js"></script>
+  <script src="scripts/vendor/angular-route/angular-route.js"></script>
   
   <script src="app.js"></script>
   <script src="config.js"></script>
