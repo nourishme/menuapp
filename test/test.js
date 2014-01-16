@@ -53,11 +53,29 @@ describe('The server', function(){
     });
   });
 
+  // DB testing
   it('should pull in the neo4j data', function(){
     http.get('http://localhost:8000', function(res){
 
     })
-  })
+  });
+
+  // API [TODO: this testing should be fixed up to reflect different API behavior (jfl) ]
+
+  it('should say return some awesomeness from /apitest', function (done) {
+    http.get('http://localhost:8000/apitest', function (res) {
+      var data = '';
+
+      res.on('data', function (chunk) {
+        data += chunk;
+      });
+
+      res.on('end', function () {
+        assert.equal('hello world', data);
+        done();
+      });
+    });
+  });
 });
 
 

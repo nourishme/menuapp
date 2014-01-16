@@ -30,6 +30,7 @@
     "chai": "~1.8.1",
     "jscoverage": "~0.3.8",
     "sinon": "~2.4.0",
-    "passport": "~0.1.18"
+    "passport": "~0.1.18",
+    "sinon-chai": "~2.4.0"
   }
 }
