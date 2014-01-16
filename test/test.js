@@ -38,20 +38,20 @@ describe('The server', function(){
     });
   });
 
-  it('should say "hello world"', function (done) {
-    http.get('http://localhost:8000', function (res) {
-      var data = '';
+  // it('should say "hello world"', function (done) {
+  //   http.get('http://localhost:8000', function (res) {
+  //     var data = '';
 
-      res.on('data', function (chunk) {
-        data += chunk;
-      });
+  //     res.on('data', function (chunk) {
+  //       data += chunk;
+  //     });
 
-      res.on('end', function () {
-        assert.equal('hello world', data);
-        done();
-      });
-    });
-  });
+  //     res.on('end', function () {
+  //       assert.equal('hello world', data);
+  //       done();
+  //     });
+  //   });
+  // });
 
   // DB testing
   it('should pull in the neo4j data', function(){
