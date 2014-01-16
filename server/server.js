@@ -38,7 +38,10 @@ app.get('/', function(req, res){
 });
 
 app.get('/apitest', function(req, res) {
-  res.send('yummly');
+  // var result = 
+  yummly.searchRecipe('kale', function(result){ res.send(result)} );
+  // res.send(result);
+
 })
 
 //Start the app by listening on <port>
