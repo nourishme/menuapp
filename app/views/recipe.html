@@ -2,9 +2,13 @@
   <h3>{{recipe.name}}</h3>
 </div>
 <div class="section group">
-  <div class="col span_1_of_8 recipeImage"></div>
-  <div class="col span_2_of_8 ingredientList"></div>
-  <div class="col span_5_of_8 recipeDirections"></div>
+  <div class="col span_3_of_8 recipeImage"><img src="{{recipe.images[0].hostedLargeUrl}}"/></div>
+  <div class="topcoat-list">
+    <h3 class="topcoat-list__header">Category</h3>
+    <ul class="topcoat-list__container span_5_of_8">
+      <li class="topcoat-list__item" ng-repeat="line in recipe.ingredientLines">{{line}}</li>
+    </ul>
+  </ul>
 </div>
 <div class="section group">
   <div class="col span_1_of_8"></div>
