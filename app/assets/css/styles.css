@@ -5,3 +5,9 @@
 /*TopCoat*/
 /*Fonts and Colors*/
 @import "base.css";
+.recipeImage {
+  width: 100%;
+}
+#maincontent {
+  margin: auto;
+}
