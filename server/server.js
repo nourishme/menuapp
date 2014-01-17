@@ -31,16 +31,20 @@ app.use(app.router);
 
 
 // Installing nib
-function compile(str, path) {
-  return stylus(str)
-    .set('filename', path)
-    .set('compress', true)
-    .use(nib());
-}
+// function compile(str, path) {
+//   return stylus(str)
+//     .set('filename', path)
+//     .set('compress', true)
+//     .use(nib());
+// }
 
+
+app.use('/assets', express.static(__dirname + '/public/assets'));
 app.use(stylus.middleware({
-    src: __dirname,
-    compile: compile
+  src: __dirname + '/resources/',
+  dest: __dirname + '/public/',
+  debug: true,
+  force: true,
 }));
 
 
