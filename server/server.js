@@ -22,7 +22,7 @@ app.set('title', 'menuapp');
 app.use(express.static('public'));
 app.use(express.cookieParser());
 app.use(express.bodyParser());
-app.use(express.session({ secret: 'keyboard cat' }));
+app.use(express.session({ secret: config.ids.facebook.secret }));
 app.use(passportConfig.passport.initialize());
 app.use(passportConfig.passport.session());
 app.use(app.router);
@@ -45,17 +45,18 @@ app.get('/login', function(req, res){
   res.send("log in here")
 })
 
-app.get('/facebook', 
+app.get('/auth/facebook', 
   passportConfig.passport.authenticate('facebook'),
   function(req, res){
     console.log('hello')
 });
 
 app.get('/auth/facebook/callback',
-passportConfig.passport.authenticate('facebook', { failureRedirect: '/' }),
-function(req, res) {
-  res.redirect('/account');
-});
+passportConfig.passport.authenticate('facebook', { 
+  successRedirect: "/account",
+  failureRedirect: '/login' 
+})
+);
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.send('hello world', { user: req.user });
