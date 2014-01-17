@@ -5,13 +5,11 @@ exports.facebookStrategy = require('passport-facebook').Strategy;
 
 
 exports.passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
 
-exports.passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
+exports.passport.deserializeUser(function(obj, done) {
+  done(null, obj);
 });
 
 exports.passport.use(new exports.facebookStrategy({
