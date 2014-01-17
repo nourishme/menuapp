@@ -30,7 +30,7 @@
     "jscoverage": "~0.3.8",
     "passport": "~0.1.18",
     "sinon-chai": "~2.4.0",
-    "passport-facebook": "~1.0.2"
+    "passport-facebook": "~1.0.2",
   },
   "devDependencies": {
     "grunt": "~0.4.2",
