@@ -42,19 +42,19 @@ app.use('/apiget', routes.yumGet );
  */
 
 app.get('/login', function(req, res){
-  res.send("log in here")
-})
+  res.send("log in here");
+});
 
-app.get('/auth/facebook', 
+app.get('/auth/facebook',
   passportConfig.passport.authenticate('facebook'),
   function(req, res){
-    console.log('hello')
+    console.log('hello');
 });
 
 app.get('/auth/facebook/callback',
-passportConfig.passport.authenticate('facebook', { 
+passportConfig.passport.authenticate('facebook', {
   successRedirect: "/account",
-  failureRedirect: '/login' 
+  failureRedirect: '/login'
 })
 );
 
@@ -80,5 +80,5 @@ module.exports = app;
 //testing something for auth
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/')
+  res.redirect('/');
 }
