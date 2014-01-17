@@ -68,7 +68,7 @@ app.get('/logout', function(req, res){
 });
 
 //Start the app by listening on <port>
-var port = 3000;
+var port = config.port || 3000;
 app.listen(port);
 console.log('Express app started on port ' + port);
 
