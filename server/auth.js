@@ -1,3 +1,6 @@
-passport = require("passport");
-LocalStrategy = require('passport-local').Strategy;
-FacebookStrategy = require('passport-facebook').Strategy;
+var passportConfig = require("./config/passport");
+
+app.post('/login', passport.authenticate('local', { 
+  successRedirect: '/',
+  failureRedirect: '/login' 
+}));
