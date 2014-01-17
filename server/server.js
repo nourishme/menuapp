@@ -8,7 +8,9 @@ path = require("path"),
 config = require('./config/configfile'),
 routes = require('./config/routes.js'),
 passportConfig = require('./config/passport'),
-yummly = require('./middleware/callyummly.js');
+yummly = require('./middleware/callyummly.js'),
+stylus = require('stylus'),
+nib = require('nib');
 
 
 var application_root = __dirname;
@@ -26,6 +28,20 @@ app.use(express.session({ secret: config.ids.facebook.secret }));
 app.use(passportConfig.passport.initialize());
 app.use(passportConfig.passport.session());
 app.use(app.router);
+
+
+// Installing nib
+function compile(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .set('compress', true)
+    .use(nib());
+}
+
+app.use(stylus.middleware({
+    src: __dirname,
+    compile: compile
+}));
 
 
 /**
