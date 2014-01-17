@@ -10,6 +10,7 @@ routes = require('./config/routes.js'),
 passportConfig = require('./config/passport'),
 yummly = require('./middleware/callyummly.js');
 
+
 var application_root = __dirname;
 
 /**
@@ -30,19 +31,11 @@ app.use(app.router);
 /**
  * Routes
  */
-console.log(__dirname)
+
 app.use('/', express.static( __dirname+ '/../app'));
-
-app.get('/db', function(req, res){
-  res.send(neo4jDB.goodbyeNode.data);
-});
-
-app.get('/apitest', function(req, res) {
-  // var result = 
-  yummly.searchRecipe('kale', function(result){ res.send(result)} );
-  // res.send(result);
-
-})
+app.use('/db', routes.dbcall );
+app.use('/apisearch', routes.yumSearch );
+app.use('/apiget', routes.yumGet );
 
 /** 
  * FB auth routes 

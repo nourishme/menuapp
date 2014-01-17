@@ -1,29 +1,24 @@
-// var exports = {}
+var yummly = require('../middleware/callyummly.js');
+var neo4jDB = require('../neo4jDB')
 
-// exports.FBroutes = {
 
-// app.get('/login', function(req, res){
-//   res.send("log in here")
-// })
+exports.dbcall = dbcall = function(req, res){
+  res.send(neo4jDB.goodbyeNode.data);
+};
 
-// app.get('/facebookAuth', 
-//   passportConfig.passport.authenticate('facebook'),
-//   function(req, res){
-//     console.log('hello')
-// });
+exports.yumSearch = yumSearch = function(req, res) {
+  // var result = 
+  yummly.searchRecipe('kale', function(result){ res.send(result)} );
+  // res.send(result);
 
-// app.get('/auth/facebook/callback',
-// passportConfig.passport.authenticate('facebook', { failureRedirect: '/' }),
-// function(req, res) {
-//   res.redirect('/account');
-// });
+}
 
-// app.get('/account', ensureAuthenticated, function(req, res){
-//   res.send('hello world', { user: req.user });
-// });
+exports.yumGet = yumGet = function(req, res) {
+  // var result = 
+  yummly.getRecipe('Sauteed-kale-with-garlic-and-onion-_melting-tuscan-kale_-309499', function(result){ res.send(result)} );
+  // res.send(result);
 
-// app.get('/logout', function(req, res){
-//   req.logout();
-//   res.redirect('/');
-// });
-// }
+
+}
+
+module.exports = exports;

@@ -16,15 +16,10 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!--Vendor Stylesheets -->
-  <!--   <link rel="stylesheet" href="assets/css/html5reset.css" media="all">
-  <link rel="stylesheet" href="assets/css/col.css" media="all">
-  <link rel="stylesheet" href="assets/css/8cols.css" media="all"> -->
+  <!--Stylesheets -->
   <link rel="stylesheet" href="assets/css/styles.css" media="all">
-  
-  <!--TODO: ADD TOP COAT HERE -->
-  <link rel="stylesheet" href="scripts/vendor/topcoat/css/topcoad-desktop-dark.css" media="screen">
-  <link rel="stylesheet" href="scripts/vendor/topcoat/css/topcoad-mobile-dark.css" media="handheld">
+  <link rel="stylesheet" href="scripts/vendor/topcoat/css/topcoat-desktop-dark.css" media="screen">
+  <link rel="stylesheet" href="scripts/vendor/topcoat/css/topcoat-mobile-dark.css" media="handheld">
 
   <!-- Responsive Stylesheets -->
   <link rel="stylesheet" media="only screen and (max-width: 1024px) and (min-width: 769px)" href="assets/css/1024.css">
@@ -34,69 +29,48 @@
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements and feature detects -->
   <script src="scripts/vendor/modernizr/modernizr.js"></script>
 </head>
-<body>
-
-<div id="skiptomain"><a href="#maincontent">skip to main content</a></div>
-
-<div id="wrapper">
+<body ng-app="app">
   <div id="headcontainer">
     <header>
-    <h1>Menu Maybe</h1>
+      <h1>Menu Maybe</h1>
     </header>
   </div>
-  <div id="maincontentcontainer">
-    <div id="maincontent">
-      <div class="section group">
-      <h3>Eight Columns</h3>
-      </div>
-      <div class="section group">
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-        <div class="col span_1_of_8">
-        1 of 8
-        </div>
-      </div>
+  
+  <div id="maincontentcontainer" >
+    <div id="maincontent" ng-view>
     </div>
   </div>
+
+
+
   <div id="footercontainer">
     <footer class="group">
     </footer>
   </div>
-</div>
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script> --!>
+
+  <!--[if (lt IE 9) & (!IEMobile)]>
+  <script src="js/selectivizr-min.js"></script>
+  <![endif]-->
 
 
-    <!-- JavaScript at the bottom for fast page loading -->
+  <!-- More Scripts-->
+  <script src="scripts/vendor/angular/angular.js"></script>
+  <script src="scripts/vendor/angular-touch/angular-touch.js"></script>
+  <script src="scripts/vendor/angular-route/angular-route.js"></script>
+  
+  <script src="app.js"></script>
+  <script src="config.js"></script>
 
-    <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script> --!>
+  <script src="controllers/example.js"></script>
+  <script src="controllers/recipe.js"></script>
+  <script src="controllers/start.js"></script>
 
-    <!--[if (lt IE 9) & (!IEMobile)]>
-    <script src="js/selectivizr-min.js"></script>
-    <![endif]-->
-
-
-    <!-- More Scripts-->
-    <!-- <script src="js/responsivegridsystem.js"></script> -->
 
 </body>
 </html>
