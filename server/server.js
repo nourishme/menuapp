@@ -8,7 +8,9 @@ path = require("path"),
 config = require('./config/configfile'),
 routes = require('./config/routes.js'),
 passportConfig = require('./config/passport'),
-yummly = require('./middleware/callyummly.js');
+yummly = require('./middleware/callyummly.js'),
+stylus = require('stylus'),
+nib = require('nib');
 
 
 var application_root = __dirname;
@@ -28,6 +30,20 @@ app.use(passportConfig.passport.session());
 app.use(app.router);
 
 
+// Installing nib
+function compile(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .set('compress', true)
+    .use(nib());
+}
+
+app.use(stylus.middleware({
+    src: __dirname,
+    compile: compile
+}));
+
+
 /**
  * Routes
  */
@@ -42,19 +58,19 @@ app.use('/apiget', routes.yumGet );
  */
 
 app.get('/login', function(req, res){
-  res.send("log in here")
-})
+  res.send("log in here");
+});
 
-app.get('/auth/facebook', 
+app.get('/auth/facebook',
   passportConfig.passport.authenticate('facebook'),
   function(req, res){
-    console.log('hello')
+    console.log('hello');
 });
 
 app.get('/auth/facebook/callback',
-passportConfig.passport.authenticate('facebook', { 
+passportConfig.passport.authenticate('facebook', {
   successRedirect: "/account",
-  failureRedirect: '/login' 
+  failureRedirect: '/login'
 })
 );
 
@@ -80,5 +96,5 @@ module.exports = app;
 //testing something for auth
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/')
+  res.redirect('/');
 }

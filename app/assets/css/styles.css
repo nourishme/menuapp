@@ -1,13 +1,17 @@
+/*Fonts and Colors*/
+@import "base.css";
 /* Responsive Design Stuff */
 @import "html5reset.css";
 @import "col.css";
 @import "8cols.css";
 /*TopCoat*/
-/*Fonts and Colors*/
-@import "base.css";
-.recipeImage {
-  width: 100%;
+@import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css";
+@media only screen and (max-width: 480px) {
+@import "480.css";
 }
-#maincontent {
-  margin: auto;
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+@import "768.css";
+}
+@media only screen and (min-width: 769px) {
+@import "1024.css";
 }
