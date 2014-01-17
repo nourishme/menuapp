@@ -58,24 +58,24 @@ app.use('/apiget', routes.yumGet );
  */
 
 app.get('/login', function(req, res){
-  res.send("log in here");
+  res.send('<a href="/auth/facebook">Login with Facebook</a>');
 });
 
 app.get('/auth/facebook',
-  passportConfig.passport.authenticate('facebook'),
-  function(req, res){
-    console.log('hello');
-});
+  passportConfig.passport.authenticate('facebook'), function(req, res){
+
+  });
 
 app.get('/auth/facebook/callback',
-passportConfig.passport.authenticate('facebook', {
-  successRedirect: "/account",
-  failureRedirect: '/login'
-})
+passportConfig.passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect /account.
+    res.redirect('/account');
+  }
 );
 
 app.get('/account', ensureAuthenticated, function(req, res){
-  res.send('hello world', { user: req.user });
+  res.send('you are signed in', { user: req.user });
 });
 
 app.get('/logout', function(req, res){
@@ -95,6 +95,8 @@ console.log('Express app started on port ' + port);
 module.exports = app;
 //testing something for auth
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
+  if (req.isAuthenticated()) {
+    return next();
+  }
   res.redirect('/');
 }
