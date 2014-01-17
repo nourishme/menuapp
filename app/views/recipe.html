@@ -3,7 +3,11 @@
 </div>
 <div class="section group">
   <div class="col span_1_of_8 recipeImage"><img src="{{recipe.images[0].hostedLargeUrl}}"</div>
-  <div class="col span_2_of_8 ingredientList"></div>
+  <div class="col span_2_of_8 ingredientList">
+    <ul>
+      <li ng-repeat="line in recipe.ingredientLines">{{line}}</li>
+    </ul>
+  </div>
   <div class="col span_5_of_8 recipeDirections"></div>
 </div>
 <div class="section group">
