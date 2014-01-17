@@ -21,7 +21,6 @@
     "url": "https://github.com/nourishme/menuapp/issues"
   },
   "dependencies": {
-    "node": "0.0.0",
     "neo4j": "~1.1.0",
     "stylus": "~0.42.0",
     "nib": "~1.0.2",
