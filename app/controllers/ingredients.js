@@ -5,6 +5,7 @@ app.controller('ingredients',  ['$scope', function($scope) {
   // $scope.recipe = recipe;
 
   // FOR TESTING
+  // $rootScope.id = $location.path().split('/')[2];
   $scope.possibleIngredients = possibleIngredients;
 
 }]);
