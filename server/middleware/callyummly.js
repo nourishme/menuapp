@@ -71,7 +71,7 @@ exports.getIng = getIng = function(req, callback) {
     options.host+options.path, 
     function(res) {
       console.log("Got response: " + res.statusCode);
-      var str = '<h1>savethesebitches</h1>';
+      var str = '<h1>cache these ingredients</h1>';
       res.on('data', function(chunk){
         str += chunk;
       });
