@@ -38,26 +38,45 @@ describe('The server', function(){
     });
   });
 
-  it('should say "hello world"', function (done) {
-    http.get('http://localhost:8000', function (res) {
-      var data = '';
+  // it('should say "hello world"', function (done) {
+  //   http.get('http://localhost:8000', function (res) {
+  //     var data = '';
 
-      res.on('data', function (chunk) {
-        data += chunk;
-      });
+  //     res.on('data', function (chunk) {
+  //       data += chunk;
+  //     });
 
-      res.on('end', function () {
-        assert.equal('hello world', data);
-        done();
-      });
-    });
-  });
+  //     res.on('end', function () {
+  //       assert.equal('hello world', data);
+  //       done();
+  //     });
+  //   });
+  // });
 
+  // DB testing
   it('should pull in the neo4j data', function(){
     http.get('http://localhost:8000', function(res){
 
-    })
-  })
+    });
+  });
+
+  // API [TODO: this testing should be fixed up to reflect different API behavior (jfl) ]
+
+  it('should return code 200 on accurate apiget ', function (done) {
+    var accurate = '/Sauteed-kale-with-garlic-and-onion-_melting-tuscan-kale_-309499';
+    http.get('http://localhost:8000/apiget'+accurate, function (res) {
+      assert.equal(200, res.statusCode);
+      
+    });
+  });
+
+  it('should return code 404 on not existing apiget ', function (done) {
+    var accurate = '/Sauteed-kale-with-garlic-and-';
+    http.get('http://localhost:8000/apiget'+accurate, function (res) {
+      assert.equal(404, res.statusCode);
+      
+    });
+  });
 });
 
 

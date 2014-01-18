@@ -1,4 +1,6 @@
+npm-debug.log
 node_modules
 bower_components
 app/scripts/vendor
 .DS_Store
+server/config/configfile.js

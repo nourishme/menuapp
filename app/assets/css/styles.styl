@@ -1,11 +1,83 @@
+// IMPORTS
 
+@import 'nib'
+
+@import "base.css"
 /* Responsive Design Stuff */
-@import "html5reset.css"
-@import "col.css"
-@import "8col.css"
+// @import "html5reset.css"
+// @import "col.css"
+// @import "8cols.css"
 
 /*TopCoat*/
+// @import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css"
+@import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css"
 
 
-/*Fonts and Colors*/
-@import "base.css"
+body
+  global-reset()
+
+
+.clear
+  clearfix();
+
+
+.container
+
+.textRight
+  text-align right
+
+.mainContent
+  clear left
+  display -webkit-flex
+  -webkit-flex-direction column
+
+#maincontentcontainer
+  margin 40px 20px 
+
+
+// Top Bar
+
+header
+  width 100%
+  border-bottom: 4px solid orange
+  height 70px
+
+.appTitle
+  display inline-block
+  float left
+  margin: 10px 20px
+
+
+  color: orange
+  font-size:3em
+  font-family: helvetica
+
+  
+.topcoat-tab-bar
+  float: right;
+
+// Ingredients Page
+.ingredientsYouHave,
+.possibleIngredients
+  flex:1
+  margin: 30px
+
+  .topcoat-checkbox__checkmark
+    text-align:left
+
+// Recipe Page
+.recipeName
+
+
+.recPicGroup
+  width: 360px
+
+
+.ingredientListContainer
+  // width:300px
+
+.attribution
+  clear:left
+
+// Tell stylus to watch your directory and update your file 
+// stylus app/assets/css/styles.styl -w --include /Users/kylewarneck/Desktop/git_repos/menuapp/node_modules/nib/lib

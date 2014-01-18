@@ -1,0 +1,12 @@
+<div class="topcoat-list searchResultsContainer">
+    <h3 class="topcoat-list__header">Recommended Recipes</h3>
+    <ul class="topcoat-list__container">
+      <li class="topcoat-list__item" ng-repeat="recipe in searchResults.matches">{{recipe.recipeName}}</li>
+    </ul>
+</div>
+
+
+<div class="attribution">
+  <a href="{{searchResults.attribution.url}}">{{searchResults.attribution.text}}</a><br>
+  <img src="{{searchResults.attribution.logo}}"/>
+</div>
