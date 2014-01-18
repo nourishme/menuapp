@@ -1,10 +1,10 @@
 // IMPORTS
 
-@import nib
+@import 'nib'
 
 @import "base.css"
 /* Responsive Design Stuff */
-@import "html5reset.css"
+// @import "html5reset.css"
 // @import "col.css"
 // @import "8cols.css"
 
@@ -13,5 +13,34 @@
 @import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css"
 
 
+body
+  global-reset()
+
+
+.clear
+  clearfix();
+
+
 .container
-  display flexbox
+
+
+.mainContent
+  clear left
+  display -webkit-flex
+  -webkit-flex-direction row
+
+.recipeName
+
+
+.recPicGroup
+  width: 360px
+
+
+.ingredientListContainer
+  // width:300px
+
+.attribution
+  clear:left
+
+// Tell stylus to watch your directory and update your file 
+// stylus css/styles.styl -w --include /Users/kylewarneck/Desktop/git_repos/menuapp/node_modules/nib/lib
