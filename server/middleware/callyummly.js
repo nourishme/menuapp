@@ -1,13 +1,13 @@
-var http = require('http')
+var http = require('http');
 var config = require('../config/configfile.js');
 
 exports.yumoptions = yumoptions = {
   host: 'http://api.yummly.com/v1'
-}
+};
 
 var splitupsearchterms = function(searchString) {
   
-}
+};
 
 
 exports.searchRecipe = searchRecipe = function(searchTerms, callback) {    
@@ -22,16 +22,16 @@ exports.searchRecipe = searchRecipe = function(searchTerms, callback) {
       console.log("Got response: " + res.statusCode);
       var str = '<h1>testdataSEARCHrecipe</h1>';
       res.on('data', function(chunk){
-        str += chunk
-      })
+        str += chunk;
+      });
       res.on('end', function(){
         callback(str);
-        return str
-      })
+        return str;
+      });
     }).on('error', function(err) {
-    console.log("Got error: " + err.message)
+    console.log("Got error: " + err.message);
   });
-}
+};
 
 exports.getRecipe = getRecipe = function(recipe_id, callback) {
    // base url for the a Get Recipe GET is 
@@ -46,15 +46,15 @@ exports.getRecipe = getRecipe = function(recipe_id, callback) {
       console.log("Got response: " + res.statusCode);
       var str = '<h1>testdataGETrecipe</h1>';
       res.on('data', function(chunk){
-        str += chunk
-      })
+        str += chunk;
+      });
       res.on('end', function(){
         callback(str);
-        return str
-      })
+        return str;
+      });
     }).on('error', function(e) {
     console.log("Got error: " + e.message);
   });
-}
+};
 
 module.exports = exports;
