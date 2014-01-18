@@ -7,21 +7,13 @@ exports.dbcall = dbcall = function(req, res){
 };
 
 exports.yumSearch = yumSearch = function(req, res) {
-  // var result = 
-  // var searchParams = getParamsFromQuery(url.query);
   console.log(req.query);
-  yummly.searchRecipe(req.query, function(result){ res.send(result);} );
-  // res.send(result);
-
+  yummly.searchRecipe(getParamString(req.query), function(result){ res.send(result);} );
 };
 
 exports.yumGet = yumGet = function(req, res) {
-  // var result = 
-  var getString = 'Sauteed-kale-with-garlic-and-onion-_melting-tuscan-kale_-309499';
-  yummly.getRecipe(getString, function(result){ res.send(result);} );
-  // res.send(result);
-
-
+  // var getString = 'Sauteed-kale-with-garlic-and-onion-_melting-tuscan-kale_-309499';
+  yummly.getRecipe(req.path, function(result){ res.send(result);} );
 };
 
 module.exports = exports;

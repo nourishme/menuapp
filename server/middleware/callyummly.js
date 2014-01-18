@@ -5,24 +5,20 @@ exports.yumoptions = yumoptions = {
   host: 'http://api.yummly.com/v1'
 };
 
-// exports.getParamsFromQuery = getParamsFromQuery = function(urlQuery) {
-  
-//   if (typeof urlQuery === 'string') { //'query=string'
-//     return urlQuery.split('=')[1]; // returns 'string'
-//   } else if (typeof urlQuery === 'object') {  // {'query':'string'}
-//     return 
-//   }
-
-//   // docs for questions: http://devdocs.io/node/url
-// };
+exports.getParamString = getParamString = function(queryObject) {
+  var paramstring = '';
+  for(var key in queryObject){
+    paramstring += '&' + key + '=' + queryObject[key];
+  }
+  return paramstring;
+};
 
 
 exports.searchRecipe = searchRecipe = function(searchParams, callback) {    
 // The base url for the Search Recipes GET is
 // http://api.yummly.com/v1/api/recipes?_app_id=app-id&_app_key=app-key&your_search_parameters
   var options = yumoptions;
-  options.path = '/api/recipes'+ apiauth.token + '&' + searchParams;
-  
+  options.path = '/api/recipes'+ apiauth.token + searchParams;
   http.get( 
     options.host+options.path, 
     function(res) {
@@ -45,7 +41,7 @@ exports.getRecipe = getRecipe = function(recipe_id, callback) {
    // http://api.yummly.com/v1/api/recipe/recipe-id?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY 
    // where recipe IDs may be obtained from the Search Recipes call.
   var options = yumoptions;
-  options.path = '/api/recipe/'+ recipe_id + apiauth.token;
+  options.path = '/api/recipe'+ recipe_id + apiauth.token;
   
   http.get( 
     options.host+options.path, 
