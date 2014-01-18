@@ -60,4 +60,28 @@ exports.getRecipe = getRecipe = function(recipe_id, callback) {
   });
 };
 
+exports.getIng = getIng = function(req, callback) {
+   // base url for the a Get Recipe GET is 
+   // http://api.yummly.com/v1/api/metadata/ingredient?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY
+   // where recipe IDs may be obtained from the Search Recipes call.
+  var options = yumoptions;
+  options.path = '/api/metadata/ingredient'+ apiauth.token;
+  
+  http.get( 
+    options.host+options.path, 
+    function(res) {
+      console.log("Got response: " + res.statusCode);
+      var str = '<h1>savethesebitches</h1>';
+      res.on('data', function(chunk){
+        str += chunk;
+      });
+      res.on('end', function(){
+        callback(str);
+        return str;
+      });
+    }).on('error', function(e) {
+    console.log("Got error: " + e.message);
+  });
+};
+
 module.exports = exports;
