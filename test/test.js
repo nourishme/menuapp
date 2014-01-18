@@ -57,23 +57,24 @@ describe('The server', function(){
   it('should pull in the neo4j data', function(){
     http.get('http://localhost:8000', function(res){
 
-    })
+    });
   });
 
   // API [TODO: this testing should be fixed up to reflect different API behavior (jfl) ]
 
-  it('should say return some awesomeness from /apitest', function (done) {
-    http.get('http://localhost:8000/apitest', function (res) {
-      var data = '';
+  it('should return code 200 on accurate apiget ', function (done) {
+    var accurate = '/Sauteed-kale-with-garlic-and-onion-_melting-tuscan-kale_-309499';
+    http.get('http://localhost:8000/apiget'+accurate, function (res) {
+      assert.equal(200, res.statusCode);
+      
+    });
+  });
 
-      res.on('data', function (chunk) {
-        data += chunk;
-      });
-
-      res.on('end', function () {
-        assert.equal('hello world', data);
-        done();
-      });
+  it('should return code 404 on not existing apiget ', function (done) {
+    var accurate = '/Sauteed-kale-with-garlic-and-';
+    http.get('http://localhost:8000/apiget'+accurate, function (res) {
+      assert.equal(404, res.statusCode);
+      
     });
   });
 });
