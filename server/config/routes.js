@@ -1,6 +1,6 @@
 var yummly = require('../middleware/callyummly.js');
 var neo4jDB = require('../neo4jDB');
-
+var url = require('url');
 
 exports.dbcall = dbcall = function(req, res){
   res.send(neo4jDB.goodbyeNode.data);
@@ -8,8 +8,9 @@ exports.dbcall = dbcall = function(req, res){
 
 exports.yumSearch = yumSearch = function(req, res) {
   // var result = 
-  var searchParams = 'kale';
-  yummly.searchRecipe(searchParams, function(result){ res.send(result);} );
+  // var searchParams = getParamsFromQuery(url.query);
+  console.log(req.query);
+  yummly.searchRecipe(req.query, function(result){ res.send(result);} );
   // res.send(result);
 
 };

@@ -5,16 +5,23 @@ exports.yumoptions = yumoptions = {
   host: 'http://api.yummly.com/v1'
 };
 
-var splitupsearchterms = function(searchString) {
+// exports.getParamsFromQuery = getParamsFromQuery = function(urlQuery) {
   
-};
+//   if (typeof urlQuery === 'string') { //'query=string'
+//     return urlQuery.split('=')[1]; // returns 'string'
+//   } else if (typeof urlQuery === 'object') {  // {'query':'string'}
+//     return 
+//   }
+
+//   // docs for questions: http://devdocs.io/node/url
+// };
 
 
 exports.searchRecipe = searchRecipe = function(searchParams, callback) {    
 // The base url for the Search Recipes GET is
 // http://api.yummly.com/v1/api/recipes?_app_id=app-id&_app_key=app-key&your_search_parameters
   var options = yumoptions;
-  options.path = '/api/recipes'+ apiauth.token + '&q=' + searchParams;
+  options.path = '/api/recipes'+ apiauth.token + '&' + searchParams;
   
   http.get( 
     options.host+options.path, 
