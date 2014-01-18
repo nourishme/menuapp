@@ -1833,5 +1833,5 @@ possibleIngredients = {
 };
 
 module.exports.recipe = recipe;
-
-
+module.exports.possibleIngredients = possibleIngredients;
+module.exports.searchResults = searchResults;

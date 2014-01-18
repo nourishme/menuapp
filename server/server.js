@@ -104,6 +104,13 @@ app.get('/recipe/:id', function(req,res){
   res.send(test.recipe);
 });
 
+app.get('/ingredientInventory/:Userid', function(req,res){
+  res.send(test.possibleIngredients);
+});
+
+app.get('/searchResults/:searchId', function(req,res){
+  res.send(test.searchResults);
+});
 
 
 

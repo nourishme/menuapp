@@ -1,11 +1,14 @@
 
-app.controller('ingredients',  ['$scope', function($scope) {
-  // Set a promise, get the recipe data and return the promise before rendering
-  // getRecipe(id);// will render before returning data as written
-  // $scope.recipe = recipe;
-
-  // FOR TESTING
-  // $rootScope.id = $location.path().split('/')[2];
-  $scope.possibleIngredients = possibleIngredients;
-
-}]);
+app.controller('ingredients', function($http,$location,$scope) {
+    $http({
+      method: 'GET',
+      url: 'ingredientInventory/'+ $location.path().split('/')[2]
+  })
+  .success(function(data, status) {
+    console.log(data);
+    $scope.possibleIngredients = data;
+  })
+  .error(function(data, status){
+    console.log(data,status);
+  });
+});
