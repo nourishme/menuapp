@@ -2,13 +2,22 @@
 <div class="topcoat-list ingredientsYouHave">
     <h3 class="topcoat-list__header">Ingredients Inventory</h3>
     <ul class="topcoat-list__container">
-      <li class="topcoat-list__item" ng-repeat="(key,val) in possibleIngredients">{{key}}</li>
+      <li class="topcoat-list__item" ng-repeat="(key,val) in possibleIngredients">
+          <input type="checkbox" checked>
+          <span class="topcoat-checkbox__checkmark"></span>
+          <span class="rightText">{{key}}</span>
+      </li>
     </ul>
 </div>
 
 <div class="topcoat-list possibleIngredients">
     <h3 class="topcoat-list__header">Do you have . . .</h3>
     <ul class="topcoat-list__container">
-      <li class="topcoat-list__item" ng-repeat="(key,val) in possibleIngredients">{{key}}</li>
+
+      <li class="topcoat-list__item" ng-repeat="(key,val) in possibleIngredients">
+          <input type="checkbox">
+          <span class="topcoat-checkbox__checkmark"></span>
+          <span class="rightText">{{key}}</span>
+      </li>
     </ul>
 </div>
