@@ -37,8 +37,25 @@
 <body ng-app="app">
   <div class="container">
     <header>
-      <div class="col span_1_of_8"></div>
-      <h1>Menu Maybe</h1>
+      <div class="topcoat-tab-bar">
+        <h1>Menu Maybe</h1>
+        <label class="topcoat-tab-bar__item">
+          <input type="radio" name="tab-bar">
+          <a href="#/login"><button class="topcoat-tab-bar__button">Sign In</button></a>
+        </label>
+        <label class="topcoat-tab-bar__item">
+          <input type="radio" name="tab-bar">
+          <a href="#/ingredients/47"><button class="topcoat-tab-bar__button">Ingredients Inventory</button></a>
+        </label>
+        <label class="topcoat-tab-bar__item">
+          <input type="radio" name="tab-bar">
+          <a href="#/searchResults/47"><button class="topcoat-tab-bar__button">Search Results</button></a>
+        </label>
+        <label class="topcoat-tab-bar__item">
+          <input type="radio" name="tab-bar">
+          <a href="#/recipe/47"><button class="topcoat-tab-bar__button">Recipe</button></a>
+        </label>
+      </div>
     </header>
   </div>
   
