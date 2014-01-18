@@ -105,10 +105,28 @@ body a img {
   clear: both;
 }
 .container,
+.textRight {
+  text-align: right;
+}
 .mainContent {
   clear: left;
   display: -webkit-flex;
-  -webkit-flex-direction: row;
+  -webkit-flex-direction: column;
+}
+.ingredientsYouHave,
+.possibleIngredients {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin: 30px;
+}
+.ingredientsYouHave .topcoat-checkbox__checkmark,
+.possibleIngredients .topcoat-checkbox__checkmark {
+  text-align: left;
 }
 .recipeName,
 .recPicGroup {
