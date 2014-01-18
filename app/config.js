@@ -1,3 +1,4 @@
+
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
   .when('/', {
@@ -7,6 +8,14 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/recipe', {
     controller: 'recipe',
     templateUrl: 'views/recipe.html'
+  })
+  .when('/login', {
+    controller: 'login',
+    templateUrl: 'views/login.html'
+  })
+  .when('/searchResults', {
+    controller: 'searchResults',
+    templateUrl: 'views/searchResults.html'
   })
   .when('/example', {
     controller: 'example',

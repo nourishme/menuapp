@@ -1,0 +1,119 @@
+@import "base.css";
+/* Responsive Design Stuff */
+/*TopCoat*/
+@import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css";
+body html,
+body body,
+body div,
+body span,
+body applet,
+body object,
+body iframe,
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body p,
+body blockquote,
+body pre,
+body a,
+body abbr,
+body acronym,
+body address,
+body big,
+body cite,
+body code,
+body del,
+body dfn,
+body em,
+body img,
+body ins,
+body kbd,
+body q,
+body s,
+body samp,
+body small,
+body strike,
+body strong,
+body sub,
+body sup,
+body tt,
+body var,
+body dl,
+body dt,
+body dd,
+body ol,
+body ul,
+body li,
+body fieldset,
+body form,
+body label,
+body legend,
+body table,
+body caption,
+body tbody,
+body tfoot,
+body thead,
+body tr,
+body th,
+body td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+body ol,
+body ul {
+  list-style: none;
+}
+body table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+body caption,
+body th,
+body td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+body a img {
+  border: none;
+}
+.clear {
+  zoom: 1;
+}
+.clear:before,
+.clear:after {
+  content: "";
+  display: table;
+}
+.clear:after {
+  clear: both;
+}
+.container,
+.mainContent {
+  clear: left;
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+}
+.recipeName,
+.recPicGroup {
+  width: 360px;
+}
+.attribution {
+  clear: left;
+}

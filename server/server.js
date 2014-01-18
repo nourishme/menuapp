@@ -39,7 +39,8 @@ app.use(app.router);
 // }
 
 
-app.use('/assets', express.static(__dirname + '/public/assets'));
+
+
 app.use(stylus.middleware({
   src: __dirname + '/resources/',
   dest: __dirname + '/public/',
@@ -56,6 +57,7 @@ app.use('/', express.static( __dirname+ '/../app'));
 app.use('/db', routes.dbcall );
 app.use('/apisearch', routes.yumSearch );
 app.use('/apiget', routes.yumGet );
+app.use('/assets', express.static(__dirname + '/public/assets'));
 
 /** 
  * FB auth routes 
