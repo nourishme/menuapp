@@ -63,6 +63,8 @@ app.use('/assets', express.static(__dirname + '/public/assets'));
 
 app.use('/search', routes.yumSearch );
 app.use('/get', routes.yumGet );
+app.use('/ing', routes.yumIng );
+
 
 /** 
  * FB auth routes 
