@@ -17,6 +17,10 @@ app.config(['$routeProvider', function ($routeProvider) {
     controller: 'searchResults',
     templateUrl: 'views/searchResults.html'
   })
+  .when('/ingredients',{
+    controller: 'ingredients',
+    templateUrl: 'views/ingredients.html'
+  })
   .when('/example', {
     controller: 'example',
     templateUrl: 'views/example.html'

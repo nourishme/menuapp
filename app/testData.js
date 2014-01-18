@@ -1819,3 +1819,15 @@ var searchResults = {
         ]
     }
 };
+
+
+possibleIngredients = {
+    "butter":null,
+    "bacon":null,
+    "bagels":null,
+    "carrots":null,
+    "kale":null,
+    "salt":null,
+    "olive oil":null,
+    "chicken":null
+};
