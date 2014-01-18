@@ -23,12 +23,24 @@ body
 
 .container
 
+.textRight
+  text-align right
 
 .mainContent
   clear left
   display -webkit-flex
-  -webkit-flex-direction row
+  -webkit-flex-direction column
 
+// Ingredients Page
+.ingredientsYouHave,
+.possibleIngredients
+  flex:1
+  margin: 30px
+
+  .topcoat-checkbox__checkmark
+    text-align:left
+
+// Recipe Page
 .recipeName
 
 
@@ -43,4 +55,4 @@ body
   clear:left
 
 // Tell stylus to watch your directory and update your file 
-// stylus css/styles.styl -w --include /Users/kylewarneck/Desktop/git_repos/menuapp/node_modules/nib/lib
+// stylus app/assets/css/styles.styl -w --include /Users/kylewarneck/Desktop/git_repos/menuapp/node_modules/nib/lib
