@@ -1,5 +1,4 @@
-exports.ingredient = {
-  "all":[
+exports.ingredient = [
       {"searchValue":"salt","description":"salt","term":"salt"},
       {"searchValue":"sugar","description":"sugar","term":"sugar"      },
       {"searchValue":"butter","description":"butter","term":"butter"      },
@@ -7014,7 +7013,6 @@ exports.ingredient = {
       {"searchValue":"roasted pumpkin seeds","description":"roasted pumpkin seeds","term":"roasted pumpkin seeds"      },
       {"searchValue":"spring water","description":"spring water","term":"spring water"      },
       {"searchValue":"shimeji mushrooms","description":"shimeji mushrooms","term":"shimeji mushrooms"}
-    ]
-  };
+    ];
 
 
