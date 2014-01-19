@@ -12,7 +12,6 @@ yummly = require('./middleware/callyummly.js'),
 stylus = require('stylus'),
 nib = require('nib');
 
-
 var application_root = __dirname;
 
 /**
