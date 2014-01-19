@@ -5,7 +5,7 @@ exports.facebookStrategy = require('passport-facebook').Strategy;
 
 
 exports.passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user.id);
 });
 
 exports.passport.deserializeUser(function(obj, done) {

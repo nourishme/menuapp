@@ -76,17 +76,15 @@ app.get('/login', function(req, res){
   res.send('<a href="/auth/facebook">Login with Facebook</a>');
 });
 
-app.get('/auth/facebook',
-  passportConfig.passport.authenticate('facebook'), function(req, res){
-
-  });
+app.get('/auth/facebook', passportConfig.passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
-passportConfig.passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect /account.
-    res.redirect('/account');
+passportConfig.passport.authenticate('facebook', {
+  failureRedirect: '/login' }),
+  function(req, res){
+    console.log(req)
   }
+
 );
 
 app.get('/account', ensureAuthenticated, function(req, res){
