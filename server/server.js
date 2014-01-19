@@ -12,6 +12,8 @@ yummly = require('./middleware/callyummly.js'),
 stylus = require('stylus'),
 nib = require('nib');
 
+var test= require('../app/testData.js');
+
 var application_root = __dirname;
 
 /**
@@ -94,6 +96,22 @@ app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+
+
+// Get Recipes
+app.get('/recipe/:id', function(req,res){
+  res.send(test.recipe);
+});
+
+app.get('/ingredientInventory/:Userid', function(req,res){
+  res.send(test.possibleIngredients);
+});
+
+app.get('/searchResults/:searchId', function(req,res){
+  res.send(test.searchResults);
+});
+
+
 
 //Start the app by listening on <port>
 var port = config.port || 3000;

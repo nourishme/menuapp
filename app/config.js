@@ -2,10 +2,9 @@
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
   .when('/', {
-    controller: 'start',
-    templateUrl: 'views/start.html'
+    redirectTo: '/login'
   })
-  .when('/recipe', {
+  .when('/recipe/:recipeId', {
     controller: 'recipe',
     templateUrl: 'views/recipe.html'
   })
@@ -13,17 +12,13 @@ app.config(['$routeProvider', function ($routeProvider) {
     controller: 'login',
     templateUrl: 'views/login.html'
   })
-  .when('/searchResults', {
+  .when('/searchResults/:searchId', {
     controller: 'searchResults',
     templateUrl: 'views/searchResults.html'
   })
-  .when('/ingredients',{
+  .when('/ingredients/:userId',{
     controller: 'ingredients',
     templateUrl: 'views/ingredients.html'
-  })
-  .when('/example', {
-    controller: 'example',
-    templateUrl: 'views/example.html'
   })
   .when('/404', {
     templateUrl: 'views/404.html'

@@ -113,6 +113,25 @@ body a img {
   display: -webkit-flex;
   -webkit-flex-direction: column;
 }
+#maincontentcontainer {
+  margin: 40px 20px;
+}
+header {
+  width: 100%;
+  border-bottom: 4px solid #ffa500;
+  height: 70px;
+}
+.appTitle {
+  display: inline-block;
+  float: left;
+  margin: 10px 20px;
+  color: #ffa500;
+  font-size: 3em;
+  font-family: helvetica;
+}
+.topcoat-tab-bar {
+  float: right;
+}
 .ingredientsYouHave,
 .possibleIngredients {
   -webkit-box-flex: 1;
