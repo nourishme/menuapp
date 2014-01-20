@@ -16,7 +16,7 @@ exports.passport.deserializeUser(function(account, done) {
     } else {
       done(err, null);
     }
-  })
+  });
   done(null, obj);
 });
 

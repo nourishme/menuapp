@@ -4,7 +4,7 @@ exports.neo4j = neo4j = require('node-neo4j');
 // console.log(Object.keys(ing))
 exports.db = db = new neo4j('http://localhost:7474');
 
-var savecb = function (err, node) { 
+var savecb = function (err, node) {
   if (err) {
     console.log('Error saving new node to database:', err);
   } else {
