@@ -78,27 +78,33 @@ app.get('/login', function(req, res){
   res.send('<a href="/auth/facebook">Login with Facebook</a>');
 });
 
-app.get('/auth/facebook',
-  passportConfig.passport.authenticate('facebook'), function(req, res){
-
-  });
+app.get('/auth/facebook', passportConfig.passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
-passportConfig.passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect /account.
-    res.redirect('/account');
+passportConfig.passport.authenticate('facebook', {
+  failureRedirect: '/login' }),
+  function(req, res){
+    console.log(req);
   }
+
 );
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.send('you are signed in', { user: req.user });
-});
+// app.get('/account', ensureAuthenticated, function(req, res){
+//   res.send('you are signed in', { user: req.user });
+// });
 
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+
+var ensureAuthenticated = function(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+};
+
 
 
 /** 
@@ -128,10 +134,4 @@ console.log('Express app started on port ' + port);
 
 // //expose app
 module.exports = app;
-//testing something for auth
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
-}
+
