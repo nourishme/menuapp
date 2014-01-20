@@ -36,6 +36,7 @@ app.use(passportConfig.passport.session());
 app.use(app.router);
 
 
+
 // Installing nib
 // function compile(str, path) {
 //   return stylus(str)
@@ -43,9 +44,6 @@ app.use(app.router);
 //     .set('compress', true)
 //     .use(nib());
 // }
-
-
-
 
 app.use(stylus.middleware({
   src: __dirname + '/resources/',
@@ -103,7 +101,9 @@ app.get('/logout', function(req, res){
 });
 
 
-
+/** 
+ * Other Routes
+ */
 
 // Ingredients
 app.get('/ingredientInventory/:Userid',ingredients.getUsersList);
@@ -114,6 +114,8 @@ app.get('/searchResults/:searchId',searchResults.get);
 
 // Recipes
 app.get('/recipe/:id', recipe.get);
+
+
 
 
 //Start the app by listening on <port>
