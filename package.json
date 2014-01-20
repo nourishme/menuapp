@@ -30,7 +30,7 @@
     "passport": "~0.1.18",
     "sinon-chai": "~2.4.0",
     "passport-facebook": "~1.0.2",
-    "node-neo4j": "~2.0.0-RC3"
+    "node-neo4j": "~2.0.0-RC4"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

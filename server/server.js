@@ -86,20 +86,27 @@ passportConfig.passport.authenticate('facebook', {
 
 );
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.send('you are signed in', { user: req.user });
-});
+// app.get('/account', ensureAuthenticated, function(req, res){
+//   res.send('you are signed in', { user: req.user });
+// });
 
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
 
+var ensureAuthenticated = function(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+}
+
 
 // Get Recipes
-app.get('/recipe/:id', function(req,res){
-  res.send(test.recipe);
-});
+// app.get('/recipe/:id', function(req,res){
+//   res.send(test.recipe);
+// });
 
 app.get('/ingredientInventory/:Userid', function(req,res){
   res.send(test.possibleIngredients);
@@ -121,10 +128,4 @@ console.log('Express app started on port ' + port);
 
 // //expose app
 module.exports = app;
-//testing something for auth
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
-}
+
