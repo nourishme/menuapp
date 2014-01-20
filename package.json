@@ -21,7 +21,6 @@
     "url": "https://github.com/nourishme/menuapp/issues"
   },
   "dependencies": {
-    "neo4j": "~1.1.0",
     "stylus": "~0.42.0",
     "nib": "~1.0.2",
     "express": "~3.4.8",
@@ -30,10 +29,7 @@
     "jscoverage": "~0.3.8",
     "passport": "~0.1.18",
     "sinon-chai": "~2.4.0",
-    "passport-facebook": "~1.0.2"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-express-server": "~0.4.11"
+    "passport-facebook": "~1.0.2",
+    "node-neo4j": "~2.0.0-RC3"
   }
 }

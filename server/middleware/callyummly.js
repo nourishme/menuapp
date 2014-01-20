@@ -66,7 +66,7 @@ exports.getIng = getIng = function(req, callback) {
    // where recipe IDs may be obtained from the Search Recipes call.
   var options = yumoptions;
   options.path = '/api/metadata/ingredient'+ apiauth.token;
-  
+  console.log(options.path);
   http.get( 
     options.host+options.path, 
     function(res) {

@@ -114,7 +114,7 @@ body a img {
   -webkit-flex-direction: column;
 }
 #maincontentcontainer {
-  margin: 40px 20px;
+  margin: 40px 40px;
 }
 header {
   width: 100%;
@@ -132,8 +132,8 @@ header {
 .topcoat-tab-bar {
   float: right;
 }
-.ingredientsYouHave,
-.possibleIngredients {
+.ingredientsLiked,
+.ingredientsNotLiked {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -143,8 +143,8 @@ header {
   flex: 1;
   margin: 30px;
 }
-.ingredientsYouHave .topcoat-checkbox__checkmark,
-.possibleIngredients .topcoat-checkbox__checkmark {
+.ingredientsLiked .topcoat-checkbox__checkmark,
+.ingredientsNotLiked .topcoat-checkbox__checkmark {
   text-align: left;
 }
 .recipeName,
