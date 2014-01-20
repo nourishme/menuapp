@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-var neo4jDB = require('./neo4jDB'),
+var neo4jDB = require('./neo4jDB.js'),
 express = require("express"),
 path = require("path"),
 config = require('./config/configfile'),
@@ -10,7 +10,10 @@ routes = require('./config/routes.js'),
 passportConfig = require('./config/passport'),
 yummly = require('./middleware/callyummly.js'),
 stylus = require('stylus'),
-nib = require('nib');
+nib = require('nib'),
+recipe = require('./recipe'),
+ingredients = require('./ingredients'),
+searchResults = require('./searchResults');
 
 var test= require('../app/testData.js');
 
@@ -98,17 +101,21 @@ app.get('/logout', function(req, res){
 });
 
 
-// Get Recipes
+
 app.get('/recipe/:id', function(req,res){
-  res.send(test.recipe);
+  recipe.get(req,res);
 });
 
 app.get('/ingredientInventory/:Userid', function(req,res){
-  res.send(test.possibleIngredients);
+  ingredients.getUsersList(req,res);
+});
+
+app.post('/ingredientInventory/:Userid', function(req,res){
+  ingredients.saveUsersList(req,res);
 });
 
 app.get('/searchResults/:searchId', function(req,res){
-  res.send(test.searchResults);
+  searchResults.get(req,res);
 });
 
 
