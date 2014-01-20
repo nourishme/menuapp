@@ -1,27 +1,33 @@
-exports.neo4j = require('neo4j');
-// var ing = require('./datainit/ingredientlist.js');
+exports.neo4j = neo4j = require('node-neo4j');
+// var ing = require('./datainit/ingredientlist.js').ingredient; 
+  
+// console.log(Object.keys(ing))
+exports.db = db = new neo4j('http://localhost:7474');
 
-exports.db = db = new exports.neo4j.GraphDatabase('http://localhost:7474');
-
-// exports.goodbyeNode = exports.db.createNode({goodbye: "other world"});     // instantaneous, but...
-
-var savecb = function (err, node) {    // ...this is what actually persists.
+var savecb = function (err, node) { 
   if (err) {
-    console.err('Error saving new node to database:', err);
+    console.log('Error saving new node to database:', err);
   } else {
-    console.log('Node saved to database with id:', node.id);
+    console.log('Node saved to database with id:', node.data[0]._id);
   }
 };
 
-// exports.goodbyeNode.save(savecb); // we save the 
-
-var ingredientCache = function(bga) {
-  for (var i = 0; i < bga.length; i++) {
-    bga[i].node_type = 'ingredient';
-    var node = db.createNode(bga[i]);
-    node.save(savecb);
+// CREATE (n:Person { name : 'Andres', title : 'Developer' })
+var dbInsert = function(objArray, dbLabelString) {
+  
+  for (var i = 0; i < objArray.length; i++) {
+    var innerQ = '';
+    for(var key in objArray[i] ) {
+      innerQ += key + ":'" + objArray[i][key] + "'," ;
+      console.log(innerQ);
+      
+    }
+    var query = "create (n:"+ dbLabelString +" { "+ innerQ.slice(0,innerQ.length-1) + " }) RETURN n";
+    console.log(query);
+    db.cypherQuery(query, savecb);
   }
 };
 
-// ingredientCache(/*ing.ingredient.all*/); // uncomment this function and the argument to import base ingredients.
 
+// uncomment this function and Line2 to import base ingredients.
+// dbInsert(/*testing, "Ingredient"*/);
