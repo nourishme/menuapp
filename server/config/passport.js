@@ -1,6 +1,7 @@
 var config = require ('./configfile');
 exports.passport = require('passport');
 exports.facebookStrategy = require('passport-facebook').Strategy;
+var User = require('../neo4jDB');
 
 
 
