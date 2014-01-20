@@ -2,6 +2,7 @@
  * Module dependencies.
  */
 
+// External dependencies
 var neo4jDB = require('./neo4jDB.js'),
 express = require("express"),
 path = require("path"),
@@ -11,11 +12,12 @@ passportConfig = require('./config/passport'),
 yummly = require('./middleware/callyummly.js'),
 stylus = require('stylus'),
 nib = require('nib'),
+
+// Internal Dependencies
 recipe = require('./recipe'),
 ingredients = require('./ingredients'),
 searchResults = require('./searchResults');
 
-var test= require('../app/testData.js');
 
 var application_root = __dirname;
 
@@ -102,22 +104,16 @@ app.get('/logout', function(req, res){
 
 
 
-app.get('/recipe/:id', function(req,res){
-  recipe.get(req,res);
-});
 
-app.get('/ingredientInventory/:Userid', function(req,res){
-  ingredients.getUsersList(req,res);
-});
+// Ingredients
+app.get('/ingredientInventory/:Userid',ingredients.getUsersList);
+app.post('/ingredientInventory/:Userid',ingredients.saveUsersList);
 
-app.post('/ingredientInventory/:Userid', function(req,res){
-  ingredients.saveUsersList(req,res);
-});
+// Search Results
+app.get('/searchResults/:searchId',searchResults.get);
 
-app.get('/searchResults/:searchId', function(req,res){
-  searchResults.get(req,res);
-});
-
+// Recipes
+app.get('/recipe/:id', recipe.get);
 
 
 //Start the app by listening on <port>
