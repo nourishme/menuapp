@@ -89,9 +89,6 @@ app.use('/ing', routes.yumIng );
 
 // );
 
-// // app.get('/account', ensureAuthenticated, function(req, res){
-// //   res.send('you are signed in', { user: req.user });
-// // });
 
 // app.get('/logout', function(req, res){
 //   req.logout();
