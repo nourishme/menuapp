@@ -5,20 +5,32 @@ var database = require('../neo4jDB');
 
 
 
-exports.passport.serializeUser(function(user, done) {
-  done(null, user.id);
+exports.passport.serializeUser(function(account, done) {
+  done(null, account.facebook.id);
 });
 
+
 exports.passport.deserializeUser(function(account, done) {
-  findOrCreate(account, function(err, account){
-    if(!err) {
-      done(null, user);
-    } else {
-      done(err, null);
-    }
-  });
-  done(null, obj);
+  // findOrCreate(account, function(err, account){
+    // if(!err) {
+    //   done(null, account.facebook.id);
+    // } else {
+    //   done(err, null);
+    // }
+  //});
+  done(null, account.facebook.id);
 });
+
+// exports.passport.deserializeUser(function(account, done) {
+//   findOrCreate(account, function(err, account){
+//     if(!err) {
+//       done(null, account.facebook.id);
+//     } else {
+//       done(err, null);
+//     }
+//   });
+//   done(null, account.facebook.id);
+// });
 
 exports.passport.use(new exports.facebookStrategy({
  clientID: config.ids.facebook.clientID,
@@ -42,25 +54,29 @@ exports.passport.use(new exports.facebookStrategy({
 );
 
 var findOrCreate = function(account, callback){
+  debugger
+  console.log('account: ', account)
 
-  var getQuery = "MATCH (u: User) WHERE u.fbUserID = " + account.facebook.id + " RETURN u";
-  var createQuery = "CREATE (u: User "+
-      " { fbUserID: " + account.facebook.id +
-      " , fbFName: " + account.facebook.name.givenName +
-      " , fbLName: " + account.facebook.name.familyName +
-      " , fbEmail: " + account.facebook.emails.value +
-      " }) return u";
+  // var getQuery = "MATCH (u: User) WHERE u.fbUserID = " + account.facebook.id + " RETURN u";
+  // var createQuery = "CREATE (u: User "+
+  //     " { fbUserID: " + account.facebook.id +
+  //     " , fbFName: " + account.facebook.name.givenName +
+  //     " , fbLName: " + account.facebook.name.familyName +
+  //     " , fbEmail: " + account.facebook.emails[0].value +
+  //     " }) return u";
 
-  db.cypherQuery(getQuery, function(err, result){
-    if(result.data.length > 0){
-      return callback(err, result[0]);
-    } else {
-      db.cypherQuery(createQuery, function(err, result){
-        return callback(err, result.data[0]);
-      });
-    }
+  // db.cypherQuery(getQuery, function(err, result){
+  //   if(result.data.length > 0){
+  //     console.log('get err: ', err)
+  //     return callback(err, result.data[0]);
+  //   } else {
+  //     db.cypherQuery(createQuery, function(err, result){
+  //             console.log('create err: ', err)
+  //       return callback(err, result.data[0]);
+  //     });
+  //   }
 
-  });
+  // });
 
 
 };
