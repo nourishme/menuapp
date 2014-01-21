@@ -12,6 +12,10 @@ app.config(['$routeProvider', function ($routeProvider) {
     controller: 'login',
     templateUrl: 'views/login.html'
   })
+  .when('/home', {
+    controller: 'home',
+    templateUrl: 'views/home.html'
+  })
   .when('/searchResults/:searchId', {
     controller: 'searchResults',
     templateUrl: 'views/searchResults.html'

@@ -1,0 +1,12 @@
+<form>
+  <p> What ingredient would you like to cook with today?</p>
+  <input type="text" ng-model="ingredientSearch" placeholder="Ingredient"></input>
+</form>
+  <div class="matchingIngredients">
+    {{ ingredientSearch }}
+     <ul class="topcoat-list__container">
+      <li class="topcoat-list__item" ng-repeat="ingredient in ingredients | filter:ingredientSearch">
+          <span >{{ingredient.name}}</span>
+      </li>
+    </ul>
+  <div>
