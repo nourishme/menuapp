@@ -1,6 +1,6 @@
-var neo4jDB = require('./neo4jDB.js');
+var neo4jDB = require('../neo4jDB.js');
 exports.neo4j = neo4j = require('node-neo4j');
-ports.db = db = new neo4j('http://localhost:7474');
+exports.db = db = new neo4j('http://localhost:7474');
 
 // Insert a Node with these three labels -> ('user', 'evil', man'): 
 // db.insertNode({ name:'Darth Vader', level: 99, hobbies: ['lightsaber fighting', 'cycling in space'], shipIds: [123, 321] }, ['User', 'Evil' ,'Man'], callback);
