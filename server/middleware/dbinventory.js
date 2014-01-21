@@ -1,3 +1,6 @@
+var neo4jDB = require('../neo4jDB.js');
+exports.neo4j = neo4j = require('node-neo4j');
+exports.db = db = new neo4j('http://localhost:7474');
 
 exports.updateUserInventory = update = function(userid, invChangeObj, cb) {
   var statement = createStatementFromObject(invChangeObject);
@@ -5,8 +8,14 @@ exports.updateUserInventory = update = function(userid, invChangeObj, cb) {
 };
 
 exports.getUserInventory = getinventory = function(userid) {
-  msg = "match (n:User {props})-[:HAS]-(inventory) return inventory";
-  // db.cypherQuery(msg, callback); //?????  
+  // match (n) where id(n) = {userid} return n
+  // match (n)->[:HAS_INVENTORY]-(b) where id(n) = 406842 return b
+  msg = "match (n)-[:HAS_INVENTORY]->(i) where id(n) = "+userid+" return i";
+  var cb = function(err, result) {
+    console.log(err, result);
+    return result;
+  };
+  db.cypherQuery(msg, cb);
   
 };
 

@@ -3,7 +3,8 @@ var dbinventory = require('./middleware/dbinventory.js');
 
 module.exports = {
   getUsersRecipeList: function(req,res){
-    var ingredients = dbinventory.getinventory(req.userid); 
+    // var ingredients = dbinventory.getUserInventory(req.userid); 
+    var ingredients = dbinventory.getUserInventory(406842); 
     res.send(ingredients);
   },
 
