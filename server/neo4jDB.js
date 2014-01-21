@@ -21,7 +21,8 @@ exports.dbinsert = dbinsert = function(objArray, dbLabelString) {
   }
 };
 
-exports.ing = require('./datainit/dbstuffer.js').ingredient; 
+// use this to init the server ingredient data
+// exports.ing = require('./datainit/initDBwithIngredientList.js').ingredient; 
 module.exports = exports;
 
 
