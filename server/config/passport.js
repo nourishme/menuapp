@@ -17,7 +17,7 @@ exports.passport.deserializeUser(function(account, done) {
       done(err, null);
     }
   });
-  done(null, obj);
+  done(null, user);
 });
 
 exports.passport.use(new exports.facebookStrategy({
