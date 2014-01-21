@@ -22,6 +22,18 @@ exports.dbinsert = dbinsert = function(objArray, dbLabelString) {
   }
 };
 
+exports.createStatementFromObject = 
+  createStatementFromObject = function(changeObject){
+    // Maybe object should be something like this:
+    // {
+    //   changeType: 'inventoryUpdate',
+    //   changes: {
+    //     add: [thing1object,thing2object,thing3object], 
+    //     remove: [thing4object,thing4object,thing4object]
+    //   }
+    // }
+  };
+
 // use this to init the server ingredient data
 // exports.ing = require('./datainit/initDBwithIngredientList.js').ingredient; 
 module.exports = exports;

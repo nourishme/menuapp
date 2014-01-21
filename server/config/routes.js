@@ -1,5 +1,5 @@
 var yummly = require('../middleware/callyummly.js');
-var dbuser = require('../middleware/dbusercontrol.js');
+var dbuser = require('../middleware/dbusercontrols.js');
 var neo4jDB = require('../neo4jDB');
 var url = require('url');
 
