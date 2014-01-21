@@ -54,6 +54,7 @@ exports.passport.use(new exports.facebookStrategy({
 );
 
 var findOrCreate = function(account, callback){
+  debugger
   console.log('account: ', account)
 
   var getQuery = "MATCH (u: User) WHERE u.fbUserID = " + account.facebook.id + " RETURN u";
@@ -61,7 +62,7 @@ var findOrCreate = function(account, callback){
       " { fbUserID: " + account.facebook.id +
       " , fbFName: " + account.facebook.name.givenName +
       " , fbLName: " + account.facebook.name.familyName +
-      " , fbEmail: " + account.facebook.emails.value +
+      " , fbEmail: " + account.facebook.emails[0].value +
       " }) return u";
 
   db.cypherQuery(getQuery, function(err, result){
