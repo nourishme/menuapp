@@ -11,13 +11,13 @@ exports.passport.serializeUser(function(account, done) {
 
 
 exports.passport.deserializeUser(function(account, done) {
-  findOrCreate(account, function(err, account){
-    if(!err) {
-      done(null, account.facebook.id);
-    } else {
-      done(err, null);
-    }
-  });
+  // findOrCreate(account, function(err, account){
+    // if(!err) {
+    //   done(null, account.facebook.id);
+    // } else {
+    //   done(err, null);
+    // }
+  //});
   done(null, account.facebook.id);
 });
 
@@ -57,26 +57,26 @@ var findOrCreate = function(account, callback){
   debugger
   console.log('account: ', account)
 
-  var getQuery = "MATCH (u: User) WHERE u.fbUserID = " + account.facebook.id + " RETURN u";
-  var createQuery = "CREATE (u: User "+
-      " { fbUserID: " + account.facebook.id +
-      " , fbFName: " + account.facebook.name.givenName +
-      " , fbLName: " + account.facebook.name.familyName +
-      " , fbEmail: " + account.facebook.emails[0].value +
-      " }) return u";
+  // var getQuery = "MATCH (u: User) WHERE u.fbUserID = " + account.facebook.id + " RETURN u";
+  // var createQuery = "CREATE (u: User "+
+  //     " { fbUserID: " + account.facebook.id +
+  //     " , fbFName: " + account.facebook.name.givenName +
+  //     " , fbLName: " + account.facebook.name.familyName +
+  //     " , fbEmail: " + account.facebook.emails[0].value +
+  //     " }) return u";
 
-  db.cypherQuery(getQuery, function(err, result){
-    if(result.data.length > 0){
-      console.log('get err: ', err)
-      return callback(err, result.data[0]);
-    } else {
-      db.cypherQuery(createQuery, function(err, result){
-              console.log('create err: ', err)
-        return callback(err, result.data[0]);
-      });
-    }
+  // db.cypherQuery(getQuery, function(err, result){
+  //   if(result.data.length > 0){
+  //     console.log('get err: ', err)
+  //     return callback(err, result.data[0]);
+  //   } else {
+  //     db.cypherQuery(createQuery, function(err, result){
+  //             console.log('create err: ', err)
+  //       return callback(err, result.data[0]);
+  //     });
+  //   }
 
-  });
+  // });
 
 
 };
