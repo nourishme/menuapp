@@ -53,7 +53,7 @@ var findOrCreate = function(account, callback){
 
   db.cypherQuery(getQuery, function(err, result){
     if(result.data.length > 0){
-      return callback(err, result[0]);
+      return callback(err, result.data[0]);
     } else {
       db.cypherQuery(createQuery, function(err, result){
         return callback(err, result.data[0]);
