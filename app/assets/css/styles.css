@@ -111,7 +111,7 @@ body a img {
 .mainContent {
   clear: left;
   display: -webkit-flex;
-  -webkit-flex-direction: column;
+  -webkit-flex-direction: row;
 }
 #maincontentcontainer {
   margin: 40px 40px;
@@ -134,13 +134,7 @@ header {
 }
 .ingredientsLiked,
 .ingredientsNotLiked {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
   box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
   margin: 30px;
 }
 .ingredientsLiked .topcoat-checkbox__checkmark,

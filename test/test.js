@@ -82,9 +82,42 @@ describe('The server', function(){
 
 
 // Client Testing
-describe('Array', function(){
-  describe('#indexOf()', function(){
-    it('should return -1 when the value is not present', function(){
+
+// describe('Ingredients controller', function(){
+//   describe('#indexOf()', function(){
+//     it('should return -1 when the value is not present', function(){
+//       assert.equal(-1, [1,2,3].indexOf(5));
+//       assert.equal(-1, [1,2,3].indexOf(0));
+//     });
+//   });
+// });
+
+
+// describe('Login controller', function(){
+//   describe('#indexOf()', function(){
+//     it('should return -1 when the value is not present', function(){
+//       assert.equal(-1, [1,2,3].indexOf(5));
+//       assert.equal(-1, [1,2,3].indexOf(0));
+//     });
+//   });
+// });
+
+// describe('Recipe controller', function(){
+//   describe('#indexOf()', function(){
+//     it('should return -1 when the value is not present', function(){
+//       assert.equal(-1, [1,2,3].indexOf(5));
+//       assert.equal(-1, [1,2,3].indexOf(0));
+//     });
+//   });
+// });
+
+describe('Search Results controller', function(){
+  before(function () {
+    server.listen(8000);
+    module('searchResults');
+  });
+  describe(' - after calling $scope.getSearchResults', function(){
+    it('$scope.searchResults should not be empty', function(){
       assert.equal(-1, [1,2,3].indexOf(5));
       assert.equal(-1, [1,2,3].indexOf(0));
     });
