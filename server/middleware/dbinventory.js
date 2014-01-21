@@ -13,7 +13,7 @@ exports.updateUserInventory = update = function(request) {
   var userid = request.user;
   invChangeArray = request.data;
   var statement = ph.updateLikeStatusStatementFromObject(userid, invChangeArray);
-  db.beginAndCommitTransaction(statement, cb);
+  return db.beginAndCommitTransaction(statement, cb);
 };
 
 /* invChangeArray looks like this:
