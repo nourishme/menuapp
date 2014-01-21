@@ -1,9 +1,11 @@
 var yummly = require('../middleware/callyummly.js');
+var dbuser = require('../middleware/dbusercontrol.js');
 var neo4jDB = require('../neo4jDB');
 var url = require('url');
 
 exports.dbcall = dbcall = function(req, res){
-  res.send(neo4jDB.goodbyeNode.data);
+  
+  res.send();
 };
 
 exports.yumSearch = yumSearch = function(req, res) {
@@ -12,7 +14,6 @@ exports.yumSearch = yumSearch = function(req, res) {
 };
 
 exports.yumGet = yumGet = function(req, res) {
-  // var getString = 'Sauteed-kale-with-garlic-and-onion-_melting-tuscan-kale_-309499';
   yummly.getRecipe(req.path, function(result){ res.send(result);} );
 };
 
