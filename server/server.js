@@ -63,38 +63,46 @@ app.use('/ing', routes.yumIng );
  * FB auth routes 
  */
 
-app.get('/login', function(req, res){
-  res.send('<a href="/auth/facebook">Login with Facebook</a>');
-});
-
-app.get('/auth/facebook', passportConfig.passport.authenticate('facebook'));
-
-app.get('/auth/facebook/callback',
-passportConfig.passport.authenticate('facebook', {
-  failureRedirect: '/login' }),
-  function(req, res){
-    console.log(req);
-  }
-
-);
-
-// app.get('/account', ensureAuthenticated, function(req, res){
-//   res.send('you are signed in', { user: req.user });
+// app.get('/login', function(req, res){
+//   res.send('<a href="/auth/facebook">Login with Facebook</a>');
 // });
 
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
+// app.get('/auth/facebook', passportConfig.passport.authenticate('facebook'));
 
-var ensureAuthenticated = function(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
-};
+// app.get('/auth/facebook/callback',
+// passportConfig.passport.authenticate('facebook', {
+//   failureRedirect: '/login' }),
+//   function(req, res){
+//     console.log(req);
+//   }
+
+// );
 
 
+// app.get('/logout', function(req, res){
+//   req.logout();
+//   res.redirect('/');
+// });
+
+// var ensureAuthenticated = function(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   }
+//   res.redirect('/');
+// };
+
+/*
+* google stuff
+*/
+
+app.get('/auth/google', passportConfig.passport.authenticate('google'));
+
+// Google will redirect the user to this URL after authentication.  Finish
+// the process by verifying the assertion.  If valid, the user will be
+// logged in.  Otherwise, authentication has failed.
+app.get('/auth/google/return', 
+  passportConfig.passport.authenticate('google', { successRedirect: '/success',
+  failureRedirect: '/login' }));
 
 
 
