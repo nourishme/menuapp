@@ -18,6 +18,7 @@
     "topcoat": "~0.8.0",
     "angular-touch": "~1.2.9",
     "angular-route": "~1.2.9",
-    "modernizr": "~2.7.1"
+    "modernizr": "~2.7.1",
+    "angular-mocks": "~1.2.9"
   }
 }
