@@ -6,18 +6,17 @@ exports.googleStrategy = require('passport-google').Strategy;
 var database = require('../neo4jDB');
 
 exports.passport.serializeUser(function(account, done) {
-  done(null, account);
+   done(null, account);
 });
 
-exports.passport.deserializeUser(function(account, done) {
-  //findOrCreate(account, function(err, account){
-  //   if(!err) {
-  //     done(null, account.facebook.id);
-  //   } else {
-  //     done(err, null);
-  //   }
-  // });
-  done(null, account);
+exports.passport.deserializeUser(function(id, done) {
+  findById(id, function(err, id) {
+    if(!err) {
+      done(null, id);
+    } else {
+      done(err, null);
+    }
+  });
 });
 
 
@@ -27,9 +26,10 @@ exports.passport.use(new exports.googleStrategy({
   },
   function(identifier, profile, done) {
     findOrCreate(profile, function(err, user) {
-      // console.log("!****user: ", user);
-      // console.log("profile!****: ", profile);
-      done(null, profile);
+      if(err){
+        done(err, null);
+      }
+      done(null, user);
     });
   }));
 
@@ -42,19 +42,16 @@ exports.passport.use(new exports.googleStrategy({
 
 
 var findOrCreate = function(profile, callback){
-
-  var getQuery = "MATCH (u: User) WHERE u.googEmail = '" + profile.emails[0].value + "' RETURN u";
+  
+  var getQuery = "MATCH (u: User) WHERE u.googEmail = '" + profile.emails[0].value + "' RETURN id(u)";
   var createQuery = "CREATE (u: User "+
       " { googFName: '" + profile.name.givenName +
       "' , googLName: '" + profile.name.familyName +
       "' , googEmail: '" + profile.emails[0].value +
-      "' }) return u";
+      "' }) return id(u)";
 
   db.cypherQuery(getQuery, function(err, result){
-    console.log('**!!! ERR: ', err);
-    console.log('**!!! RESULT: ', result);
     if(!result.data[0]){
-        console.log('CREATING*!!!!: ', createQuery);
       db.cypherQuery(createQuery, function(err, result){
         return callback(err, result.data[0]);
       });
@@ -65,3 +62,20 @@ var findOrCreate = function(profile, callback){
 
 
 };
+
+var findById = function(id, callback){
+    console.log('*!!ID: ', id);
+
+  var getQuery = "MATCH (u: User) WHERE id(u) = " + id + "RETURN id(u)";
+  db.cypherQuery(getQuery, function(err, result){
+    return callback(err, result.data[0]);
+  });
+};
+
+
+
+
+
+
+
+
