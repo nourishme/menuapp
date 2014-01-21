@@ -31,9 +31,5 @@
     "sinon-chai": "~2.4.0",
     "passport-facebook": "~1.0.2",
     "node-neo4j": "~2.0.0-RC3"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-express-server": "~0.4.11"
   }
 }

@@ -2,7 +2,8 @@
  * Module dependencies.
  */
 
-var neo4jDB = require('./neo4jDB'),
+// External dependencies
+var neo4jDB = require('./neo4jDB.js'),
 express = require("express"),
 path = require("path"),
 config = require('./config/configfile'),
@@ -10,9 +11,13 @@ routes = require('./config/routes.js'),
 passportConfig = require('./config/passport'),
 yummly = require('./middleware/callyummly.js'),
 stylus = require('stylus'),
-nib = require('nib');
+nib = require('nib'),
 
-var test= require('../app/testData.js');
+// Internal Dependencies
+recipe = require('./recipe'),
+ingredients = require('./ingredients'),
+searchResults = require('./searchResults');
+
 
 var application_root = __dirname;
 
@@ -31,6 +36,7 @@ app.use(passportConfig.passport.session());
 app.use(app.router);
 
 
+
 // Installing nib
 // function compile(str, path) {
 //   return stylus(str)
@@ -38,9 +44,6 @@ app.use(app.router);
 //     .set('compress', true)
 //     .use(nib());
 // }
-
-
-
 
 app.use(stylus.middleware({
   src: __dirname + '/resources/',
@@ -75,41 +78,49 @@ app.get('/login', function(req, res){
   res.send('<a href="/auth/facebook">Login with Facebook</a>');
 });
 
-app.get('/auth/facebook',
-  passportConfig.passport.authenticate('facebook'), function(req, res){
-
-  });
+app.get('/auth/facebook', passportConfig.passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
-passportConfig.passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect /account.
-    res.redirect('/account');
+passportConfig.passport.authenticate('facebook', {
+  failureRedirect: '/login' }),
+  function(req, res){
+    console.log(req);
   }
+
 );
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.send('you are signed in', { user: req.user });
-});
+// app.get('/account', ensureAuthenticated, function(req, res){
+//   res.send('you are signed in', { user: req.user });
+// });
 
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
 
+var ensureAuthenticated = function(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+};
 
-// Get Recipes
-app.get('/recipe/:id', function(req,res){
-  res.send(test.recipe);
-});
 
-app.get('/ingredientInventory/:Userid', function(req,res){
-  res.send(test.possibleIngredients);
-});
 
-app.get('/searchResults/:searchId', function(req,res){
-  res.send(test.searchResults);
-});
+/** 
+ * Other Routes
+ */
+
+// Ingredients
+app.get('/ingredientInventory/:Userid',ingredients.getUsersList);
+app.post('/ingredientInventory/:Userid',ingredients.saveUsersList);
+
+// Search Results
+app.get('/searchResults/:searchId',searchResults.get);
+
+// Recipes
+app.get('/recipe/:id', recipe.get);
+
 
 
 
@@ -123,10 +134,4 @@ console.log('Express app started on port ' + port);
 
 // //expose app
 module.exports = app;
-//testing something for auth
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
-}
+
