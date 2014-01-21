@@ -20,7 +20,7 @@ app.controller('ingredients', function($http,$location,$scope) {
 
   $scope.saveIngredients=function(){
     console.log("called saveIngredients");
-    $http({
+  $http({
     method: 'POST',
     url: 'ingredientInventory/'+ $location.path().split('/')[2],
     data:$scope.ingredients

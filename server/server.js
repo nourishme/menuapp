@@ -35,16 +35,6 @@ app.use(passportConfig.passport.initialize());
 app.use(passportConfig.passport.session());
 app.use(app.router);
 
-
-
-// Installing nib
-// function compile(str, path) {
-//   return stylus(str)
-//     .set('filename', path)
-//     .set('compress', true)
-//     .use(nib());
-// }
-
 app.use(stylus.middleware({
   src: __dirname + '/resources/',
   dest: __dirname + '/public/',
@@ -58,7 +48,6 @@ app.use(stylus.middleware({
  */
 
 app.use('/', express.static( __dirname+ '/../app'));
-app.use('/db', routes.dbcall );
 app.use('/assets', express.static(__dirname + '/public/assets'));
 
 /** 
@@ -122,7 +111,7 @@ app.get('/auth/google/return',
  */
 
 // Ingredients
-app.get('/ingredientInventory/:Userid',ingredients.getUsersList);
+app.get('/ingredientInventory/:Userid',ingredients.getUsersRecipeList);
 app.post('/ingredientInventory/:Userid',ingredients.saveUsersList);
 
 // Search Results
@@ -131,17 +120,10 @@ app.get('/searchResults/:searchId',searchResults.get);
 // Recipes
 app.get('/recipe/:id', recipe.get);
 
-
-
-
 //Start the app by listening on <port>
 var port = config.port || 3000;
 app.listen(port);
 console.log('Express app started on port ' + port);
 
-// //Initializing logger
-// logger.init(app, passport, mongoose);
-
-// //expose app
 module.exports = app;
 

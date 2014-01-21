@@ -21,7 +21,7 @@ exports.passport.deserializeUser(function(id, done) {
 
 
 exports.passport.use(new exports.googleStrategy({
-    returnURL: 'http://localhost:3000/auth/google/return',
+    returnURL: 'http://localhost:3000/auth/google/return', //TODO: make this not hardcoded
     realm: 'http://localhost:3000/'
   },
   function(identifier, profile, done) {
