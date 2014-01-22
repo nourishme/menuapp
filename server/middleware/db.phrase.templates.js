@@ -40,6 +40,7 @@ template.updateLikeStatusStatementFromObject =
       console.log("unaccounted ingredient status: ",ing);
     }
   }
+  return msg;
 };
 
 module.exports = template;

@@ -11,8 +11,11 @@ var cb = function(err, result) {
 
 exports.updateUserInventory = update = function(request) {
   var userid = request.user;
-  invChangeArray = request.data;
+  console.log('userid in dbinventory.js ',userid);
+  invChangeArray = request;
+  console.log('invChangeArray in dbinventory.js ',invChangeArray);
   var statement = ph.updateLikeStatusStatementFromObject(userid, invChangeArray);
+  console.log(statement);
   return db.beginAndCommitTransaction(statement, cb);
 };
 
@@ -28,6 +31,8 @@ CASE n.eyes
  ELSE 3
 END
 
+
+
 */
 
 
@@ -36,7 +41,7 @@ exports.getUserInventory = getinventory = function(userid) {
   // match (n) where id(n) = {userid} return n
   // match (n)->[:HAS_INVENTORY]-(b) where id(n) = 406842 return b
   msg = "match (n)-[:HAS_INVENTORY]->(i) where id(n) = "+userid+" return i";
-  
+  console.log(msg);
   db.cypherQuery(msg, cb);
   
 };
