@@ -11,21 +11,21 @@ template.matchNodeById =
   var match_node = "MATCH ("+nodekeyoption+") WHERE id("+nodekeyoption+") = "+node.id+ " ";
   return {msg: match_node, key: nodekeyoption};
 };
-
+// match (n)-[:LIKES]->(b) where id(n) = 406842 return b
 /* 
  * Lable functions 
 */
 
-template.addLabelTemplate =
- addLabelTemplate = function(startnodekey, endnodekey, labelString) {
-  labelString = labelString.toUpperCase();
-  return "CREATE ("+startnodekey+")-[:"+labelString+"]->("+endnodekey+") ";
+template.addRelationshipTemplate =
+ addRelationshipTemplate = function(startnodekey, endnodekey, relString) {
+  relString = relString.toUpperCase();
+  return "CREATE ("+startnodekey+")-[:"+relString+"]->("+endnodekey+") ";
 };
 
-template.removeLabelTemplate =
- removeLabelTemplate = function(startnodekey, endnodekey, labelString) {
-  labelString = labelString.toUpperCase();
-  return "REMOVE ("+startnodekey+")-[:"+labelString+"]->("+endnodekey+") ";
+template.removeRelationshipTemplate =
+ removeRelationshipTemplate = function(startnodekey, endnodekey, relString) {
+  relString = relString.toUpperCase();
+  return "REMOVE ("+startnodekey+")-[:"+relString+"]->("+endnodekey+") ";
 };
 
 /* 
@@ -42,9 +42,9 @@ template.updateLikeStatusStatementFromObject =
     ing = inventoryChangeArray[i];
     ingkey = matchNodeById(inventoryChangeArray[i], 'node'+i).key ;
     if (ing.liked) { 
-      msg+= template.addLabelTemplate(userkey, ingkey, 'LIKES');
+      msg+= template.addRelationshipTemplate(userkey, ingkey, 'LIKES');
     } else if (!ing.liked) {
-      msg+= template.removeLabelTemplate(userkey, ingkey, 'LIKES');
+      msg+= template.removeRelationshipTemplate(userkey, ingkey, 'LIKES');
     } else {
       console.log("unaccounted ingredient status: ",ing);
     }
