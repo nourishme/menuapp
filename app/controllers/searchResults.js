@@ -9,14 +9,22 @@ app.controller('searchResults', function($http,$location,$scope,sharedProperties
       url: searchUrl
     })
     .success(function(data, status) {
-      console.log(data);
+      // console.log(data);
       $scope.searchResults = data;
     })
       .error(function(data, status){
-      console.log(data,status);
+      // console.log(data,status);
    });
   };
 
+
+  $scope.getRecipe = function(id){
+    sharedProperties.recipe = id;
+    $location.path("/#/recipe/");
+  };
+
   $scope.getSearchResults();
+
+
 
 });

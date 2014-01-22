@@ -145,5 +145,14 @@ header {
   width: 360px;
 }
 .attribution {
-  clear: left;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 15%;
+  text-wrap: normal;
+  border: 2px solid #ffa500;
+}
+.attribution a {
+  text-decoration: none;
+  color: #000;
 }
