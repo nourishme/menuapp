@@ -111,8 +111,11 @@ app.get('/auth/google/return',
  */
 
 // Ingredients
-app.get('/ingredientInventory/:Userid',ingredients.getUsersRecipeList);
-app.post('/ingredientInventory/:Userid',ingredients.saveUsersList);
+app.get('/ingredientInventory/',ingredients.getUsersRecipeList);
+app.post('/ingredientInventory/',ingredients.saveUsersList);
+app.get('/ingredientList/',ingredients.getIngredientList);
+
+
 
 // Search Results
 app.get('/searchResults/:ingredientNames',searchResults.get);
