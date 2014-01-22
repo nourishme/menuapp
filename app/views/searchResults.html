@@ -11,7 +11,7 @@
 <div class="topcoat-list searchResultsContainer">
     <h3 class="topcoat-list__header">Matching Recipes</h3>
     <ul class="topcoat-list__container">
-      <li class="topcoat-list__item" ng-repeat="recipe in searchResults.matches">{{recipe.recipeName}}</li>
+      <li class="topcoat-list__item" ng-repeat="recipe in searchResults.matches"><a href="#/recipe/{{recipe.id}}">{{recipe.recipeName}}</a></li>
     </ul>
 </div>
 
