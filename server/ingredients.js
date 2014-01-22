@@ -1,13 +1,24 @@
 var test= require('./testData.js');
+var dbinventory = require('./middleware/dbinventory.js');
 
 module.exports = {
-  getUsersList: function(req,res){
-    res.send(test.possibleIngredients);
+  getUsersRecipeList: function(req,res){
+    console.log(req);
+    var ingredients = dbinventory.getUserInventory(req.user); //TODO: this should work, isntead of hardcode below
+    // var ingredients = dbinventory.getUserInventory(req.user); 
+    res.send(ingredients);
   },
 
   saveUsersList: function(req,res){
     console.log(req.body);
-    res.send(201);
+    console.log(req.user);
+    
+    var update = dbinventory.updateUserInventory(req);
+    res.send(update);
+  },
+
+  likeIngredientList: function(res, req){
+    
   }
 
 };
