@@ -5,14 +5,9 @@ app.controller('ingredients', function($http,$location,$scope) {
     url: 'ingredientInventory/'+ $location.path().split('/')[2]
   })
   .success(function(data, status) {
-    // console.log(data);
-    // $scope.possibleIngredients = data;
-    $scope.ingredients = [
-    {name:'carrots' , liked:true},
-    {name:'bacon' , liked:true},
-    {name:'beets' , liked:false},
-    {name:'onions' , liked:false}
-    ];
+    $scope.ingredients = data;
+    console.log(data);
+
   })
   .error(function(data, status){
     console.log(data,status);

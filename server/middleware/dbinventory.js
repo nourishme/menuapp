@@ -3,49 +3,35 @@ exports.neo4j = neo4j = require('node-neo4j');
 exports.db = db = new neo4j('http://localhost:7474');
 exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 
-var cb = function(err, result) {
+var callbackWrapper = function (res){
+  inventoryCallback = function(err, result) {
     if (err) throw err;
-    console.log(err, result);
-    return result.data;
+    console.log('inventoryCallback: -->',err, result);
+    res.send( result);
   };
+  return inventoryCallback;
+};
 
-exports.updateUserInventory = update = function(request) {
-  var userid = request.user;
-  invChangeArray = request.data;
+exports.updateUserInventory = update = function(req,res) {
+  var userid = req.user;
+  invChangeArray = req.body;
   var statement = ph.updateLikeStatusStatementFromObject(userid, invChangeArray);
-  return db.beginAndCommitTransaction(statement, cb);
+  res.send( 
+    db.beginAndCommitTransaction(
+      statement, callbackWrapper(res)
+    )
+  );
 };
 
-/* invChangeArray looks like this:
-[ { name: 'carrots', liked: true },
-  { name: 'bacon', liked: true },
-  { name: 'beets', liked: false },
-  { name: 'onions', liked: false } ]
-
-CASE n.eyes
- WHEN 'blue' THEN 1
- WHEN 'brown' THEN 2
- ELSE 3
-END
-
-*/
-
-
-
-exports.getUserInventory = getinventory = function(userid) {
-  // match (n) where id(n) = {userid} return n
-  // match (n)->[:HAS_INVENTORY]-(b) where id(n) = 406842 return b
-  msg = "match (n)-[:HAS_INVENTORY]->(i) where id(n) = "+userid+" return i";
-  
-  db.cypherQuery(msg, cb);
-  
+exports.getUserInventory = getinventory = function(req,res) {
+  // match (n)-[:HAS_INVENTORY]->(i) where id(n)=406842 return i
+  msg = "match (n)-[:HAS_INVENTORY]->(i) where id(n) = "+req.user+" return i";
+  db.cypherQuery(msg, callbackWrapper(res));
 };
 
-exports.likeIngredient = like = function(userid, ingredientstring) {
-  msg = "match (n:User) where n.userid = " +userid;
-  msg += "match (i:Ingredient) where i._id";
-  msg += "(n)-[:HAS]->(i)";
-  // db.cypherQuery(msg, callback); //?????  
+exports.getIngredientList = getIngredientList = function(req,res) {
+  msg = "match (i:Ingredient) RETURN i LIMIT 10";
+  db.cypherQuery(msg, callbackWrapper(res));
 };
 
 module.exports = exports;
