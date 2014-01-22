@@ -115,7 +115,7 @@ app.get('/ingredientInventory/:Userid',ingredients.getUsersRecipeList);
 app.post('/ingredientInventory/:Userid',ingredients.saveUsersList);
 
 // Search Results
-app.get('/searchResults/:searchId',searchResults.get);
+app.get('/searchResults/:ingredientNames',searchResults.get);
 
 // Recipes
 app.get('/recipe/:id', recipe.get);
