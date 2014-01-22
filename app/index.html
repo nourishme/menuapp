@@ -45,11 +45,15 @@
         </label>
         <label class="topcoat-tab-bar__item">
           <input type="radio" name="tab-bar">
+          <a href="#/home"><button class="topcoat-tab-bar__button">Logged In Home</button></a>
+        </label>
+        <label class="topcoat-tab-bar__item">
+          <input type="radio" name="tab-bar">
           <a href="#/ingredients/47"><button class="topcoat-tab-bar__button">Ingredients Inventory</button></a>
         </label>
         <label class="topcoat-tab-bar__item">
           <input type="radio" name="tab-bar">
-          <a href="#/searchResults/47"><button class="topcoat-tab-bar__button">Search Results</button></a>
+          <a href="#/searchResults/"><button class="topcoat-tab-bar__button">Search Results</button></a>
         </label>
         <label class="topcoat-tab-bar__item">
           <input type="radio" name="tab-bar">
@@ -85,12 +89,15 @@
   
   <script src="app.js"></script>
 
+  <script src="services/sharedProperties.js"></script>
+
   <script src="controllers/example.js"></script>
-  <script src="controllers/login.js"></script>
+  <script src="controllers/home.js"></script>
   <script src="controllers/ingredients.js"></script>
+  <script src="controllers/login.js"></script>
   <script src="controllers/recipe.js"></script>
   <script src="controllers/searchResults.js"></script>
-  
+
   <script src="config.js"></script>
 
   <!-- Testing Stuff -->

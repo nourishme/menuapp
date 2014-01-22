@@ -134,7 +134,6 @@ header {
 }
 .ingredientsLiked,
 .ingredientsNotLiked {
-  box-flex: 1;
   margin: 30px;
 }
 .ingredientsLiked .topcoat-checkbox__checkmark,
