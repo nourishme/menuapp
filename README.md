@@ -6,6 +6,32 @@ If you want to just dive in, you can just clone the repo. You should be sure tha
 
     git clone https://github.com/nourishme/menuapp.git
 
+Make a server config file: 
+
+    cd menuapp
+    touch server/config/configfile.js
+
+Your config file should look something like this, except with your own details: 
+
+    var exports = {}
+
+    exports.yumapi = apiauth = {
+      "id": '8888888',
+      "key":'77777777', 
+      "token": "?_app_id=8888888&_app_key=77777777"
+    };
+
+
+    exports.ids = {
+      facebook: {
+        clientID: '11111111',
+        clientSecret: '222222222222',
+        callbackURL: 'http://127.0.0.1:3000/auth/facebook/callback',
+        secret: 'secret word'
+      }
+    }
+
+    module.exports = exports;
 
 ## getting up to speed on
 
