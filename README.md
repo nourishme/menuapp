@@ -1,65 +1,21 @@
 menuapp
 =======
 
-## getting up to speed
-clone the repo:
+## Just clone it: 
+If you want to just dive in, you can just clone the repo. You should be sure that you're ready to run neo4j before you do that. 
 
     git clone https://github.com/nourishme/menuapp.git
 
-from the new directory, use npm and bower to get things running: 
 
-    npm install
+## getting up to speed on
 
-    bower install
+On a fresh ubuntu machine follow the steps [here](http://davidtsadler.com/archives/2012/05/06/installing-node-js-on-ubuntu/#via-git)) to get Node installed.
 
-make sure you have the testing dependencies installed: 
+You should now follow the setup instructions to install Oracle JDK or OpenJDK on your OS. After that, you'll be ready to install Neo4j. It's best to follow the instructions for your OS on the [neo4j website](http://www.neo4j.com). 
 
-    npm install mocha -g
-
-To connect to the server for the first time, go to the directory where your .pem file is residing on your machine, and run: 
-
-    chmod 400 keypairforwebserver.pem
-    ssh -i keypairforwebserver.pem ubuntu@ec2-balahlkasblkjablkj-.compute.amazonaws.com
-
-You’re now connected to the server! You can tell because the console looks like this: 
-
-    ubuntu@ip88888888:~$
-
-
-now that you’re connected, you need to install some utilities on this fresh computer (thanks): 
-
-    sudo apt-get update
-    sudo apt-get install build-essential -y
-    sudo apt-get install git -y
-
-install node dependencies: 
-
-    sudo apt-get install python libssl-dev -y
-
-now let’s put node in the proper place, we’ll get all the versions of it with ‘git’
-    
-    cd /usr/local/src
-    sudo git clone git://github.com/joyent/node.git
-    cd node
-    sudo git checkout v0.10.24-release
-    sudo ./configure
-    sudo make
-    sudo make install
-
-now we can get the Neo4j utilities: 
-
-
-
-Great, now NodeJS & NPM are installed :) let’s get bower & express
+## dependencies
      
     sudo npm install bower -g
-
-Now let’s get our server upright… 
-
-    git clone https://github.com/nourishme/menuapp.git
-    cd menuapp
-    sudo npm install
-    sudo bower install
     sudo npm install express
     sudo npm install neo4j
     sudo npm install jscoverage
@@ -67,19 +23,39 @@ Now let’s get our server upright…
     sudo npm install sinon-chai
     sudo npm install forever -g
 
-Make sure your Neo4j is installed correctly:
-instructions
+Now let’s get our server upright… 
+
+    git clone https://github.com/nourishme/menuapp.git
+    cd menuapp
+    sudo npm install
+    sudo bower install
+    
+## making it run
 
 Now to make it run: 
 
     nohup forever server/server.js --watch &
 
-Let’s start with a port forward… 
-    
-    sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
 
 Make it stop: 
 
     forever stopall
 
+### Other info: 
+
+neo4j db data & installed plugins are stored here: 
+    
+    /var/lib/neo4j/
+
+If you need run as the ‘neo4j’ user: 
+
+    sudo -u neo4j service neo4j-service start
+
+Interact with neo4j as the neo4j user
+  
+    sudo -i -u neo4j
+
+Port forward for Ubuntu 13.01
+    
+    sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
 
