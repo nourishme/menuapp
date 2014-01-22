@@ -3,16 +3,13 @@ var dbinventory = require('./middleware/dbinventory.js');
 
 module.exports = {
   getUsersRecipeList: function(req,res){
-    
-    var ingredients = dbinventory.getUserInventory(req.user); //TODO: this should work, isntead of hardcode below
-    // var ingredients = dbinventory.getUserInventory(req.user); 
-    res.send(ingredients);
+    dbinventory.getUserInventory(req,res); 
   },
 
   saveUsersList: function(req,res){
     
-    var update = dbinventory.updateUserInventory(req);
-    res.send(update);
+    dbinventory.updateUserInventory(req.user);
+    // res.send(update);
   },
 
   likeIngredientList: function(res, req){

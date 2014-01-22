@@ -3,20 +3,20 @@ exports.neo4j = neo4j = require('node-neo4j');
 exports.db = db = new neo4j('http://localhost:7474');
 exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 
-var cb = function(err, result) {
+var inventoryCallback = function(err, result) {
     if (err) throw err;
     console.log(err, result);
-    return result.data;
+    return result;
   };
 
-exports.updateUserInventory = update = function(request) {
-  var userid = request.user;
+exports.updateUserInventory = update = function(req,res) {
+  var userid = req.user;
   console.log('userid in dbinventory.js ',userid);
-  invChangeArray = request;
+  invChangeArray = req.body;
   console.log('invChangeArray in dbinventory.js ',invChangeArray);
   var statement = ph.updateLikeStatusStatementFromObject(userid, invChangeArray);
   console.log(statement);
-  return db.beginAndCommitTransaction(statement, cb);
+  res.send( db.beginAndCommitTransaction(statement, inventoryCallback));
 };
 
 /* invChangeArray looks like this:
@@ -25,32 +25,18 @@ exports.updateUserInventory = update = function(request) {
   { name: 'beets', liked: false },
   { name: 'onions', liked: false } ]
 
-CASE n.eyes
- WHEN 'blue' THEN 1
- WHEN 'brown' THEN 2
- ELSE 3
-END
+match (i:Ingredient {term:'eggs'})
+ match (n) where id(n)=406846 match (i) where id(i)=406839 create (n)-[:HAS_INVENTORY]->(i) return id(i)
 
-
-
+match (n)-[:HAS_INVENTORY]->(i) where id(n)=406842 return i
 */
 
-
-
-exports.getUserInventory = getinventory = function(userid) {
-  // match (n) where id(n) = {userid} return n
-  // match (n)->[:HAS_INVENTORY]-(b) where id(n) = 406842 return b
-  msg = "match (n)-[:HAS_INVENTORY]->(i) where id(n) = "+userid+" return i";
-  console.log(msg);
-  db.cypherQuery(msg, cb);
+exports.getUserInventory = getinventory = function(req,res) {
+  // match (n)-[:LIKES]->(b) where id(n) = 406842 return b
+  msg = "match (n)-[:LIKES]->(i) where id(n) = "+req.user+" return i";
   
-};
-
-exports.likeIngredient = like = function(userid, ingredientstring) {
-  msg = "match (n:User) where n.userid = " +userid;
-  msg += "match (i:Ingredient) where i._id";
-  msg += "(n)-[:HAS]->(i)";
-  // db.cypherQuery(msg, callback); //?????  
+  res.send(db.cypherQuery(msg, inventoryCallback));
+  
 };
 
 module.exports = exports;
