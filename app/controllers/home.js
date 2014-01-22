@@ -1,5 +1,5 @@
 
-app.controller('home', function($http,$location,$scope) {
+app.controller('home', function($http,$location,$scope,sharedProperties) {
   $http({
     method: 'GET',
     url: 'ingredientInventory/'+ $location.path().split('/')[2]
@@ -17,4 +17,21 @@ app.controller('home', function($http,$location,$scope) {
   .error(function(data, status){
     console.log(data,status);
   });
+
+  $scope.toCook = sharedProperties.getToCook();
+
+  $scope.addToCook =function(ingredient){
+    if(!($scope.toCook[ingredient.name])){
+      $scope.toCook[ingredient.name] = ingredient;
+      sharedProperties.setToCook($scope.toCook);
+    }
+  };
+
+  $scope.removeFromToCook =function(ingredient){
+    if($scope.toCook[ingredient.name]){
+      delete($scope.toCook[ingredient.name]);
+      sharedProperties.setToCook($scope.toCook);
+    }
+  };
+
 });

@@ -1,5 +1,15 @@
+
+<div class="toCook">
+  <h3 class="topcoat-list__header">What we're cooking with today</h3>
+  <ul class="topcoat-list__container">
+    <li class="topcoat-list__item" ng-repeat="ingredient in toCook">
+        <span >{{ingredient.name}}</span>
+    </li>
+  </ul>
+<div>
+
 <div class="topcoat-list searchResultsContainer">
-    <h3 class="topcoat-list__header">Recommended Recipes</h3>
+    <h3 class="topcoat-list__header">Matching Recipes</h3>
     <ul class="topcoat-list__container">
       <li class="topcoat-list__item" ng-repeat="recipe in searchResults.matches">{{recipe.recipeName}}</li>
     </ul>

@@ -16,7 +16,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     controller: 'home',
     templateUrl: 'views/home.html'
   })
-  .when('/searchResults/:searchId', {
+  .when('/searchResults/', {
     controller: 'searchResults',
     templateUrl: 'views/searchResults.html'
   })
