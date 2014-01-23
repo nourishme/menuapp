@@ -20,18 +20,26 @@ module.exports = {
   },
 
   getRecipe: function(res, req) {
+    // send recipeId
+    // returns recipe object
     dbinventory.getRecipeById(res, req);
   },
 
   getTopIngredients: function(res, req) {
+    // empty request
+    // returns array of ingredient objects
     dbinventory.getTopIngredientsList(res, req);
   },
 
   searchForRecipes: function(res, req) {
+    // send array of ingredient ids [id1, id2, id3]
+    // returns array of recipe objects
     dbinventory.getRecipesByIngredientSearch(res, req);
   },
 
   getCoOccurs: function(res, req) {
+    // send array of ingredient ids [id1, id2, id3]
+    // returns array of ingredient objects
     dbinventory.findCoOccuringIngredients(res, req);
   }
 
