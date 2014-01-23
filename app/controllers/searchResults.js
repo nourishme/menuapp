@@ -1,7 +1,10 @@
 
-app.controller('searchResults', function($http,$location,$rootScope,$scope,sharedProperties) {
+app.controller('searchResults', function($http,$location,$scope,sharedProperties) {
+  
   $scope.searchResults={};
-  $scope.toCook = $rootScope.toCook;
+  
+  $scope.toCook = sharedProperties.getToCook();
+
   $scope.getSearchResults = function(){
     searchUrl = 'searchResults/' + 'butter' + Object.keys($scope.toCook).join('+');
     $http({
@@ -20,8 +23,7 @@ app.controller('searchResults', function($http,$location,$rootScope,$scope,share
 
 
   $scope.getRecipe = function(id){
-    sharedProperties.recipe = id;
-    $location.path("/#/recipe/");
+    $location.path("/recipe/");
   };
 
   $scope.getSearchResults();
