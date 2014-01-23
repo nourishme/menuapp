@@ -38,24 +38,24 @@ exports.passport.use(new exports.facebookStrategy({
  callbackURL: config.ids.facebook.callbackURL
 },
   function(accessToken, refreshToken, profile, done) {
-    findOrCreate({facebook: profile}, function(err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+    //findOrCreate({facebook: profile}, function(err, user) {
+      //if (err) {
+        //return done(err);
+      //}
+      //if (!user) {
+        //return done(null, false, { message: 'Incorrect username.' });
+      //}
+      //if (!user.validPassword(password)) {
+        //return done(null, false, { message: 'Incorrect password.' });
+      //}
+      return done(null, profile.id);
     });
   })
 );
 
-var findOrCreate = function(account, callback){
-  debugger
-  console.log('account: ', account)
+//var findOrCreate = function(account, callback){
+  //debugger
+  //console.log('account: ', account)
 
   // var getQuery = "MATCH (u: User) WHERE u.fbUserID = " + account.facebook.id + " RETURN u";
   // var createQuery = "CREATE (u: User "+
@@ -79,7 +79,7 @@ var findOrCreate = function(account, callback){
   // });
 
 
-};
+//};
 
 
 
