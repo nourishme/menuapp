@@ -129,9 +129,8 @@ header {
   font-size: 3em;
   font-family: helvetica;
 }
-.topcoat-tab-bar {
+.topcoat-button-bar {
   float: right;
-  font-size: 20px;
 }
 .loginBox {
   width: 50%;
