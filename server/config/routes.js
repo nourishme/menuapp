@@ -17,7 +17,7 @@ exports.yumGet = yumGet = function(req, res) {
   yummly.getRecipe(req.path, function(result){ res.send(result);} );
 };
 
-exports.yumIng = yumSearch = function(req, res) {
+exports.yumIng = yumIng = function(req, res) {
   console.log(req.query);
   yummly.getIng(req, function(result){ res.send(result);} );
 };
