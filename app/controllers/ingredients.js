@@ -2,12 +2,10 @@
 app.controller('ingredients', function($http,$location,$scope) {
   $http({
     method: 'GET',
-    url: 'ingredientInventory/'+ $location.path().split('/')[2]
+    url: '/getTopIngredients/'
   })
   .success(function(data, status) {
     $scope.ingredients = data;
-    console.log(data);
-
   })
   .error(function(data, status){
     console.log(data,status);

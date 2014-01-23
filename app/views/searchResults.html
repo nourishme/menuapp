@@ -1,21 +1,24 @@
+<div class="mainBox">
 
-<div class="toCook">
-  <h3 class="topcoat-list__header">What we're cooking with today</h3>
-  <ul class="topcoat-list__container">
-    <li class="topcoat-list__item" ng-repeat="ingredient in toCook">
-        <span >{{ingredient.name}}</span>
-    </li>
-  </ul>
-<div>
+  <div class="section" ng-show="showCook">
+    <p class="sectionHeader">You've selected:</p>
+    <div class="matchingIngredients">
+      <button class="topcoat-button--large--quiet" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" >{{ingredient.name}}</button>
+    </div>
+  </div>
 
-<div class="topcoat-list searchResultsContainer">
-    <h3 class="topcoat-list__header">Matching Recipes</h3>
+
+  <div class="section">
+    <p class="sectionHeader">Here's Some Recipes:</p>
     <ul class="topcoat-list__container">
       <li class="topcoat-list__item" ng-repeat="recipe in searchResults.matches">  <span class="rating">Rating: {{recipe.rating}}</span>
         <span class="totalTime">Total Time: {{recipe.totalTimeinSeconds | seconds}}
         <a href="#/recipe/{{recipe.id}}">{{recipe.recipeName}}</a>
       </li>
     </ul>
+  </div>
+
+
 </div>
 
 

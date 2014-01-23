@@ -12,11 +12,11 @@ app.config(['$routeProvider', function ($routeProvider) {
     controller: 'login',
     templateUrl: 'views/login.html'
   })
-  .when('/home', {
-    controller: 'home',
-    templateUrl: 'views/home.html'
+  .when('/landing', {
+    controller: 'landing',
+    templateUrl: 'views/landing.html'
   })
-  .when('/searchResults/', {
+  .when('/searchResults', {
     controller: 'searchResults',
     templateUrl: 'views/searchResults.html'
   })
