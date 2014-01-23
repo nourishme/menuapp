@@ -1,6 +1,6 @@
 exports.neo4j = neo4j = require('node-neo4j');
-var ing = require('./ingredientlist.js').ingredient; 
-// var neo4j = require('node-neo4j');
+var ing = require('./ingredientlist.js').ingredient;
+var neo4j = require('node-neo4j');
 // uncomment this function and Line2 to import base ingredients.
 
 var db = new neo4j('http://localhost:7474');
