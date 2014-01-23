@@ -100,7 +100,7 @@ app.get('/auth/google', passportConfig.passport.authenticate('google'));
 // Google will redirect the user to this URL after authentication.  Finish
 // the process by verifying the assertion.  If valid, the user will be
 // logged in.  Otherwise, authentication has failed.
-app.get('/auth/google/return', 
+app.get('/auth/google/return',
   passportConfig.passport.authenticate('google', { successRedirect: '/#/home',
   failureRedirect: '/login' }));
 
@@ -110,7 +110,11 @@ app.get('/auth/google/return',
  * Other Routes
  */
 
+
+
 // Ingredients
+app.get('/getTopIngredients/',ingredients.getTopIngredients);
+
 app.get('/ingredientInventory/',ingredients.getUsersRecipeList);
 app.post('/ingredientInventory/',ingredients.saveUsersList);
 app.get('/ingredientList/',ingredients.getIngredientList);

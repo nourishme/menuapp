@@ -132,6 +132,27 @@ header {
 .topcoat-tab-bar {
   float: right;
 }
+.searchBox {
+  width: 480px;
+  margin: auto;
+  text-align: left;
+  font-size: 30px;
+}
+.searchBox form {
+  text-align: center;
+}
+.searchBox form input {
+  margin: 10px 0;
+  width: 100%;
+  height: 40px;
+  font-size: 30px;
+}
+.searchBox button {
+  font-size: 30px;
+}
+.matchingIngredients {
+  font-size: 30px;
+}
 .ingredientsLiked,
 .ingredientsNotLiked {
   margin: 30px;
