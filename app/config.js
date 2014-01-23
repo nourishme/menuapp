@@ -16,10 +16,6 @@ app.config(['$routeProvider', function ($routeProvider) {
     controller: 'landing',
     templateUrl: 'views/landing.html'
   })
-  .when('/search2', {
-    controller: 'search2',
-    templateUrl: 'views/search2.html'
-  })
   .when('/searchResults', {
     controller: 'searchResults',
     templateUrl: 'views/searchResults.html'
