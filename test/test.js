@@ -19,6 +19,7 @@ describe('Array', function(){
   });
 });
 
+var url = 'http://localhost:3000/';
 
 // Server Testing
 var server = require('../server/server.js');
@@ -36,7 +37,7 @@ describe('The server', function(){
     http.get('http://localhost:8000', function (res) {
       assert.equal(200, res.statusCode);
     });
-  });
+  }); 
 
   // it('should say "hello world"', function (done) {
   //   http.get('http://localhost:8000', function (res) {
@@ -54,27 +55,52 @@ describe('The server', function(){
   // });
 
   // DB testing
-  it('should pull in the neo4j data', function(){
-    http.get('http://localhost:8000', function(res){
 
-    });
-  });
 
   // API [TODO: this testing should be fixed up to reflect different API behavior (jfl) ]
 
-  it('should return code 200 on accurate apiget ', function (done) {
-    var accurate = '/Sauteed-kale-with-garlic-and-onion-_melting-tuscan-kale_-309499';
-    http.get('http://localhost:8000/apiget'+accurate, function (res) {
-      assert.equal(200, res.statusCode);
-      
-    });
-  });
 
-  it('should return code 404 on not existing apiget ', function (done) {
-    var accurate = '/Sauteed-kale-with-garlic-and-';
-    http.get('http://localhost:8000/apiget'+accurate, function (res) {
-      assert.equal(404, res.statusCode);
-      
+  
+
+  describe('should return 200 when getting to server routes', function(argument) {
+    it('ingredientInventory', function (res) {
+      var ingredientID
+      console.log(url)
+      http.get(url + 'ingredientInventory/1234' + ingredientID, function (res) {
+        assert.equal(res.statusCode, 200);
+        
+      });
+    });
+
+    it('ingredientList/', function (res) {
+      http.get(url + 'ingredientList/', function (res) {
+        assert.equal(res.statusCode, 200);
+        
+      });
+    });
+
+    it('getRecipe/', function (res) {
+      http.get(url + 'getRecipe/', function (res) {
+        assert.equal(res.statusCode, 200);        
+      });      
+    });
+    
+    it('getTopIngredients/', function (res) {
+      http.get(url + 'getTopIngredients/10', function (res) {
+        assert.equal(res.statusCode, 200);        
+      });      
+    });
+    
+    it('searchForRecipes/', function (res) {
+      http.get(url + 'searchForRecipes/', function (res) {
+        assert.equal(res.statusCode, 200);        
+      });      
+    });
+    
+    it('getCoOccurs/', function (res) {
+      http.get(url + 'getCoOccurs/', function (res) {
+        assert.equal(res.statusCode, 200);        
+      });      
     });
   });
 });
