@@ -9,6 +9,11 @@
   </div>
 
   <div class="section" ng-show="showCook">
+    <a class="getRecipes" href="#/searchResults"><button class="topcoat-button--large">Get Some Recipes</button></a>
+  </div>
+
+
+  <div class="section" ng-show="showCook">
     <p class="sectionHeader">Here's some ingredients that go well with that:</p>
     <div class="matchingIngredients">
       <div class="ingredientButton" ng-repeat="ingredient in suggestedIngredients"  ng-click="addToCook(ingredient)" ><button class="topcoat-button--large--cta" >{{ingredient.name}}</button>
@@ -16,39 +21,17 @@
     </div>
   </div>
 
-<div class="section">
-  <p class="sectionHeader" ng-show="showCook">Or add something else?</p>
-  <p ng-hide="showCook"> What ingredient would you like to cook with today?</p>
-  <form>
-    <input type="text" class="topcoat-text-input--large" ng-model="ingredientSearch" placeholder="Ingredient"></input>
-  </form>
+  <div class="section">
+    <p class="sectionHeader" ng-show="showCook">Or add something else:</p>
+    <p ng-hide="showCook"> What ingredient would you like to cook with today?</p>
+    <form>
+      <input type="text" class="topcoat-text-input--large" ng-model="ingredientSearch" placeholder="Ingredient"></input>
+    </form>
 
-  <div class="matchingIngredients" ng-show="ingredientSearch">
-    <div class="ingredientButton" ng-repeat="ingredient in ingredients | filter:ingredientSearch" ng-click="addToCook(ingredient)" >
-      <button class="topcoat-button--large--cta" >{{ingredient.name}}</button>
+    <div class="matchingIngredients" ng-show="ingredientSearch">
+      <div class="ingredientButton" ng-repeat="ingredient in ingredients | filter:ingredientSearch" ng-click="addToCook(ingredient)" >
+        <button class="topcoat-button--large--cta" >{{ingredient.name}}</button>
+      </div>
     </div>
   </div>
 </div>
-
-
-<!-- z
-  <div class="suggestedIngredients" ng-show="false">
-    <h3 class="topcoat-list__header">Suggested Ingredients</h3>
-    <ul class="topcoat-list__container">
-      <li class="topcoat-list__item" ng-repeat="ingredient in suggestedIngredients"  ng-click="addToCook(ingredient)">
-          <span>{{ingredient.name}}</span>
-      </li>
-    </ul>
-  </div>
-
-  <div class="toCook" ng-show="showCook">
-    <h3 class="topcoat-list__header">What we're cooking with today</h3>
-    <ul class="topcoat-list__container">
-      <li class="topcoat-list__item" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)">
-          <span >{{ingredient.name}}</span>
-      </li>
-    </ul>
-  </div>
-
-  <a href="#/searchResults/" ng-show="showCook"><button>Get Recipes</button></a>
- -->

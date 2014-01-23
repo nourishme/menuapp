@@ -1,5 +1,5 @@
 
-app.controller('landing', function($http,$location,$scope,sharedProperties) {
+app.controller('landing', function($http,$location,$rootScope,$scope,sharedProperties) {
 
   $http({
     method: 'GET',
@@ -28,6 +28,7 @@ app.controller('landing', function($http,$location,$scope,sharedProperties) {
       $scope.showCook = (Object.keys($scope.toCook).length > 0);
       sharedProperties.setToCook($scope.toCook);
     }
+    $rootScope.toCook = $scope.toCook;
     $scope.getSuggestedIngredients();
   };
 

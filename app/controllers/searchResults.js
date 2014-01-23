@@ -1,7 +1,7 @@
 
-app.controller('searchResults', function($http,$location,$scope,sharedProperties) {
+app.controller('searchResults', function($http,$location,$rootScope,$scope,sharedProperties) {
   $scope.searchResults={};
-  $scope.toCook = sharedProperties.getToCook();
+  $scope.toCook = $rootScope.toCook;
   $scope.getSearchResults = function(){
     searchUrl = 'searchResults/' + 'butter' + Object.keys($scope.toCook).join('+');
     $http({
@@ -11,6 +11,7 @@ app.controller('searchResults', function($http,$location,$scope,sharedProperties
     .success(function(data, status) {
       // console.log(data);
       $scope.searchResults = data;
+
     })
       .error(function(data, status){
       // console.log(data,status);
