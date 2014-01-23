@@ -141,21 +141,25 @@ header {
 .loginBox button {
   font-size: 18px;
 }
-.searchBox {
+.mainBox {
   width: 50%;
   margin: auto;
   text-align: left;
   font-size: 30px;
 }
-.searchBox form {
+.mainBox .section {
+  border-bottom: 2px solid #ffa500;
+  margin: 10px 0 60px 0;
+}
+.mainBox form {
   text-align: center;
 }
-.searchBox form input {
+.mainBox form input {
   margin: 10px 0;
   width: 100%;
   font-size: 30px;
 }
-.searchBox button {
+.mainBox button {
   font-size: 30px;
   height: 40px;
 }

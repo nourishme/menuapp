@@ -1,5 +1,6 @@
 
 app.controller('landing', function($http,$location,$scope,sharedProperties) {
+
   $http({
     method: 'GET',
     url: '/getTopIngredients/'
@@ -15,6 +16,7 @@ app.controller('landing', function($http,$location,$scope,sharedProperties) {
   .error(function(data, status){
     console.log(data,status);
   });
+
 
   $scope.toCook = sharedProperties.getToCook();
   $scope.showCook = (Object.keys($scope.toCook).length > 0);
@@ -37,7 +39,6 @@ app.controller('landing', function($http,$location,$scope,sharedProperties) {
       delete($scope.toCook[ingredient.name]);
       sharedProperties.setToCook($scope.toCook);
       $scope.showCook = (Object.keys($scope.toCook).length > 0);
-
     }
   };
 
