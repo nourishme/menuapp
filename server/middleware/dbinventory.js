@@ -34,4 +34,31 @@ exports.getIngredientList = getIngredientList = function(req,res) {
   db.cypherQuery(msg, callbackWrapper(res));
 };
 
+exports.getTopIngredientsList = getTopIngredientsList = function() {
+  // body...
+  var topIngreds = [];
+  msg = "match (i:Ingredient) return i LIMIT 10";
+  db.cypherQuery(msg, callbackWrapper(res));
+};
+
+exports.findCoOccuringIngredients = findCoOccuringIngredients = function(ingredientIdArray) {
+  // body...
+  var ingredientsByCoOccurWeight = [];
+  return ingredientsByCoOccurWeight
+};
+
+exports.getRecipeById = getRecipeById = function(recipeId) {
+  // body...
+
+};
+
+exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(ingredientIdArray) {
+  // body...
+
+};
+
+
+
+
+
 module.exports = exports;
