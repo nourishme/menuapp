@@ -2,14 +2,13 @@
 
   <p> What ingredient would you like to cook with today?</p>
   <form>
-    <input type="search" ng-model="ingredientSearch" placeholder="Ingredient"></input>
+    <input type="text" class="topcoat-text-input--large" ng-model="ingredientSearch" placeholder="Ingredient"></input>
   </form>
 
   <div class="matchingIngredients" ng-show="ingredientSearch">
     <div class="ingredientButton" ng-repeat="ingredient in ingredients | filter:ingredientSearch" ng-click="firstIngredient(ingredient)" ><button class="topcoat-button--large--cta" >{{ingredient.name}}</button>
     </div>
   </div>
-
 <div>
 
 

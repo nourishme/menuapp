@@ -1,7 +1,7 @@
 @import "base.css";
 /* Responsive Design Stuff */
 /*TopCoat*/
-@import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css";
+@import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css";
 body html,
 body body,
 body div,
@@ -154,11 +154,11 @@ header {
 .searchBox form input {
   margin: 10px 0;
   width: 100%;
-  height: 20px;
   font-size: 30px;
 }
 .searchBox button {
   font-size: 30px;
+  height: 40px;
 }
 .matchingIngredients {
   font-size: 30px;
