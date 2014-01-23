@@ -184,9 +184,8 @@ header {
 .ingredientsNotLiked .topcoat-checkbox__checkmark {
   text-align: left;
 }
-.recipeName,
-.recPicGroup {
-  width: 360px;
+.recipeImage {
+  margin: auto;
 }
 .attribution {
   position: fixed;
