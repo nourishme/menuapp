@@ -1,7 +1,7 @@
 @import "base.css";
 /* Responsive Design Stuff */
 /*TopCoat*/
-@import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css";
+@import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css";
 body html,
 body body,
 body div,
@@ -129,8 +129,52 @@ header {
   font-size: 3em;
   font-family: helvetica;
 }
-.topcoat-tab-bar {
+.topcoat-button-bar {
   float: right;
+}
+.loginBox {
+  width: 50%;
+  margin: auto;
+  text-align: left;
+  font-size: 30px;
+}
+.loginBox button {
+  font-size: 18px;
+}
+.mainBox {
+  width: 50%;
+  margin: auto;
+  text-align: left;
+  font-size: 30px;
+}
+.mainBox .section {
+  margin: 10px 0 30px 0;
+}
+.mainBox .section .sectionHeader {
+  border-bottom: 2px solid #ffa500;
+}
+.mainBox form {
+  text-align: center;
+}
+.mainBox form input {
+  margin: 10px 0;
+  width: 100%;
+  font-size: 30px;
+}
+.mainBox button {
+  font-size: 30px;
+  height: 40px;
+}
+.matchingIngredients {
+  font-size: 30px;
+}
+.ingredientButton {
+  margin: 5px;
+  width: 100%;
+}
+.ingredientButton button {
+  width: 100%;
+  background-color: #ffa500;
 }
 .ingredientsLiked,
 .ingredientsNotLiked {
