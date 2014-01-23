@@ -47,7 +47,7 @@ exports.getRecipe = getRecipe = function(recipe_id, callback) {
     options.host+options.path, 
     function(res) {
       console.log("Got response: " + res.statusCode);
-      var str = '<h1>testdataGETrecipe</h1>';
+      var str = '';
       res.on('data', function(chunk){
         str += chunk;
       });

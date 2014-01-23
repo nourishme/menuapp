@@ -114,7 +114,7 @@ app.get('/auth/google/return',
 app.get('/ingredientInventory/',ingredients.getUsersRecipeList);
 app.post('/ingredientInventory/',ingredients.saveUsersList);
 app.get('/ingredientList/',ingredients.getIngredientList);
-app.get('/getRecipe/',ingredients.getRecipe);
+app.get('/getRecipe/:recipeNumber',ingredients.getRecipe);
 app.get('/getTopIngredients/',ingredients.getTopIngredients);
 app.get('/searchForRecipes/',ingredients.searchForRecipes);
 app.get('/getCoOccurs/',ingredients.getCoOccurs);
