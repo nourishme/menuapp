@@ -101,7 +101,7 @@ app.get('/auth/google', passportConfig.passport.authenticate('google'));
 // the process by verifying the assertion.  If valid, the user will be
 // logged in.  Otherwise, authentication has failed.
 app.get('/auth/google/return',
-  passportConfig.passport.authenticate('google', { successRedirect: '/#/home',
+  passportConfig.passport.authenticate('google', { successRedirect: '/#/landing',
   failureRedirect: '/login' }));
 
 

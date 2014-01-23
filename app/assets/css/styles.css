@@ -131,9 +131,19 @@ header {
 }
 .topcoat-tab-bar {
   float: right;
+  font-size: 20px;
+}
+.loginBox {
+  width: 50%;
+  margin: auto;
+  text-align: left;
+  font-size: 30px;
+}
+.loginBox button {
+  font-size: 18px;
 }
 .searchBox {
-  width: 480px;
+  width: 50%;
   margin: auto;
   text-align: left;
   font-size: 30px;
@@ -144,7 +154,7 @@ header {
 .searchBox form input {
   margin: 10px 0;
   width: 100%;
-  height: 40px;
+  height: 20px;
   font-size: 30px;
 }
 .searchBox button {
@@ -152,6 +162,14 @@ header {
 }
 .matchingIngredients {
   font-size: 30px;
+}
+.ingredientButton {
+  margin: 5px;
+  width: 100%;
+}
+.ingredientButton button {
+  width: 100%;
+  background-color: #ffa500;
 }
 .ingredientsLiked,
 .ingredientsNotLiked {

@@ -1,5 +1,5 @@
 
-app.controller('home', function($http,$location,$scope,sharedProperties) {
+app.controller('landing', function($http,$location,$scope,sharedProperties) {
   $http({
     method: 'GET',
     url: '/getTopIngredients/'

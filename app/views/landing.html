@@ -6,18 +6,14 @@
   </form>
 
   <div class="matchingIngredients" ng-show="ingredientSearch">
-    <!-- <h3 class="topcoat-list__header">Search Results</h3> -->
-     <ul class="topcoat-list__container">
-      <li class="topcoat-list__item" ng-repeat="ingredient in ingredients | filter:ingredientSearch" ng-click="addToCook(ingredient)" >
-          <span>{{ingredient.name}}</span>
-      </li>
-    </ul>
+    <div class="ingredientButton" ng-repeat="ingredient in ingredients | filter:ingredientSearch" ng-click="firstIngredient(ingredient)" ><button class="topcoat-button--large--cta" >{{ingredient.name}}</button>
+    </div>
   </div>
 
 <div>
 
-  
-<!-- 
+
+<!-- z
   <div class="suggestedIngredients" ng-show="false">
     <h3 class="topcoat-list__header">Suggested Ingredients</h3>
     <ul class="topcoat-list__container">
