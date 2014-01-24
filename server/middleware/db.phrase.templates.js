@@ -5,11 +5,11 @@ var template = {};
 */
 
 template.matchNodeById = 
- matchNodeById = function(node, nodekeyoption){
+ matchNodeById = function(nodeid, nodekeyoption){
   // match (n)-[:LIKES]->(b) where id(n) = 406842 return b
   nodekeyoption = nodekeyoption || 'n';
-  node.id = typeof node.id === "number" ? node.id : parseInt(node.id);
-  var match_node = "MATCH ("+nodekeyoption+") WHERE id("+nodekeyoption+") = "+node.id+ " ";
+  nodeid = typeof nodeid === "number" ? nodeid : parseInt(nodeid);
+  var match_node = "MATCH ("+nodekeyoption+") WHERE id("+nodekeyoption+") = "+nodeid+ " ";
   return {msg: match_node, key: nodekeyoption};
 };
 
