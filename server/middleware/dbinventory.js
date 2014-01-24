@@ -2,14 +2,17 @@ var neo4jDB = require('../neo4jDB.js');
 exports.neo4j = neo4j = require('node-neo4j');
 exports.db = db = new neo4j('http://localhost:7474');
 exports.phrases = ph = require('../middleware/db.phrase.templates.js');
-var routes = require('../config/routes.js');
+var yum = require('../middleware/callyummly.js');
 
-var callbackWrapper = function (req, res, ifNoResultCallback){
-  inventoryCallback = function(err, result) {
+
+
+var callbackWrapper = function (req, res, altCallback){
+  resultSendCallback = function(err, result) {
     if (err) throw err;
     res.send( result);
   };
-  return inventoryCallback;
+  var callback = altCallback || resultSendCallback;
+  return callback;
 };
 
 exports.updateUserInventory = update = function(req, res) {
@@ -35,7 +38,6 @@ exports.getIngredientList = getIngredientList = function(req, res) {
 };
 
 exports.getTopIngredientsList = getTopIngredientsList = function(req, res) {
-  // body...
   var topIngreds = [];
   var count = req.param('count') || 10;
   msg = "match (i:Ingredient) return i LIMIT "+count;
@@ -43,23 +45,37 @@ exports.getTopIngredientsList = getTopIngredientsList = function(req, res) {
 };
 
 exports.findCoOccuringIngredients = findCoOccuringIngredients = function(req, res) {
-  // body...
   var ingredientsByCoOccurWeight = [];
-  return ingredientsByCoOccurWeight
+  return ingredientsByCoOccurWeight;
 };
 
-exports.getRecipeById = getRecipeById = function(req, res) {
-  msg = "match (r:Recipe) where id(r)="+req.param('recipeNumber')+" RETURN r";
+exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {
+  msg = ph.matchNodeByPropertyValueAndLabel('id', req.body, 'Recipe');
   db.cypherQuery(msg, callbackWrapper(req, res));
 };
 
 exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(req, res) {
-  // body...
-
+// curl -X POST -H "Content-Type: application/json" -d '[402112,402113,402114]' http://localhost:3000/searchForRecipes/  
+  var transactionBody = {};
+  transactionBody.statements = [];
+  for (var i = 0; i< req.body.length; i++  ){
+    var query = {};
+    query = ph.matchNodeById(req.body[i]);
+    transactionBody.statements.push( {statement: query.msg+' RETURN n'});
+  }
+  backwardsSearchRecipeResponseCallback = function(result, err) {
+    if (err) throw err;
+    res.send( result);
+  };
+  var searchYummlyWithIngredientNames = function(err, dbResultObj, req, res) {
+    var result = dbResultObj.results;
+    var paramsForYumSearch = '&q=';
+    for (var i = 0; i < result.length; i++) {
+        paramsForYumSearch += result[i].data[0].row[0].term+ ' ';
+    }
+    yum.searchRecipe(paramsForYumSearch, callbackWrapper( req, res, backwardsSearchRecipeResponseCallback ));
+  };
+  db.beginAndCommitTransaction(transactionBody, callbackWrapper(req, res, searchYummlyWithIngredientNames));
 };
-
-
-
-
 
 module.exports = exports;

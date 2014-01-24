@@ -72,32 +72,32 @@ describe('The server', function(){
       });
     });
 
-    it('ingredientList/', function (res) {
+    it(url+'ingredientList/', function (res) {
       http.get(url + 'ingredientList/', function (res) {
         assert.equal(res.statusCode, 200);
         
       });
     });
 
-    it('getRecipe/', function (res) {
+    it(url+'getRecipe/', function (res) {
       http.get(url + 'getRecipe/', function (res) {
         assert.equal(res.statusCode, 200);        
       });      
     });
     
-    it('getTopIngredients/', function (res) {
+    it(url+'getTopIngredients/10', function (res) {
       http.get(url + 'getTopIngredients/10', function (res) {
         assert.equal(res.statusCode, 200);        
       });      
     });
     
-    it('searchForRecipes/', function (res) {
+    it(url+'searchForRecipes/', function (res) {
       http.get(url + 'searchForRecipes/', function (res) {
         assert.equal(res.statusCode, 200);        
       });      
     });
     
-    it('getCoOccurs/', function (res) {
+    it(url+'getCoOccurs/', function (res) {
       http.get(url + 'getCoOccurs/', function (res) {
         assert.equal(res.statusCode, 200);        
       });      
