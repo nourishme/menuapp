@@ -4,7 +4,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/', {
     redirectTo: '/login'
   })
-  .when('/recipe/:recipeId', {
+  .when('/recipe/', {
     controller: 'recipe',
     templateUrl: 'views/recipe.html'
   })
