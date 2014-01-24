@@ -58,6 +58,21 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
 
 };
 
+exports.saveSearchQueryAsNode = saveSearchQueryAsNode = function(req, res){
+  console.log("***** REQ *****: ", req);
+  console.log("***** RES *****: ", res);
+  msg = "create (s:Search {params:"+req.data+"}) return s ";
+};
+
+exports.checkSearchQueryNode = findSearchQueryNode = function(query){
+  msg = "match (s:Search) where s.params ="+ query +" return s";
+
+};
+
+exports.createSearchIngredientRelationship = createSearchIngredientRelationship = function(req, res){
+  msg = "";
+}
+
 
 
 
