@@ -11,7 +11,7 @@
   <div class="section">
     <p class="sectionHeader">Here's Some Recipes:</p>
     <div class="matchingIngredients">
-      <div class="ingredientButton" ng-repeat="recipe in searchResults.matches" ng-click="getRecipe(recipe.id)" >
+      <div class="ingredientButton" ng-repeat="recipe in searchResults.matches | limitTo:12" ng-click="getRecipe(recipe.id)" >
         <button class="topcoat-button--large--cta" >{{recipe.recipeName}}</button>
       </div>
     </div>
