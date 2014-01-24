@@ -1,6 +1,19 @@
 
 <button ng-click="saveIngredients()">Save Ingredient List</button>
 
+<div class="topcoat-list ingredients">
+    <h3 class="topcoat-list__header">Ingredients Returned</h3>
+    blabhablhab
+    {{data}}
+    <ul class="topcoat-list__container">
+      <li class="topcoat-list__item" ng-repeat="ingredient in ingredients ">
+          <input type="checkbox" checked  ng-click="removeFromLike(ingredient._id)">
+          <span class="topcoat-checkbox__checkmark"></span>
+          <span class="rightText">{{ingredient.term}}</span>
+      </li>
+    </ul>
+</div>
+
 <div class="topcoat-list ingredientsLiked">
     <h3 class="topcoat-list__header">Ingredients Inventory</h3>
     <ul class="topcoat-list__container">

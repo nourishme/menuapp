@@ -1,23 +1,23 @@
-<div class="recipeName">
-  <h1>{{recipe.name}}</h1>
-</div>
-<div class="clear"></div>
-<div class="mainContent">
-
-  <div class="recPicGroup">
-    <div class="recipeImageContainer">
-      <img class="recipeImage" src="{{recipe.images[0].hostedLargeUrl}}"/>
-    </div>
+<div class="mainBox">
+  
+  <div class="section">
+    <p class="sectionHeader">{{recipe.name}}</p>
   </div>
 
-  <div class="topcoat-list ingredientListContainer">
-      <h3 class="topcoat-list__header">Ingredients</h3>
+  <div class="section">
+    <img src="{{recipe.images[0].hostedLargeUrl}}"/>
+  </div>
+
+  <div class="topcoat-list section">
+      <p class="sectionHeader topcoat-list__header">Ingredients</p>
       <ul class="topcoat-list__container">
         <li class="topcoat-list__item" ng-repeat="line in recipe.ingredientLines">{{line}}</li>
       </ul>
   </div>
 
 </div>
+
+
 <div class="attribution">
   <a href="{{recipe.attribution.url}}">{{recipe.attribution.text}}</a><br>
   <img src="{{recipe.attribution.logo}}"/>

@@ -9,9 +9,16 @@
 // @import "8cols.css"
 
 /*TopCoat*/
-// @import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css"
-@import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css"
+@import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css"
+// @import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css"
 
+
+// 
+
+size1 = 30px
+
+
+// 
 
 body
   global-reset()
@@ -41,6 +48,7 @@ header
   border-bottom: 4px solid orange
   height 70px
 
+
 .appTitle
   display inline-block
   float left
@@ -52,31 +60,83 @@ header
   font-family: helvetica
 
   
-.topcoat-tab-bar
-  float: right;
+.topcoat-button-bar
+  float right
+
+// login
+
+.loginBox
+  width:50%
+  margin auto
+  text-align left
+  font-size size1
+  
+  button
+    font-size 18px
+
+//Search Page
+
+.mainBox
+  width:50%
+  margin auto
+  text-align left
+  font-size size1
+
+  .section
+    margin: 10px 0 30px 0
+
+    .sectionHeader
+      border-bottom 2px solid orange
+
+  form 
+    text-align center
+
+    input
+      margin 10px 0
+      width 100%
+      font-size size1
+  
+  button
+    font-size size1
+    height 40px
+
+.matchingIngredients
+  font-size size1
+
+.ingredientButton
+  margin 5px
+  width 100%
+
+  button
+    width 100%
+    background-color orange
 
 // Ingredients Page
 .ingredientsLiked,
 .ingredientsNotLiked
-  box-flex:1
+  // box-flex:1
   margin: 30px
 
   .topcoat-checkbox__checkmark
     text-align:left
 
+
 // Recipe Page
-.recipeName
 
+.recipeImage
+  margin auto
 
-.recPicGroup
-  width: 360px
-
-
-.ingredientListContainer
-  // width:300px
 
 .attribution
-  clear:left
+  display:none;
+  fixed:bottom left
+  width: 15%
+  text-wrap normal
+  border 2px solid orange
+
+  a
+    text-decoration none
+    color black
 
 // Tell stylus to watch your directory and update your file 
 // stylus app/assets/css/styles.styl -w --include /Users/kylewarneck/Desktop/git_repos/menuapp/node_modules/nib/lib
