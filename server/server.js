@@ -1,14 +1,14 @@
 
 // External Modules
-var neo4jDB = require('./neo4jDB.js'),
-express = require("express"),
-path = require("path"),
+var neo4jDB        = require('./neo4jDB.js'),
+    express        = require("express"),
+    path           = require("path"),
 
 // Internal Modules
-config = require('./config/configfile'),
-routes = require('./config/routes.js'),
-passportConfig = require('./config/passport'),
-yummly = require('./middleware/callyummly.js');
+    config         = require('./config/configfile'),
+    routes         = require('./config/routes.js'),
+    passportConfig = require('./config/passport'),
+    yummly         = require('./middleware/callyummly.js');
 
 // Configure Express
 var app = express();
@@ -30,3 +30,4 @@ console.log('Express app started on port ' + port);
 routes.setRoutes(app, __dirname); // Set Routes
 
 module.exports = app;
+

@@ -1,19 +1,32 @@
 
 app.controller('landing', function($http,$location,$scope,sharedProperties) {
 
-  $scope.getTopIngredients = function(){
+  var getTopIngredients = function(){
      $http({
       method: 'GET',
       url: '/getTopIngredients/300'
     })
     .success(function(data, status) {
-      return data;
+      console.log(data.data);
+      $scope.ingredients = data.data;
     })
     .error(function(data, status){
       console.log(data,status);
     });
   };
 
+  $scope.getSuggestedIngredients = function(){
+    $http({
+      method: 'GET',
+      url: '/getTopIngredients/300'
+    })
+    .success(function(data, status) {
+      return data.data;
+    })
+    .error(function(data, status){
+      console.log(data,status);
+    });
+  };
 
   $scope.addToCook =function(ingredient){
     if(!($scope.toCook[ingredient.description])){
@@ -33,23 +46,10 @@ app.controller('landing', function($http,$location,$scope,sharedProperties) {
     $scope.suggestedIngredients = $scope.getSuggestedIngredients();
   };
 
-  $scope.getSuggestedIngredients = function(){
-    $http({
-      method: 'GET',
-      url: '/getTopIngredients/300'
-    })
-    .success(function(data, status) {
-      return data.data;
-    })
-    .error(function(data, status){
-      console.log(data,status);
-    });
-
-  };
 
   $scope.toCook = sharedProperties.getToCook();
   $scope.showCook = (Object.keys($scope.toCook).length > 0);
   $scope.suggestedIngredients =[];
-  $scope.ingredients = $scope.getTopIngredients();
+  getTopIngredients();
 
 });

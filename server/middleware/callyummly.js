@@ -14,13 +14,13 @@ exports.getParamString = getParamString = function(queryObject) {
 };
 
 
-exports.searchRecipe = searchRecipe = function(searchParams, callback) {    
+exports.searchRecipe = searchRecipe = function(searchParams, callback) {
 // The base url for the Search Recipes GET is
 // http://api.yummly.com/v1/api/recipes?_app_id=app-id&_app_key=app-key&your_search_parameters
   var options = yumoptions;
   options.path = '/api/recipes'+ apiauth.token + searchParams;
-  http.get( 
-    options.host+options.path, 
+  http.get(
+    options.host+options.path,
     function(res) {
       console.log("Got response: " + res.statusCode);
       var str = '<h1>testdataSEARCHrecipe</h1>';
@@ -43,8 +43,8 @@ exports.getRecipe = getRecipe = function(recipe_id, callback) {
   var options = yumoptions;
   options.path = '/api/recipe'+ recipe_id + apiauth.token;
   
-  http.get( 
-    options.host+options.path, 
+  http.get(
+    options.host+options.path,
     function(res) {
       console.log("Got response: " + res.statusCode);
       var str = '';
@@ -67,8 +67,8 @@ exports.getIng = getIng = function(req, callback) {
   var options = yumoptions;
   options.path = '/api/metadata/ingredient'+ apiauth.token;
   console.log(options.path);
-  http.get( 
-    options.host+options.path, 
+  http.get(
+    options.host+options.path,
     function(res) {
       console.log("Got response: " + res.statusCode);
       var str = '<h1>cache these ingredients</h1>';
@@ -83,5 +83,26 @@ exports.getIng = getIng = function(req, callback) {
     console.log("Got error: " + e.message);
   });
 };
+
+// TODO: KW - These functions should probably go someplace else
+
+exports.dbcall = dbcall = function(req, res){
+  res.send();
+};
+
+exports.yumSearch = yumSearch = function(req, res) {
+  console.log(req.query);
+  exports.searchRecipe(getParamString(req.query), function(result){ res.send(result);} );
+};
+
+exports.yumGet = yumGet = function(req, res) {
+  exports.getRecipe(req.path, function(result){ res.send(result);} );
+};
+
+exports.yumIng = yumIng = function(req, res) {
+  console.log(req.query);
+  exports.getIng(req, function(result){ res.send(result);} );
+};
+
 
 module.exports = exports;
