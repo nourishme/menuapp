@@ -1,28 +1,19 @@
 
 app.controller('landing', function($http,$location,$scope,sharedProperties) {
 
-  $http({
-    method: 'GET',
-    url: '/getTopIngredients/300'
-  })
-  .success(function(data, status) {
-    // console.log(data.data);
-    // $scope.ingredients =[
-    // {name:'carrots'},
-    // {name:'bacon'},
-    // {name:'beets'},
-    // {name:'onions'}
-    // ];
-    $scope.ingredients = data.data;
-  })
-  .error(function(data, status){
-    console.log(data,status);
-  });
+  $scope.getTopIngredients = function(){
+     $http({
+      method: 'GET',
+      url: '/getTopIngredients/300'
+    })
+    .success(function(data, status) {
+      return data;
+    })
+    .error(function(data, status){
+      console.log(data,status);
+    });
+  };
 
-
-  $scope.toCook = sharedProperties.getToCook();
-  $scope.showCook = (Object.keys($scope.toCook).length > 0);
-  $scope.suggestedIngredients =[];
 
   $scope.addToCook =function(ingredient){
     if(!($scope.toCook[ingredient.description])){
@@ -39,31 +30,26 @@ app.controller('landing', function($http,$location,$scope,sharedProperties) {
       sharedProperties.setToCook($scope.toCook);
       $scope.showCook = (Object.keys($scope.toCook).length > 0);
     }
-    $scope.getSuggestedIngredients();
+    $scope.suggestedIngredients = $scope.getSuggestedIngredients();
   };
 
   $scope.getSuggestedIngredients = function(){
-
     $http({
-    method: 'GET',
-    url: '/getTopIngredients/300'
-  })
-  .success(function(data, status) {
-    // console.log(data.data);
-    // $scope.suggestedIngredients =[
-    // {description:'carrots'},
-    // {description:'bacon'},
-    // {description:'beets'},
-    // {description:'onions'}
-    // ];
-    // $scope.ingredients = data.data;
-    $scope.suggestedIngredients = data.data;
-  })
-  .error(function(data, status){
-    console.log(data,status);
-  });
-
+      method: 'GET',
+      url: '/getTopIngredients/300'
+    })
+    .success(function(data, status) {
+      return data.data;
+    })
+    .error(function(data, status){
+      console.log(data,status);
+    });
 
   };
+
+  $scope.toCook = sharedProperties.getToCook();
+  $scope.showCook = (Object.keys($scope.toCook).length > 0);
+  $scope.suggestedIngredients =[];
+  $scope.ingredients = $scope.getTopIngredients();
 
 });

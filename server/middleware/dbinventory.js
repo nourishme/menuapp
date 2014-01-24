@@ -16,7 +16,7 @@ exports.updateUserInventory = update = function(req, res) {
   var userid = req.user;
   invChangeArray = req.body;
   var statement = ph.updateLikeStatusStatementFromObject(userid, invChangeArray);
-  res.send( 
+  res.send(
     db.beginAndCommitTransaction(
       statement, callbackWrapper(req, res)
     )
@@ -45,7 +45,7 @@ exports.getTopIngredientsList = getTopIngredientsList = function(req, res) {
 exports.findCoOccuringIngredients = findCoOccuringIngredients = function(req, res) {
   // body...
   var ingredientsByCoOccurWeight = [];
-  return ingredientsByCoOccurWeight
+  return ingredientsByCoOccurWeight;
 };
 
 exports.getRecipeById = getRecipeById = function(req, res) {
