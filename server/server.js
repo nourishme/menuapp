@@ -16,7 +16,7 @@ nib = require('nib'),
 // Internal Dependencies
 recipe = require('./recipe'),
 ingredients = require('./ingredients'),
-searchResults = require('./searchResults');
+searchResults = require('./searchResults'); /* todo: i think this can get deleted (jfl) */
 
 
 var application_root = __dirname;
@@ -120,12 +120,12 @@ app.post('/ingredientInventory/',ingredients.saveUsersList);
 app.get('/ingredientList/',ingredients.getIngredientList);
 app.get('/getRecipe/:recipeNumber',ingredients.getRecipe);
 app.get('/getTopIngredients/:count',ingredients.getTopIngredients);
-app.get('/searchForRecipes/',ingredients.searchForRecipes);
+app.post('/searchForRecipes/',ingredients.searchForRecipes);
 app.get('/getCoOccurs/',ingredients.getCoOccurs);
 
 
 // Search Results
-app.get('/searchResults/:ingredientNames',searchResults.get);
+app.get('/searchResults/:ingredientNames',searchResults.get); /* todo: i think this can get deleted (jfl) */
 
 // Recipes
 app.get('/recipe/:id', recipe.get);
