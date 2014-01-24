@@ -17,9 +17,10 @@ exports.dbcall = dbcall = function(req, res){
   res.send();
 };
 
-exports.yumSearch = yumSearch = function(req, res) {
-  console.log(req.query);
-  yummly.searchRecipe(getParamString(req.query), function(result){ res.send(result);} );
+exports.yumSearch = yumSearch = function(req, res, queryString) {
+  // console.log(req.query);
+  queryString = queryString || getParamString(req.query);
+  yummly.searchRecipe(queryString, function(result){ res.send(result);} );
 };
 
 exports.yumGet = yumGet = function(req, res) {

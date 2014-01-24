@@ -23,7 +23,7 @@ exports.searchRecipe = searchRecipe = function(searchParams, callback) {
     options.host+options.path, 
     function(res) {
       console.log("Got response: " + res.statusCode);
-      var str = '<h1>testdataSEARCHrecipe</h1>';
+      var str = '';
       res.on('data', function(chunk){
         str += chunk;
       });
