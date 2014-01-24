@@ -4,6 +4,8 @@ exports.db = db = new neo4j('http://localhost:7474');
 exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 var routes = require('../config/routes.js');
 
+
+
 var callbackWrapper = function (req, res, ifNoResultCallback){
   inventoryCallback = function(err, result) {
     if (err) throw err;
@@ -45,21 +47,29 @@ exports.getTopIngredientsList = getTopIngredientsList = function(req, res) {
 exports.findCoOccuringIngredients = findCoOccuringIngredients = function(req, res) {
   // body...
   var ingredientsByCoOccurWeight = [];
-  return ingredientsByCoOccurWeight
+  return ingredientsByCoOccurWeight;
 };
 
-exports.getRecipeById = getRecipeById = function(req, res) {
-  msg = "match (r:Recipe) where id(r)="+req.param('recipeNumber')+" RETURN r";
+exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {
+  msg = ph.matchNodeByPropertyValueAndLabel('id', req.body, 'Recipe');
   db.cypherQuery(msg, callbackWrapper(req, res));
 };
 
 exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(req, res) {
-  // body...
-
+  // should take the ingredient ids and get the names of those ingredients from the db. then turn those into a recipe search with yummly. 
+// curl -X POST -H "Content-Type: application/json" -d '[1,2,3]' http://localhost:3000/searchForRecipes/  console.log(req.body);
+  var transactionBody = {};
+  transactionBody.statements = [];
+  for (var i = 0; i< req.body.length; i++  ){
+    var msg = {};
+    msg.statement = ph.matchNodeById(req.body[i], 'a'+i);
+    transactionBody.statements.push( msg );
+  }
+  
+  db.beginAndCommitTransaction(transactionBody, callbackWrapper(req, res));
+  // msg = "match (r:Recipe) where id(r)="+req.param('recipeNumber')+" Return r.term" ;
+  // console.log(req.body);
+  // do routes.yumSearch with a string of ingredients words.
 };
-
-
-
-
 
 module.exports = exports;

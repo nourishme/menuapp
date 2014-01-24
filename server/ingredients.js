@@ -24,10 +24,9 @@ module.exports = {
   },
 
   getRecipe: function(req, res) {
-    // send recipeId
+    // send 'Salted-dark-chocolate-popcorn-314529'
     // returns recipe object
-    // Salted-dark-chocolate-popcorn-314529
-    dbinventory.getRecipeById(req, res);
+    dbinventory.getRecipeByIdString(req, res);
     // routes.yumGet(req, res);
   },
 

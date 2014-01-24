@@ -6,12 +6,22 @@ var template = {};
 
 template.matchNodeById = 
  matchNodeById = function(node, nodekeyoption){
+  // match (n)-[:LIKES]->(b) where id(n) = 406842 return b
   nodekeyoption = nodekeyoption || 'n';
   node.id = typeof node.id === "number" ? node.id : parseInt(node.id);
   var match_node = "MATCH ("+nodekeyoption+") WHERE id("+nodekeyoption+") = "+node.id+ " ";
   return {msg: match_node, key: nodekeyoption};
 };
-// match (n)-[:LIKES]->(b) where id(n) = 406842 return b
+
+template.matchNodeByPropertyValueAndLabel = 
+ matchNodeByPropertyAndValue = function(property, value, label, nodekeyoption ){
+  // match (n:Label) where n.Proptery = Value
+  nodekeyoption = nodekeyoption || 'n';
+  label = ":"+label || label;
+  var match_query = "MATCH ("+nodekeyoption + label+") WHERE "+nodekeyoption+"."+property+" = "+value+ " ";
+  return {msg: match_query, key: nodekeyoption};
+};
+
 /* 
  * Lable functions 
 */
@@ -29,7 +39,7 @@ template.removeRelationshipTemplate =
 };
 
 /* 
- * Message maker functions 
+ * Compile Message functions
 */
 
 template.updateLikeStatusStatementFromObject = 
