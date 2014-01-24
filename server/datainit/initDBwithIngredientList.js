@@ -1,5 +1,5 @@
 exports.neo4j = neo4j = require('node-neo4j');
-var ing = require('./ingredientlist.js').ingredient; 
+//var ing = require('./ingredientlist.js').ingredient; 
 // var neo4j = require('node-neo4j');
 // uncomment this function and Line2 to import base ingredients.
 
@@ -23,7 +23,7 @@ var errthrow = function() {
 };
 
 var nextbatch = function(err,result) {
-  console.log(result._id, recsofar);
+    console.log("****ERR****: ", err)
   var done = false;
   recsofar = batches*batchsize < ing.length ? batches*batchsize : ing.length;
   msg = {statements: []};
@@ -41,6 +41,7 @@ var nextbatch = function(err,result) {
   } else {
     console.log('about to insert batch: ', batches);
     batches++;
+
     db.addStatementsToTransaction(result._id, msg, nextbatch);
   }
 };
