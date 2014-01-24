@@ -36,7 +36,7 @@ var template = function(val){
   return {
       statement : 'CREATE (r:Recipe {props}) RETURN n; ',
       parameters : {
-        props : createPropertyObject(val)
+        props : val
       }
     };
 };
@@ -53,16 +53,18 @@ var nextbatch = function(err,result) {
   if ( recsofar === ing.length ) done = true;
   var reclimit = recsofar+batchsize > ing.length ? ing.length : recsofar+batchsize;
   for (var i = recsofar; i < reclimit; i++) {
-    msg.statements.push(template(ing[i]));
+    msg.statements.push(createPropertyObject(ing[i]));
 
   }
   if (done !== false) {
     console.log('triggerdone');
+    console.log("*****: ", result._id, msg, errthrow )
 
     db.commitTransaction(result._id, msg, errthrow );
   } else {
     console.log('about to insert batch: ', batches);
     batches++;
+    console.log("******: ", msg)
 
     db.addStatementsToTransaction(result._id, msg, nextbatch);
   }
@@ -72,7 +74,7 @@ var createPropertyObject = function(recipe){
   var propertyObj = {};
   for (var key in recipe){
     if(!propertyObj[key] && key!== "ingredients" && key!== "flavors" && key!== "attributes" && key!== "imageUrlsBySize" &&
-      recipe[key]!== null) {
+      key!== "smallImageUrls" && recipe[key]!== null) {
       propertyObj[key] = recipe[key];
     }
   }
@@ -84,7 +86,7 @@ var createPropertyObject = function(recipe){
 var recipesCreate =function(ing){
 db.beginTransaction({
   statements:[{
-    statement : 'CREATE (r:Recipe {props}) RETURN n; ',
+    statement : 'CREATE (r:Recipe {props}) RETURN r ',
       parameters : {
         props : createPropertyObject(ing[0])
       }
