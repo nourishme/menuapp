@@ -18,9 +18,14 @@ var allRecipes = [recipes1, recipes2, recipes3, recipes4, recipes5, recipes6, re
 var allRecipesInArray = function() {
   var recipesArray = [];
   for (var i = 0 ; i < allRecipes.length; i ++){
-    recipesArray = recipesArray.concat(allRecipes[i])
+    for (var j = 0 ; j < allRecipes[i].length; j ++){
+      if(recipesArray.indexOf(allRecipes[i][j]) === -1){
+        recipesArray.push(allRecipes[i][j]);
+      }
+    }
   }
-  return recipesArray
+  console.log(recipesArray)
+  return recipesArray;
 };
 
 
