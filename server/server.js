@@ -9,7 +9,7 @@ var neo4jDB        = require('./neo4jDB.js'),
     config         = require('./config/configfile'),
     routes         = require('./routes.js'),
     passportConfig = require('./config/passport'),
-    authRoutes           = require('./authRoutes.js'),
+    authRoutes     = require('./authRoutes.js'),
     yummly         = require('./middleware/callyummly.js');
 
 // Configure Express
