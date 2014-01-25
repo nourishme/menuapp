@@ -20,7 +20,7 @@
   <div class="section">
     <p class="sectionHeader">Or add:</p>
     <div class="matchingIngredients">
-      <button class="topcoat-button--large" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" >{{ingredient.ingredientName}}</button>
+      <button class="topcoat-button--large" ng-repeat="ingredient in suggestedIngredients | limitTo:10" ng-click="addAndSearch(ingredient)" >{{ingredient.ingredientName}}</button>
     </div>
   </div>
 

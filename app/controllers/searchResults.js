@@ -31,6 +31,10 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
     $location.path("/recipe/");
   };
 
+  $scope.addAndSearch = function(ingredient){
+
+  }
+
   $scope.toCook = sharedProperties.getToCook();
   ingredientMethods.getSuggestedIngredients($scope);
   $scope.getSearchResults();
