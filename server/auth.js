@@ -12,30 +12,25 @@ module.exports = function(app){
     passportConfig.passport.authenticate('google', { successRedirect: '/#/landing',
     failureRedirect: '/login' }));
 
-  
+  /*
   //FB Auth
-  // app.get('/auth/facebook', passportConfig.passport.authenticate('facebook'));
-  // app.get('/auth/facebook/callback',
-    // passportConfig.passport.authenticate('facebook', {
-    //   failureRedirect: '/login' }),
-    //   function(req, res){
-    //     console.log(req);
-    //   }
-  // );
+  app.get('/auth/facebook', passportConfig.passport.authenticate('facebook'));
+  app.get('/auth/facebook/callback',
+    passportConfig.passport.authenticate('facebook', {failureRedirect: '/login' }),
+    function(req, res){console.log(req);}
+  );
 
-  
-  // Auth Helper Functions
-  
-  // app.get('/logout', function(req, res){
-  //   req.logout();
-  //   res.redirect('/');
-  // });
+  //Auth Helper Functions
+  app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
 
-  // var ensureAuthenticated = function(req, res, next) {
-  //   if (req.isAuthenticated()) {
-  //     return next();
-  //   }
-  //   res.redirect('/');
-  // };
-
+  var ensureAuthenticated = function(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/');
+  };
+  */
 };

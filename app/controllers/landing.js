@@ -2,7 +2,7 @@
 app.controller('landing', function($http,$location,$scope,sharedProperties) {
 
   var getTopIngredients = function(){
-     $http({
+    $http({
       method: 'GET',
       url: '/getTopIngredients/300'
     })

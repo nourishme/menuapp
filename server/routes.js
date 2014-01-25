@@ -4,11 +4,11 @@ var express        = require("express"),
     url            = require('url'),
 
 // Internal Modules
-    recipe         = require('../recipe'),
-    ingredients    = require('../ingredients'),
-    searchResults  = require('../searchResults'),
-    yummly         = require('../middleware/callyummly.js'),
-    passportConfig = require('../config/passport');
+    recipe         = require('./recipe'),
+    ingredients    = require('./ingredients'),
+    searchResults  = require('./searchResults'),
+    yummly         = require('./middleware/callyummly.js'),
+    passportConfig = require('./config/passport');
 
 /**
  * Routes
