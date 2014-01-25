@@ -7,7 +7,6 @@ app.controller('landing', function($http,$location,$scope,sharedProperties) {
       url: '/getTopIngredients/300'
     })
     .success(function(data, status) {
-      console.log(data.data);
       $scope.ingredients = data.data;
     })
     .error(function(data, status){
