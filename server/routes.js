@@ -27,7 +27,7 @@ exports.setRoutes = function(app, application_root){
   // Ingredients
   app.get('/getTopIngredients/',ingredients.getTopIngredients);
   app.get('/ingredientList/',ingredients.getIngredientList);
-  app.get('/getRecipe/:recipeNumber',ingredients.getRecipe);
+  app.get('/getRecipe/:id',ingredients.getRecipe);
   app.get('/getTopIngredients/:count',ingredients.getTopIngredients);
   app.get('/searchForRecipes/',ingredients.searchForRecipes);
   app.get('/getCoOccurs/',ingredients.getCoOccurs);

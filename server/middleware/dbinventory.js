@@ -50,8 +50,8 @@ exports.findCoOccuringIngredients = findCoOccuringIngredients = function(req, re
 };
 
 exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {
-  msg = ph.matchNodeByPropertyValueAndLabel('id', req.body, 'Recipe');
-  db.cypherQuery(msg, callbackWrapper(req, res));
+  msg = ph.matchNodeByPropertyValueAndLabel('id', req.param('id'), 'Recipe');
+  db.cypherQuery(msg.msg, callbackWrapper(req, res));
 };
 
 exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(req, res) {
