@@ -6,12 +6,10 @@ app.controller('recipe', function($http,$location,$scope) {
 
   $scope.addBookmark = function(){
     $scope.bookmarked = true;
-
   };
 
   $scope.removeBookmark = function(){
     $scope.bookmarked = false;
-
   };
 
 // call needs to be a get request like this:
