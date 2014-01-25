@@ -71,7 +71,9 @@ var recsofar = 1,
 
 var template = function(startNode, endNode){
   return {
-      statement : 'MATCH (r:Recipe) MATCH (i:Ingredient) where i.ingredientName = "'+endNode+'" AND r.id = "'+startNode+'" CREATE (r)-[:HAS_INGREDIENT]->(i)'
+
+      statement : 'MATCH (r:Recipe) MATCH (i:Ingredient) where i.ingredientName = "'+endNode+'" AND r.id = "'+startNode+'" CREATE (r)-[:HAS_INGREDIENT]->(i) return r.id'
+
     };
 };
 

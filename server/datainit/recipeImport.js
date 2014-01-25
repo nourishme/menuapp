@@ -13,13 +13,14 @@ var recipes11 = require('./11.js').recipes;
 
 exports.neo4j = neo4j = require('node-neo4j');
 
-var allRecipes = [recipes1, recipes2, recipes3, recipes4, recipes5, recipes6, recipes7, recipes8, recipes9, recipes10, recipes11];
+// var allRecipes = [recipes1, recipes2, recipes3, recipes4, recipes5, recipes6, recipes7, recipes8, recipes9, recipes10, recipes11];
+
 
 var allRecipesInObj = function() {
   var recipesObj = {};
   for (var i = 0 ; i < allRecipes.length; i ++){
     for (var j = 0 ; j < allRecipes[i].length; j ++){
-      console.log(allRecipes[i][j])
+      // console.log(allRecipes[i][j])
       recipesObj[allRecipes[i][j].id] = allRecipes[i][j];
     }
   }
@@ -32,10 +33,21 @@ var turnObjToArray = function(obj){
   for (var key in obj){
     array.push (obj[key]);
   }
-  console.log(array.length);
+  // console.log(array.length);
   return array;
+
 };
 
+var convertObjToArray = function(objectofstuff) {
+  
+  var arrToReturn = [];
+  for (var recs in objectofstuff) {
+    arrToReturn.push(objectofstuff[recs]);
+  }
+  if (Object.keys(objectofstuff).length !== arrToReturn.length) throw console.log(arrToReturn.length, Object.keys(objectofstuff).length)
+  return arrToReturn;
+
+};
 
 var db = new neo4j('http://localhost:7474');
 
@@ -47,7 +59,7 @@ var recsofar = 1,
 
 var template = function(val){
   return {
-      statement : 'CREATE (r:Recipe {props}) RETURN r; ',
+      statement : 'CREATE (r:Recipe {props}) RETURN r ',
       parameters : {
         props : val
       }
@@ -66,8 +78,7 @@ var nextbatch = function(err,result) {
   if ( recsofar === ing.length ) done = true;
   var reclimit = recsofar+batchsize > ing.length ? ing.length : recsofar+batchsize;
   for (var i = recsofar; i < reclimit; i++) {
-    msg.statements.push(template(createPropertyObject(ing[i])));
-
+    msg.statements.push( template( createPropertyObject(ing[i])));
   }
   if (done !== false) {
     console.log('triggerdone');
@@ -109,7 +120,8 @@ var recipesCreate =function(ing){
 
 
 
-var ing = turnObjToArray(allRecipesInObj());
+
+var ing = convertObjToArray( allRecipesInArray());
 
 recipesCreate(ing);
 
