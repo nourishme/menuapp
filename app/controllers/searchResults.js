@@ -1,13 +1,23 @@
 
 app.controller('searchResults', function($http,$location,$scope,ingredientMethods,sharedProperties) {
 
+  // Get the methods from the shared services
+  $scope.addToCook = function(ingredient){ ingredientMethods.addToCook($scope,ingredient); };
+  $scope.removeFromToCook =function(ingredient){ingredientMethods.removeFromToCook($scope,ingredient);};
+  $scope.getSuggestedIngredients = function(){ingredientMethods.getSuggestedIngredients($scope);};
+
+
+  // Local methods
+  $scope.getRecipe = function(id){ $location.path("/recipe/" + id);};
   $scope.getSearchResults = function(){
     var ingredients = [];
     for (var key in $scope.toCook){
-      ingredients.push($scope.toCook[key]['_id']); // Figure out if ID is right
+      // ingredients.push($scope.toCook[key]['_id'].toString());
+      ingredients.push($scope.toCook[key]['_id']);
     }
+
     ingredients.sort();
-     //TODO : format to cook into an array in the right format
+
     $http({
       method: 'POST',
       url: '/searchForRecipes/',
@@ -21,13 +31,20 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
     });
   };
 
-  $scope.getRecipe = function(id){
-    $location.path("/recipe/");
+
+  $scope.addAndSearch = function(ingredient){
+    ingredientMethods.addToCook($scope,ingredient);
+    // $scope.getSearchResults();
   };
 
-  $scope.toCook = sharedProperties.getToCook();
-  ingredientMethods.getSuggestedIngredients($scope);
-  $scope.getSearchResults();
+  $scope.removeAndSearch = function(ingredient){
+    ingredientMethods.removeFromToCook($scope, ingredient);
+    // $scope.getSearchResults();
+  };
 
+  // When page is first loaded . . .
+  $scope.toCook = sharedProperties.getToCook();
+  $scope.getSearchResults();
+  $scope.getSuggestedIngredients();
 
 });

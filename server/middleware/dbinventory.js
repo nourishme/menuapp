@@ -50,8 +50,8 @@ exports.findCoOccuringIngredients = findCoOccuringIngredients = function(req, re
 };
 
 exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {
-  msg = ph.matchNodeByPropertyValueAndLabel('id', req.body, 'Recipe');
-  db.cypherQuery(msg, callbackWrapper(req, res));
+  msg = ph.matchNodeByPropertyValueAndLabel('id', req.param('id'), 'Recipe');
+  db.cypherQuery(msg.msg, callbackWrapper(req, res));
 };
 
 exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(req, res) {
@@ -62,6 +62,7 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
   for (var i = 0; i< req.body.length; i++  ){
     var query = {};
     query = ph.matchNodeById(req.body[i]);
+    console.log("query is ",query.msg);
     transactionBody.statements.push( {statement: query.msg+' RETURN n'});
   }
   backwardsSearchRecipeResponseCallback = function(result, err) {
@@ -74,6 +75,7 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
     for (var i = 0; i < result.length; i++) {
         paramsForYumSearch += result[i].data[0].row[0].term+ ' ';
     }
+    console.log('paramsForYumSearch ', paramsForYumSearch);
     yum.searchRecipe(paramsForYumSearch, callbackWrapper( req, res, backwardsSearchRecipeResponseCallback ));
   };
   db.beginAndCommitTransaction(transactionBody, callbackWrapper(req, res, searchYummlyWithIngredientNames));

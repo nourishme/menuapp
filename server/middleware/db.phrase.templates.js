@@ -18,7 +18,7 @@ template.matchNodeByPropertyValueAndLabel =
   // match (n:Label) where n.Proptery = Value
   nodekeyoption = nodekeyoption || 'n';
   label = ":"+label || label;
-  var match_query = "MATCH ("+nodekeyoption + label+") WHERE "+nodekeyoption+"."+property+" = "+value+ " ";
+  var match_query = "MATCH ("+nodekeyoption + label+") WHERE "+nodekeyoption+"."+property+" = '"+value+ "' RETURN "+nodekeyoption;
   return {msg: match_query, key: nodekeyoption};
 };
 
