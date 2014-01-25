@@ -15,17 +15,25 @@ exports.neo4j = neo4j = require('node-neo4j');
 
 var allRecipes = [recipes1, recipes2, recipes3, recipes4, recipes5, recipes6, recipes7, recipes8, recipes9, recipes10, recipes11];
 
-var allRecipesInArray = function() {
-  var recipesArray = [];
+var allRecipesInObj = function() {
+  var recipesObj = {};
   for (var i = 0 ; i < allRecipes.length; i ++){
     for (var j = 0 ; j < allRecipes[i].length; j ++){
-      if(recipesArray.indexOf(allRecipes[i][j]) === -1){
-        recipesArray.push(allRecipes[i][j]);
-      }
+      console.log(allRecipes[i][j])
+      recipesObj[allRecipes[i][j].id] = allRecipes[i][j];
     }
   }
-  console.log(recipesArray)
-  return recipesArray;
+return recipesObj;
+};
+
+
+var turnObjToArray = function(obj){
+  var array = [];
+  for (var key in obj){
+    array.push (obj[key]);
+  }
+  console.log(array.length);
+  return array;
 };
 
 
@@ -39,7 +47,7 @@ var recsofar = 1,
 
 var template = function(val){
   return {
-      statement : 'CREATE (r:Recipe {props}) RETURN n; ',
+      statement : 'CREATE (r:Recipe {props}) RETURN r; ',
       parameters : {
         props : val
       }
@@ -47,7 +55,7 @@ var template = function(val){
 };
 
 var errthrow = function() {
-  console.log(arguments[1].errors);
+  // console.log(arguments[1].errors);
 };
 
 var nextbatch = function(err,result) {
@@ -58,18 +66,18 @@ var nextbatch = function(err,result) {
   if ( recsofar === ing.length ) done = true;
   var reclimit = recsofar+batchsize > ing.length ? ing.length : recsofar+batchsize;
   for (var i = recsofar; i < reclimit; i++) {
-    msg.statements.push(createPropertyObject(ing[i]));
+    msg.statements.push(template(createPropertyObject(ing[i])));
 
   }
   if (done !== false) {
     console.log('triggerdone');
-    console.log("*****: ", result._id, msg, errthrow )
+    // console.log("*****: ", result._id, msg, errthrow )
 
     db.commitTransaction(result._id, msg, errthrow );
   } else {
     console.log('about to insert batch: ', batches);
     batches++;
-    console.log("******: ", msg)
+    // console.log("******: ", msg)
 
     db.addStatementsToTransaction(result._id, msg, nextbatch);
   }
@@ -83,25 +91,25 @@ var createPropertyObject = function(recipe){
       propertyObj[key] = recipe[key];
     }
   }
-  console.log('*****PROP OBJ: ', propertyObj)
+  // console.log('*****PROP OBJ: ', propertyObj)
   return propertyObj;
 
 };
 
 var recipesCreate =function(ing){
-db.beginTransaction({
-  statements:[{
-    statement : 'CREATE (r:Recipe {props}) RETURN r ',
-      parameters : {
-        props : createPropertyObject(ing[0])
-      }
-    }]
-  },nextbatch );
-}
+  db.beginTransaction({
+    statements:[{
+      statement : 'CREATE (r:Recipe {props}) RETURN r ',
+        parameters : {
+          props : createPropertyObject(ing[0])
+        }
+      }]
+    },nextbatch );
+};
 
 
 
-var ing = allRecipesInArray()
+var ing = turnObjToArray(allRecipesInObj());
 
 recipesCreate(ing);
 
