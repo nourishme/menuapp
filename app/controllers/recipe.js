@@ -1,9 +1,28 @@
 
 app.controller('recipe', function($http,$location,$scope) {
-  var searchUrl = '/getRecipe/' + $location.path().split('/')[2];
+  
+  //TODO: check if recipe is saved on page load
+  $scope.bookmarked = false;
+
+  $scope.addBookmark = function(){
+    $scope.bookmarked = true;
+
+  };
+
+  $scope.removeBookmark = function(){
+    $scope.bookmarked = false;
+
+  };
+
+
+  var id = $location.path().split('/')[2];
+  var searchUrl = '/getRecipe/' +id;
   $http({
         method: 'GET',
         url: searchUrl
+        // ,
+        // contentType: 'text',
+        // data: id
     })
     .success(function(data, status) {
       console.log(data);
@@ -13,4 +32,9 @@ app.controller('recipe', function($http,$location,$scope) {
       console.log(data,status);
       $scope.recipe = data;
     });
+
+
+
+
+
 });

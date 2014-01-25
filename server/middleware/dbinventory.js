@@ -8,7 +8,7 @@ var yum = require('../middleware/callyummly.js');
 
 var callbackWrapper = function (req, res, altCallback){
   resultSendCallback = function(err, result) {
-    if (err) throw err;
+    if (err) console.log(err);
     res.send( result);
   };
   var callback = altCallback || resultSendCallback;

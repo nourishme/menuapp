@@ -1,5 +1,6 @@
 <div class="mainBox">
-  
+  <button class="notBookmarked" ng-click="addBookmark()" ng-hide="bookmarked">Save</button>
+  <button class="Bookmarked" ng-click="removeBookmark()" ng-show="bookmarked">Saved!</button>
   <div class="section">
     <p class="sectionHeader">{{recipe.name}}</p>
   </div>
