@@ -10,31 +10,30 @@ chai.use(sinonChai);
 
 
 // Default to make sure mocha is working
-describe('Array', function(){
-  describe('#indexOf()', function(){
-    it('should return -1 when the value is not present', function(){
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
-    });
-  });
-});
+// describe('Array', function(){
+//   describe('#indexOf()', function(){
+//     it('should return -1 when the value is not present', function(){
+//       assert.equal(-1, [1,2,3].indexOf(5));
+//       assert.equal(-1, [1,2,3].indexOf(0));
+//     });
+//   });
+// });
 
-var url = 'http://localhost:3000/';
 
 // Server Testing
 var server = require('../server/server.js');
-
+var url = 'http://localhost:3000/';
+// server.listen(3000);
 describe('The server', function(){
-  before(function () {
-    server.listen(8000);
-  });
+  // before(function () {
+  // });
 
   it('and has run all the startup stuff', function(){
     expect(server).to.have.property('listen');
   });
 
   it('Responds to a GET request at /', function(){
-    http.get('http://localhost:8000', function (res) {
+    http.get(url, function (res) {
       assert.equal(200, res.statusCode);
     });
   }); 
@@ -62,43 +61,49 @@ describe('The server', function(){
 
   
 
-  describe('should return 200 when getting to server routes', function(argument) {
-    it('ingredientInventory', function (res) {
-      var ingredientID
-      console.log(url)
-      http.get(url + 'ingredientInventory/1234' + ingredientID, function (res) {
+  describe('should return 200 when getting to server routes', function() {
+    it('ingredientInventory', function () {
+      // var ingredientID;
+      // http.get(url + 'ingredientInventory/' + ingredientID, function (res) {
+      //   assert.equal(res.statusCode, 200);
+        
+      // });
+    });
+    it('Responds to a GET request at /', function(){
+      http.get(url, function (res) {
+        assert.equal(200, res.statusCode);
+      });
+    });
+
+    it(url+'ingredientList/', function () {
+      http.get(url+'ingredientList/', function (res) {
         assert.equal(res.statusCode, 200);
         
       });
     });
+    
 
-    it(url+'ingredientList/', function (res) {
-      http.get(url + 'ingredientList/', function (res) {
-        assert.equal(res.statusCode, 200);
-        
-      });
+    it(url + 'getRecipe/Salted-dark-chocolate-popcorn-314529', function () {
+      
+      http.get('http://localhost:3000/getRecipe/Salted-dark-chocolate-popcorn-314529', function (res) {
+        assert.equal( res.statusCode, 200);        
+      });      
     });
-
-    it(url+'getRecipe/', function (res) {
-      http.get(url + 'getRecipe/', function (res) {
+    
+    it(url+'getTopIngredients/10', function () {
+      http.get(url+'getTopIngredients/10', function (res) {
         assert.equal(res.statusCode, 200);        
       });      
     });
     
-    it(url+'getTopIngredients/10', function (res) {
-      http.get(url + 'getTopIngredients/10', function (res) {
+    it(url+'searchForRecipes/', function () {
+      http.get( url+'searchForRecipes/', function (res) {
         assert.equal(res.statusCode, 200);        
       });      
     });
     
-    it(url+'searchForRecipes/', function (res) {
-      http.get(url + 'searchForRecipes/', function (res) {
-        assert.equal(res.statusCode, 200);        
-      });      
-    });
-    
-    it(url+'getCoOccurs/', function (res) {
-      http.get(url + 'getCoOccurs/', function (res) {
+    it(url+'getCoOccurs/', function () {
+      http.get(url+'getCoOccurs/', function (res) {
         assert.equal(res.statusCode, 200);        
       });      
     });
