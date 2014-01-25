@@ -12,8 +12,8 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
   $scope.getSearchResults = function(){
     var ingredients = [];
     for (var key in $scope.toCook){
-      console.log($scope.toCook);
-      ingredients.push($scope.toCook[key]['_id'].toString());
+      // ingredients.push($scope.toCook[key]['_id'].toString());
+      ingredients.push($scope.toCook[key]['_id']);
     }
 
     ingredients.sort();
@@ -34,12 +34,12 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
 
   $scope.addAndSearch = function(ingredient){
     ingredientMethods.addToCook($scope,ingredient);
-    $scope.getSearchResults();
+    // $scope.getSearchResults();
   };
 
   $scope.removeAndSearch = function(ingredient){
     ingredientMethods.removeFromToCook($scope, ingredient);
-    $scope.getSearchResults();
+    // $scope.getSearchResults();
   };
 
   // When page is first loaded . . .

@@ -35,6 +35,7 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
         sharedProperties.setToCook($scope.toCook);
       }
       $scope.getSuggestedIngredients($scope);
+      $scope.getSearchResults();
     },
 
     removeFromToCook : function($scope,ingredient){
@@ -44,6 +45,7 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
         $scope.showCook = (Object.keys($scope.toCook).length > 0);
       }
       $scope.getSuggestedIngredients($scope);
+      $scope.getSearchResults();
     }
 
   };
