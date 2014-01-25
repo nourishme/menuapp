@@ -56,6 +56,7 @@ exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {
 
 exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(req, res) {
 // curl -X POST -H "Content-Type: application/json" -d '[402112,402113,402114]' http://localhost:3000/searchForRecipes/  
+
   var transactionBody = {};
   transactionBody.statements = [];
   for (var i = 0; i< req.body.length; i++  ){
@@ -78,55 +79,67 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
   db.beginAndCommitTransaction(transactionBody, callbackWrapper(req, res, searchYummlyWithIngredientNames));
 };
 
-exports.saveSearchQueryAsNode = saveSearchQueryAsNode = function(req, res){
-  console.log("***** REQ *****: ", req);
-  console.log("***** RES *****: ", res);
-  msg = 'create (s:Search {params:'+req.body+'}) return s.params ';
-  if(!checkSearchQueryNode(req.body)){
-    db.cypherQuery(msg, function(err, result){
-      if(err){
-        console.log('**ERROR**: ', err);
-      } else {
-        createSearchIngredientRelationship(result);
-      }
-    });
+exports.checkSearchQueryNode = checkSearchQueryNode = function(req, res){
+  var query = '';
+  var msg;
+  query = req.body[0] ;
+  if(req.body.length > 1){
+  console.log('****msg***: ', msg);
+    for (var i = 1; i< req.body.length; i++  ){
+      query+=', '+req.body[i];
+    }
   }
-};
-
-exports.checkSearchQueryNode = checkSearchQueryNode = function(query){
-  msg = 'match (s:Search) where s.params ='+ query +' return s';
-  return db.cypherQuery(msg, function(err, result){
-    if(result[0]){
-      return true;
+  msg = 'match (s:Search) where s.params ="'+ query +'" return s';
+  db.cypherQuery(msg, function(err, result){
+    if(result['data'].length > 0){
+      createUserSearchRelationship(req, query);
     } else {
-      return false;
+      saveSearchQueryAsNode(req, query);
     }
   });
 
 };
 
-exports.createSearchIngredientRelationship = createSearchIngredientRelationship = function(query){
-  var ingredient;
-  for (var i = 0 ; i < query.length ; i++){
-    ingredient = query[i];
-    msg = 'match (i: Ingredient) where i.ingredientName="'+ingredient+'" '+
-    'match (s: Search) where s.params='+query+' '+
-    'create (i)-[r:ISPARAM]->(s) return r; ';
-    db.cypherQuery(msg, function(err, result){
-      if(err){
-        console.log('**ERROR**: ', err);
-      }
-    });
-  }
-};
-
-exports.createUserSearchRelationship = createUserSearchRelationship = function(req, res){
-  msg = 'match (u: User) where id(u)='+req.user+' '+
-    'match (s: Search) where s.params='+req.body+' '+
-    'create (u)-[r:ISPARAM]->(s) return r; ';
+exports.saveSearchQueryAsNode = saveSearchQueryAsNode = function(req, query){
+  msg = 'create (s:Search {params:"'+query+'"}) return s.params';
   db.cypherQuery(msg, function(err, result){
     if(err){
-      console.log('***ERROR**: ', err);
+      console.log('*SAVESEARCHERR*: ', err);
+    } else {
+      createSearchIngredientRelationship(req, query);
+      createUserSearchRelationship(req, query);
+    }
+  });
+};
+
+exports.createRelationshipQuery = createRelationshipQuery = function(req, query){
+  var ingredient;
+  var msg = '';
+  for (var i = 0 ; i < req.body.length ; i++){
+    ingredient = req.body[i];
+    msg += 'match (i: Ingredient) where id(i)='+ingredient+' '+
+    'match (s: Search) where s.params="'+query+'" '+
+    'create (i)-[r:ISPARAM]->(s) return r; ';
+  }
+  return msg;
+};
+
+exports.createSearchIngredientRelationship = createSearchIngredientRelationship = function(req, query){
+  var msg = createRelationshipQuery(req, query);
+  db.cypherQuery(msg, function(err, result){
+    if(err){
+      console.log('***CREATESEARCHERR***', err);
+    }
+  });
+};
+
+exports.createUserSearchRelationship = createUserSearchRelationship = function(req, query){
+  msg = 'match (u: User) where id(u)='+req.user+' '+
+    'match (s: Search) where s.params="'+query+'" '+
+    'create (u)-[r:SEARCHED]->(s) return u; ';
+  db.cypherQuery(msg, function(err, result){
+    if(err){
+      console.log('***CREATEUSERSEARCHERROR**: ', err);
     }
   });
 

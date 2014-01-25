@@ -3,9 +3,8 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
 
   $scope.getSearchResults = function(){
     var ingredients = [];
-    console.log($scope.toCook);
     for (var key in $scope.toCook){
-      ingredients.push($scope.toCook[key][id]); // Figure out if ID is right
+      ingredients.push($scope.toCook[key]['_id']); // Figure out if ID is right
     }
     ingredients.sort();
      //TODO : format to cook into an array in the right format
