@@ -19,7 +19,7 @@ exports.updateUserInventory = update = function(req, res) {
   var userid = req.user;
   invChangeArray = req.body;
   var statement = ph.updateLikeStatusStatementFromObject(userid, invChangeArray);
-  res.send( 
+  res.send(
     db.beginAndCommitTransaction(
       statement, callbackWrapper(req, res)
     )
@@ -81,17 +81,56 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
 exports.saveSearchQueryAsNode = saveSearchQueryAsNode = function(req, res){
   console.log("***** REQ *****: ", req);
   console.log("***** RES *****: ", res);
-  msg = "create (s:Search {params:"+req.data+"}) return s ";
+  msg = 'create (s:Search {params:'+req.body+'}) return s.params ';
+  if(!checkSearchQueryNode(req.body)){
+    db.cypherQuery(msg, function(err, result){
+      if(err){
+        console.log('**ERROR**: ', err);
+      } else {
+        createSearchIngredientRelationship(result);
+      }
+    });
+  }
 };
 
 exports.checkSearchQueryNode = findSearchQueryNode = function(query){
-  msg = "match (s:Search) where s.params ="+ query +" return s";
+  msg = 'match (s:Search) where s.params ='+ query +' return s';
+  return db.cypherQuery(msg, function(err, result){
+    if(result[0]){
+      return true;
+    } else {
+      return false;
+    }
+  });
 
 };
 
-exports.createSearchIngredientRelationship = createSearchIngredientRelationship = function(req, res){
-  msg = "";
-}
+exports.createSearchIngredientRelationship = createSearchIngredientRelationship = function(query){
+  var ingredient;
+  for (var i = 0 ; i < query.length ; i++){
+    ingredient = query[i];
+    msg = 'match (i: Ingredient) where i.ingredientName="'+ingredient+'" '+
+    'match (s: Search) where s.params='+query+' '+
+    'create (i)-[r:ISPARAM]->(s) return r; ';
+    db.cypherQuery(msg, function(err, result){
+      if(err){
+        console.log('**ERROR**: ', err);
+      }
+    });
+  }
+};
+
+exports.createUserSearchRelationship = createUserSearchRelationship = function(req, res){
+  msg = 'match (u: User) where id(u)='+req.user+' '+
+    'match (s: Search) where s.params='+req.body+' '+
+    'create (u)-[r:ISPARAM]->(s) return r; ';
+  db.cypherQuery(msg, function(err, result){
+    if(err){
+      console.log('***ERROR**: ', err);
+    }
+  });
+
+};
 
 
 

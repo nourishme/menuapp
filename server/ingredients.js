@@ -41,6 +41,8 @@ module.exports = {
     // send array of ingredient ids [_id1, _id2, _id3]
     // returns array of recipe objects
     dbinventory.getRecipesByIngredientSearch(req, res);
+    dbinventory.saveSearchQueryAsNode(req, res);
+    dbinventory.createUserSearchRelationship(req, res);
   },
 
   getCoOccurs: function(req, res) {
