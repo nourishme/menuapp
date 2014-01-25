@@ -1,12 +1,16 @@
 
 app.controller('searchResults', function($http,$location,$scope,ingredientMethods,sharedProperties) {
 
+  $scope.addToCook = function(ingredient){ ingredientMethods.addToCook($scope,ingredient); };
+  $scope.removeFromToCook =function(ingredient){ingredientMethods.removeFromToCook($scope,ingredient);};
+  $scope.getRecipe = function(id){ $location.path("/recipe/" + id);};
+
   $scope.getSearchResults = function(){
     var ingredients = [];
     for (var key in $scope.toCook){
       ingredients.push($scope.toCook[key][id]); // Figure out if ID is right
     }
-    // TODO: This breaks if you click refresh on the browswer 
+    // TODO: This breaks if you click refresh on the browser 
     // because $scope.toCook is blank and a query with no ingredients throws an error on the server
     // below is a hack to fix it
     if(ingredients.length<1){
@@ -27,13 +31,16 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
     });
   };
 
-  $scope.getRecipe = function(id){
-    $location.path("/recipe/");
-  };
 
   $scope.addAndSearch = function(ingredient){
+    $scope.addToCook(ingredient);
+    $scope.getSearchResults();
+  };
 
-  }
+  $scope.removeAndSearch = function(ingredient){
+    $scope.removeFromToCook(ingredient);
+    $scope.getSearchResults();
+  };
 
   $scope.toCook = sharedProperties.getToCook();
   ingredientMethods.getSuggestedIngredients($scope);
