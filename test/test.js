@@ -84,7 +84,6 @@ describe('The server', function(){
     
 
     it(url + 'getRecipe/Salted-dark-chocolate-popcorn-314529', function () {
-      
       http.get('http://localhost:3000/getRecipe/Salted-dark-chocolate-popcorn-314529', function (res) {
         assert.equal( res.statusCode, 200);        
       });      
