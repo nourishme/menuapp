@@ -39,8 +39,25 @@ module.exports = {
     // searchForRecipes/
     // send array of ingredient ids [_id1, _id2, _id3]
     // returns array of recipe objects
+    saveSearchQueryAsNode(req, res);
     dbinventory.getRecipesByIngredientSearch(req, res);
   },
+  
+  saveSearchQueryAsNode: function(req, res) {
+    // searchForRecipes/
+    // send array of ingredient ids [_id1, _id2, _id3]
+    // returns array of recipe objects
+    dbinventory.saveSearchQueryAsNode(req, res);
+    createUserSearchRelationship(req, res);
+  },
+
+  createUserSearchRelationship: function(req, res) {
+    // searchForRecipes/
+    // send array of ingredient ids [_id1, _id2, _id3]
+    // returns array of recipe objects
+    dbinventory.createUserSearchRelationship(req, res);
+  },
+
 
   getCoOccurs: function(req, res) {
     // getCoOccurs/
