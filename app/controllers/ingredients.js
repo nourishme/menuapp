@@ -1,15 +1,17 @@
 
 app.controller('ingredients', function($http,$location,$scope) {
-  $http({
-    method: 'GET',
-    url: '/getTopIngredients/'
-  })
-  .success(function(data, status) {
-    $scope.ingredients = data;
-  })
-  .error(function(data, status){
-    console.log(data,status);
-  });
+  $scope.getTopIngredients = function(){
+     $http({
+      method: 'GET',
+      url: '/getTopIngredients/300'
+    })
+    .success(function(data, status) {
+      $scope.ingredients = data;
+    })
+    .error(function(data, status){
+      console.log(data,status);
+    });
+  };
 
   $scope.saveIngredients=function(){
     console.log("called saveIngredients");
@@ -43,5 +45,7 @@ app.controller('ingredients', function($http,$location,$scope) {
       }
     }
   };
+
+  $scope.getTopIngredients();
 
 });

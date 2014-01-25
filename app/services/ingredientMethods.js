@@ -1,4 +1,4 @@
-app.service('sharedProperties', function () {
+app.service('ingredientMethods', function () {
   
   var toCook = {};
 

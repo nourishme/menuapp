@@ -161,6 +161,22 @@ header {
   width: 100%;
   font-size: 30px;
 }
+.mainBox form ::-webkit-input-placeholder {
+  vertical-align: center;
+  line-height: 100%;
+}
+.mainBox form ::-moz-placeholder /* Firefox 19+ */ {
+  vertical-align: center;
+  line-height: 100%;
+}
+.mainBox form :-ms-input-placeholder {
+  vertical-align: center;
+  line-height: 100%;
+}
+.mainBox form :-moz-placeholder /* Firefox 18- */ {
+  vertical-align: center;
+  line-height: 100%;
+}
 .mainBox button {
   font-size: 30px;
   height: 40px;
