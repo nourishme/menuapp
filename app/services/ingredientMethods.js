@@ -1,14 +1,33 @@
-app.service('ingredientMethods', function () {
-  
-  var toCook = {};
+app.service('ingredientMethods', function ($http) {
 
   return {
-    getToCook: function () {
-      return toCook;
+
+    getTopIngredients : function($scope){
+      $http({
+        method: 'GET',
+        url: '/getTopIngredients/500'
+      })
+      .success(function(data, status) {
+        $scope.ingredients = data.data;
+      })
+      .error(function(data, status){
+        console.log(data,status);
+      });
     },
-    setToCook: function(value) {
-      toCook = value;
-      return toCook;
+
+    getSuggestedIngredients: function($scope){
+      $http({
+        method: 'GET',
+        url: '/ingredientList/'
+      })
+      .success(function(data, status) {
+        $scope.suggestedIngredients = data.data;
+      })
+      .error(function(data, status){
+        console.log(data,status);
+      });
     }
   };
+
+
 });

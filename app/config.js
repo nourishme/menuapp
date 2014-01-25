@@ -4,7 +4,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/', {
     redirectTo: '/login'
   })
-  .when('/recipe/', {
+  .when('/recipe/:id', {
     controller: 'recipe',
     templateUrl: 'views/recipe.html'
   })
@@ -30,6 +30,6 @@ app.config(['$routeProvider', function ($routeProvider) {
   })
   .when('/404', {
     templateUrl: 'views/404.html'
-  })
-  .otherwise({redirectTo: '/404'});
+  });
+  // .otherwise({redirectTo: '/404'});
 }]);
