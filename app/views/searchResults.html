@@ -3,7 +3,7 @@
   <div class="section">
     <p class="sectionHeader">You've selected:</p>
     <div class="matchingIngredients">
-      <button class="topcoat-button--large--quiet" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" >{{ingredient.name}}</button>
+      <button class="topcoat-button--large--quiet" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" >{{ingredient.description}}</button>
     </div>
   </div>
 
@@ -11,7 +11,7 @@
   <div class="section">
     <p class="sectionHeader">Here's Some Recipes:</p>
     <div class="matchingIngredients">
-      <div class="ingredientButton" ng-repeat="recipe in searchResults.matches" ng-click="getRecipe(recipe.id)" >
+      <div class="ingredientButton" ng-repeat="recipe in searchResults.matches | limitTo:12" ng-click="getRecipe(recipe.id)" >
         <button class="topcoat-button--large--cta" >{{recipe.recipeName}}</button>
       </div>
     </div>

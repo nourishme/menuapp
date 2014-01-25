@@ -1,30 +1,36 @@
 
 app.controller('landing', function($http,$location,$scope,sharedProperties) {
 
-  $http({
-    method: 'GET',
-    url: '/getTopIngredients/'
-  })
-  .success(function(data, status) {
-    $scope.ingredients =[
-    {name:'carrots'},
-    {name:'bacon'},
-    {name:'beets'},
-    {name:'onions'}
-    ];
-  })
-  .error(function(data, status){
-    console.log(data,status);
-  });
+  var getTopIngredients = function(){
+    $http({
+      method: 'GET',
+      url: '/getTopIngredients/300'
+    })
+    .success(function(data, status) {
+      console.log(data.data);
+      $scope.ingredients = data.data;
+    })
+    .error(function(data, status){
+      console.log(data,status);
+    });
+  };
 
-
-  $scope.toCook = sharedProperties.getToCook();
-  $scope.showCook = (Object.keys($scope.toCook).length > 0);
-  $scope.suggestedIngredients =[];
+  $scope.getSuggestedIngredients = function(){
+    $http({
+      method: 'GET',
+      url: '/getTopIngredients/300'
+    })
+    .success(function(data, status) {
+      return data.data;
+    })
+    .error(function(data, status){
+      console.log(data,status);
+    });
+  };
 
   $scope.addToCook =function(ingredient){
-    if(!($scope.toCook[ingredient.name])){
-      $scope.toCook[ingredient.name] = ingredient;
+    if(!($scope.toCook[ingredient.description])){
+      $scope.toCook[ingredient.description] = ingredient;
       $scope.showCook = (Object.keys($scope.toCook).length > 0);
       sharedProperties.setToCook($scope.toCook);
     }
@@ -32,23 +38,18 @@ app.controller('landing', function($http,$location,$scope,sharedProperties) {
   };
 
   $scope.removeFromToCook =function(ingredient){
-    if($scope.toCook[ingredient.name]){
-      delete($scope.toCook[ingredient.name]);
+    if($scope.toCook[ingredient.description]){
+      delete($scope.toCook[ingredient.description]);
       sharedProperties.setToCook($scope.toCook);
       $scope.showCook = (Object.keys($scope.toCook).length > 0);
     }
-    $scope.getSuggestedIngredients();
+    $scope.suggestedIngredients = $scope.getSuggestedIngredients();
   };
 
-  $scope.getSuggestedIngredients = function(){
-    
-    $scope.suggestedIngredients =[
-    {name:'carrots'},
-    {name:'bacon'},
-    {name:'beets'},
-    {name:'onions'}
-    ];
 
-  };
+  $scope.toCook = sharedProperties.getToCook();
+  $scope.showCook = (Object.keys($scope.toCook).length > 0);
+  $scope.suggestedIngredients =[];
+  getTopIngredients();
 
 });

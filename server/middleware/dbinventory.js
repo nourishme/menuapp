@@ -19,7 +19,7 @@ exports.updateUserInventory = update = function(req, res) {
   var userid = req.user;
   invChangeArray = req.body;
   var statement = ph.updateLikeStatusStatementFromObject(userid, invChangeArray);
-  res.send( 
+  res.send(
     db.beginAndCommitTransaction(
       statement, callbackWrapper(req, res)
     )
