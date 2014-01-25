@@ -17,11 +17,11 @@ create a cron job that runs process recipes at some regular interval
 
 module.exports = {
   calculateP: function(ingredient) {
-    // body...
+    
   },
 
-  calculatePmi: function(ingredient1, ingredient2) {
-    
+  calcPmiForIngredients: function(ingredient1, ingredient2) {
+    // body...
   },
 
   markForUpdate: function(recipe) {

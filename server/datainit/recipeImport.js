@@ -39,7 +39,7 @@ var recsofar = 1,
 
 var template = function(val){
   return {
-      statement : 'CREATE (r:Recipe {props}) RETURN n; ',
+      statement : 'CREATE (r:Recipe {props}) RETURN n ',
       parameters : {
         props : val
       }
@@ -58,7 +58,7 @@ var nextbatch = function(err,result) {
   if ( recsofar === ing.length ) done = true;
   var reclimit = recsofar+batchsize > ing.length ? ing.length : recsofar+batchsize;
   for (var i = recsofar; i < reclimit; i++) {
-    msg.statements.push(createPropertyObject(ing[i]));
+    msg.statements.push( template( createPropertyObject(ing[i])));
 
   }
   if (done !== false) {
