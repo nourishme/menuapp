@@ -1,5 +1,5 @@
 
-app.controller('searchResults', function($http,$location,$scope,sharedProperties) {
+app.controller('searchResults', function($http,$location,$scope,ingredientMethods,sharedProperties) {
 
   $scope.getSearchResults = function(){
     searchUrl = 'searchResults/' + 'butter' + Object.keys($scope.toCook).join('+');
@@ -20,6 +20,7 @@ app.controller('searchResults', function($http,$location,$scope,sharedProperties
   };
 
   $scope.toCook = sharedProperties.getToCook();
+  ingredientMethods.getSuggestedIngredients($scope);
   $scope.getSearchResults();
 
 
