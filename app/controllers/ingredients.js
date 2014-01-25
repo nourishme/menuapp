@@ -1,26 +1,21 @@
 
 app.controller('ingredients', function($http,$location,$scope) {
-  $http({
-    method: 'GET',
-    url: 'ingredientInventory/'+ $location.path().split('/')[2]
-  })
-  .success(function(data, status) {
-    // console.log(data);
-    // $scope.possibleIngredients = data;
-    $scope.ingredients = [
-    {name:'carrots' , liked:true},
-    {name:'bacon' , liked:true},
-    {name:'beets' , liked:false},
-    {name:'onions' , liked:false}
-    ];
-  })
-  .error(function(data, status){
-    console.log(data,status);
-  });
+  $scope.getTopIngredients = function(){
+     $http({
+      method: 'GET',
+      url: '/getTopIngredients/300'
+    })
+    .success(function(data, status) {
+      $scope.ingredients = data;
+    })
+    .error(function(data, status){
+      console.log(data,status);
+    });
+  };
 
   $scope.saveIngredients=function(){
     console.log("called saveIngredients");
-    $http({
+  $http({
     method: 'POST',
     url: 'ingredientInventory/'+ $location.path().split('/')[2],
     data:$scope.ingredients
@@ -50,5 +45,7 @@ app.controller('ingredients', function($http,$location,$scope) {
       }
     }
   };
+
+  $scope.getTopIngredients();
 
 });

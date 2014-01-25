@@ -1,14 +1,31 @@
 
-app.controller('searchResults', function($http,$location,$scope) {
-  $http({
+app.controller('searchResults', function($http,$location,$scope,sharedProperties) {
+  
+  $scope.searchResults={};
+  
+  $scope.toCook = sharedProperties.getToCook();
+
+  $scope.getSearchResults = function(){
+    searchUrl = 'searchResults/' + 'butter' + Object.keys($scope.toCook).join('+');
+    $http({
       method: 'GET',
-      url: 'searchResults/'+ $location.path().split('/')[2]
-  })
-  .success(function(data, status) {
-    console.log(data);
-    $scope.searchResults = data;
-  })
-  .error(function(data, status){
-    console.log(data,status);
-  });
+      url: searchUrl
+    })
+    .success(function(data, status) {
+      $scope.searchResults = data;
+
+    })
+      .error(function(data, status){
+   });
+  };
+
+
+  $scope.getRecipe = function(id){
+    $location.path("/recipe/");
+  };
+
+  $scope.getSearchResults();
+
+
+
 });

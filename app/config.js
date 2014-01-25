@@ -4,7 +4,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/', {
     redirectTo: '/login'
   })
-  .when('/recipe/:recipeId', {
+  .when('/recipe/', {
     controller: 'recipe',
     templateUrl: 'views/recipe.html'
   })
@@ -12,9 +12,17 @@ app.config(['$routeProvider', function ($routeProvider) {
     controller: 'login',
     templateUrl: 'views/login.html'
   })
-  .when('/searchResults/:searchId', {
+  .when('/landing', {
+    controller: 'landing',
+    templateUrl: 'views/landing.html'
+  })
+  .when('/searchResults', {
     controller: 'searchResults',
     templateUrl: 'views/searchResults.html'
+  })
+  .when('/searchHistory', {
+    controller: 'searchHistory',
+    templateUrl: 'views/searchHistory.html'
   })
   .when('/ingredients/:userId',{
     controller: 'ingredients',

@@ -1,7 +1,7 @@
 @import "base.css";
 /* Responsive Design Stuff */
 /*TopCoat*/
-@import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css";
+@import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css";
 body html,
 body body,
 body div,
@@ -111,7 +111,7 @@ body a img {
 .mainContent {
   clear: left;
   display: -webkit-flex;
-  -webkit-flex-direction: column;
+  -webkit-flex-direction: row;
 }
 #maincontentcontainer {
   margin: 40px 40px;
@@ -129,28 +129,90 @@ header {
   font-size: 3em;
   font-family: helvetica;
 }
-.topcoat-tab-bar {
+.topcoat-button-bar {
   float: right;
+}
+.loginBox {
+  width: 50%;
+  margin: auto;
+  text-align: left;
+  font-size: 30px;
+}
+.loginBox button {
+  font-size: 18px;
+}
+.mainBox {
+  width: 50%;
+  margin: auto;
+  text-align: left;
+  font-size: 30px;
+}
+.mainBox .section {
+  margin: 10px 0 30px 0;
+}
+.mainBox .section .sectionHeader {
+  border-bottom: 2px solid #ffa500;
+}
+.mainBox form {
+  text-align: center;
+}
+.mainBox form input {
+  margin: 10px 0;
+  width: 100%;
+  font-size: 30px;
+}
+.mainBox form ::-webkit-input-placeholder {
+  vertical-align: center;
+  line-height: 100%;
+}
+.mainBox form ::-moz-placeholder /* Firefox 19+ */ {
+  vertical-align: center;
+  line-height: 100%;
+}
+.mainBox form :-ms-input-placeholder {
+  vertical-align: center;
+  line-height: 100%;
+}
+.mainBox form :-moz-placeholder /* Firefox 18- */ {
+  vertical-align: center;
+  line-height: 100%;
+}
+.mainBox button {
+  font-size: 30px;
+  height: 40px;
+}
+.matchingIngredients {
+  font-size: 30px;
+}
+.ingredientButton {
+  margin: 5px;
+  width: 100%;
+}
+.ingredientButton button {
+  width: 100%;
+  background-color: #ffa500;
 }
 .ingredientsLiked,
 .ingredientsNotLiked {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
   margin: 30px;
 }
 .ingredientsLiked .topcoat-checkbox__checkmark,
 .ingredientsNotLiked .topcoat-checkbox__checkmark {
   text-align: left;
 }
-.recipeName,
-.recPicGroup {
-  width: 360px;
+.recipeImage {
+  margin: auto;
 }
 .attribution {
-  clear: left;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 15%;
+  text-wrap: normal;
+  border: 2px solid #ffa500;
+}
+.attribution a {
+  text-decoration: none;
+  color: #000;
 }

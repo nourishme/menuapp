@@ -1,0 +1,24 @@
+<div class="mainBox">
+
+  <div class="topcoat-list section">
+    <p class="sectionHeader topcoat-list__header">Search History</p>
+    <ul class="topcoat-list__container">
+      <li class="topcoat-list__item" ng-repeat="query in searchHistory">{{query}}</li>
+    </ul>
+  </div>
+
+  <div class="topcoat-list section">
+    <p class="sectionHeader topcoat-list__header">Favorite Ingredients</p>
+    <ul class="topcoat-list__container">
+      <li class="topcoat-list__item" ng-repeat="ingredient in favoriteIngredients">{{query}}</li>
+    </ul>
+  </div>
+
+  <div class="topcoat-list section">
+    <p class="sectionHeader topcoat-list__header">Ingredients To Avoid</p>
+    <ul class="topcoat-list__container">
+      <li class="topcoat-list__item" ng-repeat="ingredient in avoidIngredients">{{query}}</li>
+    </ul>
+  </div>
+
+</div>
