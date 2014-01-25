@@ -29,7 +29,7 @@ exports.setRoutes = function(app, application_root){
   app.get('/ingredientList/',ingredients.getIngredientList);
   app.get('/getRecipe/:recipeNumber',ingredients.getRecipe);
   app.get('/getTopIngredients/:count',ingredients.getTopIngredients);
-  app.get('/searchForRecipes/',ingredients.searchForRecipes);
+  app.post('/searchForRecipes/',ingredients.searchForRecipes);
   app.get('/getCoOccurs/',ingredients.getCoOccurs);
   app.get('/ingredientInventory/',ingredients.getUsersRecipeList);
   app.post('/ingredientInventory/',ingredients.saveUsersList);

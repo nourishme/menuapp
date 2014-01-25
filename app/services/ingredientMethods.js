@@ -21,7 +21,6 @@ app.service('ingredientMethods', function ($http) {
         url: '/ingredientList/'
       })
       .success(function(data, status) {
-        console.log($scope);
         $scope.suggestedIngredients = data.data;
       })
       .error(function(data, status){

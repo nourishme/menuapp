@@ -1,8 +1,9 @@
 
 app.controller('recipe', function($http,$location,$scope) {
+  var searchUrl = '/getRecipe/' + $location.path().split('/')[2];
   $http({
         method: 'GET',
-        url: 'recipe/47'
+        url: searchUrl
     })
     .success(function(data, status) {
       console.log(data);

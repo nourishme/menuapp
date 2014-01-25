@@ -2,10 +2,17 @@
 app.controller('searchResults', function($http,$location,$scope,ingredientMethods,sharedProperties) {
 
   $scope.getSearchResults = function(){
-    searchUrl = 'searchResults/' + 'butter' + Object.keys($scope.toCook).join('+');
+    var ingredients = [];
+    console.log($scope.toCook);
+    for (var key in $scope.toCook){
+      ingredients.push($scope.toCook[key][id]); // Figure out if ID is right
+    }
+    ingredients.sort();
+     //TODO : format to cook into an array in the right format
     $http({
-      method: 'GET',
-      url: searchUrl
+      method: 'POST',
+      url: '/searchForRecipes/',
+      data: ingredients
     })
     .success(function(data, status) {
       $scope.searchResults = data;
