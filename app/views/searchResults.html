@@ -17,11 +17,18 @@
     </div>
   </div>
 
+  <div class="section">
+    <p class="sectionHeader">Or add:</p>
+    <div class="matchingIngredients">
+      <button class="topcoat-button--large" ng-repeat="ingredient in suggestedIngredients | limitTo:10" ng-click="addAndSearch(ingredient)" >{{ingredient.ingredientName}}</button>
+    </div>
+  </div>
 
 </div>
-
+<!-- 
 
 <div class="attribution">
   <a href="{{searchResults.attribution.url}}">{{searchResults.attribution.text}}</a>
   <img src="{{searchResults.attribution.logo}}"/>
 </div>
+ -->

@@ -24,19 +24,20 @@ exports.setRoutes = function(app, application_root){
   app.use('/ing', yummly.yumIng );
 
   // Ingredients
-  app.get('/getTopIngredients/',ingredients.getTopIngredients);
-  app.get('/ingredientList/',ingredients.getIngredientList);
+  // app.get('/getTopIngredients/',ingredients.getTopIngredients); //Redundant. I believe the one below is correct
   app.get('/getTopIngredients/:count',ingredients.getTopIngredients);
+
+  app.get('/ingredientList/',ingredients.getIngredientList);
   app.get('/ingredientInventory/',ingredients.getUsersRecipeList);
   app.post('/ingredientInventory/',ingredients.saveUsersList);
   app.get('/getCoOccurs/',ingredients.getCoOccurs);
 
   // Search Results
   app.get('/searchResults/:ingredientNames',searchResults.get);
+  app.post('/searchForRecipes/',ingredients.searchForRecipes);
 
   // Recipes
   app.get('/getRecipe/:id',ingredients.getRecipe);
-  app.post('/searchForRecipes/',ingredients.searchForRecipes);
   // app.get('/getRecipe/:recipeNumber',ingredients.getRecipe); //todo: let's make sure this doesn't belong before we delete it. currently it's duplicated above(jfl) 
 
 };

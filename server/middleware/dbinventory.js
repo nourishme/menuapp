@@ -61,6 +61,7 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
   for (var i = 0; i< req.body.length; i++  ){
     var query = {};
     query = ph.matchNodeById(req.body[i]);
+    console.log("query is ",query.msg);
     transactionBody.statements.push( {statement: query.msg+' RETURN n'});
   }
   backwardsSearchRecipeResponseCallback = function(result, err) {
@@ -73,14 +74,15 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
     for (var i = 0; i < result.length; i++) {
         paramsForYumSearch += result[i].data[0].row[0].term+ ' ';
     }
+    console.log('paramsForYumSearch ', paramsForYumSearch);
     yum.searchRecipe(paramsForYumSearch, callbackWrapper( req, res, backwardsSearchRecipeResponseCallback ));
   };
   db.beginAndCommitTransaction(transactionBody, callbackWrapper(req, res, searchYummlyWithIngredientNames));
 };
 
 exports.saveSearchQueryAsNode = saveSearchQueryAsNode = function(req, res){
-  console.log("***** REQ *****: ", req);
-  console.log("***** RES *****: ", res);
+  // console.log("***** REQ *****: ", req);
+  // console.log("***** RES *****: ", res);
   msg = 'create (s:Search {params:'+req.body+'}) return s.params ';
   if(!checkSearchQueryNode(req.body)){
     db.cypherQuery(msg, function(err, result){
@@ -96,11 +98,11 @@ exports.saveSearchQueryAsNode = saveSearchQueryAsNode = function(req, res){
 exports.checkSearchQueryNode = checkSearchQueryNode = function(query){
   msg = 'match (s:Search) where s.params ='+ query +' return s';
   return db.cypherQuery(msg, function(err, result){
-    if(result[0]){
-      return true;
-    } else {
+    // if(result[0]){
+    //   return true;
+    // } else {
       return false;
-    }
+    // }
   });
 
 };
