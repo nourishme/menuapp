@@ -20,6 +20,10 @@ app.config(['$routeProvider', function ($routeProvider) {
     controller: 'searchResults',
     templateUrl: 'views/searchResults.html'
   })
+  .when('/searchHistory', {
+    controller: 'searchHistory',
+    templateUrl: 'views/searchHistory.html'
+  })
   .when('/ingredients/:userId',{
     controller: 'ingredients',
     templateUrl: 'views/ingredients.html'

@@ -2,7 +2,6 @@ var test= require('./testData.js');
 var dbinventory = require('./middleware/dbinventory.js');
 
 module.exports = {
-
   getUsersRecipeList: function(req,res){
     // GET: ingredientInventory/
     dbinventory.getUserInventory(req,res);
@@ -51,10 +50,6 @@ module.exports = {
     // returns array of ingredient objects
     dbinventory.findCoOccuringIngredients(req, res);
   }
-
-
-
-
 
 
 };
