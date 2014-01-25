@@ -31,7 +31,7 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
     addToCook: function($scope,ingredient){
       if(!($scope.toCook[ingredient.ingredientName])){
         $scope.toCook[ingredient.ingredientName] = ingredient;
-        $scope.showCook = (Object.keys($scope.toCook).length > 0);
+        $scope.showCook = true;
         sharedProperties.setToCook($scope.toCook);
       }
       $scope.getSuggestedIngredients($scope);

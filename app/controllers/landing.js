@@ -11,7 +11,7 @@ app.controller('landing', function($http,$location,$scope,ingredientMethods,shar
 
   $scope.toCook = sharedProperties.getToCook();
   $scope.showCook = (Object.keys($scope.toCook).length > 0);
-  $scope.getSuggestedIngredients = ingredientMethods.getSuggestedIngredients;
+  $scope.getSuggestedIngredients = function(){ingredientMethods.getSuggestedIngredients($scope);};
   ingredientMethods.getTopIngredients($scope);
 
 });

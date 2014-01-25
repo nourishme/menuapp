@@ -1,23 +1,23 @@
 
 app.controller('searchResults', function($http,$location,$scope,ingredientMethods,sharedProperties) {
 
+  // Get the methods from the shared services
   $scope.addToCook = function(ingredient){ ingredientMethods.addToCook($scope,ingredient); };
   $scope.removeFromToCook =function(ingredient){ingredientMethods.removeFromToCook($scope,ingredient);};
-  $scope.getRecipe = function(id){ $location.path("/recipe/" + id);};
+  $scope.getSuggestedIngredients = function(){ingredientMethods.getSuggestedIngredients($scope);};
 
+
+  // Local methods
+  $scope.getRecipe = function(id){ $location.path("/recipe/" + id);};
   $scope.getSearchResults = function(){
     var ingredients = [];
     for (var key in $scope.toCook){
-      ingredients.push($scope.toCook[key][id]); // Figure out if ID is right
+      console.log($scope.toCook);
+      ingredients.push($scope.toCook[key]['_id'].toString());
     }
-    // TODO: This breaks if you click refresh on the browser 
-    // because $scope.toCook is blank and a query with no ingredients throws an error on the server
-    // below is a hack to fix it
-    if(ingredients.length<1){
-      ingredients.push({description:"butter"});
-    }
+
     ingredients.sort();
-     //TODO : format to cook into an array in the right format
+
     $http({
       method: 'POST',
       url: '/searchForRecipes/',
@@ -33,17 +33,18 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
 
 
   $scope.addAndSearch = function(ingredient){
-    $scope.addToCook(ingredient);
+    ingredientMethods.addToCook($scope,ingredient);
     $scope.getSearchResults();
   };
 
   $scope.removeAndSearch = function(ingredient){
-    $scope.removeFromToCook(ingredient);
+    ingredientMethods.removeFromToCook($scope, ingredient);
     $scope.getSearchResults();
   };
 
+  // When page is first loaded . . .
   $scope.toCook = sharedProperties.getToCook();
-  ingredientMethods.getSuggestedIngredients($scope);
   $scope.getSearchResults();
+  $scope.getSuggestedIngredients();
 
 });
