@@ -93,7 +93,7 @@ exports.saveSearchQueryAsNode = saveSearchQueryAsNode = function(req, res){
   }
 };
 
-exports.checkSearchQueryNode = findSearchQueryNode = function(query){
+exports.checkSearchQueryNode = checkSearchQueryNode = function(query){
   msg = 'match (s:Search) where s.params ='+ query +' return s';
   return db.cypherQuery(msg, function(err, result){
     if(result[0]){
