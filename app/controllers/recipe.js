@@ -14,23 +14,25 @@ app.controller('recipe', function($http,$location,$scope) {
 
   };
 
+// call needs to be a get request like this:
+// http://localhost:3000/getRecipe/Salted-dark-chocolate-popcorn-314529
+
+// Will return JSON like this:
+// { "columns": [ "n" ], "data": [ { "id": "Salted-dark-chocolate-popcorn-314529", "recipeName": "Salted Dark Chocolate Popcorn", "totalTimeInSeconds": 4800, "sourceDisplayName": "The Kitchn", "rating": 5, "_id": 422923 }, { "id": "Salted-dark-chocolate-popcorn-314529", "recipeName": "Salted Dark Chocolate Popcorn", "totalTimeInSeconds": 4800, "sourceDisplayName": "The Kitchn", "rating": 5, "_id": 422922 }, { "id": "Salted-dark-chocolate-popcorn-314529", "recipeName": "Salted Dark Chocolate Popcorn", "totalTimeInSeconds": 4800, "sourceDisplayName": "The Kitchn", "rating": 5, "_id": 428400 } ] }
 
   var id = $location.path().split('/')[2];
   var searchUrl = '/getRecipe/' +id;
   $http({
         method: 'GET',
         url: searchUrl
-        // ,
-        // contentType: 'text',
-        // data: id
     })
     .success(function(data, status) {
-      console.log(data);
-      $scope.recipe = data;
+      // console.log(data);
+      $scope.recipe = data.data[0];
     })
     .error(function(data, status){
-      console.log(data,status);
-      $scope.recipe = data;
+      console.log("Error ",data,status);
+      // $scope.recipe = data;
     });
 
 

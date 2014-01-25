@@ -25,18 +25,20 @@ exports.setRoutes = function(app, application_root){
 
   // Ingredients
   app.get('/getTopIngredients/',ingredients.getTopIngredients);
-  app.get('/ingredientList/',ingredients.getIngredientList);
   app.get('/getTopIngredients/:count',ingredients.getTopIngredients);
+
+  app.get('/ingredientList/',ingredients.getIngredientList);
   app.get('/getCoOccurs/',ingredients.getCoOccurs);
+
   app.get('/ingredientInventory/',ingredients.getUsersRecipeList);
   app.post('/ingredientInventory/',ingredients.saveUsersList);
 
   // Search Results
   app.get('/searchResults/:ingredientNames',searchResults.get);
+  app.post('/searchForRecipes/',ingredients.searchForRecipes);
 
   // Recipes
   app.get('/getRecipe/:recipeNumber',ingredients.getRecipe);
-  app.post('/searchForRecipes/',ingredients.searchForRecipes);
 
 };
 
