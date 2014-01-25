@@ -46,5 +46,4 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
   ingredientMethods.getSuggestedIngredients($scope);
   $scope.getSearchResults();
 
-
 });

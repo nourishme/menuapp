@@ -29,7 +29,7 @@ app.controller('recipe', function($http,$location,$scope) {
   })
   .success(function(data, status) {
     // console.log(data);
-    $scope.recipe = data.data[0];
+    if(data.data && data.data.length > 0 ){$scope.recipe = data.data[0];}
     // $scope.recipe = example.data[0];
   })
   .error(function(data, status){
