@@ -62,7 +62,7 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
   for (var i = 0; i< req.body.length; i++  ){
     var query = {};
     query = ph.matchNodeById(req.body[i]);
-    console.log("query is ",query.msg);
+    // console.log("query is ",query.msg);
     transactionBody.statements.push( {statement: query.msg+' RETURN n'});
   }
   backwardsSearchRecipeResponseCallback = function(result, err) {
@@ -86,7 +86,6 @@ exports.checkSearchQueryNode = checkSearchQueryNode = function(req, res){
   var msg;
   query = req.body[0] ;
   if(req.body.length > 1){
-  console.log('****msg***: ', msg);
     for (var i = 1; i< req.body.length; i++  ){
       query+=', '+req.body[i];
     }
@@ -121,7 +120,7 @@ exports.createRelationshipQuery = createRelationshipQuery = function(req, query)
     ingredient = req.body[i];
     msg += 'match (i: Ingredient) where id(i)='+ingredient+' '+
     'match (s: Search) where s.params="'+query+'" '+
-    'create (i)-[r:ISPARAM]->(s) return r; ';
+    'create (i)-[r:IS_PARAM]->(s) return r; ';
   }
   return msg;
 };
@@ -136,9 +135,11 @@ exports.createSearchIngredientRelationship = createSearchIngredientRelationship 
 };
 
 exports.createUserSearchRelationship = createUserSearchRelationship = function(req, query){
+  console.log('****req***: ', req.user);
   msg = 'match (u: User) where id(u)='+req.user+' '+
     'match (s: Search) where s.params="'+query+'" '+
     'create (u)-[r:SEARCHED]->(s) return u; ';
+  console.log('****msg***: ', msg);
   db.cypherQuery(msg, function(err, result){
     if(err){
       console.log('***CREATEUSERSEARCHERROR**: ', err);
