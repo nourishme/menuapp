@@ -13,13 +13,29 @@ p(a) = (# recipes containing a) / (# recipes)
 p(b) = (# recipes containing b) / (# recipes)
 
 
-write a function to calculate the pmi for 2 ingredients and store that value on the ingredient
 write a function that loops through all the ingredients that co-occur with an ingredient and runs "calculate pmi"
+write a function to calculate the pmi for 2 ingredients and store that value on the ingredient
 set a flag on each ingredient that shows whether it's been updated since the last time it's pmi's have been calculated
 When recipes are added to the database, set the processed flag to false
 create a function that "processes" a single recipe. This should add relationships between all the ingredients in the recipe
 create a function that runs "process recipe" on the top n recipes where processed is false
 create a cron job that runs process recipes at some regular interval
+
+
+Here's a query to return the count of recipies with a, with b, with a&b:
+    
+    MATCH (ia:Ingredient)<-[hasa:HAS_INGREDIENT]-(reca:Recipe)
+      WHERE id(ia)=430878
+      WITH count(DISTINCT reca) AS recwitha
+
+    MATCH (ib:Ingredient)<-[hasb:HAS_INGREDIENT]-(recb:Recipe)
+      WHERE id(ib)=430905
+      WITH count(DISTINCT recb) AS recwithb, recwitha
+
+    MATCH (ia:Ingredient)<-[:HAS_INGREDIENT]-(recab:Recipe)-[:HAS_INGREDIENT]->(ib:Ingredient)
+      WHERE id(ia)=430878 AND id(ib)=430905 
+      RETURN count(DISTINCT recab) as recwithab, recwithb, recwitha
+
 */
 
 
