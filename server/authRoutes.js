@@ -1,6 +1,6 @@
 var passportConfig = require('./config/passport');
 
-module.exports = function(app){
+module.exports.setRoutes = function(app){
   
   //Google Auth
   app.get('/auth/google', passportConfig.passport.authenticate('google'));

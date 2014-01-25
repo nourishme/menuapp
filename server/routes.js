@@ -4,7 +4,6 @@ var express        = require("express"),
     url            = require('url'),
 
 // Internal Modules
-    recipe         = require('./recipe'),
     ingredients    = require('./ingredients'),
     searchResults  = require('./searchResults'),
     yummly         = require('./middleware/callyummly.js'),
@@ -27,9 +26,7 @@ exports.setRoutes = function(app, application_root){
   // Ingredients
   app.get('/getTopIngredients/',ingredients.getTopIngredients);
   app.get('/ingredientList/',ingredients.getIngredientList);
-  app.get('/getRecipe/:recipeNumber',ingredients.getRecipe);
   app.get('/getTopIngredients/:count',ingredients.getTopIngredients);
-  app.get('/searchForRecipes/',ingredients.searchForRecipes);
   app.get('/getCoOccurs/',ingredients.getCoOccurs);
   app.get('/ingredientInventory/',ingredients.getUsersRecipeList);
   app.post('/ingredientInventory/',ingredients.saveUsersList);
@@ -38,7 +35,8 @@ exports.setRoutes = function(app, application_root){
   app.get('/searchResults/:ingredientNames',searchResults.get);
 
   // Recipes
-  app.get('/recipe/:id', recipe.get);
+  app.get('/getRecipe/:recipeNumber',ingredients.getRecipe);
+  app.post('/searchForRecipes/',ingredients.searchForRecipes);
 
 };
 

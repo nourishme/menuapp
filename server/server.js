@@ -9,7 +9,7 @@ var neo4jDB        = require('./neo4jDB.js'),
     config         = require('./config/configfile'),
     routes         = require('./routes.js'),
     passportConfig = require('./config/passport'),
-    auth           = require('./auth.js'),
+    authRoutes     = require('./authRoutes.js'),
     yummly         = require('./middleware/callyummly.js');
 
 // Configure Express
@@ -30,7 +30,7 @@ console.log('Express app started on port ' + port);
 
 // Set routes
 routes.setRoutes(app, __dirname); // Set Routes
-auth(app);
+authRoutes.setRoutes(app);
 
 module.exports = app;
 
