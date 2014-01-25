@@ -33,6 +33,7 @@ exports.getUserInventory = getinventory = function(req, res) {
 };
 
 exports.getIngredientList = getIngredientList = function(req, res) {
+  console.log('**********: ',req)
   msg = "match (i:Ingredient) RETURN i LIMIT 10";
   db.cypherQuery(msg, callbackWrapper(req, res));
 };
