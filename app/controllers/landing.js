@@ -21,10 +21,12 @@ app.controller('landing', function($http,$location,$scope,ingredientMethods,shar
       method: 'POST',
       url: '/searchForRecipes/',
       data: ingredients
-    })
+    });
     }
-  }
 
+  };
+
+  $scope.getSearchResults = function(){};
   $scope.toCook = sharedProperties.getToCook();
   $scope.showCook = (Object.keys($scope.toCook).length > 0);
   $scope.getSuggestedIngredients = function(){ingredientMethods.getSuggestedIngredients($scope);};

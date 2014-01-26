@@ -110,8 +110,6 @@ body a img {
 }
 .mainContent {
   clear: left;
-  display: -webkit-flex;
-  -webkit-flex-direction: row;
 }
 #maincontentcontainer {
   margin: 40px 40px;
