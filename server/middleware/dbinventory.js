@@ -73,7 +73,7 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
     var result = dbResultObj.results;
     var paramsForYumSearch = '&q=';
     for (var i = 0; i < result.length; i++) {
-        paramsForYumSearch += result[i].data[0].row[0].term+ ' ';
+        paramsForYumSearch += result[i].data[0].row[0].ingredientName+ ' ';
     }
     console.log('paramsForYumSearch ', paramsForYumSearch);
     yum.searchRecipe(paramsForYumSearch, callbackWrapper( req, res, backwardsSearchRecipeResponseCallback ));
