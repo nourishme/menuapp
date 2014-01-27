@@ -5,7 +5,7 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
     getTopIngredients : function($scope){
       $http({
         method: 'GET',
-        url: '/getTopIngredients/500'
+        url: '/getTopIngredients/1000'
       })
       .success(function(data, status) {
         $scope.ingredients = data.data;
