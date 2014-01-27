@@ -4,13 +4,22 @@
     <div class="subsection">
       <p class="sectionHeader">You've selected:</p>
       <div class="matchingIngredients">
+        <button class="topcoat-button--large--quiet" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" >{{ingredient.ingredientName}}</button>
+      </div>
+    </div>
+    
+<!--     <div class="subsection">
+      <p class="sectionHeader">You've selected:</p>
+      <div class="matchingIngredients">
         <div  ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" ><button class="topcoat-button--large--quiet" >{{ingredient.ingredientName}}</button>
         </div>
       </div>
-    </div>
+    </div> 
+ -->    
     <div class="subsection">
       <a class="getRecipes" href="#/searchResults"><button class="topcoat-button--large--cta" ng-click="someFunction()">Get Some Recipes</button></a>
     </div>
+
     <div class="subsection">
       <p class="sectionHeader">Here's some ingredients that go well with that:</p>
       <div class="matchingIngredients">

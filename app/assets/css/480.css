@@ -1,3 +1,5 @@
+
+
 /*  MAKE LAYOUT RESPONSIVE at 480px FOR IPHONE LANDSCAPE ============================================ */
 
 
@@ -23,7 +25,7 @@
 		
 		
 
-/*  GRID OF EIGHT TURNS INTO A GRID OF FOUR */
+/*/*  GRID OF EIGHT TURNS INTO A GRID OF FOUR */
 
 .span_8_of_8 {
 	width: 100%; 
@@ -137,3 +139,4 @@
 	width: 100%; 
 	margin-left: 0;
 }
+*/

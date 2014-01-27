@@ -25,6 +25,7 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
     })
     .success(function(data, status) {
       $scope.searchResults = data;
+      console.log(data);
     })
     .error(function(data, status){
       console.log(data,status);

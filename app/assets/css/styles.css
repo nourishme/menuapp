@@ -1,5 +1,3 @@
-@import "base.css";
-/* Responsive Design Stuff */
 /*TopCoat*/
 @import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css";
 body html,
@@ -104,7 +102,6 @@ body a img {
 .clear:after {
   clear: both;
 }
-.container,
 .textRight {
   text-align: right;
 }
@@ -112,38 +109,13 @@ body a img {
   clear: left;
 }
 #maincontentcontainer {
-  margin: 40px 40px;
-}
-header {
-  width: 100%;
-  border-bottom: 4px solid #ffa500;
-  height: 70px;
-}
-.appTitle {
-  display: inline-block;
-  float: left;
-  margin: 10px 20px;
-  color: #ffa500;
-  font-size: 3em;
-  font-family: helvetica;
-}
-.topcoat-button-bar {
-  float: right;
-}
-.loginBox {
-  width: 50%;
-  margin: auto;
-  text-align: left;
-  font-size: 30px;
-}
-.loginBox button {
-  font-size: 18px;
+  margin: 40px;
 }
 .smallCol {
-  width: 30%;
+  width: 35.625%;
 }
 .bigCol {
-  width: 60%;
+  width: 59.375%;
 }
 .mainBox {
   margin: auto;
@@ -178,53 +150,6 @@ header {
 .mainBox .section .subsection {
   margin-bottom: 20px;
 }
-.mainBox form {
-  text-align: center;
-}
-.mainBox form input {
-  margin: 10px 0;
-  width: 100%;
-  font-size: 30px;
-}
-.mainBox form ::-webkit-input-placeholder {
-  vertical-align: center;
-  line-height: 100%;
-}
-.mainBox form ::-moz-placeholder /* Firefox 19+ */ {
-  vertical-align: center;
-  line-height: 100%;
-}
-.mainBox form :-ms-input-placeholder {
-  vertical-align: center;
-  line-height: 100%;
-}
-.mainBox form :-moz-placeholder /* Firefox 18- */ {
-  vertical-align: center;
-  line-height: 100%;
-}
-.mainBox button {
-  font-size: 30px;
-  height: 40px;
-}
-.matchingIngredients {
-  font-size: 30px;
-}
-.ingredientButton {
-  margin: 5px;
-  width: 100%;
-}
-.ingredientButton button {
-  width: 100%;
-  background-color: #ffa500;
-}
-.ingredientsLiked,
-.ingredientsNotLiked {
-  margin: 30px;
-}
-.ingredientsLiked .topcoat-checkbox__checkmark,
-.ingredientsNotLiked .topcoat-checkbox__checkmark {
-  text-align: left;
-}
 .recipeImage {
   margin: auto;
 }
@@ -240,4 +165,104 @@ header {
 .attribution a {
   text-decoration: none;
   color: #000;
+}
+form {
+  text-align: center;
+}
+form input {
+  margin: 10px 0;
+  width: 100%;
+  font-size: 30px;
+}
+form ::-webkit-input-placeholder {
+  vertical-align: center;
+  line-height: 100%;
+}
+form ::-moz-placeholder /* Firefox 19+ */ {
+  vertical-align: center;
+  line-height: 100%;
+}
+form :-ms-input-placeholder {
+  vertical-align: center;
+  line-height: 100%;
+}
+form :-moz-placeholder /* Firefox 18- */ {
+  vertical-align: center;
+  line-height: 100%;
+}
+button {
+  font-size: 30px;
+  height: 40px;
+}
+.matchingIngredients {
+  font-size: 30px;
+}
+.ingredientButton {
+  margin: 5px;
+  width: 100%;
+}
+.ingredientButton button {
+  width: 100%;
+  background-color: #ffa500;
+}
+.loginBox {
+  width: 50%;
+  margin: auto;
+  text-align: left;
+  font-size: 30px;
+}
+.loginBox button {
+  font-size: 18px;
+}
+header {
+  width: 100%;
+  border-bottom: 4px solid #ffa500;
+  height: 70px;
+}
+.appTitle {
+  display: inline-block;
+  float: left;
+  margin: 10px 20px;
+  color: #ffa500;
+  font-size: 3em;
+  font-family: helvetica;
+}
+.topcoat-button-bar {
+  float: right;
+}
+/* Responsive Design Stuff */
+@media only screen and (max-width: 768px) {
+  .mainBox {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .smallCol {
+    width: 90%;
+  }
+  .bigCol {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #maincontentcontainer {
+    margin: 5px;
+  }
+  .mainBox {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .smallCol {
+    width: 95%;
+  }
+  .bigCol {
+    width: 95%;
+  }
 }
