@@ -22,45 +22,100 @@ create a function that runs "process recipe" on the top n recipes where processe
 create a cron job that runs process recipes at some regular interval
 */
 
+var get100 = function(timestamp) {
+  timestamp = timestamp -100 || 1;
+/*  
+    Starting from a list of 100 ingredients(iA) where i.pmiTime = timestamp
 
-var calculateP = function(ingredient) { 
+    MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient) 
+      WHERE i.pmiTime = timestamp
+      WITH DISTINCT id(i) as ingredientids 
+    RETURN ingredientids LIMIT 100
+*/
   
 };
 
-var calcPmiForIngredients = function(ingredient1, ingredient2) {
+var pmiLoop = function() { 
   
+};
 
 
+var markForUpdate = function(ida) {
 
-  db.beginTransaction({
-    statements: [{
-      statement: 'MATCH (r:Recipes) RETURN count(DISTINCT r)'      
-    }]
-  }, nextingredient);
+/*
+    Initialize process by setting all :Ingredient as i.pmiTime = 1
+
+    MATCH (i:Ingredient) SET i.pmiTime = 1
+*/
 
 };
 
-var markForUpdate = function(recipe) {
-  // body...
+var findCoIngred = function(ida) {
+
+/*
+    For every ingredient we know of, from the 1st ingredient, find all co_occurring ingredients that haven't been processed
+
+    MATCH (ia:Ingredient)<-[:HAS_INGREDIENT]-(recab:Recipe)-[:HAS_INGREDIENT]->(ib:Ingredient)
+      WHERE id(ia)=430878 AND ib.pmitime = 1
+    RETURN id(ab)
+*/  
+
 };
 
-var relateIngredints = function(ingredient1, ingredient2) {
-  
-  // CREATE (i1)-[:HAS_INGREDIENT]->(i2) 
+var getIngredientCounts = function(ida,idb) {
+/*
+    For every pair, find their counts:
+
+    MATCH (ia:Ingredient)<-[hasa:HAS_INGREDIENT]-(reca:Recipe)
+      WHERE id(ia)=430878
+      WITH count(DISTINCT reca) AS recwitha
+
+    MATCH (ib:Ingredient)<-[hasb:HAS_INGREDIENT]-(recb:Recipe)
+      WHERE id(ib)=430905
+      WITH count(DISTINCT recb) AS recwithb, recwitha
+
+    MATCH (ia:Ingredient)<-[:HAS_INGREDIENT]-(recab:Recipe)-[:HAS_INGREDIENT]->(ib:Ingredient)
+      WHERE id(ia)=430878 AND id(ib)=430905 
+      RETURN count(DISTINCT recab) as recwithab, recwithb, recwitha    
+*/
+};
+
+var calcPmiForIngredients = function(reca, recb, recab, totalrec) {
+ 
+  // PMI(a,b) = log( p(a,b) / p(a)*p(b) )
+
+  // p(a,b) = (# recipes containing a & b ) / (# recipes)
+  // p(a) = (# recipes containing a) / (# recipes)
+  // p(b) = (# recipes containing b) / (# recipes)
+    
+  var pcalc = function(contain, totalrec) {
+    return contain/totalrec;
+  };
+
+  var pmi = function(pa, pb, pab) {
+    return Math.log(pab / (pa*pb));
+  };
+
+  var pa = pcalc(reca/total);
+  var pb = pcalc(recb/total);
+  var pab = pcalc(recab/total);
+
+  var pairPMI = pmi(pa,pb,pab);
+
+  return pairPMI;
+};
+
+var relateIngredients = function(ida, idb) {
+/*
+    Create a relationship between A&B, SET coocur weight & SET pdate = timestamp() & SET ia.pmiTime = timestamp()
+
+    CREATE (ia)-[pmi:PMI]-(i) SET pmi.weight = pairPMI, pmi.pmiTime = timestamp
+      WHERE id(ia)=430878 AND id(ib)=430905 
+      SET ia.pmiTime = timestamp, ib.pmiTime = timestamp  
+*/
 
 }; 
 
-var processRecipe = function(recipe) {
-  // body...
-};
-
-var getRecipeForProcessing = function(recipes) {
-  // body...
-};
-
-var processGraphPmi = function(recipes) {
-  // body...
-};
 
 
 
