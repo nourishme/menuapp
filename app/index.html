@@ -35,7 +35,7 @@
   <script src="scripts/vendor/modernizr/modernizr.js"></script>
 </head>
 <body ng-app="app">
-  <div class="container">
+  <div class="container" id="headercontainer">
     <header>
       <div class="appTitle">Saucesome</div>
       <div class="topcoat-button-bar">
@@ -68,13 +68,10 @@
       </div>
     </header>
   </div>
-  <div class="clear"></div>
-  <div class="container" id="maincontentcontainer" ng-view>
-  </div>
+  <div class="container" id="maincontentcontainer" ng-view></div>
 
   <div class="container" id="footercontainer">
-    <footer class="group">
-    </footer>
+    <footer></footer>
   </div>
 
   <!-- JavaScript at the bottom for fast page loading -->

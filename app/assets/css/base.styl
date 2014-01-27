@@ -10,15 +10,15 @@ font2=comic sans
 
 // size
 size1 = 30px
-size2 = 18px
+size2 = 1.4rem
 
 
 // basic layout
 
-// body
-//   global-reset()
+body
+  global-reset()
 
-
+.container
 
 
 .clear
@@ -26,12 +26,6 @@ size2 = 18px
 
 .textRight
   text-align right
-
-.mainContent
-  clear left
-
-#maincontentcontainer
-  margin 40px
 
 
 .smallCol
@@ -42,22 +36,14 @@ size2 = 18px
   // flex 2
   width 59.375%
 
-.mainBox
-  // width:50%
-  margin auto
-  text-align left
-  font-size size1
-  // Flexbox experiment
-  display flex
-  flex-direction row
-  flex-wrap wrap
-  margin: 0
+.section
+  margin 0 auto 10px
 
-  .section
-    margin 0 auto 10px
+.sectionHeader
+  border-bottom 2px solid orange
 
-    .sectionHeader
-      border-bottom 2px solid orange
+.sectionBody
+  margin-top 10px
 
-    .subsection
-      margin-bottom 20px
+.subsection
+  margin-bottom 20px
