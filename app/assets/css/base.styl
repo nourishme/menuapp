@@ -10,7 +10,7 @@ font2=comic sans
 
 // size
 size1 = 30px
-size2 = 1.4rem
+size2 = 20px
 
 
 // basic layout
@@ -18,15 +18,18 @@ size2 = 1.4rem
 body
   global-reset()
 
-.container
-
-
 .clear
-  clearfix();
+  clearfix()
 
-.textRight
-  text-align right
+#maincontentcontainer
+  text-align left
+  font-size size1
 
+  // Flexbox
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  margin: auto
 
 .smallCol
   // flex 1
