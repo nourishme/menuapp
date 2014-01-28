@@ -1,7 +1,7 @@
 
 app.controller('ingredients', function($http,$location,$scope) {
   $scope.getTopIngredients = function(){
-     $http({
+    $http({
       method: 'GET',
       url: '/getTopIngredients/300'
     })
