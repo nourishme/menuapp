@@ -35,6 +35,7 @@ exports.setRoutes = function(app, application_root){
   // Search Results
   app.get('/searchResults/:ingredientNames',searchResults.get);
   app.post('/searchForRecipes/',ingredients.searchForRecipes);
+  app.post('/searchforRecipesNumber/',ingredients.searchForRecipesNumber);
 
   // Recipes
   app.get('/getRecipe/:id',ingredients.getRecipe);
