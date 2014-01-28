@@ -8,7 +8,10 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
 
 
   // Local methods
-  $scope.getRecipe = function(id){ $location.path("/recipe/" + id);};
+  $scope.getRecipe = function(id){
+    window.location="http://www.yummly.com/recipe/" + id;
+    // $location.path("http://www.yummly.com/recipe/" + id);
+  };
   $scope.getSearchResults = function(){
     var ingredients = [];
     for (var key in $scope.toCook){

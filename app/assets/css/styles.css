@@ -1,5 +1,8 @@
 /*TopCoat*/
 @import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css";
+body {
+  font-size: size2;
+}
 body html,
 body body,
 body div,
@@ -126,7 +129,7 @@ body a img {
   -webkit-flex: 3;
   -ms-flex: 3;
   flex: 3;
-  padding: 20px;
+  padding: 10px 20px;
 }
 #mainContainer .bigCol {
   -webkit-box-flex: 5;
@@ -136,7 +139,7 @@ body a img {
   -webkit-flex: 5;
   -ms-flex: 5;
   flex: 5;
-  padding: 20px;
+  padding: 10px 20px;
 }
 #mainContainer .section {
   margin: 0 auto 10px;
@@ -144,14 +147,13 @@ body a img {
 #mainContainer .sectionHeader {
   border-bottom: 2px solid #ffa500;
   margin-bottom: 10px;
+  font-size: size2;
 }
 #mainContainer .sectionBody {
   margin-top: 10px;
-  font-size: size2;
 }
 #mainContainer .subsection {
   margin-bottom: 10px;
-  font-size: size2;
 }
 #mainContainer #searchBox {
   max-width: 59.375%;
@@ -185,7 +187,6 @@ button {
 .ingredientButton button {
   width: 100%;
   background-color: #ffa500;
-  font-size: 1.25rem;
 }
 .recipe {
   display: -webkit-box;
@@ -202,19 +203,18 @@ button {
   flex-direction: row;
   padding: 5px;
   margin: 5px auto;
-  font-size: 1.25rem;
   background-color: #ffa500;
   width: 90%;
   height: 80px;
 }
 .recipe .recipeName {
-  -webkit-box-flex: 2;
-  -moz-box-flex: 2;
-  -o-box-flex: 2;
-  box-flex: 2;
-  -webkit-flex: 2;
-  -ms-flex: 2;
-  flex: 2;
+  -webkit-box-flex: 4;
+  -moz-box-flex: 4;
+  -o-box-flex: 4;
+  box-flex: 4;
+  -webkit-flex: 4;
+  -ms-flex: 4;
+  flex: 4;
   text-wrap: normal;
   margin: auto;
   font-size: 1.1rem;
@@ -234,7 +234,8 @@ button {
 .loginBox {
   margin: auto;
   text-align: center;
-  margin-top: 15%;
+  margin-top: 10%;
+  font-size: 1.5rem;
 }
 #headercontainer {
   width: 95%;
