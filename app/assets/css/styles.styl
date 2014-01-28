@@ -12,6 +12,47 @@
 // @import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css"
 
 // My Stuff
+
+
+// basic layout
+body
+  global-reset()
+
+.clear
+  clearfix()
+
+#mainContainer
+  font-size size1
+  display flex
+  flex-direction row
+  margin: auto
+
+  .smallCol
+    // width 35.625%
+    flex 3
+    padding:20px
+
+  .bigCol
+    max-width 59.375%
+    flex 5
+    padding:20px
+
+  .section
+    margin 0 auto 10px
+
+  .sectionHeader
+    border-bottom 2px solid orange
+    margin-bottom: 10px
+
+  .sectionBody
+    margin-top 10px
+    font-size size2
+
+  .subsection
+    width:100%
+    margin-bottom 10px
+    font-size size2
+
 @import "base"
 @import "recipe"
 @import "landing"
@@ -22,38 +63,3 @@
 /* Responsive Design Stuff */
 @import "mobile"
 
-// basic layout
-body
-  global-reset()
-
-.clear
-  clearfix()
-
-#maincontentcontainer
-  font-size size1
-
-  // Flexbox
-  display flex
-  flex-direction row
-  flex-wrap wrap
-  margin: auto
-
-  .smallCol
-    width 35.625%
-
-  .bigCol
-    width 59.375%
-
-  .section
-    margin 0 auto 10px
-
-  .sectionHeader
-    border-bottom 2px solid orange
-
-  .sectionBody
-    margin-top 10px
-    
-    font-size size2
-
-  .subsection
-    margin-bottom 20px

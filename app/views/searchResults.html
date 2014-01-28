@@ -1,14 +1,4 @@
 
-  <div class="section bigCol">
-    <p class="sectionHeader">Here's Some Recipes:</p>
-    <div class="sectionBody">
-      <div class="recipe topcoat-button--large" ng-repeat="recipe in searchResults.matches | limitTo:12" ng-click="getRecipe(recipe.id)">
-        <div class="recipeImage"><img src={{recipe.smallImageUrls[0]}}></div>
-        <div class="recipeName">{{recipe.recipeName}}</div>
-      </div>
-    </div>
-  </div>
-
   <div class="section smallCol">
     <div class="subsection">
       <p class="sectionHeader">You've selected:</p>
@@ -23,6 +13,18 @@
         <button class="topcoat-button--large" ng-repeat="ingredient in suggestedIngredients | limitTo:10" ng-click="addAndSearch(ingredient)" >{{ingredient.ingredientName}}</button>
       </div>
     </div>
+  </div>
+
+  <div class="section bigCol">
+    <div class="subSection">
+    <div class="sectionHeader">Here's Some Recipes:</div>
+    <div class="sectionBody">
+      <div class="recipe topcoat-button--large" ng-repeat="recipe in searchResults.matches | limitTo:12" ng-click="getRecipe(recipe.id)">
+        <div class="recipeImage"><img src={{recipe.smallImageUrls[0]}}></div>
+        <div class="recipeName">{{recipe.recipeName}}</div>
+      </div>
+    </div>
+  </div>
   </div>
 
 <!-- 
