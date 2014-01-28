@@ -54,6 +54,88 @@ exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {
   db.cypherQuery(msg.msg, callbackWrapper(req, res));
 };
 
+/***
+Recipes by Ingredients Object
+***/
+
+exports.makeRecObjByIngredient = makeRecObjByIngredient = function(recipes){
+  var recipeObjByIngredient = {};
+  for (var i = 0; i < recipes.length; i++){
+    ingredients = getIngredientListFromRecipe(recipes[i]);
+    for (var j = 0; j < ingredients.length; j++){
+      if (!recipeObjByIngredient[ingredients[j]]){
+        recipeObjByIngredient[ingredients[j]] = [];
+      }
+      recipeObjByIngredient[ingredients[j]].push(recipes[i]);
+    }
+  }
+  // console.log('******resObjByIng*****: ', recipeObjByIngredient);
+  return recipeObjByIngredient;
+};
+
+exports.getIngredientListFromRecipe = getIngredientListFromRecipe = function(recipe){
+    return recipe.ingredients;
+};
+
+/***
+Recipes by Ingredients Needed Object
+***/
+
+exports.makeRecByIngNeededObj = makeRecByIngNeededObj = function(recipes, query){
+  var recipesByIngNeeded = {};
+  var ingNumber;
+  for (var i = 0 ; i < recipes.length; i++){
+    ingNumber = countIngredients(recipes[i]);
+    if(!recipesByIngNeeded[ingNumber-query.length]){
+      recipesByIngNeeded[ingNumber-query.length] = [];
+    }
+    recipesByIngNeeded[ingNumber-query.length] = recipes[i];
+  }
+  return recipesByIngNeeded;
+};
+
+exports.countIngredients = countIngredients = function(recipe){
+  return recipe['ingredients'].length;
+};
+
+
+exports.getRecipesByIngredientsNeeded = getRecipesByIngredientsNeeded = function(req, res) {
+  var transactionBody = {};
+  transactionBody.statements = [];
+  for (var i = 0; i< req.body.length; i++  ){
+    var query = {};
+    query = ph.matchNodeById(req.body[i]);
+    // console.log("query is ",query.msg);
+    transactionBody.statements.push( {statement: query.msg+' RETURN n'});
+  }
+
+  searchResultBigCallback = function(result, err){
+    if (err) throw err;
+    var recipes = (JSON.parse(result)).matches;
+    var byIngredient = makeRecObjByIngredient(recipes);
+    var byNumIngNeeded = makeRecByIngNeededObj(recipes, req.body);
+    var recipesByIngredient = {
+      'byIngredient': byIngredient,
+      'byNumIngNeeded': byNumIngNeeded
+    };
+
+    res.send(recipesByIngredient);
+  };
+
+  var searchYummlyWithIngredientNames = function(err, dbResultObj, req, res) {
+    var result = dbResultObj.results;
+    var paramsForYumSearch = '&q=';
+    for (var i = 0; i < result.length; i++) {
+      paramsForYumSearch += result[i].data[0].row[0].ingredientName+ ' ';
+    }
+    paramsForYumSearch900=paramsForYumSearch +'&maxResult=900';
+    console.log('paramsForYumSearch ', paramsForYumSearch);
+    yum.searchRecipe(paramsForYumSearch900, callbackWrapper( req, res, searchResultBigCallback ));
+  };
+
+  db.beginAndCommitTransaction(transactionBody, callbackWrapper(req, res, searchYummlyWithIngredientNames));
+};
+
 exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(req, res) {
 // curl -X POST -H "Content-Type: application/json" -d '[402112,402113,402114]' http://localhost:3000/searchForRecipes/  
 
@@ -65,19 +147,23 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
     // console.log("query is ",query.msg);
     transactionBody.statements.push( {statement: query.msg+' RETURN n'});
   }
+
   backwardsSearchRecipeResponseCallback = function(result, err) {
     if (err) throw err;
-    res.send( result);
+    res.send(result);
   };
+
   var searchYummlyWithIngredientNames = function(err, dbResultObj, req, res) {
     var result = dbResultObj.results;
     var paramsForYumSearch = '&q=';
     for (var i = 0; i < result.length; i++) {
-        paramsForYumSearch += result[i].data[0].row[0].ingredientName+ ' ';
+      paramsForYumSearch += result[i].data[0].row[0].ingredientName+ ' ';
     }
+    paramsForYumSearch=paramsForYumSearch +'&maxResult=10';
     console.log('paramsForYumSearch ', paramsForYumSearch);
     yum.searchRecipe(paramsForYumSearch, callbackWrapper( req, res, backwardsSearchRecipeResponseCallback ));
   };
+
   db.beginAndCommitTransaction(transactionBody, callbackWrapper(req, res, searchYummlyWithIngredientNames));
 };
 
