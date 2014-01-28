@@ -1,15 +1,13 @@
 var neo4jDB = require('../neo4jDB.js');
+var exports = {};
 exports.neo4j = neo4j = require('node-neo4j');
 exports.db = db = new neo4j('http://localhost:7474');
-exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 
-//var ing = require('./ingredientlist.js').ingredient; 
-// var neo4j = require('node-neo4j');
-// uncomment this function and Line2 to import base ingredients.
+// exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 
-var recsofar = 1,
-  batches = 0,
-  batchsize = 100;
+var recsofar = 0;
+
+var ingArray; 
 
 // var markForUpdate = function(ida) {
 //  /*
@@ -21,136 +19,101 @@ var recsofar = 1,
 //
 // };
 
+var coIngredientQuery = function(val) {
+  return "MATCH (total:Recipe) WITH count(DISTINCT total) as tots, timestamp() as time "+
+    "MATCH (ia:Ingredient)<-[:HAS_INGREDIENT]-(recab:Recipe)-[recHasB:HAS_INGREDIENT]->(ib:Ingredient) "+
+      " WHERE id(ia)= "+ val +
+      " WITH DISTINCT ib AS idB, count(DISTINCT recab) AS recAB , count(DISTINCT recHasB) AS recB, tots, time "+
+    "MATCH (i:Ingredient)<-[:HAS_INGREDIENT]-(r:Recipe) "+
+      " WHERE id(i)= "+ val +
+      " WITH [i, count(DISTINCT r.id), idB, recAB, recB, tots, time] AS c  "+
+    " FOREACH (row IN c | "+
+      " FOREACH (i1 in c[0] | "+
+        " FOREACH (recA in c[1] | "+
+          " FOREACH (i2 in c[2]| "+
+            " FOREACH (recAB in c[3] | "+
+              " FOREACH (recB in c[4] |  "+
+                " FOREACH (totalRec in c[5] |  "+
+                  " CREATE (i1:Ingredient )-[pm1:PMI]->(i2: Ingredient)  "+
+                  " SET startNode(pm1).pmiTime = c[6], endNode(pm1).pmiTime = c[6], pm1.weight = log( (totalRec*recAB) /(recA*recB) ), pm1.pmiTime= c[6] "+
+                  " SET startNode(pm1).pScore = (recA/totalRec), endNode(pm1).pScore = (recB/totalRec) "+
+                  " CREATE (i1:Ingredient )<-[pm2:PMI]-(i2: Ingredient)  "+
+                  " SET startNode(pm2).pmiTime = c[6], endNode(pm2).pmiTime = c[6], pm2.weight = log( (totalRec*recAB) /(recA*recB) ), pm2.pmiTime= c[6] "+
 
-var callbackWrapper = function (req, res, altCallback){
-  resultSendCallback = function(err, result) {
-    if (err) console.log(err);
-    res.send( result);
-  };
-  var callback = altCallback || resultSendCallback;
-  return callback;
-};
-
-var pmiLoop = function(err, resultIngredients, timestamp) {  
-  var ingArray = resultIngredients.data[0];
-  for (var i = 0; i < ingArray.length; i++) {
-    findCoIngred(ingArray[i], timestamp);
-  }
+                ") "+
+              ") "+
+            ") "+
+          ") "+
+        ") "+
+      ") "+
+    ")";
 };
 
 var getListToProcess = function(timestamp, listsize) {
+  console.log('get ready for a lot of fun and excitement');
   listsize = listsize || 1;
   timestamp = timestamp - msBetween || 1; // all further steps rely on this value being present
-  
   var daysbetweenprocess = 10,
     msBetween = daysbetweenprocess * 86400;
-
   // Starting from a list of 100 ingredients where i.pmiTime = timestamp
   //   MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient {pmiTime: 1}) 
   //     WITH DISTINCT id(i) as ingredientids 
   //   RETURN ingredientids LIMIT 1
-  var msg = "MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient pmiTime:"+
-      timestamp+
-      ") WITH DISTINCT id(i) as ingredientids RETURN ingredientids LIMIT "+
-      listsize ;
-
-  db.cypherQuery(msg, callbackWrapper(req,res, pmiLoop));   
+  var msg = {statements:[
+    {statement: "MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient {pmiTime:"+
+        timestamp+
+        "}) WITH DISTINCT id(i) as ingredientids RETURN ingredientids LIMIT "+
+        listsize} ]};
+  console.log("message in Get List to Process: ",msg);
+  db.beginAndCommitTransaction(msg, pmiLoop);
 };
 
-var coIngredientQuery = function(id) {
-  return "MATCH (total:Recipe) WITH count(DISTINCT total) as tots, timestamp() as time"+
-    "MATCH (ia:Ingredient)<-[:HAS_INGREDIENT]-(recab:Recipe)-[recHasB:HAS_INGREDIENT]->(ib:Ingredient)"+
-      "WHERE id(ia)= "+ val +
-      " WITH DISTINCT ib AS idB, count(DISTINCT recab) AS recAB , count(DISTINCT recHasB) AS recB, tots, time"+
-    "MATCH (i:Ingredient)<-[:HAS_INGREDIENT]-(r:Recipe)"+
-      "WHERE id(i)="+ val +
-      " WITH [i, count(DISTINCT r.id), idB, recAB, recB, tots, time] AS c "+
-    "FOREACH (row IN c |"+
-      "FOREACH (i1 in c[0] |"+
-        "FOREACH (recA in c[1] |"+
-          "FOREACH (i2 in c[2]|"+
-            "FOREACH (recAB in c[3] |"+
-              "FOREACH (recB in c[4] | "+
-                "FOREACH (totalRec in c[5] | "+
-                  "CREATE (i1:Ingredient )-[pm1:PMI]->(i2: Ingredient) "+
-                  "SET startNode(pm1).pmiTime = c[6], endNode(pm1).pmiTime = c[6], pm1.weight = log( (totalRec*recAB) /(recA*recB) ), pm1.pmiTime= c[6]"+
-                  "CREATE (i1:Ingredient )<-[pm2:PMI]-(i2: Ingredient) "+
-                  "SET startNode(pm2).pmiTime = c[6], endNode(pm2).pmiTime = c[6], pm2.weight = log( (totalRec*recAB) /(recA*recB) ), pm2.pmiTime= c[6]"+
-                ")"+
-              ")"+
-            ")"+
-          ")"+
-        ")"+
-      ")"+
-    ")";
+var pmiLoop = function(err, results, timestamp) {  
+  console.log(err, results);
+  // recsofar++;
+  console.log('result in nextIngredient: ',results.results[0].data);
+  ingArray = results.results[0].data;
+  nextIngredient(null, null, ingArray[recsofar], timestamp);
 };
 
-
-
-
-var findCoIngred = function(ida, timestamp) {
-/*  For every ingredient we know of, from the 1st ingredient, find all co_occurring ingredients that haven't been processed
-    MATCH (ia:Ingredient)<-[:HAS_INGREDIENT]-(recab:Recipe)-[:HAS_INGREDIENT]->(ib:Ingredient)
-      WHERE id(ia)=430878 AND ib.pmitime = 1
-    RETURN id(ab)
-*/  
-  var msg = "MATCH (ia:Ingredient)<-[recHasA:HAS_INGREDIENT]-(recab:Recipe)-[recHasB:HAS_INGREDIENT]->(ib:Ingredient)" +
-    " WHERE id(ia)=" + ida +
-    " AND ib.pmiTime =" + timestamp +
-    " MATCH (i:Ingredient)<-[:HAS_INGREDIENT]-(r:Recipe)"+
-    " WHERE id(i)=" + ida +
-    " WITH DISTINCT id(i) AS idA, count(DISTINCT r) AS recA, idB, recAB, recB"+
-    " RETURN idA, recA, idB, recB, recAB";
-
-  db.cypherQuery(msg, callbackWrapper(req,res, processCoIngredient)); 
-/* 
-returns something like this:
-+---------------------------------------+
-| idA    | recA | idB    | recB | recAB |
-+---------------------------------------+
-| 430878 | 1580 | 431365 | 10   | 2     |
-| 430878 | 1580 | 431501 | 2    | 1     |
-| 430878 | 1580 | 431681 | 4    | 2     |  
-*/
-};
-
-var nextbatch = function(err,result) {
-  console.log("****ERR****: ", err);
-  var done = false;
-  recsofar = batches*batchsize < ing.length ? batches*batchsize : ing.length;
-  msg = {statements: []};
-  if ( recsofar === ing.length ) done = true;
-  var reclimit = recsofar+batchsize > ing.length ? ing.length : recsofar+batchsize;
-  for (var i = recsofar; i < reclimit; i++) {
-    msg.statements.push(coIngredientQuery(ingredientArray[i]));
+var nextIngredient = function(err,result, start, timestamp) {
+  if (err) throw console.log("****ERR****: ", err);
+  
+  recsofar++;
+  if (recsofar > 98) {
+    getListToProcess(1, 100);
+    recsofar = 0;
   }
-  if (done !== false) {
-    console.log('triggerdone');
-    db.commitTransaction(result._id, msg, errthrow );
-  } else {
-    console.log('about to insert batch: ', batches);
-    batches++;
+  var msg = {statements: []};
+  console.log('recsofar: ',recsofar, 'ingredient number: ', ingArray[recsofar].row[0]);
+  msg.statements.push({
+    statement: coIngredientQuery(ingArray[recsofar].row[0])
+  });
+  console.log('result in nextIngredient: ',result);
 
-    db.addStatementsToTransaction(result._id, msg, nextbatch);
-  }
+  db.beginAndCommitTransaction(msg, nextIngredient);
+
 };
 
-db.beginTransaction({
-  statements:[{
-    statement : 'CREATE (n {props}) RETURN n',
-      parameters : {
-        props : ing[0]
-      }
-    }]
-  },nextbatch );
+getListToProcess(1, 100);
 
 
 
-
-
-
-
-
+// var findCoIngred = function(ida, timestamp) {
+// /*  For every ingredient we know of, from the 1st ingredient, find all co_occurring ingredients that haven't been processed
+//     MATCH (ia:Ingredient)<-[:HAS_INGREDIENT]-(recab:Recipe)-[:HAS_INGREDIENT]->(ib:Ingredient)
+//       WHERE id(ia)=430878 AND ib.pmitime = 1
+//     RETURN id(ab)
+// */  
+//   var msg = "MATCH (ia:Ingredient)<-[recHasA:HAS_INGREDIENT]-(recab:Recipe)-[recHasB:HAS_INGREDIENT]->(ib:Ingredient)" +
+//     " WHERE id(ia)=" + ida +
+//     " AND ib.pmiTime =" + timestamp +
+//     " MATCH (i:Ingredient)<-[:HAS_INGREDIENT]-(r:Recipe)"+
+//     " WHERE id(i)=" + ida +
+//     " WITH DISTINCT id(i) AS idA, count(DISTINCT r) AS recA, idB, recAB, recB"+
+//     " RETURN idA, recA, idB, recB, recAB";
+//   db.cypherQuery(msg, callbackWrapper(req,res, processCoIngredient)); 
+// };
 
 // var getOccurrenceDetails = function(ida, idb) {
 //   idb = idb || 0; // make this function work for one or two ingredients
@@ -165,16 +128,14 @@ db.beginTransaction({
 //   }
 // };
 
-// var calcPmiForIngredients = function(reca, recb, recab, totalrec) {
- 
+// var calcPmiForIngredients = function(reca, recb, recab, totalRec) { 
 //   // PMI(a,b) = log( p(a,b) / p(a)*p(b) )
-
 //   // p(a,b) = (# recipes containing a & b ) / (# recipes)
 //   // p(a) = (# recipes containing a) / (# recipes)
 //   // p(b) = (# recipes containing b) / (# recipes)
     
-//   var pcalc = function(contain, totalrec) {
-//     return contain/totalrec;
+//   var pcalc = function(contain, totalRec) {
+//     return contain/totalRec;
 //   };
 
 //   var pmi = function(pa, pb, pab) {
@@ -202,23 +163,3 @@ db.beginTransaction({
 
 // }; 
 
-
-
-
-
-
-
-
-
-
-
-
-/*
-write a function to calculate the pmi for 2 ingredients and store that value on the ingredient
-write a function that loops through all the ingredients that co-occur with an ingredient and runs "calculate pmi"
-set a flag on each ingredient that shows whether it's been updated since the last time it's pmi's have been calculated
-When recipes are added to the database, set the processed flag to false
-create a function that "processes" a single recipe. This should add relationships between all the ingredients in the recipe
-create a function that runs "process recipe" on the top n recipes where processed is false
-create a cron job that runs process recipes at some regular interval
-*/
