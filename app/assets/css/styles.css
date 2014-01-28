@@ -218,6 +218,7 @@ button {
   text-wrap: normal;
   margin: auto;
   font-size: 1.1rem;
+  vertical-align: center;
 }
 .recipe .recipeImage {
   -webkit-box-flex: 1;
@@ -228,7 +229,19 @@ button {
   -ms-flex: 1;
   flex: 1;
   text-align: left;
+  padding: 5px 10px;
+  vertical-align: center;
+}
+.saveButton {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   padding: 5px;
+  margin: auto;
   vertical-align: center;
 }
 .loginBox {
