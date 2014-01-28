@@ -1,5 +1,138 @@
 /*TopCoat*/
 @import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css";
+.recipeImage {
+  margin: auto;
+}
+.attribution {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 15%;
+  text-wrap: normal;
+  border: 2px solid #ffa500;
+}
+.attribution a {
+  text-decoration: none;
+  color: #000;
+}
+form input {
+  margin: 20px 0;
+  width: 100%;
+}
+button {
+  height: 40px;
+}
+.ingredientButton {
+  margin: 5px;
+  width: 100%;
+}
+.ingredientButton button {
+  width: 100%;
+  background-color: #ffa500;
+  font-size: 1.25rem;
+}
+.recipe {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 5px;
+  margin: 5px;
+  font-size: 1.25rem;
+  background-color: #ffa500;
+  background-color: #ffa500;
+  width: 90%;
+}
+.recipe .recipeName {
+  -webkit-box-flex: 2;
+  -moz-box-flex: 2;
+  -o-box-flex: 2;
+  box-flex: 2;
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+}
+.recipe .recipeImage {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: left;
+  padding-left: 10%;
+  vertical-align: center;
+  vertical-align: center;
+}
+.loginBox {
+  margin: auto;
+  text-align: center;
+  margin-top: 15%;
+}
+#headercontainer {
+  width: 95%;
+  border-bottom: 4px solid #ffa500;
+  height: 60px;
+  margin: 5px 20px 10px;
+}
+#headercontainer .appTitle {
+  display: inline-block;
+  float: left;
+  color: #ffa500;
+  font-size: 3em;
+  font-family: helvetica;
+}
+#headercontainer .topcoat-button-bar {
+  float: right;
+  vertical-align: bottom;
+  padding-top: 10px;
+}
+/* Responsive Design Stuff */
+@media only screen and (max-width: 768px) {
+  .mainBox {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .smallCol {
+    width: 90%;
+  }
+  .bigCol {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #maincontentcontainer {
+    margin: 5px;
+  }
+  .mainBox {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .smallCol {
+    width: 95%;
+  }
+  .bigCol {
+    width: 95%;
+  }
+}
 body html,
 body body,
 body div,
@@ -103,8 +236,7 @@ body a img {
   clear: both;
 }
 #maincontentcontainer {
-  text-align: left;
-  font-size: 30px;
+  font-size: 1.5rem;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -125,118 +257,22 @@ body a img {
   flex-wrap: wrap;
   margin: auto;
 }
-.smallCol {
+#maincontentcontainer .smallCol {
   width: 35.625%;
 }
-.bigCol {
+#maincontentcontainer .bigCol {
   width: 59.375%;
 }
-.section {
+#maincontentcontainer .section {
   margin: 0 auto 10px;
 }
-.sectionHeader {
+#maincontentcontainer .sectionHeader {
   border-bottom: 2px solid #ffa500;
 }
-.sectionBody {
+#maincontentcontainer .sectionBody {
   margin-top: 10px;
+  font-size: 1.25rem;
 }
-.subsection {
+#maincontentcontainer .subsection {
   margin-bottom: 20px;
-}
-.recipeImage {
-  margin: auto;
-}
-.attribution {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 15%;
-  text-wrap: normal;
-  border: 2px solid #ffa500;
-}
-.attribution a {
-  text-decoration: none;
-  color: #000;
-}
-form {
-  text-align: center;
-}
-form input {
-  margin: 20px 0;
-  width: 100%;
-}
-button {
-  height: 40px;
-}
-.ingredientButton {
-  margin: 5px;
-  width: 100%;
-}
-.ingredientButton button {
-  width: 100%;
-  background-color: #ffa500;
-  font-size: 20px;
-}
-.bigger {
-  font-size: 20px;
-}
-.loginBox {
-  margin: auto;
-  text-align: center;
-  margin-top: 15%;
-}
-#headercontainer {
-  width: 95%;
-  border-bottom: 4px solid #ffa500;
-  height: 60px;
-  margin: 5px 20px 10px;
-}
-#headercontainer .appTitle {
-  display: inline-block;
-  float: left;
-  color: #ffa500;
-  font-size: 3em;
-  font-family: helvetica;
-}
-#headercontainer .topcoat-button-bar {
-  float: right;
-  vertical-align: bottom;
-  padding-top: 10px;
-}
-/* Responsive Design Stuff */
-@media only screen and (max-width: 768px) {
-  .mainBox {
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -o-box-orient: vertical;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-  .smallCol {
-    width: 90%;
-  }
-  .bigCol {
-    width: 90%;
-  }
-}
-@media only screen and (max-width: 480px) {
-  #maincontentcontainer {
-    margin: 5px;
-  }
-  .mainBox {
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -o-box-orient: vertical;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-  .smallCol {
-    width: 95%;
-  }
-  .bigCol {
-    width: 95%;
-  }
 }

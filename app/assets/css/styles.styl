@@ -1,4 +1,7 @@
 
+// Tell stylus to watch your directory and update your file 
+// stylus app/assets/css/styles.styl -w --include /Users/kylewarneck/Desktop/git_repos/menuapp/node_modules/nib/lib
+
 
 // IMPORTS
 @import 'nib'
@@ -8,23 +11,49 @@
 @import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css"
 // @import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css"
 
-
-
 // My Stuff
 @import "base"
 @import "recipe"
-@import "search"
+@import "landing"
+@import "searchResults"
 @import "login"
 @import "frame"
 
 /* Responsive Design Stuff */
 @import "mobile"
-// @import "1024.css"
-// @import "768.css"
-// @import "480.css"
 
-// @import "8cols.css"
+// basic layout
+body
+  global-reset()
 
+.clear
+  clearfix()
 
-// Tell stylus to watch your directory and update your file 
-// stylus app/assets/css/styles.styl -w --include /Users/kylewarneck/Desktop/git_repos/menuapp/node_modules/nib/lib
+#maincontentcontainer
+  font-size size1
+
+  // Flexbox
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  margin: auto
+
+  .smallCol
+    width 35.625%
+
+  .bigCol
+    width 59.375%
+
+  .section
+    margin 0 auto 10px
+
+  .sectionHeader
+    border-bottom 2px solid orange
+
+  .sectionBody
+    margin-top 10px
+    
+    font-size size2
+
+  .subsection
+    margin-bottom 20px

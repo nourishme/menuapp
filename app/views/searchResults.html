@@ -2,8 +2,9 @@
   <div class="section bigCol">
     <p class="sectionHeader">Here's Some Recipes:</p>
     <div class="sectionBody">
-      <div class="ingredientButton" ng-repeat="recipe in searchResults.matches | limitTo:12" ng-click="getRecipe(recipe.id)" >
-        <button class="topcoat-button--large--cta" >{{recipe.recipeName}}</button>
+      <div class="recipe topcoat-button--large" ng-repeat="recipe in searchResults.matches | limitTo:12" ng-click="getRecipe(recipe.id)">
+        <div class="recipeImage"><img src={{recipe.smallImageUrls[0]}}></div>
+        <div class="recipeName">{{recipe.recipeName}}</div>
       </div>
     </div>
   </div>
