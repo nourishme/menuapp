@@ -115,7 +115,7 @@ db.beginTransaction({
   statements:[{
     statement : 'CREATE (n:Ingredient {props}) RETURN n; ',
       parameters : {
-        props : {'ingredientName':ing[0], 'searchTerm':ing[0], 'description':ing[0], 'term':ing[0], }
+        props : {'ingredientName':ing[0] }
       }
     }]
   },nextbatch );

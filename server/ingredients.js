@@ -47,6 +47,9 @@ module.exports = {
     // send array of ingredient ids [id1, id2, id3]
     // returns array of ingredient objects
     dbinventory.findCoOccuringIngredients(req, res);
+  },
+  searchForRecipesNumber: function(req, res){
+    dbinventory.getRecipesByIngredientsNeeded(req, res);
   }
 
 
