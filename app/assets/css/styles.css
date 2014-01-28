@@ -129,7 +129,6 @@ body a img {
   padding: 20px;
 }
 #mainContainer .bigCol {
-  max-width: 59.375%;
   -webkit-box-flex: 5;
   -moz-box-flex: 5;
   -o-box-flex: 5;
@@ -151,9 +150,11 @@ body a img {
   font-size: size2;
 }
 #mainContainer .subsection {
-  width: 100%;
   margin-bottom: 10px;
   font-size: size2;
+}
+#mainContainer #searchBox {
+  max-width: 59.375%;
 }
 .recipeImage {
   margin: auto;
@@ -263,11 +264,16 @@ button {
     -ms-flex-direction: column;
     flex-direction: column;
   }
-  .bigCol,
-  .smallCol {
+  #mainContainer .bigCol,
+  #mainContainer .smallCol {
     width: 90%;
-    max-width: 100%;
     padding: 20px;
+  }
+  #mainContainer .subsection {
+    width: 100%;
+  }
+  #mainContainer #searchBox {
+    max-width: none;
   }
 }
 @media only screen and (max-width: 480px) {
