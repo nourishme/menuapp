@@ -39,31 +39,17 @@ module.exports = {
     // searchForRecipes/
     // send array of ingredient ids [_id1, _id2, _id3]
     // returns array of recipe objects
-    saveSearchQueryAsNode(req, res);
+    dbinventory.checkSearchQueryNode(req, res);
     dbinventory.getRecipesByIngredientSearch(req, res);
   },
-  
-  saveSearchQueryAsNode: function(req, res) {
-    // searchForRecipes/
-    // send array of ingredient ids [_id1, _id2, _id3]
-    // returns array of recipe objects
-    dbinventory.saveSearchQueryAsNode(req, res);
-    createUserSearchRelationship(req, res);
-  },
-
-  createUserSearchRelationship: function(req, res) {
-    // searchForRecipes/
-    // send array of ingredient ids [_id1, _id2, _id3]
-    // returns array of recipe objects
-    dbinventory.createUserSearchRelationship(req, res);
-  },
-
-
   getCoOccurs: function(req, res) {
     // getCoOccurs/
     // send array of ingredient ids [id1, id2, id3]
     // returns array of ingredient objects
     dbinventory.findCoOccuringIngredients(req, res);
+  },
+  searchForRecipesNumber: function(req, res){
+    dbinventory.getRecipesByIngredientsNeeded(req, res);
   }
 
 

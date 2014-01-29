@@ -1,30 +1,32 @@
-<div class="mainBox">
 
-  <div class="section">
-    <p class="sectionHeader">You've selected:</p>
-    <div class="matchingIngredients">
-      <button class="topcoat-button--large--quiet" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" >{{ingredient.ingredientName}}</button>
+  <div class="section smallCol">
+    <div class="subsection">
+      <p class="sectionHeader">You've selected:</p>
+      <div class="sectionBody">
+        <button class="topcoat-button--large--quiet" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" >{{ingredient.ingredientName}}</button>
+      </div>
     </div>
-  </div>
-
-
-  <div class="section">
-    <p class="sectionHeader">Here's Some Recipes:</p>
-    <div class="matchingIngredients">
-      <div class="ingredientButton" ng-repeat="recipe in searchResults.matches | limitTo:12" ng-click="getRecipe(recipe.id)" >
-        <button class="topcoat-button--large--cta" >{{recipe.recipeName}}</button>
+    
+    <div class="subsection">
+      <p class="sectionHeader">Or add:</p>
+      <div class="sectionBody">
+        <button class="topcoat-button--large" ng-repeat="ingredient in suggestedIngredients | limitTo:10" ng-click="addAndSearch(ingredient)" >{{ingredient.ingredientName}}</button>
       </div>
     </div>
   </div>
 
-  <div class="section">
-    <p class="sectionHeader">Or add:</p>
-    <div class="matchingIngredients">
-      <button class="topcoat-button--large" ng-repeat="ingredient in suggestedIngredients | limitTo:10" ng-click="addAndSearch(ingredient)" >{{ingredient.ingredientName}}</button>
+  <div class="section bigCol">
+    <div class="subSection">
+    <div class="sectionHeader">Here's Some Recipes:</div>
+    <div class="sectionBody">
+      <div class="recipe topcoat-button--large" ng-repeat="recipe in searchResults.matches | limitTo:12" ng-click="getRecipe(recipe.id)">
+        <div class="recipeImage"><img src={{recipe.smallImageUrls[0]}}></div>
+        <div class="recipeName">{{recipe.recipeName}}</div>
+      </div>
     </div>
   </div>
+  </div>
 
-</div>
 <!-- 
 
 <div class="attribution">

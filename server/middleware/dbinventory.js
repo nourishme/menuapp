@@ -54,81 +54,181 @@ exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {
   db.cypherQuery(msg.msg, callbackWrapper(req, res));
 };
 
-exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(req, res) {
-// curl -X POST -H "Content-Type: application/json" -d '[402112,402113,402114]' http://localhost:3000/searchForRecipes/  
+/***
+Recipes by Ingredients Object
+***/
+
+exports.makeRecObjByIngredient = makeRecObjByIngredient = function(recipes){
+  var recipeObjByIngredient = {};
+  for (var i = 0; i < recipes.length; i++){
+    ingredients = getIngredientListFromRecipe(recipes[i]);
+    for (var j = 0; j < ingredients.length; j++){
+      if (!recipeObjByIngredient[ingredients[j]]){
+        recipeObjByIngredient[ingredients[j]] = [];
+      }
+      recipeObjByIngredient[ingredients[j]].push(recipes[i]);
+    }
+  }
+  // console.log('******resObjByIng*****: ', recipeObjByIngredient);
+  return recipeObjByIngredient;
+};
+
+exports.getIngredientListFromRecipe = getIngredientListFromRecipe = function(recipe){
+    return recipe.ingredients;
+};
+
+/***
+Recipes by Ingredients Needed Object
+***/
+
+exports.makeRecByIngNeededObj = makeRecByIngNeededObj = function(recipes, query){
+  var recipesByIngNeeded = {};
+  var ingNumber;
+  for (var i = 0 ; i < recipes.length; i++){
+    ingNumber = countIngredients(recipes[i]);
+    if(!recipesByIngNeeded[ingNumber-query.length]){
+      recipesByIngNeeded[ingNumber-query.length] = [];
+    }
+    recipesByIngNeeded[ingNumber-query.length] = recipes[i];
+  }
+  return recipesByIngNeeded;
+};
+
+exports.countIngredients = countIngredients = function(recipe){
+  return recipe['ingredients'].length;
+};
+
+
+exports.getRecipesByIngredientsNeeded = getRecipesByIngredientsNeeded = function(req, res) {
   var transactionBody = {};
   transactionBody.statements = [];
   for (var i = 0; i< req.body.length; i++  ){
     var query = {};
     query = ph.matchNodeById(req.body[i]);
-    console.log("query is ",query.msg);
+    // console.log("query is ",query.msg);
     transactionBody.statements.push( {statement: query.msg+' RETURN n'});
   }
-  backwardsSearchRecipeResponseCallback = function(result, err) {
+
+  searchResultBigCallback = function(result, err){
     if (err) throw err;
-    res.send( result);
+    var recipes = (JSON.parse(result)).matches;
+    var byIngredient = makeRecObjByIngredient(recipes);
+    var byNumIngNeeded = makeRecByIngNeededObj(recipes, req.body);
+    var recipesByIngredient = {
+      'byIngredient': byIngredient,
+      'byNumIngNeeded': byNumIngNeeded
+    };
+
+    res.send(recipesByIngredient);
   };
+
   var searchYummlyWithIngredientNames = function(err, dbResultObj, req, res) {
     var result = dbResultObj.results;
     var paramsForYumSearch = '&q=';
     for (var i = 0; i < result.length; i++) {
-        paramsForYumSearch += result[i].data[0].row[0].term+ ' ';
+      paramsForYumSearch += result[i].data[0].row[0].ingredientName+ ' ';
     }
+    paramsForYumSearch900=paramsForYumSearch +'&maxResult=900';
     console.log('paramsForYumSearch ', paramsForYumSearch);
-    yum.searchRecipe(paramsForYumSearch, callbackWrapper( req, res, backwardsSearchRecipeResponseCallback ));
+    yum.searchRecipe(paramsForYumSearch900, callbackWrapper( req, res, searchResultBigCallback ));
   };
+
   db.beginAndCommitTransaction(transactionBody, callbackWrapper(req, res, searchYummlyWithIngredientNames));
 };
 
-exports.saveSearchQueryAsNode = saveSearchQueryAsNode = function(req, res){
-  // console.log("***** REQ *****: ", req);
-  // console.log("***** RES *****: ", res);
-  msg = 'create (s:Search {params:'+req.body+'}) return s.params ';
-  if(!checkSearchQueryNode(req.body)){
-    db.cypherQuery(msg, function(err, result){
-      if(err){
-        console.log('**ERROR**: ', err);
-      } else {
-        createSearchIngredientRelationship(result);
-      }
-    });
+exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(req, res) {
+// curl -X POST -H "Content-Type: application/json" -d '[402112,402113,402114]' http://localhost:3000/searchForRecipes/  
+
+  var transactionBody = {};
+  transactionBody.statements = [];
+  for (var i = 0; i< req.body.length; i++  ){
+    var query = {};
+    query = ph.matchNodeById(req.body[i]);
+    // console.log("query is ",query.msg);
+    transactionBody.statements.push( {statement: query.msg+' RETURN n'});
   }
+
+  backwardsSearchRecipeResponseCallback = function(result, err) {
+    if (err) throw err;
+    res.send(result);
+  };
+
+  var searchYummlyWithIngredientNames = function(err, dbResultObj, req, res) {
+    var result = dbResultObj.results;
+    var paramsForYumSearch = '&q=';
+    for (var i = 0; i < result.length; i++) {
+      paramsForYumSearch += result[i].data[0].row[0].ingredientName+ ' ';
+    }
+    paramsForYumSearch=paramsForYumSearch +'&maxResult=10';
+    console.log('paramsForYumSearch ', paramsForYumSearch);
+    yum.searchRecipe(paramsForYumSearch, callbackWrapper( req, res, backwardsSearchRecipeResponseCallback ));
+  };
+
+  db.beginAndCommitTransaction(transactionBody, callbackWrapper(req, res, searchYummlyWithIngredientNames));
 };
 
-exports.checkSearchQueryNode = checkSearchQueryNode = function(query){
-  msg = 'match (s:Search) where s.params ='+ query +' return s';
-  return db.cypherQuery(msg, function(err, result){
-    // if(result[0]){
-    //   return true;
-    // } else {
-      return false;
-    // }
+exports.checkSearchQueryNode = checkSearchQueryNode = function(req, res){
+  var query = '';
+  var msg;
+  query = req.body[0] ;
+  if(req.body.length > 1){
+    for (var i = 1; i< req.body.length; i++  ){
+      query+=', '+req.body[i];
+    }
+  }
+  msg = 'match (s:Search) where s.params ="'+ query +'" return s';
+  db.cypherQuery(msg, function(err, result){
+    if(result['data'].length > 0){
+      createUserSearchRelationship(req, query);
+    } else {
+      saveSearchQueryAsNode(req, query);
+    }
   });
 
 };
 
-exports.createSearchIngredientRelationship = createSearchIngredientRelationship = function(query){
-  var ingredient;
-  for (var i = 0 ; i < query.length ; i++){
-    ingredient = query[i];
-    msg = 'match (i: Ingredient) where i.ingredientName="'+ingredient+'" '+
-    'match (s: Search) where s.params='+query+' '+
-    'create (i)-[r:ISPARAM]->(s) return r; ';
-    db.cypherQuery(msg, function(err, result){
-      if(err){
-        console.log('**ERROR**: ', err);
-      }
-    });
-  }
-};
-
-exports.createUserSearchRelationship = createUserSearchRelationship = function(req, res){
-  msg = 'match (u: User) where id(u)='+req.user+' '+
-    'match (s: Search) where s.params='+req.body+' '+
-    'create (u)-[r:ISPARAM]->(s) return r; ';
+exports.saveSearchQueryAsNode = saveSearchQueryAsNode = function(req, query){
+  msg = 'create (s:Search {params:"'+query+'"}) return s.params';
   db.cypherQuery(msg, function(err, result){
     if(err){
-      console.log('***ERROR**: ', err);
+      console.log('*SAVESEARCHERR*: ', err);
+    } else {
+      createSearchIngredientRelationship(req, query);
+      createUserSearchRelationship(req, query);
+    }
+  });
+};
+
+exports.createRelationshipQuery = createRelationshipQuery = function(req, query){
+  var ingredient;
+  var msg = '';
+  for (var i = 0 ; i < req.body.length ; i++){
+    ingredient = req.body[i];
+    msg += 'match (i: Ingredient) where id(i)='+ingredient+' '+
+    'match (s: Search) where s.params="'+query+'" '+
+    'create (i)-[r:IS_PARAM]->(s) return r; ';
+  }
+  return msg;
+};
+
+exports.createSearchIngredientRelationship = createSearchIngredientRelationship = function(req, query){
+  var msg = createRelationshipQuery(req, query);
+  db.cypherQuery(msg, function(err, result){
+    if(err){
+      console.log('***CREATESEARCHERR***', err);
+    }
+  });
+};
+
+exports.createUserSearchRelationship = createUserSearchRelationship = function(req, query){
+  console.log('****req***: ', req.user);
+  msg = 'match (u: User) where id(u)='+req.user+' '+
+    'match (s: Search) where s.params="'+query+'" '+
+    'create (u)-[r:SEARCHED]->(s) return u; ';
+  console.log('****msg***: ', msg);
+  db.cypherQuery(msg, function(err, result){
+    if(err){
+      console.log('***CREATEUSERSEARCHERROR**: ', err);
     }
   });
 

@@ -1,37 +1,41 @@
-<div class="mainBox">
 
-  <div class="section" ng-show="showCook">
-    <p class="sectionHeader">You've selected:</p>
-    <div class="matchingIngredients">
-      <div  ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" ><button class="topcoat-button--large--quiet" >{{ingredient.ingredientName}}</button>
-      </div>
+<div class="section smallCol" ng-show="showCook">
+
+  <div class="subsection">
+    <div class="sectionHeader">You've selected:</div>
+    <div class="selectedIngredients">
+      <button class="topcoat-button--large--quiet" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" >{{ingredient.ingredientName}}</button>
     </div>
   </div>
 
-  <div class="section" ng-show="showCook">
-    <a class="getRecipes" href="#/searchResults"><button class="topcoat-button--large" ng-click="someFunction()">Get Some Recipes</button></a>
+
+  <div class="subsection">
+    <a class="getRecipes" href="#/searchResults"><button class="topcoat-button--large--cta" ng-click="someFunction()">Get Some Recipes</button></a>
   </div>
 
 
-  <div class="section" ng-show="showCook">
-    <p class="sectionHeader">Here's some ingredients that go well with that:</p>
-    <div class="matchingIngredients">
-      <div class="ingredientButton" ng-repeat="ingredient in suggestedIngredients | limitTo:5"  ng-click="addToCook(ingredient)" ><button class="topcoat-button--large--cta" >{{ingredient.ingredientName}}</button>
+  <div class="subsection">
+    <div class="sectionHeader">Here's some ingredients that go well with that:</div>
+      <div class="ingredientButton" ng-repeat="ingredient in suggestedIngredients | limitTo:8"  ng-click="addToCook(ingredient)" >
+        <button class="topcoat-button--large--cta" >{{ingredient.ingredientName}}</button>
       </div>
-    </div>
   </div>
 
-  <div class="section">
-    <p class="sectionHeader" ng-show="showCook">Or add something else:</p>
-    <p ng-hide="showCook"> What ingredient would you like to cook with today?</p>
+</div>
+
+
+<div class="section bigCol">
+
+  <div ng-hide="showCook"> What ingredient would you like to cook with today?
+  </div>
+
+  <div class="subsection">
+    <div class="sectionHeader" ng-show="showCook">Or add something else:</div>
     <form>
       <input type="text" class="topcoat-text-input--large" ng-model="ingredientSearch" placeholder="Ingredient"></input>
     </form>
-
-    <div class="matchingIngredients" ng-show="ingredientSearch">
-      <div class="ingredientButton" ng-repeat="ingredient in ingredients | filter:ingredientSearch | limitTo:8" ng-click="addToCook(ingredient)" >
-        <button class="topcoat-button--large--cta" >{{ingredient.ingredientName}}</button>
-      </div>
+    <div class="ingredientButton" ng-repeat="ingredient in ingredients | filter:ingredientSearch | limitTo:11" ng-click="addToCook(ingredient)">
+      <button class="topcoat-button--large--cta" ng-show="ingredientSearch">{{ingredient.ingredientName}}</button>
     </div>
   </div>
 </div>

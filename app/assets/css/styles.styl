@@ -1,162 +1,65 @@
-// IMPORTS
 
+// Tell stylus to watch your directory and update your file 
+// stylus app/assets/css/styles.styl -w --include /Users/kylewarneck/Desktop/git_repos/menuapp/node_modules/nib/lib
+
+
+// IMPORTS
 @import 'nib'
 
-@import "base.css"
-/* Responsive Design Stuff */
-// @import "html5reset.css"
-// @import "col.css"
-// @import "8cols.css"
 
 /*TopCoat*/
 @import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css"
 // @import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css"
 
-
-// 
-
-size1 = 30px
+// My Stuff
 
 
-// 
-
+// basic layout
 body
   global-reset()
 
-
 .clear
-  clearfix();
+  clearfix()
 
-.container
-
-.textRight
-  text-align right
-
-.mainContent
-  clear left
-  display -webkit-flex
-  -webkit-flex-direction row
-
-#maincontentcontainer
-  margin 40px 40px 
-
-
-// Top Bar
-
-header
-  width 100%
-  border-bottom: 4px solid orange
-  height 70px
-
-
-.appTitle
-  display inline-block
-  float left
-  margin: 10px 20px
-
-
-  color: orange
-  font-size:3em
-  font-family: helvetica
-
-  
-.topcoat-button-bar
-  float right
-
-// login
-
-.loginBox
-  width:50%
-  margin auto
-  text-align left
+#mainContainer
   font-size size1
-  
-  button
-    font-size 18px
+  display flex
+  flex-direction row
+  margin: auto
 
-//Search Page
+  .smallCol
+    // width 35.625%
+    flex 3
+    padding:20px
 
-.mainBox
-  width:50%
-  margin auto
-  text-align left
-  font-size size1
+  .bigCol
+    max-width 59.375%
+    flex 5
+    padding:20px
 
   .section
-    margin: 10px 0 30px 0
+    margin 0 auto 10px
 
-    .sectionHeader
-      border-bottom 2px solid orange
+  .sectionHeader
+    border-bottom 2px solid orange
+    margin-bottom: 10px
 
-  form 
-    text-align center
+  .sectionBody
+    margin-top 10px
+    font-size size2
 
-    input
-      margin 10px 0
-      width 100%
-      font-size size1
+  .subsection
+    width:100%
+    margin-bottom 10px
+    font-size size2
 
-    // Figure out a mixin for this
-    ::-webkit-input-placeholder
-      vertical-align: center
-      line-height: 100%
+@import "base"
+@import "recipe"
+@import "landing"
+@import "searchResults"
+@import "login"
+@import "frame"
 
-    ::-moz-placeholder  /* Firefox 19+ */
-      vertical-align:center
-      line-height: 100%
+/* Responsive Design Stuff */
+@import "mobile"
 
-    :-ms-input-placeholder 
-      vertical-align:center
-      line-height: 100%
-
-    :-moz-placeholder /* Firefox 18- */
-      vertical-align:center
-      line-height: 100%
-
-  button
-    font-size size1
-    height 40px
-  
-
-.matchingIngredients
-  font-size size1
-
-.ingredientButton
-  margin 5px
-  width 100%
-
-  button
-    width 100%
-    background-color orange
-
-
-
-// Ingredients Page
-.ingredientsLiked,
-.ingredientsNotLiked
-  // box-flex:1
-  margin: 30px
-
-  .topcoat-checkbox__checkmark
-    text-align:left
-
-
-// Recipe Page
-
-.recipeImage
-  margin auto
-
-
-.attribution
-  display:none;
-  fixed:bottom left
-  width: 15%
-  text-wrap normal
-  border 2px solid orange
-
-  a
-    text-decoration none
-    color black
-
-// Tell stylus to watch your directory and update your file 
-// stylus app/assets/css/styles.styl -w --include /Users/kylewarneck/Desktop/git_repos/menuapp/node_modules/nib/lib

@@ -25,10 +25,25 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
     })
     .success(function(data, status) {
       $scope.searchResults = data;
+      console.log(data);
     })
     .error(function(data, status){
       console.log(data,status);
     });
+
+    $http({
+      method: 'POST',
+      url: '/searchForRecipesNumber/',
+      data: ingredients
+    })
+    .success(function(data, status) {
+      $scope.recByIng = data;
+      console.log(data)
+    })
+    .error(function(data, status){
+      console.log(data,status);
+    });
+
   };
 
 
