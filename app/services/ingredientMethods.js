@@ -16,9 +16,16 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
     },
 
     getSuggestedIngredients: function($scope){
+      var currentList = [];
+      var temp = sharedProperties.getToCook();
+      for (var key in temp){
+        currentList.push(temp[key]['_id']);
+      }
+      console.log(currentList);
       $http({
-        method: 'GET',
-        url: '/ingredientList/'
+        method: 'POST',
+        url: '/suggestedIngredients/',
+        data: currentList
       })
       .success(function(data, status) {
         $scope.suggestedIngredients = data.data;

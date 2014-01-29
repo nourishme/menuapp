@@ -27,7 +27,7 @@ exports.setRoutes = function(app, application_root){
   // app.get('/getTopIngredients/',ingredients.getTopIngredients); //Redundant. I believe the one below is correct
   app.get('/getTopIngredients/:count',ingredients.getTopIngredients);
 
-  app.get('/ingredientList/',ingredients.getIngredientList);
+  app.post('/suggestedIngredients/',ingredients.getIngredientList);
   app.get('/ingredientInventory/',ingredients.getUsersRecipeList);
   app.post('/ingredientInventory/',ingredients.saveUsersList);
   app.get('/getCoOccurs/',ingredients.getCoOccurs);
@@ -43,6 +43,4 @@ exports.setRoutes = function(app, application_root){
 
 };
 
-
 module.exports = exports;
-
