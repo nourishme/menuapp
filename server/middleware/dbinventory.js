@@ -46,7 +46,7 @@ exports.getTopIngredientsList = getTopIngredientsList = function(req, res) {
 
 exports.findCoOccuringIngredients = findCoOccuringIngredients = function(req, res) {
   var count = req.param('count') || 100;
-  msg = "match (:Ingredient)-[r:PMI]-(:Ingredient) return startNode(r).ingredientName order by r.weight limit "+count;
+  msg = "MATCH (:Ingredient)-[r:PMI]->(:Ingredient) WITH startNode(r).ingredientName AS name ORDER BY r.weight DESC RETURN DISTINCT name LIMIT "+count;
   db.cypherQuery(msg, callbackWrapper(req, res));
   return ingredientsByCoOccurWeight;
 };

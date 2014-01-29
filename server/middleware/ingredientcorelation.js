@@ -4,7 +4,7 @@ exports.neo4j = neo4j = require('node-neo4j');
 exports.db = db = new neo4j('http://localhost:7474');
 
 
-// exports.phrases = ph = require('../middleware/db.phrase.templates.js');
+exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 
 var recsofar = 0;
 
@@ -20,7 +20,7 @@ var ingArray;
 //
 // };
 
-var coIngredientQuery = function(val) {
+var setCoIngredientQuery = function(val) {
   return "MATCH (total:Recipe) WITH count(DISTINCT total) as tots, timestamp() as time "+
     "MATCH (ia:Ingredient)<-[:HAS_INGREDIENT]-(recab:Recipe)-[recHasB:HAS_INGREDIENT]->(ib:Ingredient) "+
       " WHERE id(ia)= "+ val +
@@ -89,7 +89,7 @@ var nextIngredient = function(err,result, start, timestamp) {
   var msg = {statements: []};
   console.log('recsofar: ',recsofar, 'ingredient number: ', ingArray[recsofar].row[0]);
   msg.statements.push({
-    statement: coIngredientQuery(ingArray[recsofar].row[0])
+    statement: setCoIngredientQuery(ingArray[recsofar].row[0])
   });
   console.log('result in nextIngredient: ',result);
 
