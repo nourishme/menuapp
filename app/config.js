@@ -4,10 +4,10 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/', {
     redirectTo: '/login'
   })
-  .when('/recipe/:id', {
-    controller: 'recipe',
-    templateUrl: 'views/recipe.html'
-  })
+  // .when('/recipe/:id', {
+  //   controller: 'recipe',
+  //   templateUrl: 'views/recipe.html'
+  // })
   .when('/login', {
     controller: 'login',
     templateUrl: 'views/login.html'
@@ -24,10 +24,10 @@ app.config(['$routeProvider', function ($routeProvider) {
     controller: 'searchHistory',
     templateUrl: 'views/searchHistory.html'
   })
-  .when('/ingredients/:userId',{
-    controller: 'ingredients',
-    templateUrl: 'views/ingredients.html'
-  })
+  // .when('/ingredients/:userId',{
+  //   controller: 'ingredients',
+  //   templateUrl: 'views/ingredients.html'
+  // })
   .when('/404', {
     templateUrl: 'views/404.html'
   });
