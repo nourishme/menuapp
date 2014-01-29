@@ -3,6 +3,7 @@ var exports = {};
 exports.neo4j = neo4j = require('node-neo4j');
 exports.db = db = new neo4j('http://localhost:7474');
 
+
 // exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 
 var recsofar = 0;
@@ -166,4 +167,5 @@ getListToProcess(date, 100);
 // */
 
 // }; 
+
 

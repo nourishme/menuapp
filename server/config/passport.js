@@ -64,8 +64,6 @@ var findOrCreate = function(profile, callback){
 };
 
 var findById = function(id, callback){
-    console.log('*!!ID: ', id);
-
   var getQuery = "MATCH (u: User) WHERE id(u) = " + id + "RETURN id(u)";
   db.cypherQuery(getQuery, function(err, result){
     return callback(err, result.data[0]);
