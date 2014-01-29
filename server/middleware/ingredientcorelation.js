@@ -9,7 +9,6 @@ exports.phrases = ph = require('../middleware/db.phrase.templates.js');
  * occurring ingredients. Which is awesome.
  */
 
-
 // utility function. //todo: this could be put somewhere else
 var callbackWrapper = function (req, res, altCallback){
   resultSendCallback = function(err, result) {
@@ -20,12 +19,12 @@ var callbackWrapper = function (req, res, altCallback){
   return callback;
 };
 
-// get global recipe count
 var grc = 0; // set to zero until we find it with getTotalRecipeCount()
 var currentSelection = {};
 var possibleExtras = {};
 
-exports.getTotalRecipeCount =
+
+exports.getTotalRecipeCount = // get global recipe count
  getTotalRecipeCount = function() {
 //     MATCH (r:Recipe) RETURN count(DISTINCT r)
   msg  = 'MATCH (r:Recipe) RETURN count(DISTINCT r)';
@@ -36,6 +35,7 @@ exports.getTotalRecipeCount =
   };
   db.cypherQuery(msg, setGrc);
 }();  // note: we immediately invoke getTotalCount()
+
 
 
 exports.queryTemplate = // generate a message to find recipes count with our ingredients
@@ -69,9 +69,9 @@ exports.queryTemplate = // generate a message to find recipes count with our ing
   }
 };
 
-exports.getCoOccursPlusOne = 
+exports.getCoOccursPlusOne = // this starts our event chain
  getCoOccursPlusOne = function(req, res) {
-  var getMoreForThisGroup = req.data;
+  var getMoreForThisGroup = req.data; // here's the client's current selection of ingredients
 
   db.beginAndCommitTransaction({
     statements:[{
@@ -81,28 +81,34 @@ exports.getCoOccursPlusOne =
   }, callbackWrapper(req, res, setResultOfCoOccursPlusOne));
 };
 
-var setResultOfCoOccursPlusOne = function(err, result, req, res) {
+
+
+exports.setResultOfCoOccursPlusOne = // we'll set our result to a global
+ setResultOfCoOccursPlusOne = function(err, result, req, res) {
   if (err) console.log("error in setResultOfCoOccursPlusOne: ", err);
   currentSelection.recTotalNow = result.data[0].row[0]; // should be a single number
   findMoreIngredients(req, res);
 };
 
-var findMoreIngredients = function(req, res) {
+exports.findMoreIngredients = // now we'll find more ingredients to match with our current selection
+ findMoreIngredients = function(req, res) {
   db.beginAndCommitTransaction({
-    statements:[{
+    statements:[{ 
           statement : queryTemplate(currentSelection.recTotalNow, 'findMore')
       }
     ]
   }, callbackWrapper(req, res, setFoundIngredients));
 };
 
-var setFoundIngredients = function(err, result, req, res) {
+exports.setFoundIngredients = // just set the results to a global and move forward
+ setFoundIngredients = function(err, result, req, res) {
   if (err) console.log("error in setFoundIngredients: ", err);
   possibleExtras.arrayOfIngredients = result.data[0].row[0]; // should be a single number
   getRecPlus(req, res);
 };
 
-var getRecPlus = function(req, res) {
+exports.getRecPlus = // this is a long query. will find recipe counts for all possible additional ingredients
+ getRecPlus = function(req, res) {
   var possibleIng = possibleExtras.arrayOfIngredients;
   var current = req.data;
   var trans = { statements : [] };
@@ -114,7 +120,8 @@ var getRecPlus = function(req, res) {
   db.beginAndCommitTransaction(trans, callbackWrapper(req, res, loopToCalcPmi));
 };
 
-var loopToCalcPmi = function(err, result, req, res) {
+exports.loopToCalcPmi = // assumes ordered results & actual objects... loop the calculation and finally send the results. 
+ loopToCalcPmi = function(err, result, req, res) {
   var pmiScoresForClient = [];
   var possibleIng = possibleExtras.arrayOfIngredients; 
   var possibleRecPlus = possibleExtras.getRecPlus;
