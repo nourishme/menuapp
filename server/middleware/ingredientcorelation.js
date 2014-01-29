@@ -31,7 +31,7 @@ exports.getTotalRecipeCount =
 }();  // note: we immediately invoke getTotalCount()
 
 
-exports.template = // generate a message to find recipes count with our ingredients
+exports.queryTemplate = // generate a message to find recipes count with our ingredients
  queryTemplate = function(ingredients, typestring) {
   //     MATCH (A:Ingredient)<--(r:Recipe) WHERE id(A)=12345, 
   //           (B:Ingredient)<--(r:Recipe) WHERE id(B)=54321,
@@ -64,11 +64,11 @@ exports.template = // generate a message to find recipes count with our ingredie
 
 exports.getCoOccursPlusOne =
  getCoOccursPlusOne = function(req, res) {
-  var testArrayForCoOccur = req.data;
+  var getMoreForThisGroup = req.data;
 
   db.beginAndCommitTransaction({
     statements:[{
-          statement : queryTemplate(testArrayForCoOccur, 'countAll')
+          statement : queryTemplate(getMoreForThisGroup, 'countAll')
       }
     ]
   }, callbackWrapper(req, res, setResultOfCoOccursPlusOne));
@@ -76,14 +76,14 @@ exports.getCoOccursPlusOne =
 
 var setResultOfCoOccursPlusOne = function(err, result, req, res) {
   if (err) console.log("error in setResultOfCoOccursPlusOne: ", err);
-  currentSelection.totalRecs = result.data[0].row[0]; // should be a single number
+  currentSelection.recTotalNow = result.data[0].row[0]; // should be a single number
   findMoreIngredients(req, res);
 };
 
 var findMoreIngredients = function(req, res) {
   db.beginAndCommitTransaction({
     statements:[{
-          statement : queryTemplate(testArrayForCoOccur, 'findMore')
+          statement : queryTemplate(currentSelection.recTotalNow, 'findMore')
       }
     ]
   }, callbackWrapper(req, res, setFoundIngredients));
@@ -92,10 +92,44 @@ var findMoreIngredients = function(req, res) {
 var setFoundIngredients = function(err, result, req, res) {
   if (err) console.log("error in setFoundIngredients: ", err);
   possibleExtras.arrayOfIngredients = result.data[0].row[0]; // should be a single number
-  loopToCalcPmi(req, res);
+  getRecPlus(req, res);
 };
 
-var calcPmiForIngredients = function(reca, recb, recab, totalRec) { 
+var getRecPlus = function(req, res) {
+  var possibleIng = possibleExtras.arrayOfIngredients;
+  var current = req.data;
+  var trans = { statements : [] };
+  for (var i = 0; i < possibleIng.length; i++) { //TODO: can shorten response time here by limiting possibleIng.length
+    var newList = current.concat(possibleIng[i]);
+    trans.statements.push(queryTemplate(newList, 'countAll'));
+  }
+
+  db.beginAndCommitTransaction(trans, callbackWrapper(req, res, loopToCalcPmi));
+};
+
+var loopToCalcPmi = function(err, result, req, res) {
+  var pmiScoresForClient = [];
+  var possibleIng = possibleExtras.arrayOfIngredients; 
+  var possibleRecPlus = possibleExtras.getRecPlus;
+  var total = grc;
+  var recNow = currentSelection.recTotalNow;
+  var recPoss = result.data; //TODO: what's the actual stuff? 
+  console.log('*** what does the data in recPoss look liek?', recPoss);
+  // let's assume for now that recPoss and possibleIng are in the same order... 
+  for (var i = 0; i < possibleIng.length; i++) {
+
+    pmiScoresForClient.push({
+      PMI: calcPmiForIngredients(recNow, possibleIng[i].containedIn, recPoss[i], total),
+      ingredientName: possibleIng[i].ingredientName,
+      id: possibleIng[i].id
+    });
+
+  }
+  console.log("here's what we're sending back from loopToCalcPmimi: ",pmiScoresForClient);
+  res.send(pmiScoresForClient);
+};
+
+var calcPmiForIngredients = function(recNow, recAdd, recNowAdd, totalRec) { 
   // PMI(a,b) = log( p(a,b) / p(a)*p(b) )
   // p(a,b) = (# recipes containing a & b ) / (# recipes)
   // p(a) = (# recipes containing a) / (# recipes)
@@ -109,32 +143,14 @@ var calcPmiForIngredients = function(reca, recb, recab, totalRec) {
     return Math.log(pab / (pa*pb));
   };
 
-  var pa = pcalc(reca/total);
-  var pb = pcalc(recb/total);
-  var pab = pcalc(recab/total);
+  var pa = pcalc(recNow/total);
+  var pb = pcalc(recAdd/total);
+  var pab = pcalc(recTotal/total);
 
   var pairPMI = pmi(pa,pb,pab);
 
   return pairPMI;
 };
-
-
-// ingredients that occur with A&B
-
-//     MATCH 
-//       (A:Ingredient {ingredientName: 'eggs' })<--(r:Recipe), 
-//       (B:Ingredient {ingredientName: 'salt' })<--(r:Recipe), 
-//       (C:Ingredient)<--(r:Recipe) 
-//     RETURN count(DISTINCT C)
-
-
-// RecC
-    
-//     'MATCH 
-//       (A:Ingredient {ingredientName: '+nextIngredient+' })<--(r:Recipe)
-//     RETURN count(DISTINCT r)'
-
-
 
 
 module.exports = exports;
