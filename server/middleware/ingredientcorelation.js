@@ -49,7 +49,7 @@ exports.queryTemplate = // generate a message to find recipes count with our ing
   };
 
   for (var i = 0; i < ingredients.length; i++) {
-    msg += "MATCH "+template('i'+i, ingredients[i]) + ', ';
+    msg += "MATCH "+template('i'+i, ingredients[i]) + '   ';
     if (typestring === 'countMore') msg = msg.slice(0,msg.length-2);
   }
 
