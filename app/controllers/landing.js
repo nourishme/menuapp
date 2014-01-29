@@ -16,14 +16,13 @@ app.controller('landing', function($http,$location,$scope,ingredientMethods,shar
       for (var key in $scope.toCook){
         ingredients.push($scope.toCook[key]['ingredientName']); // Figure out if ID is right
       }
-    ingredients.sort();
-    $http({
-      method: 'POST',
-      url: '/searchForRecipes/',
-      data: ingredients
-    });
+      ingredients.sort();
+      $http({
+        method: 'POST',
+        url: '/searchForRecipes/',
+        data: ingredients
+      });
     }
-
   };
 
   $scope.getSearchResults = function(){};
