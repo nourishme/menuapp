@@ -1,14 +1,15 @@
 
 <div class="section smallCol">
+
   <div class="subsection">
-    <p class="sectionHeader">You've selected:</p>
+    <div class="sectionHeader">You've selected:</div>
     <div class="sectionBody">
         <button class="topcoat-button--large--quiet" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)" >{{ingredient.ingredientName}}</button>
     </div>
   </div>
 
   <div class="subsection">
-    <p class="sectionHeader">Or add:</p>
+    <div class="sectionHeader">Or add:</div>
     <div class="sectionBody">
       <button class="topcoat-button--large" ng-repeat="ingredient in suggestedIngredients | limitTo:10" ng-click="addAndSearch(ingredient)" >{{ingredient.ingredientName}}</button>
     </div>

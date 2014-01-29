@@ -43,6 +43,4 @@ exports.setRoutes = function(app, application_root){
 
 };
 
-
 module.exports = exports;
-
