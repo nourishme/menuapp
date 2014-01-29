@@ -19,9 +19,10 @@ var callbackWrapper = function (req, res, altCallback){
   return callback;
 };
 
-var grc = 0; // set to zero until we find it with getTotalRecipeCount()
+var grc = {}; // set to zero until we find it with gettotipeCount()
 var currentSelection = {};
 var possibleExtras = {};
+var coms = {}
 
 
 exports.getTotalRecipeCount = // get global recipe count
@@ -30,7 +31,7 @@ exports.getTotalRecipeCount = // get global recipe count
   msg  = 'MATCH (r:Recipe) RETURN count(DISTINCT r)';
   var setGrc = function(err, result) {
     if (err) console.log(err);
-    grc = results.results[0].data[0];
+    grc = result.data[0];
     console.log("***FORTESTING*** getTotalCount result here: ", grc);
   };
   db.cypherQuery(msg, setGrc);
@@ -42,27 +43,34 @@ exports.queryTemplate = // generate a message to find recipes count with our ing
  queryTemplate = function(ingredients, typestring) {
   //     MATCH (A:Ingredient)<--(r:Recipe) WHERE id(A)=12345, 
   //           (B:Ingredient)<--(r:Recipe) WHERE id(B)=54321,
-  var msg = "MATCH ";
+  var msg = '';
   var template = function(key, id) {
     return '('+key+':Ingredient)<--(r:Recipe) WHERE id('+key+') = '+id+' ';
   };
 
   for (var i = 0; i < ingredients.length; i++) {
-    msg += template('i'+i, ingredients[i]) + ', ';
+    msg += "MATCH "+template('i'+i, ingredients[i]) + ', ';
+    if (typestring === 'countMore') msg = msg.slice(0,msg.length-2);
   }
 
   switch (typestring) {
     case 'countAll':
-      msg = msg.slice(0,msg.length-1);
+      msg = msg.slice(0,msg.length-2);
       msg += 'RETURN count(DISTINCT r)';
+      console.log(" countall queryTemplate with typestring: ",typestring, ' and msg: ',msg)
       return msg;
     case 'countMore': //todo: i think this case is unnecessary
-      msg += ' (C:Ingredient)<--(r:Recipe) RETURN count(DISTINCT C)';
+      
+      msg += ' MATCH (C:Ingredient)<--(r:Recipe) RETURN count(DISTINCT C)';
+      // console.log(" countMore queryTemplate with typestring: ",typestring, ' and msg: ',msg)
       return msg;
     case 'findMore':
+      msg = msg.slice(0,msg.length-2);
+      msg += ' MATCH (C:Ingredient )<--(r:Recipe) WHERE C.containedIn > 3  '; 
       msg += ' RETURN DISTINCT C.ingredientName AS ingredientName, '+
        ' C.containedIn AS containedIn, '+
-       ' id(C) AS id ';
+       ' id(C) AS id LIMIT 10';
+      console.log(" findMore queryTemplate with typestring: ",typestring, ' and msg: ',msg)
       return msg;    
     default:
       return "no (or incorrect) typestring in template"; 
@@ -71,11 +79,14 @@ exports.queryTemplate = // generate a message to find recipes count with our ing
 
 exports.getCoOccursPlusOne = // this starts our event chain
  getCoOccursPlusOne = function(req, res) {
-  var getMoreForThisGroup = req.data; // here's the client's current selection of ingredients
+  console.log("*******getCoOccursPlusOne req.body: ",req.body)
+  coms.req = req;
+  coms.res = res;
+  currentSelection.ingredientGroup = req.body; // here's the client's current selection of ingredients
 
   db.beginAndCommitTransaction({
     statements:[{
-          statement : queryTemplate(getMoreForThisGroup, 'countAll')
+          statement : queryTemplate(currentSelection.ingredientGroup, 'countAll')
       }
     ]
   }, callbackWrapper(req, res, setResultOfCoOccursPlusOne));
@@ -86,15 +97,21 @@ exports.getCoOccursPlusOne = // this starts our event chain
 exports.setResultOfCoOccursPlusOne = // we'll set our result to a global
  setResultOfCoOccursPlusOne = function(err, result, req, res) {
   if (err) console.log("error in setResultOfCoOccursPlusOne: ", err);
-  currentSelection.recTotalNow = result.data[0].row[0]; // should be a single number
+  console.log("result.results[0].data[0].row[0] in setResultOfCoOccursPlusOne: ", result.results[0].data[0].row[0]);
+  // { results: [ { columns: [Object], data: [Object] } ],
+  // errors: [] }
+  currentSelection.recTotalNow = result.results[0].data[0].row[0]; // should be a single number
+  console.log("*******setResultOfCoOccursPlusOne sets currentSelection.recTotalNow: ",currentSelection.recTotalNow) ;
   findMoreIngredients(req, res);
 };
 
 exports.findMoreIngredients = // now we'll find more ingredients to match with our current selection
  findMoreIngredients = function(req, res) {
+  console.log("*******findMoreIngredients needs currentSelection.ingredientGroup: ",currentSelection.ingredientGroup); 
+  console.log('testing note... we have not REQ here ************* TODO *************');
   db.beginAndCommitTransaction({
     statements:[{ 
-          statement : queryTemplate(currentSelection.recTotalNow, 'findMore')
+          statement : queryTemplate(currentSelection.ingredientGroup, 'findMore')
       }
     ]
   }, callbackWrapper(req, res, setFoundIngredients));
@@ -103,20 +120,22 @@ exports.findMoreIngredients = // now we'll find more ingredients to match with o
 exports.setFoundIngredients = // just set the results to a global and move forward
  setFoundIngredients = function(err, result, req, res) {
   if (err) console.log("error in setFoundIngredients: ", err);
-  possibleExtras.arrayOfIngredients = result.data[0].row[0]; // should be a single number
+  console.log("*******setFoundIngredients result.results[0].data: ",result.results[0].data) ;
+
+  possibleExtras.arrayOfIngredients = result.results[0].data; // should be a single number
   getRecPlus(req, res);
 };
 
-exports.getRecPlus = // this is a long query. will find recipe counts for all possible additional ingredients
+exports.getRecPlus = // LIMITED TO 100 in templateQuery this is a long query. will find recipe counts for all possible additional ingredients
  getRecPlus = function(req, res) {
-  var possibleIng = possibleExtras.arrayOfIngredients;
-  var current = req.data;
+  var possibleIng = possibleExtras.arrayOfIngredients; //[ { row: [ 'white sugar', 8, 431183 ] }, ... ]
+  var current = currentSelection.ingredientGroup;
   var trans = { statements : [] };
   for (var i = 0; i < possibleIng.length; i++) { //TODO: can shorten response time here by limiting possibleIng.length
-    var newList = current.concat(possibleIng[i]);
-    trans.statements.push(queryTemplate(newList, 'countAll'));
+    var newList = current.concat(possibleIng[i].row[2]); //position 2 on the row is the ingredient number
+    trans.statements.push({statement: queryTemplate(newList, 'countMore')});
   }
-
+  console.log("*** transaction message in getRecPlus: ", trans)
   db.beginAndCommitTransaction(trans, callbackWrapper(req, res, loopToCalcPmi));
 };
 
@@ -125,40 +144,47 @@ exports.loopToCalcPmi = // assumes ordered results & actual objects... loop the 
   var pmiScoresForClient = [];
   var possibleIng = possibleExtras.arrayOfIngredients; 
   var possibleRecPlus = possibleExtras.getRecPlus;
+  console.log("*** this is the grc... ", grc);
   var total = grc;
-  var recNow = currentSelection.recTotalNow;
-  var recPoss = result.data; //TODO: what's the actual stuff? 
+  var countRecNow = currentSelection.recTotalNow;
+  var recPoss = result.results; //TODO: what's the actual stuff? 
   console.log('*** what does the data in recPoss look liek?', recPoss);
   // let's assume for now that recPoss and possibleIng are in the same order... 
-  for (var i = 0; i < possibleIng.length; i++) {
+  // increment:  9  total:  6454  countRecNow:  3001  possibleIng[i](containedIn?):  { row: [ 'ground mustard', 8, 432082 ] } recPoss[i]:  { columns: [ 'count(DISTINCT C)' ],
+  // data: [ { row: [Object] } ] }
 
+  for (var i = 0; i < possibleIng.length; i++) {
+    console.log('increment: ', i ,  ' total: ', total, ' countRecNow: ', countRecNow, ' possibleIng[i].row[2]: ', possibleIng[i].row[2], 'recPoss[i].data[0].row: ', recPoss[i].data[0].row[0]);
+    
     pmiScoresForClient.push({
-      PMI: calcPmiForIngredients(recNow, possibleIng[i].containedIn, recPoss[i], total),
-      ingredientName: possibleIng[i].ingredientName,
-      id: possibleIng[i].id
+      PMI: calcPmiForIngredients(countRecNow, possibleIng[i].row[1], recPoss[i].data[0].row[0], total),
+      ingredientName: possibleIng[i].row[0],
+      id: possibleIng[i].row[2]
     });
   }
   console.log("here's what we're sending back from loopToCalcPmimi: ",pmiScoresForClient);
-  res.send(pmiScoresForClient);
+  coms.res.send(pmiScoresForClient);
 };
 
-var calcPmiForIngredients = function(recNow, recAdd, recNowAdd, totalRec) { 
+var calcPmiForIngredients = function(recNow, recAdd, recNowAdd, tot) { 
   // PMI(a,b) = log( p(a,b) / p(a)*p(b) )
   // p(a,b) = (# recipes containing a & b ) / (# recipes)
   // p(a) = (# recipes containing a) / (# recipes)
   // p(b) = (# recipes containing b) / (# recipes)
-    
-  var pcalc = function(contain, totalRec) {
-    return contain/totalRec;
+  // console.log('recNowAdd: ', recNowAdd.data[0].row )
+  var pcalc = function(contain, total) {
+    console.log("pcalc contain : ", contain, ' && total ', total);
+    return contain/total;
   };
 
   var pmi = function(pa, pb, pab) {
+    console.log("pmi pa : ", pa, ' && pb ', pb, '&& pab ', pab);
     return Math.log(pab / (pa*pb));
   };
 
-  var pa = pcalc(recNow/total);
-  var pb = pcalc(recAdd/total);
-  var pab = pcalc(recTotal/total);
+  var pa = pcalc(recNow,tot);
+  var pb = pcalc(recAdd,tot);
+  var pab = pcalc(recNowAdd,tot);
 
   var pairPMI = pmi(pa,pb,pab);
 
