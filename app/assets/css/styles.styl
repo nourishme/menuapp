@@ -17,6 +17,7 @@
 // basic layout
 body
   global-reset()
+  font-size: size2
 
 .clear
   clearfix()
@@ -30,12 +31,11 @@ body
   .smallCol
     // width 35.625%
     flex 3
-    padding:20px
+    padding: 10px 20px
 
   .bigCol
-    max-width 59.375%
     flex 5
-    padding:20px
+    padding: 10px 20px
 
   .section
     margin 0 auto 10px
@@ -43,15 +43,16 @@ body
   .sectionHeader
     border-bottom 2px solid orange
     margin-bottom: 10px
+    font-size size2
 
   .sectionBody
     margin-top 10px
-    font-size size2
 
   .subsection
-    width:100%
     margin-bottom 10px
-    font-size size2
+
+  #searchBox
+    max-width 59.375%
 
 @import "base"
 @import "recipe"
