@@ -37,6 +37,7 @@ var coIngredientQuery = function(val) {
                   " CREATE (i1:Ingredient )-[pm1:PMI]->(i2: Ingredient)  "+
                   " SET startNode(pm1).pmiTime = c[6], endNode(pm1).pmiTime = c[6], pm1.weight = log( (totalRec*recAB) /(recA*recB) ), pm1.pmiTime= c[6] "+
                   " SET startNode(pm1).pScore = (recA/totalRec), endNode(pm1).pScore = (recB/totalRec) "+
+                  " SET startNode(pm1).containedIn = recA, endNode(pm1).containedIn = recB "+
                   " CREATE (i1:Ingredient )<-[pm2:PMI]-(i2: Ingredient)  "+
                   " SET startNode(pm2).pmiTime = c[6], endNode(pm2).pmiTime = c[6], pm2.weight = log( (totalRec*recAB) /(recA*recB) ), pm2.pmiTime= c[6] "+
 
@@ -51,18 +52,18 @@ var coIngredientQuery = function(val) {
 
 var getListToProcess = function(timestamp, listsize) {
   console.log('get ready for a lot of fun and excitement');
+  var daysbetweenprocess = 2,
+    msBetween = daysbetweenprocess * 86400;
   listsize = listsize || 1;
   timestamp = timestamp - msBetween || 1; // all further steps rely on this value being present
-  var daysbetweenprocess = 10,
-    msBetween = daysbetweenprocess * 86400;
   // Starting from a list of 100 ingredients where i.pmiTime = timestamp
   //   MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient {pmiTime: 1}) 
   //     WITH DISTINCT id(i) as ingredientids 
   //   RETURN ingredientids LIMIT 1
   var msg = {statements:[
-    {statement: "MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient {pmiTime:"+
+    {statement: "MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient) WHERE  i.pmiTime < "+
         timestamp+
-        "}) WITH DISTINCT id(i) as ingredientids RETURN ingredientids LIMIT "+
+        " WITH DISTINCT id(i) as ingredientids RETURN ingredientids LIMIT "+
         listsize} ]};
   console.log("message in Get List to Process: ",msg);
   db.beginAndCommitTransaction(msg, pmiLoop);
@@ -95,7 +96,10 @@ var nextIngredient = function(err,result, start, timestamp) {
 
 };
 
-getListToProcess(1, 100);
+// getListToProcess(1, 100);
+var date = new Date().getTime();
+date = date - 86400;
+getListToProcess(date, 100);
 
 
 
