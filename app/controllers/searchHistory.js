@@ -48,6 +48,5 @@ app.controller('searchHistory', function($http,$scope) {
 
   $scope.getFavoriteIngredients();
   $scope.getAvoidIngredients();
-
   // $scope.searchHistory = $scope.getSearchHistory();
 });

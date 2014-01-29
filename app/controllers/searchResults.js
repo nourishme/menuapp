@@ -1,10 +1,26 @@
 
 app.controller('searchResults', function($http,$location,$scope,ingredientMethods,sharedProperties) {
 
-  // Get the methods from the shared services
-  $scope.addToCook = function(ingredient){ ingredientMethods.addToCook($scope,ingredient); };
-  $scope.removeFromToCook =function(ingredient){ingredientMethods.removeFromToCook($scope,ingredient);};
-  $scope.getSuggestedIngredients = function(){ingredientMethods.getSuggestedIngredients($scope);};
+  //Methods from shared services
+  $scope.addToCook = function(ingredient){
+    ingredientMethods.addToCook($scope,ingredient);
+  };
+
+  $scope.removeFromToCook =function(ingredient){
+    ingredientMethods.removeFromToCook($scope,ingredient);
+  };
+
+  $scope.getSuggestedIngredients = function(){
+    ingredientMethods.getSuggestedIngredients($scope);
+  };
+
+  $scope.addAndSearch = function(ingredient){
+    ingredientMethods.addToCook($scope,ingredient);
+  };
+
+  $scope.removeAndSearch = function(ingredient){
+    ingredientMethods.removeFromToCook($scope, ingredient);
+  };
 
   // Local methods
   $scope.getRecipe = function(id){
@@ -12,14 +28,17 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
     // $location.path("http://www.yummly.com/recipe/" + id);
   };
 
-  $scope.getSearchResults = function(){
+  var ingredientsToList = function(){
     var ingredients = [];
     for (var key in $scope.toCook){
       // ingredients.push($scope.toCook[key]['_id'].toString());
       ingredients.push($scope.toCook[key]['_id']);
     }
+    return ingredients.sort();
+  };
 
-    ingredients.sort();
+  $scope.getSearchResults = function(){
+    ingredients = ingredientsToList();
 
     $http({
       method: 'POST',
@@ -28,7 +47,7 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
     })
     .success(function(data, status) {
       $scope.searchResults = data;
-      console.log(data);
+      // console.log(data);
     })
     .error(function(data, status){
       console.log(data,status);
@@ -47,15 +66,6 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
       console.log(data,status);
     });
 
-  };
-
-
-  $scope.addAndSearch = function(ingredient){
-    ingredientMethods.addToCook($scope,ingredient);
-  };
-
-  $scope.removeAndSearch = function(ingredient){
-    ingredientMethods.removeFromToCook($scope, ingredient);
   };
 
   // When page is first loaded . . .
