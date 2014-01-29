@@ -3,6 +3,13 @@ exports.neo4j = neo4j = require('node-neo4j');
 exports.db = db = new neo4j('http://localhost:7474');
 exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 
+/* 
+ * We use this module by invoking getCoOccursPlusOne. 
+ * That starts a chain of events which find PMI scores for common
+ * occurring ingredients. Which is awesome.
+ */
+
+
 // utility function. //todo: this could be put somewhere else
 var callbackWrapper = function (req, res, altCallback){
   resultSendCallback = function(err, result) {
@@ -62,7 +69,7 @@ exports.queryTemplate = // generate a message to find recipes count with our ing
   }
 };
 
-exports.getCoOccursPlusOne =
+exports.getCoOccursPlusOne = 
  getCoOccursPlusOne = function(req, res) {
   var getMoreForThisGroup = req.data;
 
@@ -123,7 +130,6 @@ var loopToCalcPmi = function(err, result, req, res) {
       ingredientName: possibleIng[i].ingredientName,
       id: possibleIng[i].id
     });
-
   }
   console.log("here's what we're sending back from loopToCalcPmimi: ",pmiScoresForClient);
   res.send(pmiScoresForClient);
