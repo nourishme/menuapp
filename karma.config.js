@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Mon Jan 20 2014 16:51:12 GMT-0800 (PST)
+// Generated on Wed Jan 29 2014 11:47:36 GMT-0800 (PST)
 
 module.exports = function(config) {
   config.set({
@@ -9,18 +9,17 @@ module.exports = function(config) {
 
 
     // frameworks to use
-    frameworks: ['mocha','chai'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
-    files: [
-      'app/scripts/vendor/angular/angular.js',
+    files: ['app/scripts/vendor/angular/angular.js',
       'app/scripts/vendor/angular-touch/angular-touch.js',
       'app/scripts/vendor/angular-route/angular-route.js',
       'app/scripts/vendor/angular-mocks/angular-mocks.js',
-      'test/app.js',
+      'app/*.js',
       // 'server/*.js',
-      'app/*.js'
+      'test/app.js'
     ],
 
 
@@ -49,7 +48,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // Start these browsers, currently available:
@@ -69,6 +68,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: true
   });
 };

@@ -43,10 +43,6 @@ exports.setRoutes = function(app, application_root){
   // app.get('/getRecipe/:id',ingredients.getRecipe);
   // app.get('/getRecipe/:recipeNumber',ingredients.getRecipe); //todo: let's make sure this doesn't belong before we delete it. currently it's duplicated above(jfl) 
 
-  
-
-
-
 };
 
 module.exports = exports;
