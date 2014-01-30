@@ -87,7 +87,7 @@ var nextIngredient = function(err,result, start, timestamp) {
     recsofar = 0;
   }
   var msg = {statements: []};
-  console.log('recsofar: ',recsofar, 'ingredient number: ', ingArray[recsofar].row[0]);
+  console.log('recsofar: ',recsofar, 'ingredient number: ', ingArray[0]);
   msg.statements.push({
     statement: setCoIngredientQuery(ingArray[recsofar].row[0])
   });
