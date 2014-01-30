@@ -1,4 +1,4 @@
-var test= require('../app/testData.js');
+var test= require('./testData.js');
 
 module.exports = {
   get: function(req,res){

@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Menu Maybe</title>
+  <title>Saucesome</title>
   <meta name="description" content="This is a recipe recommendation app.">
   <meta name="keywords" content="recipes">
   <meta name="author" content="Kyle Warneck, Kamla Kasichainula, Jesse LaRue">
@@ -35,36 +35,46 @@
   <script src="scripts/vendor/modernizr/modernizr.js"></script>
 </head>
 <body ng-app="app">
-  <div class="container">
+  <div class="container" id="headercontainer">
     <header>
-      <div class="appTitle">Menu Maybe</div>
-      <div class="topcoat-tab-bar">
-        <label class="topcoat-tab-bar__item">
-          <input type="radio" name="tab-bar">
-          <a href="#/login"><button class="topcoat-tab-bar__button">Sign In</button></a>
+      <div class="appTitle">Saucesome</div>
+      <div class="topcoat-button-bar">
+        <label class="topcoat-button-bar__item">
+          <input type="radio" name="button-bar">
+          <a href="#/login"><button class="topcoat-button-bar__button--large">Sign In</button></a>
         </label>
-        <label class="topcoat-tab-bar__item">
-          <input type="radio" name="tab-bar">
-          <a href="#/ingredients/47"><button class="topcoat-tab-bar__button">Ingredients Inventory</button></a>
+        <label class="topcoat-button-bar__item">
+          <input type="radio" name="button-bar">
+          <a href="#/landing"><button class="topcoat-button-bar__button--large">Landing</button></a>
         </label>
-        <label class="topcoat-tab-bar__item">
-          <input type="radio" name="tab-bar">
-          <a href="#/searchResults/47"><button class="topcoat-tab-bar__button">Search Results</button></a>
+
+       <!--  <label class="topcoat-button-bar__item">
+          <input type="radio" name="button-bar">
+          <a href="#/ingredients/47"><button class="topcoat-button-bar__button--large">Ingredients Inventory</button></a>
+        </label> -->
+        
+        <label class="topcoat-button-bar__item">
+          <input type="radio" name="button-bar">
+          <a href="#/searchResults/"><button class="topcoat-button-bar__button--large">Search Results</button></a>
         </label>
-        <label class="topcoat-tab-bar__item">
-          <input type="radio" name="tab-bar">
-          <a href="#/recipe/47"><button class="topcoat-tab-bar__button">Recipe</button></a>
+
+<!--         <label class="topcoat-button-bar__item">
+          <input type="radio" name="button-bar">
+          <a href="#/recipe/Salted-dark-chocolate-popcorn-314529"><button class="topcoat-button-bar__button--large">Recipe</button></a>
+        </label> -->
+
+        <label class="topcoat-button-bar__item">
+          <input type="radio" name="button-bar">
+          <a href="#/searchHistory/"><button class="topcoat-button-bar__button--large">Search History</button></a>
         </label>
       </div>
     </header>
   </div>
   <div class="clear"></div>
-  <div class="container" id="maincontentcontainer" ng-view>
-  </div>
+  <div class="container" id="mainContainer" ng-view></div>
 
   <div class="container" id="footercontainer">
-    <footer class="group">
-    </footer>
+    <footer></footer>
   </div>
 
   <!-- JavaScript at the bottom for fast page loading -->
@@ -85,12 +95,17 @@
   
   <script src="app.js"></script>
 
-  <script src="controllers/example.js"></script>
+  <script src="services/ingredientMethods.js"></script>
+  <script src="services/sharedProperties.js"></script>
+
+
+  <!-- <script src="controllers/ingredients.js"></script> commented out. not present in repo.(.jfl.) --> 
+  <script src="controllers/landing.js"></script>
   <script src="controllers/login.js"></script>
-  <script src="controllers/ingredients.js"></script>
-  <script src="controllers/recipe.js"></script>
+  <!-- <script src="controllers/recipe.js"></script> commented out. not present in repo.(.jfl.) -->
   <script src="controllers/searchResults.js"></script>
-  
+  <script src="controllers/searchHistory.js"></script>
+
   <script src="config.js"></script>
 
   <!-- Testing Stuff -->

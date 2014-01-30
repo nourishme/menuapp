@@ -1,0 +1,65 @@
+app.service('ingredientMethods', function ($http,sharedProperties) {
+
+  return {
+
+    getTopIngredients : function($scope){
+      $http({
+        method: 'GET',
+        url: '/topIngredients/2000'
+      })
+      .success(function(data, status) {
+        console.log(data.data);
+        $scope.ingredients = data.data;
+      })
+      .error(function(data, status){
+        console.log(data,status);
+      });
+    },
+
+    getSuggestedIngredients: function($scope){
+      var currentList = [];
+      var temp = sharedProperties.getToCook();
+      for (var key in temp){
+        currentList.push(temp[key]['_id']);
+      }
+      console.log(currentList);
+      if (currentList.length > 0){
+        $http({
+          method: 'POST',
+          url: '/suggestedIngredients/',
+          data: currentList
+        })
+        .success(function(data, status) {
+          console.log(data);
+          $scope.suggestedIngredients = data;
+        })
+        .error(function(data, status){
+          console.log(data,status);
+        });
+      }
+    },
+
+    addToCook: function($scope,ingredient){
+      if(!($scope.toCook[ingredient.ingredientName])){
+        $scope.toCook[ingredient.ingredientName] = ingredient;
+        $scope.showCook = true;
+        sharedProperties.setToCook($scope.toCook);
+      }
+      $scope.getSuggestedIngredients($scope);
+      $scope.getSearchResults();
+    },
+
+    removeFromToCook : function($scope,ingredient){
+      if($scope.toCook[ingredient.ingredientName]){
+        delete($scope.toCook[ingredient.ingredientName]);
+        sharedProperties.setToCook($scope.toCook);
+        $scope.showCook = (Object.keys($scope.toCook).length > 0);
+      }
+      if ($scope.showCook) $scope.getSuggestedIngredients($scope);
+      $scope.getSearchResults();
+    }
+
+  };
+
+
+});

@@ -1,0 +1,24 @@
+<div class="mainBox">
+  <button class="notBookmarked" ng-click="addBookmark()" ng-hide="bookmarked">Save</button>
+  <button class="Bookmarked" ng-click="removeBookmark()" ng-show="bookmarked">Saved!</button>
+  <div class="section">
+    <p class="sectionHeader">{{recipe.recipeName}}</p>
+  </div>
+
+  <div class="section">
+    <img src="{{recipe.images[0].hostedLargeUrl}}"/>
+  </div>
+
+  <div class="topcoat-list section">
+      <p class="sectionHeader topcoat-list__header">Ingredients</p>
+      <ul class="topcoat-list__container">
+        <li class="topcoat-list__item" ng-repeat="line in recipe.ingredientLines">{{line}}</li>
+      </ul>
+  </div>
+</div>
+
+
+<div class="attribution">
+  <a href="{{recipe.attribution.url}}">{{recipe.attribution.text}}</a><br>
+  <img src="{{recipe.attribution.logo}}"/>
+</div>

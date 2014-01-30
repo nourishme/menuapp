@@ -1,0 +1,46 @@
+<div class="section smallCol">
+
+  <div class="subsection">
+    <div class="sectionHeader">Favorite Ingredients:</div>
+    <div class="sectionBody">
+      <button class="topcoat-button--large" ng-repeat="ingredient in favoriteIngredients | limitTo:10" ng-click="addAndSearch(ingredient)" >{{ingredient.ingredientName}}</button>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sectionHeader">Ingredients to Avoid:</div>
+    <div class="sectionBody">
+      <button class="topcoat-button--large" ng-repeat="ingredient in avoidIngredients | limitTo:10" ng-click="addAndSearch(ingredient)" >{{ingredient.ingredientName}}</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="section bigCol">
+
+  <div class="subSection">
+    <div class="sectionHeader">Saved Recipes:</div>
+    <div class="sectionBody">
+      <div class="recipe topcoat-button--large" ng-repeat="recipe in savedRecipes | limitTo:12" ng-click="getRecipe(recipe.id)">
+        <div class="recipeImage"><img src={{recipe.smallImageUrls[0]}}></div>
+        <div class="recipeName">{{recipe.recipeName}}</div>
+        <div class="saveButton"><button class="topcoat-button--large--cta">Unsave</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="topcoat-list subsection">
+    <div class="sectionHeader todivcoat-list__header">Search History:</div>
+    <ul class="topcoat-list__container">
+      <li class="topcoat-list__item" ng-repeat="query in searchHistory">{{query}}</li>
+    </ul>
+  </div>
+
+</div>
+
+
+
+
+
+
+

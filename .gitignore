@@ -4,3 +4,4 @@ bower_components
 app/scripts/vendor
 .DS_Store
 server/config/configfile.js
+.shell_history

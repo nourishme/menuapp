@@ -1,7 +1,8 @@
-@import "base.css";
-/* Responsive Design Stuff */
 /*TopCoat*/
-@import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css";
+@import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css";
+body {
+  font-size: size2;
+}
 body html,
 body body,
 body div,
@@ -104,36 +105,122 @@ body a img {
 .clear:after {
   clear: both;
 }
-.container,
-.textRight {
-  text-align: right;
-}
-.mainContent {
-  clear: left;
+#mainContainer {
+  font-size: size1;
+  display: -webkit-box;
+  display: -moz-box;
   display: -webkit-flex;
-  -webkit-flex-direction: column;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin: auto;
 }
-#maincontentcontainer {
-  margin: 40px 40px;
+#mainContainer .smallCol {
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  padding: 10px 20px;
 }
-header {
+#mainContainer .bigCol {
+  -webkit-box-flex: 5;
+  -moz-box-flex: 5;
+  -o-box-flex: 5;
+  box-flex: 5;
+  -webkit-flex: 5;
+  -ms-flex: 5;
+  flex: 5;
+  padding: 10px 20px;
+}
+#mainContainer .section {
+  margin: 0 auto 10px;
+}
+#mainContainer .sectionHeader {
+  border-bottom: 2px solid #ffa500;
+  margin-bottom: 10px;
+  font-size: size2;
+}
+#mainContainer .sectionBody {
+  margin-top: 10px;
+}
+#mainContainer .subsection {
+  margin-bottom: 10px;
+}
+#mainContainer #searchBox {
+  max-width: 59.375%;
+}
+.recipeImage {
+  margin: auto;
+}
+.attribution {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 15%;
+  text-wrap: normal;
+  border: 2px solid #ffa500;
+}
+.attribution a {
+  text-decoration: none;
+  color: #000;
+}
+input {
   width: 100%;
-  border-bottom: 4px solid #ffa500;
-  height: 70px;
 }
-.appTitle {
-  display: inline-block;
-  float: left;
-  margin: 10px 20px;
-  color: #ffa500;
-  font-size: 3em;
-  font-family: helvetica;
+button {
+  height: 40px;
 }
-.topcoat-tab-bar {
-  float: right;
+.ingredientButton {
+  margin: 5px;
+  width: 100%;
 }
-.ingredientsLiked,
-.ingredientsNotLiked {
+.ingredientButton button {
+  width: 100%;
+  background-color: #ffa500;
+}
+.recipe {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 5px;
+  margin: 5px auto;
+  background-color: #ffa500;
+  width: 90%;
+  height: 80px;
+}
+.recipe .recipeName {
+  -webkit-box-flex: 4;
+  -moz-box-flex: 4;
+  -o-box-flex: 4;
+  box-flex: 4;
+  -webkit-flex: 4;
+  -ms-flex: 4;
+  flex: 4;
+  text-wrap: normal;
+  margin: auto;
+  font-size: 1.1rem;
+  vertical-align: center;
+}
+.recipe .recipeImage {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -141,16 +228,90 @@ header {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  margin: 30px;
-}
-.ingredientsLiked .topcoat-checkbox__checkmark,
-.ingredientsNotLiked .topcoat-checkbox__checkmark {
   text-align: left;
+  padding: 5px 10px;
+  vertical-align: center;
 }
-.recipeName,
-.recPicGroup {
-  width: 360px;
+.saveButton {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 5px;
+  margin: auto;
+  vertical-align: center;
 }
-.attribution {
-  clear: left;
+.loginBox {
+  margin: auto;
+  text-align: center;
+  margin-top: 10%;
+  font-size: 1.5rem;
+}
+#headercontainer {
+  width: 95%;
+  border-bottom: 4px solid #ffa500;
+  height: 60px;
+  margin: 5px 20px 10px;
+}
+#headercontainer .appTitle {
+  display: inline-block;
+  float: left;
+  color: #ffa500;
+  font-size: 3em;
+  font-family: helvetica;
+}
+#headercontainer .topcoat-button-bar {
+  float: right;
+  vertical-align: bottom;
+  padding-top: 10px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+/* Responsive Design Stuff */
+@media only screen and (max-width: 768px) {
+  #mainContainer {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  #mainContainer .bigCol,
+  #mainContainer .smallCol {
+    width: 90%;
+    padding: 20px;
+  }
+  #mainContainer .subsection {
+    width: 100%;
+  }
+  #mainContainer #searchBox {
+    max-width: none;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .bigCol,
+  .smallCol {
+    width: 95%;
+    padding: 10px;
+  }
 }
