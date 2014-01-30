@@ -2,8 +2,8 @@ var neo4jDB = require('../neo4jDB.js');
 exports.neo4j = neo4j = require('node-neo4j');
 exports.db = db = new neo4j('http://localhost:7474');
 exports.phrases = ph = require('../middleware/db.phrase.templates.js');
+exports.saveToDB = require('../middleware/saveRecipesToDB')
 var yum = require('../middleware/callyummly.js');
-
 
 
 var callbackWrapper = function (req, res, altCallback){
@@ -69,7 +69,6 @@ exports.makeRecObjByIngredient = makeRecObjByIngredient = function(recipes){
       recipeObjByIngredient[ingredients[j]].push(recipes[i]);
     }
   }
-  // console.log('******resObjByIng*****: ', recipeObjByIngredient);
   return recipeObjByIngredient;
 };
 
@@ -112,6 +111,7 @@ exports.getRecipesByIngredientsNeeded = getRecipesByIngredientsNeeded = function
   searchResultBigCallback = function(result, err){
     if (err) throw err;
     var recipes = (JSON.parse(result)).matches;
+    exports.saveToDB.saveRecipeToDB(recipes);
     var byIngredient = makeRecObjByIngredient(recipes);
     var byNumIngNeeded = makeRecByIngNeededObj(recipes, req.body);
     var recipesByIngredient = {
@@ -128,8 +128,8 @@ exports.getRecipesByIngredientsNeeded = getRecipesByIngredientsNeeded = function
     for (var i = 0; i < result.length; i++) {
       paramsForYumSearch += result[i].data[0].row[0].ingredientName+ ' ';
     }
+    //todo: change back to 900
     paramsForYumSearch900=paramsForYumSearch +'&maxResult=900';
-    console.log('paramsForYumSearch ', paramsForYumSearch);
     yum.searchRecipe(paramsForYumSearch900, callbackWrapper( req, res, searchResultBigCallback ));
   };
 
@@ -144,7 +144,6 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
   for (var i = 0; i< req.body.length; i++  ){
     var query = {};
     query = ph.matchNodeById(req.body[i]);
-    // console.log("query is ",query.msg);
     transactionBody.statements.push( {statement: query.msg+' RETURN n'});
   }
 
@@ -160,7 +159,6 @@ exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(r
       paramsForYumSearch += result[i].data[0].row[0].ingredientName+ ' ';
     }
     paramsForYumSearch=paramsForYumSearch +'&maxResult=10';
-    console.log('paramsForYumSearch ', paramsForYumSearch);
     yum.searchRecipe(paramsForYumSearch, callbackWrapper( req, res, backwardsSearchRecipeResponseCallback ));
   };
 
@@ -206,7 +204,7 @@ exports.createRelationshipQuery = createRelationshipQuery = function(req, query)
     ingredient = req.body[i];
     msg += 'match (i: Ingredient) where id(i)='+ingredient+' '+
     'match (s: Search) where s.params="'+query+'" '+
-    'create (i)-[r:IS_PARAM]->(s) return r; ';
+    'create (i)-[r:IS_PARAM]->(s); ';
   }
   return msg;
 };
@@ -221,11 +219,9 @@ exports.createSearchIngredientRelationship = createSearchIngredientRelationship 
 };
 
 exports.createUserSearchRelationship = createUserSearchRelationship = function(req, query){
-  console.log('****req***: ', req.user);
   msg = 'match (u: User) where id(u)='+req.user+' '+
     'match (s: Search) where s.params="'+query+'" '+
     'create (u)-[r:SEARCHED]->(s) return u; ';
-  console.log('****msg***: ', msg);
   db.cypherQuery(msg, function(err, result){
     if(err){
       console.log('***CREATEUSERSEARCHERROR**: ', err);
