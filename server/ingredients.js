@@ -47,7 +47,9 @@ module.exports = {
     // getCoOccurs/
     // send array of ingredient ids [id1, id2, id3]
     // returns array of ingredient objects
-    dbinventory.findCoOccuringIngredients(req, res); //todo: testing (jfl)
+    pmi.getCoOccursPlusOne(req, res);
+    // dbinventory.findCoOccuringIngredients(req, res); //todo: testing (jfl)
+
   },
   searchForRecipesNumber: function(req, res){
     dbinventory.getRecipesByIngredientsNeeded(req, res);
