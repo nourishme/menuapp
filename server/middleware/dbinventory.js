@@ -45,8 +45,9 @@ exports.getTopIngredientsList = getTopIngredientsList = function(req, res) {
 };
 
 exports.findCoOccuringIngredients = findCoOccuringIngredients = function(req, res) {
-  var ingredientsByCoOccurWeight = [];
-  return ingredientsByCoOccurWeight;
+  var count = req.param('count') || 100;
+  msg = "MATCH (:Ingredient)-[r:PMI]->(:Ingredient) WITH startNode(r).ingredientName AS name ORDER BY r.weight DESC RETURN DISTINCT name LIMIT "+count;
+  db.cypherQuery(msg, callbackWrapper(req, res));
 };
 
 exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {

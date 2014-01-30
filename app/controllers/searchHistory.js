@@ -1,6 +1,5 @@
 app.controller('searchHistory', function($http,$scope) {
 
-
   $scope.getSearchHistory = function(){
     $http({
       method: 'GET',
@@ -14,26 +13,32 @@ app.controller('searchHistory', function($http,$scope) {
     });
   };
 
+
   $scope.getFavoriteIngredients = function(){
     $http({
       method: 'GET',
-      url: '/favoriteIngredients/'
+      // url: '/favoriteIngredients/'
+      url: '/getTopIngredients/10'
     })
     .success(function(data, status) {
-      return data;
+      // console.log(data);
+      $scope.favoriteIngredients = data.data;
     })
     .error(function(data, status){
       console.log(data,status);
     });
   };
+
 
   $scope.getAvoidIngredients = function(){
     $http({
       method: 'GET',
-      url: '/avoidIngredients/'
+      // url: '/avoidIngredients/'
+      url: '/getTopIngredients/10'
     })
     .success(function(data, status) {
-      return data;
+      $scope.avoidIngredients = data.data;
+      // return data;
     })
     .error(function(data, status){
       console.log(data,status);
@@ -41,8 +46,7 @@ app.controller('searchHistory', function($http,$scope) {
   };
 
 
-  $scope.searchHistory = $scope.getSearchHistory();
-  $scope.favoriteIngredients = $scope.getFavoriteIngredients;
-  $scope.avoidIngredients = $scope.getAvoidIngredients;
-
+  $scope.getFavoriteIngredients();
+  $scope.getAvoidIngredients();
+  // $scope.searchHistory = $scope.getSearchHistory();
 });

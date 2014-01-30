@@ -5,7 +5,7 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
     getTopIngredients : function($scope){
       $http({
         method: 'GET',
-        url: '/getTopIngredients/1000'
+        url: '/topIngredients/2000'
       })
       .success(function(data, status) {
         $scope.ingredients = data.data;
@@ -16,9 +16,16 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
     },
 
     getSuggestedIngredients: function($scope){
+      var currentList = [];
+      var temp = sharedProperties.getToCook();
+      for (var key in temp){
+        currentList.push(temp[key]['_id']);
+      }
+      console.log(currentList);
       $http({
-        method: 'GET',
-        url: '/ingredientList/'
+        method: 'POST',
+        url: '/suggestedIngredients/',
+        data: currentList
       })
       .success(function(data, status) {
         $scope.suggestedIngredients = data.data;
