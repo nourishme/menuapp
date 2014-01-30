@@ -8,6 +8,7 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
         url: '/topIngredients/2000'
       })
       .success(function(data, status) {
+        console.log(data.data);
         $scope.ingredients = data.data;
       })
       .error(function(data, status){
@@ -22,17 +23,20 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
         currentList.push(temp[key]['_id']);
       }
       console.log(currentList);
-      $http({
-        method: 'POST',
-        url: '/suggestedIngredients/',
-        data: currentList
-      })
-      .success(function(data, status) {
-        $scope.suggestedIngredients = data.data;
-      })
-      .error(function(data, status){
-        console.log(data,status);
-      });
+      if (currentList.length > 0){
+        $http({
+          method: 'POST',
+          url: '/suggestedIngredients/',
+          data: currentList
+        })
+        .success(function(data, status) {
+          console.log(data);
+          $scope.suggestedIngredients = data;
+        })
+        .error(function(data, status){
+          console.log(data,status);
+        });
+      }
     },
 
     addToCook: function($scope,ingredient){
@@ -51,7 +55,7 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
         sharedProperties.setToCook($scope.toCook);
         $scope.showCook = (Object.keys($scope.toCook).length > 0);
       }
-      $scope.getSuggestedIngredients($scope);
+      if ($scope.showCook) $scope.getSuggestedIngredients($scope);
       $scope.getSearchResults();
     }
 

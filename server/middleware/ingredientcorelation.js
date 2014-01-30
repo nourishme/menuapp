@@ -59,11 +59,13 @@ exports.queryTemplate = // generate a message to find recipes count with our ing
       msg += 'RETURN count(DISTINCT r)';
       console.log(" countall queryTemplate with typestring: ",typestring, ' and msg: ',msg)
       return msg;
+      
     case 'countMore': //todo: i think this case is unnecessary
       
       msg += ' MATCH (C:Ingredient)<--(r:Recipe) RETURN count(DISTINCT C)';
       // console.log(" countMore queryTemplate with typestring: ",typestring, ' and msg: ',msg)
       return msg;
+
     case 'findMore':
       msg = msg.slice(0,msg.length-2);
       msg += ' MATCH (C:Ingredient )<--(r:Recipe) WHERE C.containedIn > 3  '; 
@@ -159,7 +161,7 @@ exports.loopToCalcPmi = // assumes ordered results & actual objects... loop the 
     pmiScoresForClient.push({
       PMI: calcPmiForIngredients(countRecNow, possibleIng[i].row[1], recPoss[i].data[0].row[0], total),
       ingredientName: possibleIng[i].row[0],
-      id: possibleIng[i].row[2]
+      _id: possibleIng[i].row[2]
     });
   }
   console.log("here's what we're sending back from loopToCalcPmimi: ",pmiScoresForClient);
