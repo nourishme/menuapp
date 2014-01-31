@@ -187,10 +187,9 @@ button {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  padding: 3px;
-  margin: 0 auto;
-  height: 80px;
-  border-bottom: 2px solid #800080;
+  padding: 5px;
+  margin: auto;
+  border-bottom: 1px solid #800080;
 }
 .recipeBox .recipe {
   -webkit-box-flex: 3;
@@ -221,10 +220,11 @@ button {
   -webkit-flex: 3;
   -ms-flex: 3;
   flex: 3;
-  text-wrap: normal;
   margin: auto;
-  font-size: 1rem;
+  font-size: $size3;
   vertical-align: center;
+  overflow: none;
+  margin: auto 5px;
 }
 .recipeBox .recipe .recipeImage {
   -webkit-box-flex: 1;
@@ -235,8 +235,12 @@ button {
   -ms-flex: 1;
   flex: 1;
   text-align: left;
-  padding: 5px 10px;
-  vertical-align: center;
+  margin: auto;
+  vertical-align: middle;
+}
+.recipeBox .recipe .recipeImage img {
+  display: inline-block;
+  vertical-align: middle;
 }
 .recipeBox .recipeButtons {
   display: flex-direction;

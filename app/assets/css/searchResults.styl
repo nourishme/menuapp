@@ -2,10 +2,9 @@
 .recipeBox
   display flex
   flex-direction row
-  padding 3px
-  margin 0 auto
-  height:80px
-  border-bottom: 2px solid $color1
+  padding 5px
+  margin auto
+  border-bottom: 1px solid $color1
 
   .recipe
     flex 3
@@ -14,23 +13,28 @@
 
     .recipeName
       flex 3
-      text-wrap normal
       margin: auto
-      font-size: 1rem
+      font-size: $size3
       vertical-align center
+      overflow: none
+      margin: auto 5px
 
     .recipeImage
       flex 1
       text-align left
-      padding 5px 10px
-      vertical-align center
+      margin auto
+      vertical-align middle
+
+      img
+        display inline-block
+        vertical-align middle
+
 
   .recipeButtons
     display flex-direction
     flex-direction column
     flex 1
     height 100%
-    // padding 4px
 
     div
       flex: 1
