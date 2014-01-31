@@ -160,6 +160,9 @@ body a img {
 #mainContainer #searchBox {
   max-width: 59.375%;
 }
+#searchText {
+  margin-bottom: 10px;
+}
 input {
   width: 100%;
 }
@@ -167,7 +170,7 @@ button {
   height: 40px;
 }
 .ingredientButton {
-  margin: 5px;
+  margin: 5px 0;
   width: 100%;
 }
 .ingredientButton button {
