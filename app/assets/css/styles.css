@@ -1,7 +1,8 @@
-/*TopCoat*/
 @import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css";
+@import url("http://fonts.googleapis.com/css?family=Lato");
 body {
-  font-size: size2;
+  font-size: 1.25rem;
+  font-family: 'Lato', sans-serif;
 }
 body html,
 body body,
@@ -106,7 +107,7 @@ body a img {
   clear: both;
 }
 #mainContainer {
-  font-size: size1;
+  font-size: 1.5rem;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -145,9 +146,9 @@ body a img {
   margin: 0 auto 10px;
 }
 #mainContainer .sectionHeader {
-  border-bottom: 2px solid #ffa500;
+  border-bottom: 2px solid #800080;
   margin-bottom: 10px;
-  font-size: size2;
+  font-size: 1.25rem;
 }
 #mainContainer .sectionBody {
   margin-top: 10px;
@@ -157,22 +158,6 @@ body a img {
 }
 #mainContainer #searchBox {
   max-width: 59.375%;
-}
-.recipeImage {
-  margin: auto;
-}
-.attribution {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 15%;
-  text-wrap: normal;
-  border: 2px solid #ffa500;
-}
-.attribution a {
-  text-decoration: none;
-  color: #000;
 }
 input {
   width: 100%;
@@ -186,7 +171,7 @@ button {
 }
 .ingredientButton button {
   width: 100%;
-  background-color: #ffa500;
+  background-color: #800080;
 }
 .recipe {
   display: -webkit-box;
@@ -203,7 +188,7 @@ button {
   flex-direction: row;
   padding: 5px;
   margin: 5px auto;
-  background-color: #ffa500;
+  background-color: #800080;
   width: 90%;
   height: 80px;
 }
@@ -252,16 +237,16 @@ button {
 }
 #headercontainer {
   width: 95%;
-  border-bottom: 4px solid #ffa500;
+  border-bottom: 4px solid #800080;
   height: 60px;
   margin: 5px 20px 10px;
 }
 #headercontainer .appTitle {
   display: inline-block;
   float: left;
-  color: #ffa500;
+  color: #800080;
   font-size: 3em;
-  font-family: helvetica;
+  font-family: 'Lato', sans-serif;
 }
 #headercontainer .topcoat-button-bar {
   float: right;
