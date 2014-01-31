@@ -1,7 +1,8 @@
-/*TopCoat*/
 @import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css";
+@import url("http://fonts.googleapis.com/css?family=Lato");
 body {
-  font-size: size2;
+  font-size: 1.25rem;
+  font-family: 'Lato', sans-serif;
 }
 body html,
 body body,
@@ -106,7 +107,7 @@ body a img {
   clear: both;
 }
 #mainContainer {
-  font-size: size1;
+  font-size: 1.5rem;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -120,6 +121,7 @@ body a img {
   -ms-flex-direction: row;
   flex-direction: row;
   margin: auto;
+  padding: 0 7%;
 }
 #mainContainer .smallCol {
   -webkit-box-flex: 3;
@@ -145,9 +147,9 @@ body a img {
   margin: 0 auto 10px;
 }
 #mainContainer .sectionHeader {
-  border-bottom: 2px solid #ffa500;
+  border-bottom: 2px solid #800080;
   margin-bottom: 10px;
-  font-size: size2;
+  font-size: 1.25rem;
 }
 #mainContainer .sectionBody {
   margin-top: 10px;
@@ -157,22 +159,6 @@ body a img {
 }
 #mainContainer #searchBox {
   max-width: 59.375%;
-}
-.recipeImage {
-  margin: auto;
-}
-.attribution {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 15%;
-  text-wrap: normal;
-  border: 2px solid #ffa500;
-}
-.attribution a {
-  text-decoration: none;
-  color: #000;
 }
 input {
   width: 100%;
@@ -186,9 +172,9 @@ button {
 }
 .ingredientButton button {
   width: 100%;
-  background-color: #ffa500;
+  background-color: #800080;
 }
-.recipe {
+.recipeBox {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -202,25 +188,46 @@ button {
   -ms-flex-direction: row;
   flex-direction: row;
   padding: 5px;
-  margin: 5px auto;
-  background-color: #ffa500;
-  width: 90%;
-  height: 80px;
-}
-.recipe .recipeName {
-  -webkit-box-flex: 4;
-  -moz-box-flex: 4;
-  -o-box-flex: 4;
-  box-flex: 4;
-  -webkit-flex: 4;
-  -ms-flex: 4;
-  flex: 4;
-  text-wrap: normal;
   margin: auto;
-  font-size: 1.1rem;
-  vertical-align: center;
+  border-bottom: 1px solid #800080;
 }
-.recipe .recipeImage {
+.recipeBox .recipe {
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.recipeBox .recipe .recipeName {
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  margin: auto;
+  font-size: $size3;
+  vertical-align: center;
+  margin: auto 5px;
+  Text-Overflow: ellipsis;
+  min-width: 150px;
+}
+.recipeBox .recipe .recipeImage {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -229,10 +236,22 @@ button {
   -ms-flex: 1;
   flex: 1;
   text-align: left;
-  padding: 5px 10px;
-  vertical-align: center;
+  margin: auto;
+  vertical-align: middle;
+  min-width: 95px;
 }
-.saveButton {
+.recipeBox .recipe .recipeImage img {
+  display: inline-block;
+  vertical-align: middle;
+}
+.recipeBox .recipeButtons {
+  display: flex-direction;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -240,9 +259,21 @@ button {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding: 5px;
+  height: 100%;
+}
+.recipeBox .recipeButtons div {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   margin: auto;
-  vertical-align: center;
+}
+.recipeBox .recipeButtons div button {
+  width: 120px;
+  margin: auto;
 }
 .loginBox {
   margin: auto;
@@ -252,16 +283,16 @@ button {
 }
 #headercontainer {
   width: 95%;
-  border-bottom: 4px solid #ffa500;
+  border-bottom: 4px solid #800080;
   height: 60px;
   margin: 5px 20px 10px;
 }
 #headercontainer .appTitle {
   display: inline-block;
   float: left;
-  color: #ffa500;
+  color: #800080;
   font-size: 3em;
-  font-family: helvetica;
+  font-family: 'Lato', sans-serif;
 }
 #headercontainer .topcoat-button-bar {
   float: right;

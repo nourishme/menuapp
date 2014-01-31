@@ -17,7 +17,6 @@ app.controller('searchHistory', function($http,$scope) {
   $scope.getFavoriteIngredients = function(){
     $http({
       method: 'GET',
-      // url: '/favoriteIngredients/'
       url: '/getTopIngredients/10'
     })
     .success(function(data, status) {

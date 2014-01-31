@@ -21,10 +21,15 @@
   <div class="subSection">
     <div class="sectionHeader">Here's Some Recipes:</div>
     <div class="sectionBody">
-      <div class="recipe topcoat-button--large" ng-repeat="recipe in searchResults.matches | limitTo:12" ng-click="getRecipe(recipe.id)">
-        <div class="recipeImage"><img src={{recipe.smallImageUrls[0]}}></div>
-        <div class="recipeName">{{recipe.recipeName}}</div>
-        <div class="saveButton"><button class="topcoat-button--large--cta">Save</button>
+      <div class="recipeBox" ng-repeat="recipe in searchResults.matches | limitTo:12" >
+        <div class="recipe topcoat-button--large">
+          <div class="recipeImage"><img src={{recipe.smallImageUrls[0]}}></div>
+          <div class="recipeName">{{recipe.recipeName}}</div>
+        </div>
+        <div class="recipeButtons">
+          <div><button class="topcoat-button--large--cta" ng-click="saveRecipe(recipe.id)">Save Recipe</button></div>
+          <div><button class="topcoat-button--large--cta" ng-click="getRecipe(recipe.id)">View Recipe</button></div>
+        </div>
       </div>
     </div>
   </div>
