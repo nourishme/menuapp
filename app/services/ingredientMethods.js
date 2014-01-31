@@ -32,7 +32,7 @@ app.factory('ingredientMethods', function ($http,sharedProperties) {
         .success(function(data, status) {
 
           console.log("unflitered list ", data);
-          console.log("filtered list ",data.filter(function(ingredient){
+          console.log("filtered list ", data.filter(function(ingredient){
             return currentList.indexOf(ingredient._id) === -1;
           }));
 
