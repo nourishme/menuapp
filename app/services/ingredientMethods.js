@@ -1,4 +1,5 @@
-app.service('ingredientMethods', function ($http,sharedProperties) {
+app.factory('ingredientMethods', function ($http,sharedProperties) {
+
 
   return {
 
@@ -8,7 +9,6 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
         url: '/topIngredients/2000'
       })
       .success(function(data, status) {
-        console.log(data.data);
         $scope.ingredients = data.data;
       })
       .error(function(data, status){
@@ -22,7 +22,7 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
       for (var key in temp){
         currentList.push(temp[key]['_id']);
       }
-      console.log(currentList);
+      // console.log(currentList);
       if (currentList.length > 0){
         $http({
           method: 'POST',
@@ -30,8 +30,15 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
           data: currentList
         })
         .success(function(data, status) {
-          console.log(data);
-          $scope.suggestedIngredients = data;
+
+          console.log("unflitered list ", data);
+          console.log("filtered list ",data.filter(function(ingredient){
+            return currentList.indexOf(ingredient._id) === -1;
+          }));
+
+          $scope.suggestedIngredients = data.filter(function(ingredient){
+            return currentList.indexOf(ingredient._id) === -1;
+          });
         })
         .error(function(data, status){
           console.log(data,status);
@@ -57,7 +64,9 @@ app.service('ingredientMethods', function ($http,sharedProperties) {
       }
       if ($scope.showCook) $scope.getSuggestedIngredients($scope);
       $scope.getSearchResults();
-    }
+    },
+
+
 
   };
 

@@ -1,4 +1,4 @@
-app.service('sharedProperties', function () {
+app.factory('sharedProperties', function () {
   
   var toCook = {};
 
