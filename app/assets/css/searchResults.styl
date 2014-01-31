@@ -1,27 +1,41 @@
-.recipe
+
+.recipeBox
   display flex
   flex-direction row
-  padding 5px
-  margin 5px auto
-  background-color $color1
-  width 90%
-  height 80px
+  padding 3px
+  margin 0 auto
+  height:80px
+  border-bottom: 2px solid $color1
 
-  .recipeName
-    flex 4
-    text-wrap normal
-    margin: auto
-    font-size: 1.1rem
-    vertical-align center
+  .recipe
+    flex 3
+    display flex
+    flex-direction row
 
-  .recipeImage
+    .recipeName
+      flex 3
+      text-wrap normal
+      margin: auto
+      font-size: 1rem
+      vertical-align center
+
+    .recipeImage
+      flex 1
+      text-align left
+      padding 5px 10px
+      vertical-align center
+
+  .recipeButtons
+    display flex-direction
+    flex-direction column
     flex 1
-    text-align left
-    padding 5px 10px
-    vertical-align center
+    height 100%
+    // padding 4px
 
-.saveButton
-  flex 1
-  padding 5px
-  margin: auto
-  vertical-align center
+    div
+      flex: 1
+      margin: auto
+
+      button
+        width:  90%
+        margin: auto

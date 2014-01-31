@@ -121,6 +121,7 @@ body a img {
   -ms-flex-direction: row;
   flex-direction: row;
   margin: auto;
+  padding: 0 7%;
 }
 #mainContainer .smallCol {
   -webkit-box-flex: 3;
@@ -173,7 +174,7 @@ button {
   width: 100%;
   background-color: #800080;
 }
-.recipe {
+.recipeBox {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -186,26 +187,46 @@ button {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  padding: 5px;
-  margin: 5px auto;
-  background-color: #800080;
-  width: 90%;
+  padding: 3px;
+  margin: 0 auto;
   height: 80px;
+  border-bottom: 2px solid #800080;
 }
-.recipe .recipeName {
-  -webkit-box-flex: 4;
-  -moz-box-flex: 4;
-  -o-box-flex: 4;
-  box-flex: 4;
-  -webkit-flex: 4;
-  -ms-flex: 4;
-  flex: 4;
+.recipeBox .recipe {
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.recipeBox .recipe .recipeName {
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
   text-wrap: normal;
   margin: auto;
-  font-size: 1.1rem;
+  font-size: 1rem;
   vertical-align: center;
 }
-.recipe .recipeImage {
+.recipeBox .recipe .recipeImage {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -217,7 +238,14 @@ button {
   padding: 5px 10px;
   vertical-align: center;
 }
-.saveButton {
+.recipeBox .recipeButtons {
+  display: flex-direction;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -225,9 +253,21 @@ button {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding: 5px;
+  height: 100%;
+}
+.recipeBox .recipeButtons div {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   margin: auto;
-  vertical-align: center;
+}
+.recipeBox .recipeButtons div button {
+  width: 90%;
+  margin: auto;
 }
 .loginBox {
   margin: auto;
