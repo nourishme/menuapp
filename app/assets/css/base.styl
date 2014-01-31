@@ -1,14 +1,61 @@
 
-// Colors
-color1=black
-color2=white
+//CONSTANTS
 
+
+// Colors
+$color1=purple
 
 // fonts
-font1=helvetica
-font2=comic sans
+@import url(http://fonts.googleapis.com/css?family=Lato);
+$font1 = 'Lato', sans-serif;
+// font1=helvetica
+// font2=comic sans
 
 // size
 size1 = 1.5rem
 size2 = 1.25rem
+size3 = 1rem
 
+
+
+//BASIC LAYOUT ELEMENTS
+body
+  global-reset()
+  font-size: size2
+  font-family: $font1
+
+.clear
+  clearfix()
+
+#mainContainer
+  font-size size1
+  display flex
+  flex-direction row
+  margin: auto
+  padding: 0 7%
+
+  .smallCol
+    // width 35.625%
+    flex 3
+    padding: 10px 20px
+
+  .bigCol
+    flex 5
+    padding: 10px 20px
+
+  .section
+    margin 0 auto 10px
+
+  .sectionHeader
+    border-bottom 2px solid $color1
+    margin-bottom: 10px
+    font-size size2
+
+  .sectionBody
+    margin-top 10px
+
+  .subsection
+    margin-bottom 10px
+
+  #searchBox
+    max-width 59.375%

@@ -96,9 +96,8 @@ var nextIngredient = function(err,result, start, timestamp) {
   db.beginAndCommitTransaction(msg, nextIngredient);
 
 };
-getListToProcess(2, 100);
-var date = new Date().getTime();
-date = date - 86400;
+// var date = new Date().getTime();
+// date = date - 86400;
 // getListToProcess(date, 100);
 
 

@@ -1,61 +1,18 @@
 
 // Tell stylus to watch your directory and update your file 
-// stylus app/assets/css/styles.styl -w --include /Users/kylewarneck/Desktop/git_repos/menuapp/node_modules/nib/lib
+// stylus app/assets/css/styles.styl -w --include ./node_modules/nib/lib
 
 
-// IMPORTS
+//IMPORTS
 @import 'nib'
 
 
-/*TopCoat*/
+//TopCoat
 @import "../../scripts/vendor/topcoat/css/topcoat-desktop-light.css"
 // @import "../../scripts/vendor/topcoat/css/topcoat-mobile-light.css"
 
-// My Stuff
-
-
-// basic layout
-body
-  global-reset()
-  font-size: size2
-
-.clear
-  clearfix()
-
-#mainContainer
-  font-size size1
-  display flex
-  flex-direction row
-  margin: auto
-
-  .smallCol
-    // width 35.625%
-    flex 3
-    padding: 10px 20px
-
-  .bigCol
-    flex 5
-    padding: 10px 20px
-
-  .section
-    margin 0 auto 10px
-
-  .sectionHeader
-    border-bottom 2px solid orange
-    margin-bottom: 10px
-    font-size size2
-
-  .sectionBody
-    margin-top 10px
-
-  .subsection
-    margin-bottom 10px
-
-  #searchBox
-    max-width 59.375%
-
+//My Stuff
 @import "base"
-@import "recipe"
 @import "landing"
 @import "searchResults"
 @import "login"
