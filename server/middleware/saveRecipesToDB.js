@@ -71,7 +71,7 @@ var recipeNextbatch = function(err,result) {
 
   }
   if (done !== false) {
-    console.log('recipetriggerdone');
+    // console.log('recipetriggerdone');
     
     db.commitTransaction(result._id, msg, errthrow );
   } else {
@@ -134,7 +134,7 @@ var ingNextBatch = function(err,result) {
 
   }
   if (done !== false) {
-    console.log('ingtriggerdone');
+    // console.log('ingtriggerdone');
     
     db.commitTransaction(result._id, msg, errthrow );
   } else {
@@ -200,11 +200,11 @@ var relNextBatch = function(err,result) {
     }
   }
   if (done !== false) {
-    console.log('relationshiptriggerdone');
+    // console.log('relationshiptriggerdone');
 
     db.commitTransaction(result._id, msg, errthrow );
   } else {
-    console.log('about to insert batch: ', relBatches);
+    // console.log('about to insert batch: ', relBatches);
     relBatches++;
     // console.log("******: ", msg)
 
