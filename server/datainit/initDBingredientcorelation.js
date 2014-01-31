@@ -1,4 +1,4 @@
-var neo4jDB = require('../../neo4jDB.js');
+var neo4jDB = require('../neo4jDB.js');
 var exports = {};
 exports.neo4j = neo4j = require('node-neo4j');
 exports.db = db = new neo4j('http://localhost:7474');
@@ -98,9 +98,9 @@ var nextIngredient = function(err,result, start, timestamp) {
 };
 
 // getListToProcess(1, 100);
-var date = new Date().getTime();
-date = date - 86400;
-getListToProcess(date, 100);
+// var date = new Date().getTime();
+// date = date - 86400;
+// getListToProcess(date, 100);
 
 
 
