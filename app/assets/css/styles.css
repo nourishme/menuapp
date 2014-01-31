@@ -223,8 +223,9 @@ button {
   margin: auto;
   font-size: $size3;
   vertical-align: center;
-  overflow: none;
   margin: auto 5px;
+  Text-Overflow: ellipsis;
+  min-width: 150px;
 }
 .recipeBox .recipe .recipeImage {
   -webkit-box-flex: 1;
@@ -237,6 +238,7 @@ button {
   text-align: left;
   margin: auto;
   vertical-align: middle;
+  min-width: 95px;
 }
 .recipeBox .recipe .recipeImage img {
   display: inline-block;
