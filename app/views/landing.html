@@ -31,10 +31,10 @@
 
   <div class="subsection">
     <div class="sectionHeader" ng-show="showCook">Or add something else:</div>
-    <form>
+    <form id="ingredientSearchForm">
       <input type="text" class="topcoat-text-input--large" ng-model="ingredientSearch" placeholder="Ingredient"></input>
     </form>
-    <div class="ingredientButton animate-enter animate-leave" ng-repeat="ingredient in ingredients | filter:ingredientSearch | limitTo:14" ng-click="addToCook(ingredient)">
+    <div class="ingredientButton animate-enter animate-leave" ng-repeat="ingredient in ingredients | filter:ingredientSearch | limitTo:14" ng-click="addToCookSearch(ingredient)">
       <button class="topcoat-button--large--cta" ng-show="ingredientSearch">{{ingredient.ingredientName}}</button>
     </div>
   </div>
