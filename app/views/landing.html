@@ -34,9 +34,7 @@
     <form>
       <input type="text" class="topcoat-text-input--large" ng-model="ingredientSearch" placeholder="Ingredient"></input>
     </form>
-    <div class="ingredientButton" ng-repeat="ingredient in ingredients | filter:ingredientSearch | limitTo:14" ng-click="addToCook(ingredient)"
-    ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}"
-    >
+    <div class="ingredientButton animate-enter" ng-repeat="ingredient in ingredients | filter:ingredientSearch | limitTo:14" ng-click="addToCook(ingredient)">
       <button class="topcoat-button--large--cta" ng-show="ingredientSearch">{{ingredient.ingredientName}}</button>
     </div>
   </div>

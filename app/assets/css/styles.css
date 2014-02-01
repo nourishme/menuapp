@@ -320,7 +320,7 @@ button {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.animate-enter {
+.animate-enter.ng-enter {
   -webkit-transition: 3s linear all;
 /* Safari/Chrome */
   -moz-transition: 3s linear all;
@@ -338,8 +338,8 @@ button {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
 }
-.animate-enter.animate-enter-active {
-/* The animation code itself */
+.animate-enter.ng-enter.ng-enter-active {
+  The: animation code itself;
   opacity: 1;
   -ms-filter: none;
   filter: none;
