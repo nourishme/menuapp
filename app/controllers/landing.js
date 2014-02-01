@@ -6,6 +6,11 @@ app.controller('landing', function($http,$location,$scope,ingredientMethods,shar
     ingredientMethods.addToCook($scope,ingredient);
   };
 
+  $scope.addToCookSearch = function(ingredient){
+    $scope.ingredientSearch ="";
+    ingredientMethods.addToCook($scope,ingredient);
+  };
+
   $scope.removeFromToCook =function(ingredient){
     ingredientMethods.removeFromToCook($scope,ingredient);
   };
