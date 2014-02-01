@@ -160,6 +160,9 @@ body a img {
 #mainContainer #searchBox {
   max-width: 59.375%;
 }
+#searchText {
+  margin-bottom: 10px;
+}
 input {
   width: 100%;
 }
@@ -167,7 +170,7 @@ button {
   height: 40px;
 }
 .ingredientButton {
-  margin: 5px;
+  margin: 5px 0;
   width: 100%;
 }
 .ingredientButton button {
@@ -224,8 +227,8 @@ button {
   font-size: $size3;
   vertical-align: center;
   margin: auto 5px;
-  Text-Overflow: ellipsis;
   min-width: 150px;
+  white-space: normal;
 }
 .recipeBox .recipe .recipeImage {
   -webkit-box-flex: 1;
@@ -243,6 +246,10 @@ button {
 .recipeBox .recipe .recipeImage img {
   display: inline-block;
   vertical-align: middle;
+}
+.recipeBox .demoButton {
+  height: 100%;
+  width: 120px;
 }
 .recipeBox .recipeButtons {
   display: flex-direction;
@@ -317,6 +324,30 @@ button {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
+.animate-enter.ng-enter {
+  -webkit-transition: 0.5s linear all;
+/* Safari/Chrome */
+  -moz-transition: 0.5s linear all;
+/* Firefox */
+  -o-transition: 0.5s linear all;
+/* Opera */
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  -ms-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+/* IE10+ and Future Browsers */
+  The: animation preparation code;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.animate-enter.ng-enter.ng-enter-active {
+  The: animation code itself;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
 /* Responsive Design Stuff */
 @media only screen and (max-width: 768px) {
   #mainContainer {
@@ -344,5 +375,36 @@ button {
   .smallCol {
     width: 95%;
     padding: 10px;
+  }
+  .recipeBox {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-bottom: 4px;
+  }
+  .recipeBox .recipe .recipeName {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -o-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  }
+  .recipeBox .recipe .recipeImage {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -o-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  }
+  .recipeBox .recipeButtons div button {
+    width: 100%;
+    margin: 2px 0;
   }
 }

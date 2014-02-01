@@ -37,7 +37,7 @@
 <body ng-app="app">
   <div class="container" id="headercontainer">
     <header>
-      <div class="appTitle">Saucesome</div>
+      <a href="#/landing"><div class="appTitle">Saucesome</div></a>
       <div class="topcoat-button-bar">
         <label class="topcoat-button-bar__item">
           <input type="radio" name="button-bar">
@@ -45,7 +45,7 @@
         </label>
         <label class="topcoat-button-bar__item">
           <input type="radio" name="button-bar">
-          <a href="#/landing"><button class="topcoat-button-bar__button--large">Landing</button></a>
+          <a href="#/landing"><button class="topcoat-button-bar__button--large">Pick Your Ingredients</button></a>
         </label>
 
        <!--  <label class="topcoat-button-bar__item">
@@ -55,7 +55,7 @@
         
         <label class="topcoat-button-bar__item">
           <input type="radio" name="button-bar">
-          <a href="#/searchResults/"><button class="topcoat-button-bar__button--large">Search Results</button></a>
+          <a href="#/searchResults/"><button class="topcoat-button-bar__button--large">Find Recipes</button></a>
         </label>
 
 <!--         <label class="topcoat-button-bar__item">
@@ -63,10 +63,10 @@
           <a href="#/recipe/Salted-dark-chocolate-popcorn-314529"><button class="topcoat-button-bar__button--large">Recipe</button></a>
         </label> -->
 
-        <label class="topcoat-button-bar__item">
+<!--         <label class="topcoat-button-bar__item">
           <input type="radio" name="button-bar">
           <a href="#/searchHistory/"><button class="topcoat-button-bar__button--large">Search History</button></a>
-        </label>
+        </label> -->
       </div>
     </header>
   </div>
@@ -92,7 +92,8 @@
   <script src="scripts/vendor/angular/angular.js"></script>
   <script src="scripts/vendor/angular-touch/angular-touch.js"></script>
   <script src="scripts/vendor/angular-route/angular-route.js"></script>
-  
+  <script src="scripts/vendor/angular-animate/angular-animate.js"></script>
+
   <script src="app.js"></script>
 
   <script src="services/ingredientMethods.js"></script>
