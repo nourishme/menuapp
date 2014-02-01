@@ -1,0 +1,341 @@
+
+
+//Everything below is example code taken from
+// http://flippinawesome.org/2013/08/05/animating-with-angularjs/
+
+
+.animate-enter.ng-enter {
+  -webkit-transition: 0.5s linear all; /* Safari/Chrome */
+  -moz-transition: 0.5s linear all; /* Firefox */
+  -o-transition: 0.5s linear all; /* Opera */
+  transition: 0.5s linear all; /* IE10+ and Future Browsers */
+
+   The animation preparation code 
+  opacity: 0;
+}
+
+/*
+ Keep in mind that you want to combine both CSS
+ classes together to avoid any CSS-specificity
+ conflicts
+*/
+
+.animate-enter.ng-enter.ng-enter-active {
+   The animation code itself 
+  opacity: 1;
+}
+
+
+
+// .animate-enter.ng-enter, 
+// .animate-leave.ng-leave
+// { 
+//     -webkit-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -moz-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -ms-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -o-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     position: relative;
+//     display: block;
+//     overflow: hidden;
+//     text-overflow: clip;
+//     white-space:nowrap;
+// } 
+ 
+// .animate-leave.ng-leave.animate-leave-active,
+// .animate-enter.ng-enter {
+//     opacity: 0;
+//     width: 0px;
+//     height: 0px;
+// }
+ 
+// .animate-enter.ng-enter.animate-enter-active, 
+// .animate-leave.ng-leave {
+//     opacity: 1;
+//     width: 150px;
+//     height: 30px;
+// }
+   
+// .fade-show {
+//   -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//   -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//   -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//   -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//   transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//   white-space:nowrap;
+//   position:relative;
+//   overflow: hidden;
+//   text-overflow: clip;
+// }
+
+// .fade-show-active {
+//   opacity:1;
+// }
+
+
+// .fade-hide {
+//   -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//   -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//   -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//   -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//   transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//   white-space:nowrap;
+//   position:relative;
+//   overflow: hidden;
+//   text-overflow: clip;
+// }
+
+
+// .fade-hide-active {
+//   opacity:0;
+// }
+
+
+// example code from 
+// http://www.nganimate.org/angularjs/ng-repeat/3d-scale
+
+// .animate-enter.ng-enter, 
+// .animate-leave.ng-leave { 
+//     -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     position: relative;
+//     display: block;
+// } 
+ 
+// .animate-leave.ng-leave.animate-leave-active,
+// .animate-enter.ng-enter {
+//     -webkit-transform: scaleY(0);
+//     -moz-transform: scaleY(0);
+//     -ms-transform: scaleY(0);
+//     -o-transform: scaleY(0);
+//     transform: scaleY(0);
+//     height: 0px;
+//     opacity: 0;
+// }
+ 
+// .animate-enter.ng-enter.animate-enter-active,
+// .animate-leave.ng-leave {
+//     -webkit-transform: scaleY(1);
+//     -moz-transform: scaleY(1);
+//     -ms-transform: scaleY(1);
+//     -o-transform: scaleY(1);
+//     transform: scaleY(1);
+//     height: 30px;
+//     opacity: 1;
+// }
+
+
+
+// .animate-enter.ng-enter { 
+//     -webkit-animation: enter 600ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+//     animation: enter 600ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+//     display: block;
+//     position: relative;
+// } 
+// @-webkit-keyframes enter {
+//     from {
+//         opacity: 0;
+//         height: 0px;
+//         top: -50px;
+//         left: -5px;
+//     }
+//     10% {
+//         left: 45px;
+//     }
+//     20% {
+//         top: 40px;
+//     }
+//     30% {
+//         left: -35px;
+//     }
+//     40% {
+//         top: -30px;
+//     }
+//     50% {
+//         left: 25px;
+//     }
+//     60% {
+//         top: 20px;
+//     }
+//     70% {
+//         left: -15px;
+//     }
+//     80% {
+//         top: -10px;
+//     }
+//     90% {
+//         left: 5px;
+//     }
+//     to {
+//         opacity: 1;
+//         height: 30px;
+//         left: 0px;
+//         top: 0px;
+//     }
+// }
+// @keyframes enter {
+//     from {
+//         opacity: 0;
+//         height: 0px;
+//         top: -50px;
+//         left: -5px;
+//     }
+//     10% {
+//         left: 45px;
+//     }
+//     20% {
+//         top: 40px;
+//     }
+//     30% {
+//         left: -35px;
+//     }
+//     40% {
+//         top: -30px;
+//     }
+//     50% {
+//         left: 25px;
+//     }
+//     60% {
+//         top: 20px;
+//     }
+//     70% {
+//         left: -15px;
+//     }
+//     80% {
+//         top: -10px;
+//     }
+//     90% {
+//         left: 5px;
+//     }
+//     to {
+//         opacity: 1;
+//         height: 30px;
+//         left: 0px;
+//         top: 0px;
+//     }
+// }
+ 
+// .animate-leave.ng-leave { 
+//     -webkit-animation: leave 600ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+//     animation: leave 600ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+//     display: block;
+//     position: relative;
+// } 
+// @-webkit-keyframes leave {
+//     to {
+//         opacity: 0;
+//         height: 0px;
+//         top: -50px;
+//         left: -5px;
+//     }
+//     90% {
+//         left: 45px;
+//     }
+//     80% {
+//         top: 40px;
+//     }
+//     70% {
+//         left: -35px;
+//     }
+//     60% {
+//         top: -30px;
+//     }
+//     50% {
+//         left: 25px;
+//     }
+//     40% {
+//         top: 20px;
+//     }
+//     30% {
+//         left: -15px;
+//     }
+//     20% {
+//         top: -10px;
+//     }
+//     10% {
+//         left: 5px;
+//     }
+//     from {
+//         opacity: 1;
+//         height: 30px;
+//         left: 0px;
+//         top: 0px;
+//     }
+// }
+// @keyframes leave {
+//     to {
+//         opacity: 0;
+//         height: 0px;
+//         top: -50px;
+//         left: -5px;
+//     }
+//     90% {
+//         left: 45px;
+//     }
+//     80% {
+//         top: 40px;
+//     }
+//     70% {
+//         left: -35px;
+//     }
+//     60% {
+//         top: -30px;
+//     }
+//     50% {
+//         left: 25px;
+//     }
+//     40% {
+//         top: 20px;
+//     }
+//     30% {
+//         left: -15px;
+//     }
+//     20% {
+//         top: -10px;
+//     }
+//     10% {
+//         left: 5px;
+//     }
+//     from {
+//         opacity: 1;
+//         height: 30px;
+//         left: 0px;
+//         top: 0px;
+//     }
+// }
+
+
+
+// .animate-enter.ng-enter, 
+// .animate-leave.ng-leave
+// { 
+//     -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     position: relative;
+//     display: block;
+//     overflow: hidden;
+//     text-overflow: clip;
+//     white-space:nowrap;
+// } 
+ 
+// .animate-leave.ng-leave.animate-leave-active,
+// .animate-enter.ng-enter {
+//     opacity: 0;
+//     width: 0px;
+//     height: 0px;
+// }
+ 
+// .animate-enter.ng-enter.animate-enter-active, 
+// .animate-leave.ng-leave {
+//     opacity: 1;
+//     width: 150px;
+//     height: 30px;
+// }
+    
+
