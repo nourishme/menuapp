@@ -283,11 +283,20 @@ button {
   width: 120px;
   margin: auto;
 }
-.loginBox {
+.backgroundContainer {
+  display: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url("/saucesome_food_front_page.jpg");
+}
+.backgroundContainer .bigCol {
+  background-color: rgba(0,0,0,0.6);
+  position: absolute;
   margin: auto;
   text-align: center;
   margin-top: 10%;
-  font-size: 1.5rem;
+  font-size: 40px;
+  color: #fff;
 }
 #headercontainer {
   width: 95%;

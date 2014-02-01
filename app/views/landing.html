@@ -15,7 +15,7 @@
 
 
   <div class="subsection">
-    <div class="sectionHeader">Here are some ingredients that go well with that:</div>
+    <div class="sectionHeader">Here are some ingredients that commonly occur with that:</div>
       <div class="ingredientButton" ng-repeat="ingredient in suggestedIngredients | limitTo:12"  ng-click="addToCook(ingredient)" >
         <button class="topcoat-button--large--cta animate-enter animate-leave" >{{ingredient.ingredientName}}</button>
       </div>
