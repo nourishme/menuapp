@@ -48,8 +48,18 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
       data: ingredients
     })
     .success(function(data, status) {
+
       $scope.searchResults = data;
-      // console.log(data);
+      // console.log($scope.searchResults.matches[0]);
+      //Add placeholder image where needed
+      for(var i = 0 ; i < 20 && i < $scope.searchResults.matches.length ; i++){
+          if($scope.searchResults.matches[i].smallImageUrls.length === 0){
+            console.log("added a placeholder for ");
+            console.log($scope.searchResults.matches[i]);
+            $scope.searchResults.matches[i].smallImageUrls[0] = 'assets/images/icon_17562-2.png';
+          }
+      }
+
     })
     .error(function(data, status){
       console.log(data,status);
@@ -62,7 +72,7 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
     })
     .success(function(data, status) {
       $scope.recByIng = data;
-      console.log(data);
+      // console.log(data);
     })
     .error(function(data, status){
       console.log(data,status);
