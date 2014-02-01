@@ -1,4 +1,4 @@
-app.factory('ingredientMethods', function ($http,sharedProperties) {
+app.factory('ingredientMethods', function ($http,$location,sharedProperties) {
 
 
   return {
@@ -62,12 +62,13 @@ app.factory('ingredientMethods', function ($http,sharedProperties) {
         sharedProperties.setToCook($scope.toCook);
         $scope.showCook = (Object.keys($scope.toCook).length > 0);
       }
-      if ($scope.showCook) $scope.getSuggestedIngredients($scope);
+      if ($scope.showCook > 0) {
+        $scope.getSuggestedIngredients($scope);
+      } else {
+        $location.path("/landing");
+      }
       $scope.getSearchResults();
     },
-
-
-
   };
 
 

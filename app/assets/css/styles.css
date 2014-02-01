@@ -214,6 +214,7 @@ button {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  padding: 7px;
 }
 .recipeBox .recipe .recipeName {
   -webkit-box-flex: 3;
@@ -238,7 +239,7 @@ button {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  text-align: left;
+  text-align: center;
   margin: auto;
   vertical-align: middle;
   min-width: 95px;
