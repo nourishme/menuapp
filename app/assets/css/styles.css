@@ -247,6 +247,10 @@ button {
   display: inline-block;
   vertical-align: middle;
 }
+.recipeBox .demoButton {
+  height: 100%;
+  width: 120px;
+}
 .recipeBox .recipeButtons {
   display: flex-direction;
   -webkit-box-orient: vertical;
