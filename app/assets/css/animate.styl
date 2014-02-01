@@ -5,20 +5,20 @@
 
 
 .animate-enter.ng-enter {
-  -webkit-transition: 3s linear all; /* Safari/Chrome */
-  -moz-transition: 3s linear all; /* Firefox */
-  -o-transition: 3s linear all; /* Opera */
-  transition: 3s linear all; /* IE10+ and Future Browsers */
+  -webkit-transition: 0.5s linear all; /* Safari/Chrome */
+  -moz-transition: 0.5s linear all; /* Firefox */
+  -o-transition: 0.5s linear all; /* Opera */
+  transition: 0.5s linear all; /* IE10+ and Future Browsers */
 
-  /* The animation preparation code */
+   The animation preparation code 
   opacity: 0;
 }
 
-/*
- Keep in mind that you want to combine both CSS
- classes together to avoid any CSS-specificity
- conflicts
-*/
+// /*
+//  Keep in mind that you want to combine both CSS
+//  classes together to avoid any CSS-specificity
+//  conflicts
+// */
 
 .animate-enter.ng-enter.ng-enter-active {
    The animation code itself 
@@ -27,6 +27,35 @@
 
 
 
+// .animate-enter.ng-enter, 
+// .animate-leave.ng-leave
+// { 
+//     -webkit-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -moz-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -ms-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     -o-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+//     position: relative;
+//     display: block;
+//     overflow: hidden;
+//     text-overflow: clip;
+//     white-space:nowrap;
+// } 
+ 
+// .animate-leave.ng-leave.animate-leave-active,
+// .animate-enter.ng-enter {
+//     opacity: 0;
+//     width: 0px;
+//     height: 0px;
+// }
+ 
+// .animate-enter.ng-enter.animate-enter-active, 
+// .animate-leave.ng-leave {
+//     opacity: 1;
+//     width: 150px;
+//     height: 30px;
+// }
+   
 // .fade-show {
 //   -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
 //   -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
@@ -65,8 +94,8 @@
 // example code from 
 // http://www.nganimate.org/angularjs/ng-repeat/3d-scale
 
-// .animate-enter, 
-// .animate-leave { 
+// .animate-enter.ng-enter, 
+// .animate-leave.ng-leave { 
 //     -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
 //     -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
 //     -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
@@ -76,8 +105,8 @@
 //     display: block;
 // } 
  
-// .animate-leave.animate-leave-active,
-// .animate-enter {
+// .animate-leave.ng-leave.animate-leave-active,
+// .animate-enter.ng-enter {
 //     -webkit-transform: scaleY(0);
 //     -moz-transform: scaleY(0);
 //     -ms-transform: scaleY(0);
@@ -87,8 +116,8 @@
 //     opacity: 0;
 // }
  
-// .animate-enter.animate-enter-active,
-// .animate-leave {
+// .animate-enter.ng-enter.animate-enter-active,
+// .animate-leave.ng-leave {
 //     -webkit-transform: scaleY(1);
 //     -moz-transform: scaleY(1);
 //     -ms-transform: scaleY(1);

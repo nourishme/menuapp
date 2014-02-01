@@ -321,19 +321,19 @@ button {
   flex-wrap: wrap;
 }
 .animate-enter.ng-enter {
-  -webkit-transition: 3s linear all;
+  -webkit-transition: 0.5s linear all;
 /* Safari/Chrome */
-  -moz-transition: 3s linear all;
+  -moz-transition: 0.5s linear all;
 /* Firefox */
-  -o-transition: 3s linear all;
+  -o-transition: 0.5s linear all;
 /* Opera */
-  -webkit-transition: 3s linear all;
-  -moz-transition: 3s linear all;
-  -o-transition: 3s linear all;
-  -ms-transition: 3s linear all;
-  transition: 3s linear all;
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  -ms-transition: 0.5s linear all;
+  transition: 0.5s linear all;
 /* IE10+ and Future Browsers */
-/* The animation preparation code */
+  The: animation preparation code;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
