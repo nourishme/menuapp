@@ -1,5 +1,7 @@
 
 app.controller('landing', function($http,$location,$scope,ingredientMethods,sharedProperties) {
+  document.getElementById("headercontainer").style.display=""
+  document.getElementById("mainContainer").classList.remove("backgroundContainer");
 
   // SHARED METHODS
   $scope.addToCook = function(ingredient){
