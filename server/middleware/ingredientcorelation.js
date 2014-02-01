@@ -68,10 +68,10 @@ exports.queryTemplate = // generate a message to find recipes count with our ing
 
     case 'findMore':
       msg = msg.slice(0,msg.length-2);
-      msg += ' MATCH (C:Ingredient )<--(r:Recipe) WHERE C.containedIn > 3  '; 
+      msg += ' MATCH (C:Ingredient )<--(r:Recipe) WHERE C.containedIn > 2  '; 
       msg += ' RETURN DISTINCT C.ingredientName AS ingredientName, '+
        ' C.containedIn AS containedIn, '+
-       ' id(C) AS id LIMIT 10';
+       ' id(C) AS id LIMIT 50';
       // console.log(" findMore queryTemplate with typestring: ",typestring, ' and msg: ',msg)
       return msg;    
     default:
