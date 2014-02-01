@@ -24,8 +24,10 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
 
   // Local methods
   $scope.getRecipe = function(id){
-    window.location="http://www.yummly.com/recipe/" + id;
+    // window.location="http://www.yummly.com/recipe/" + id;
     // $location.path("http://www.yummly.com/recipe/" + id);
+    url = "http://www.yummly.com/recipe/" + id;
+    window.open(url, '_blank');
   };
 
   var ingredientsToList = function(){
