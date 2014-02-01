@@ -198,25 +198,24 @@ exports.saveSearchQueryAsNode = saveSearchQueryAsNode = function(req, query){
   });
 };
 
-exports.createRelationshipQuery = createRelationshipQuery = function(req, query){
-  var ingredient;
-  var msg = '';
-  for (var i = 0 ; i < req.body.length ; i++){
-    ingredient = req.body[i];
-    msg += 'match (i: Ingredient) where id(i)='+ingredient+' '+
-    'match (s: Search) where s.params="'+query+'" '+
-    'create (i)-[r:IS_PARAM]->(s); ';
-  }
+exports.createRelationshipQuery = createRelationshipQuery = function(ingredient, query){
+  var msg = 'match (i: Ingredient) where id(i)='+ingredient+' '+
+  'match (s: Search) where s.params="'+query+'" '+
+  'create (i)-[r:IS_PARAM]->(s) return r';
+
   return msg;
 };
 
+
 exports.createSearchIngredientRelationship = createSearchIngredientRelationship = function(req, query){
-  var msg = createRelationshipQuery(req, query);
-  db.cypherQuery(msg, function(err, result){
-    if(err){
-      console.log('***CREATESEARCHERR***', err);
-    }
-  });
+  for (var i = 0 ; i < req.body.length ; i++){
+    var msg = createRelationshipQuery(req.body[i], query);
+    db.cypherQuery(msg, function(err, result){
+      if(err){
+        console.log('***CREATESEARCHERR***', err);
+      }
+    });
+  }
 };
 
 exports.createUserSearchRelationship = createUserSearchRelationship = function(req, query){
