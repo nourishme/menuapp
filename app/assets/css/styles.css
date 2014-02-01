@@ -291,7 +291,7 @@ button {
 }
 .backgroundContainer .bigCol {
   background-color: rgba(0,0,0,0.6);
-  position: absolute;
+  position: inherit;
   margin: auto;
   text-align: center;
   margin-top: 10%;
