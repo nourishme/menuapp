@@ -4,7 +4,7 @@
   <div class="subsection">
     <div class="sectionHeader">You've selected:</div>
     <div class="selectedIngredients">
-      <button class="topcoat-button--large--quiet  animate-enter" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)">{{ingredient.ingredientName}}</button>
+      <button class="topcoat-button--large--quiet animate-enter animate-leave" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)">{{ingredient.ingredientName}}</button>
     </div>
   </div>
 
@@ -17,7 +17,7 @@
   <div class="subsection">
     <div class="sectionHeader">Here are some ingredients that go well with that:</div>
       <div class="ingredientButton" ng-repeat="ingredient in suggestedIngredients | limitTo:12"  ng-click="addToCook(ingredient)" >
-        <button class="topcoat-button--large--cta" >{{ingredient.ingredientName}}</button>
+        <button class="topcoat-button--large--cta animate-enter animate-leave" >{{ingredient.ingredientName}}</button>
       </div>
   </div>
 
@@ -34,7 +34,7 @@
     <form>
       <input type="text" class="topcoat-text-input--large" ng-model="ingredientSearch" placeholder="Ingredient"></input>
     </form>
-    <div class="ingredientButton" ng-repeat="ingredient in ingredients | filter:ingredientSearch | limitTo:14" ng-click="addToCook(ingredient)">
+    <div class="ingredientButton animate-enter animate-leave" ng-repeat="ingredient in ingredients | filter:ingredientSearch | limitTo:14" ng-click="addToCook(ingredient)">
       <button class="topcoat-button--large--cta" ng-show="ingredientSearch">{{ingredient.ingredientName}}</button>
     </div>
   </div>
