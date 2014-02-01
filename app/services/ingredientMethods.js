@@ -35,10 +35,10 @@ app.factory('ingredientMethods', function ($http,sharedProperties) {
           console.log("filtered list ", data.filter(function(ingredient){
             return currentList.indexOf(ingredient._id) === -1;
           }));
-          $scope.suggestedIngredients = data;
-          // $scope.suggestedIngredients = data.filter(function(ingredient){
-          //   return currentList.indexOf(ingredient._id) === -1;
-          // });
+          // $scope.suggestedIngredients = data;
+          $scope.suggestedIngredients = data.filter(function(ingredient){
+            return currentList.indexOf(ingredient._id) === -1;
+          });
         })
         .error(function(data, status){
           console.log(data,status);
