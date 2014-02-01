@@ -99,7 +99,7 @@ var nextIngredient = function(err,result, start, timestamp) {
 // var date = new Date().getTime();
 // date = date - 86400;
 // getListToProcess(date, 100);
-
+getListToProcess(2,100);
 
 
 // var findCoIngred = function(ida, timestamp) {
