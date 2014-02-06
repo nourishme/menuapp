@@ -56,7 +56,7 @@ exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {
 };
 
 /***
-Recipes by Ingredients Object
+Recipes by Ingredients Object 
 ***/
 
 exports.makeRecObjByIngredient = makeRecObjByIngredient = function(recipes){
