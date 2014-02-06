@@ -6,7 +6,7 @@ app.factory('ingredientMethods', function ($http,$location,sharedProperties) {
     getTopIngredients : function($scope){
       $http({
         method: 'GET',
-        url: '/topIngredients/1000'
+        url: '/topIngredients/2000'
       })
       .success(function(data, status) {
         $scope.ingredients = data.data;
