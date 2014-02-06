@@ -62,16 +62,16 @@ exports.queryTemplate = // generate a message to find recipes count with our ing
       
     case 'countMore': //todo: i think this case is unnecessary
       
-      msg += ' MATCH (C:Ingredient)<--(r:Recipe) RETURN count(DISTINCT C)';
+      msg += ' MATCH (C:Ingredient)<-[:HAS_INGREDIENT]-(r:Recipe) RETURN count(DISTINCT C)';
       // console.log(" countMore queryTemplate with typestring: ",typestring, ' and msg: ',msg)
       return msg;
 
     case 'findMore':
       msg = msg.slice(0,msg.length-2);
-      msg += ' MATCH (C:Ingredient )<--(r:Recipe) WHERE C.containedIn > 2  '; 
+      msg += ' MATCH (C:Ingredient )<-[:HAS_INGREDIENT]-(r:Recipe)  '; 
       msg += ' RETURN DISTINCT C.ingredientName AS ingredientName, '+
        ' C.containedIn AS containedIn, '+
-       ' id(C) AS id LIMIT 50';
+       ' id(C) AS id LIMIT 150';
       // console.log(" findMore queryTemplate with typestring: ",typestring, ' and msg: ',msg)
       return msg;    
     default:

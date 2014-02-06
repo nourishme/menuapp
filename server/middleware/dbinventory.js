@@ -130,7 +130,7 @@ exports.getRecipesByIngredientsNeeded = getRecipesByIngredientsNeeded = function
       paramsForYumSearch += result[i].data[0].row[0].ingredientName+ ' ';
     }
     //todo: change back to 900
-    paramsForYumSearch900=paramsForYumSearch +'&maxResult=900';
+    paramsForYumSearch900=paramsForYumSearch +'&maxResult=15';
     yum.searchRecipe(paramsForYumSearch900, callbackWrapper( req, res, searchResultBigCallback ));
   };
 
