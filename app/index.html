@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
+  
   <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Saucesome</title>
@@ -9,8 +10,6 @@
   <meta name="author" content="Kyle Warneck, Kamla Kasichainula, Jesse LaRue">
   <meta http-equiv="cleartype" content="on">
 
-  <!-- <link rel="shortcut icon" href="/favicon.ico"> -->
-
   <!-- Responsive and mobile friendly stuff -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
@@ -18,28 +17,21 @@
 
   <!--Stylesheets -->
   <link rel="stylesheet" href="assets/css/styles.css" media="all">
+
   <!--Favicon -->
   <link rel="icon" type="image/png" href="assets/icon/forkthis.png">
-  <!-- 
-  <link rel="stylesheet" href="scripts/vendor/topcoat/css/topcoat-desktop-light.css">
-  <link rel="stylesheet" href="scripts/vendor/topcoat/css/topcoat-mobile-light.css"> 
-  -->
-
-  <!-- Responsive Stylesheets -->
-  
-  <!-- <link rel="stylesheet" media="only screen and (max-width: 1024px) and (min-width: 769px)" href="assets/css/1024.css">
-  <link rel="stylesheet" media="only screen and (max-width: 768px) and (min-width: 481px)" href="assets/css/768.css">
-  <link rel="stylesheet" media="only screen and (max-width: 480px)" href="assets/css/480.css">
-  -->
 
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements and feature detects -->
   <script src="scripts/vendor/modernizr/modernizr.js"></script>
 </head>
 <body ng-app="app">
+  <a href="http://hackreactor.com"><img style="position: fixed; top: 0; right: 0; border: 0;" src="http://i.imgur.com/x86kKmF.png" alt="Built at Hack Reactor"></a>
   <div class="container" id="headercontainer">
     <header>
       <a href="#/landing"><div class="appTitle">Saucesome</div></a>
+
 <!--       <div class="topcoat-button-bar">
+
         <label class="topcoat-button-bar__item">
           <input type="radio" name="button-bar">
           <a href="#/login"><button class="topcoat-button-bar__button--large">Sign In</button></a>
@@ -47,28 +39,28 @@
         <label class="topcoat-button-bar__item">
           <input type="radio" name="button-bar">
           <a href="#/landing"><button class="topcoat-button-bar__button--large">Pick Your Ingredients</button></a>
-        </label> -->
+        </label>
 
-       <!--  <label class="topcoat-button-bar__item">
+        <label class="topcoat-button-bar__item">
           <input type="radio" name="button-bar">
           <a href="#/ingredients/47"><button class="topcoat-button-bar__button--large">Ingredients Inventory</button></a>
-        </label> -->
+        </label>
         
-<!--         <label class="topcoat-button-bar__item">
+        <label class="topcoat-button-bar__item">
           <input type="radio" name="button-bar">
           <a href="#/searchResults/"><button class="topcoat-button-bar__button--large">Find Recipes</button></a>
-        </label> -->
+        </label>
 
-<!--         <label class="topcoat-button-bar__item">
+        <label class="topcoat-button-bar__item">
           <input type="radio" name="button-bar">
           <a href="#/recipe/Salted-dark-chocolate-popcorn-314529"><button class="topcoat-button-bar__button--large">Recipe</button></a>
-        </label> -->
+        </label>
 
-<!--         <label class="topcoat-button-bar__item">
+        <label class="topcoat-button-bar__item">
           <input type="radio" name="button-bar">
           <a href="#/searchHistory/"><button class="topcoat-button-bar__button--large">Search History</button></a>
-        </label> -->
-      <!-- </div> -->
+        </label>
+      </div> -->
     </header>
   </div>
   <div class="clear"></div>
@@ -78,11 +70,6 @@
     <footer></footer>
   </div>
 
-  <!-- JavaScript at the bottom for fast page loading -->
-
-  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script> --!>
 
   <!--[if (lt IE 9) & (!IEMobile)]>
   <script src="js/selectivizr-min.js"></script>
@@ -100,18 +87,12 @@
   <script src="services/ingredientMethods.js"></script>
   <script src="services/sharedProperties.js"></script>
 
-
-  <!-- <script src="controllers/ingredients.js"></script> commented out. not present in repo.(.jfl.) --> 
   <script src="controllers/landing.js"></script>
   <script src="controllers/login.js"></script>
-  <!-- <script src="controllers/recipe.js"></script> commented out. not present in repo.(.jfl.) -->
   <script src="controllers/searchResults.js"></script>
   <script src="controllers/searchHistory.js"></script>
 
   <script src="config.js"></script>
-
-  <!-- Testing Stuff -->
-  <!-- <script src="testData.js"></script> -->
 
 </body>
 </html>
