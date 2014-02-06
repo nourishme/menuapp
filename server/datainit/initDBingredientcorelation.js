@@ -53,10 +53,10 @@ var setCoIngredientQuery = function(val) {
 
 var getListToProcess = function(timestamp, listsize) {
   console.log('get ready for a lot of fun and excitement');
-  var daysbetweenprocess = 2,
+  var daysbetweenprocess = .1,
     msBetween = daysbetweenprocess * 86400;
   listsize = listsize || 1;
-  timestamp = timestamp - msBetween || 1; // all further steps rely on this value being present
+  timestamp = timestamp || 1; // all further steps rely on this value being present
   // Starting from a list of 100 ingredients where i.pmiTime = timestamp
   //   MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient {pmiTime: 1}) 
   //     WITH DISTINCT id(i) as ingredientids 
@@ -96,8 +96,6 @@ var nextIngredient = function(err,result, start, timestamp) {
   db.beginAndCommitTransaction(msg, nextIngredient);
 
 };
-
-// getListToProcess(1, 100);
 // var date = new Date().getTime();
 // date = date - 86400;
 // getListToProcess(date, 100);

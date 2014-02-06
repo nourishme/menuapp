@@ -45,7 +45,7 @@ exports.createStatementFromObject =
 // exports.ing = require('./datainit/relationshipFactory.js');
 
 // Calculate PMI Scores here: 
-exports.ing = require('./datainit/initDBingredientcorelation.js');
+// exports.ing = require('./datainit/initDBingredientcorelation.js');
 
 module.exports = exports;
 // exports.ing = require('./datainit/flavorsImport.js');
