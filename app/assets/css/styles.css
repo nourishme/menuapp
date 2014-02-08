@@ -3,6 +3,7 @@
 body {
   font-size: 1.25rem;
   font-family: 'Lato', sans-serif;
+  background-image: url("/saucesome_food_front_page.jpg");
 }
 body html,
 body body,
@@ -122,6 +123,7 @@ body a img {
   flex-direction: row;
   margin: auto;
   padding: 0 7%;
+  color: #fff;
 }
 #mainContainer .smallCol {
   -webkit-box-flex: 3;
@@ -145,6 +147,7 @@ body a img {
 }
 #mainContainer .section {
   margin: 0 auto 10px;
+  background-color: rgba(0,0,0,0.6);
 }
 #mainContainer .sectionHeader {
   border-bottom: 2px solid #800080;
@@ -176,6 +179,10 @@ button {
 .ingredientButton button {
   width: 100%;
   background-color: #800080;
+}
+.selectedIngredients .topcoat-button--large {
+  margin-top: 3px;
+  margin-right: 3px;
 }
 .recipeBox {
   display: -webkit-box;
@@ -283,20 +290,13 @@ button {
   width: 120px;
   margin: auto;
 }
-.backgroundContainer {
-  display: fixed;
-  width: 100%;
-  height: 100%;
-  background-image: url("/saucesome_food_front_page.jpg");
-}
-.backgroundContainer .bigCol {
+.loginBox {
   background-color: rgba(0,0,0,0.6);
   position: inherit;
   margin: auto;
   text-align: center;
   margin-top: 10%;
   font-size: 40px;
-  color: #fff;
 }
 #headercontainer {
   width: 95%;
