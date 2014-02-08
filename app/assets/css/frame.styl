@@ -1,19 +1,34 @@
 
 // Top Bar
 #headercontainer
-  width 95%
-  border-bottom: 4px solid $color1
-  height 60px
-  margin: 5px 20px 10px
+  width:100%
+  padding:5px 10px
+  margin-bottom: 30px
+  // padding: 10px
+  // background-color: #dfe2e2
+  background-color: rgba(51, 51, 51, 0.6)
+  // background-color:$color1
   // display: none
 
-  .appTitle
-    display inline-block
-    float left
-    color: $color1
-    font-size:3em
-    font-family: $font1
+  a:link {text-decoration:none;}
+  a:visited {text-decoration:none;}
+  a:hover {text-decoration:none;}
+  a:active {text-decoration:none;}
 
+  #appTitle
+    display:inline-block
+    color: #F0F1F1
+    font-size:2em
+    font-weight: bolder
+    font-family: $font1
+    vertical-align: middle
+    margin-left:4px
+    // line-height:60px
+
+  .logo
+    width:50px
+    height:50px
+    vertical-align:middle
 
   .topcoat-button-bar
     float right
@@ -22,5 +37,4 @@
     display flex
     flex-direction row
     flex-wrap: wrap
-
 
