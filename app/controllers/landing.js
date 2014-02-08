@@ -1,7 +1,7 @@
 
 app.controller('landing', function($http,$location,$scope,ingredientMethods,sharedProperties) {
-  document.getElementById("headercontainer").style.display=""
-  document.getElementById("mainContainer").classList.remove("backgroundContainer");
+  document.getElementById("headercontainer").style.display="";
+  // document.getElementById("mainContainer").classList.remove("backgroundContainer");
 
   // SHARED METHODS
   $scope.addToCook = function(ingredient){
@@ -20,7 +20,6 @@ app.controller('landing', function($http,$location,$scope,ingredientMethods,shar
   $scope.getSuggestedIngredients = function(){
     ingredientMethods.getSuggestedIngredients($scope);
   };
-
 
 
   // LOCAL METHODS
@@ -43,7 +42,6 @@ app.controller('landing', function($http,$location,$scope,ingredientMethods,shar
 // Work around to make addToCook and remove from Cook work the same way on 
 // landing page and search results page.
   $scope.getSearchResults = function(){};
-
 
 
   // RUN WHEN LOADING PAGE
