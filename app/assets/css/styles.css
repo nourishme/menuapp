@@ -123,7 +123,7 @@ body a img {
   flex-direction: row;
   margin: auto;
   padding: 0 7%;
-  color: #fff;
+  color: #f0f1f1;
 }
 #mainContainer .smallCol {
   -webkit-box-flex: 3;
@@ -300,19 +300,58 @@ button {
 }
 #headercontainer {
   width: 100%;
-  padding: 10px;
+  padding: 5px 10px;
+  margin-bottom: 30px;
   background-color: rgba(51,51,51,0.6);
 }
-#headercontainer .appTitle {
-  color: #fff;
-  font-size: 3em;
+#headercontainer a:link {
+  text-decoration: none;
+}
+#headercontainer a:visited {
+  text-decoration: none;
+}
+#headercontainer a:hover {
+  text-decoration: none;
+}
+#headercontainer a:active {
+  text-decoration: none;
+}
+#headercontainer #appTitle {
+  display: inline-block;
+  color: #f0f1f1;
+  font-size: 2em;
   font-weight: bolder;
   font-family: 'Lato', sans-serif;
-  vertical-align: center;
+  vertical-align: middle;
+  margin-left: 4px;
 }
 #headercontainer .logo {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+}
+#headercontainer .topcoat-button-bar {
+  float: right;
+  vertical-align: bottom;
+  padding-top: 10px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .animate-enter.ng-enter {
   -webkit-transition: 0.5s linear all;
