@@ -150,7 +150,7 @@ body a img {
   background-color: rgba(0,0,0,0.6);
 }
 #mainContainer .sectionHeader {
-  border-bottom: 2px solid rgba(51,0,102,0.8);
+  border-bottom: 3px solid rgba(51,0,102,0.8);
   margin-bottom: 10px;
   font-size: 1.25rem;
 }
@@ -184,7 +184,7 @@ button {
   margin-top: 3px;
   margin-right: 3px;
 }
-.ingredientButton .topcoat-button--large--cta {
+.suggestedIngredients .topcoat-button--large {
   margin-top: 3px;
   margin-right: 3px;
 }
@@ -201,7 +201,7 @@ button {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  padding: 5px;
+  padding: 1px 5px;
   margin: auto;
   border-bottom: 1px solid rgba(51,0,102,0.8);
 }
