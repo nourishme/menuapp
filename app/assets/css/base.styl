@@ -1,9 +1,12 @@
 
 //CONSTANTS
 
-
 // Colors
-$color1=purple
+$color1 = rgba(51, 0, 102, 0.8);  // buttons and stuff
+// $color2= rgba(255, 255, 255, 1);
+$color2 = rgba(75, 0, 150, 1);
+$color3 = #F0F1F1
+
 
 // fonts
 @import url(http://fonts.googleapis.com/css?family=Lato);
@@ -19,10 +22,12 @@ size3 = 1rem
 
 
 //BASIC LAYOUT ELEMENTS
+
 body
   global-reset()
   font-size: size2
   font-family: $font1
+  background-image:url(/saucesome_food_front_page.jpg)
 
 .clear
   clearfix()
@@ -33,9 +38,9 @@ body
   flex-direction row
   margin: auto
   padding: 0 7%
+  color: $color3
 
   .smallCol
-    // width 35.625%
     flex 3
     padding: 10px 20px
 
@@ -45,6 +50,7 @@ body
 
   .section
     margin 0 auto 10px
+    background-color: rgba(0, 0, 0, 0.6)
 
   .sectionHeader
     border-bottom 2px solid $color1

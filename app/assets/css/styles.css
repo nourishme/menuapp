@@ -3,6 +3,7 @@
 body {
   font-size: 1.25rem;
   font-family: 'Lato', sans-serif;
+  background-image: url("/saucesome_food_front_page.jpg");
 }
 body html,
 body body,
@@ -122,6 +123,7 @@ body a img {
   flex-direction: row;
   margin: auto;
   padding: 0 7%;
+  color: #f0f1f1;
 }
 #mainContainer .smallCol {
   -webkit-box-flex: 3;
@@ -145,9 +147,10 @@ body a img {
 }
 #mainContainer .section {
   margin: 0 auto 10px;
+  background-color: rgba(0,0,0,0.6);
 }
 #mainContainer .sectionHeader {
-  border-bottom: 2px solid #800080;
+  border-bottom: 2px solid rgba(51,0,102,0.8);
   margin-bottom: 10px;
   font-size: 1.25rem;
 }
@@ -175,7 +178,11 @@ button {
 }
 .ingredientButton button {
   width: 100%;
-  background-color: #800080;
+  background-color: rgba(51,0,102,0.8);
+}
+.selectedIngredients .topcoat-button--large {
+  margin-top: 3px;
+  margin-right: 3px;
 }
 .recipeBox {
   display: -webkit-box;
@@ -192,7 +199,7 @@ button {
   flex-direction: row;
   padding: 5px;
   margin: auto;
-  border-bottom: 1px solid #800080;
+  border-bottom: 1px solid rgba(51,0,102,0.8);
 }
 .recipeBox .recipe {
   -webkit-box-flex: 3;
@@ -283,33 +290,45 @@ button {
   width: 120px;
   margin: auto;
 }
-.backgroundContainer {
-  display: fixed;
-  width: 100%;
-  height: 100%;
-  background-image: url("/saucesome_food_front_page.jpg");
-}
-.backgroundContainer .bigCol {
+.loginBox {
   background-color: rgba(0,0,0,0.6);
   position: inherit;
   margin: auto;
   text-align: center;
   margin-top: 10%;
   font-size: 40px;
-  color: #fff;
 }
 #headercontainer {
-  width: 95%;
-  border-bottom: 4px solid #800080;
-  height: 60px;
-  margin: 5px 20px 10px;
+  width: 100%;
+  padding: 5px 10px;
+  margin-bottom: 30px;
+  background-color: rgba(51,51,51,0.6);
 }
-#headercontainer .appTitle {
+#headercontainer a:link {
+  text-decoration: none;
+}
+#headercontainer a:visited {
+  text-decoration: none;
+}
+#headercontainer a:hover {
+  text-decoration: none;
+}
+#headercontainer a:active {
+  text-decoration: none;
+}
+#headercontainer #appTitle {
   display: inline-block;
-  float: left;
-  color: #800080;
-  font-size: 3em;
+  color: #f0f1f1;
+  font-size: 2em;
+  font-weight: bolder;
   font-family: 'Lato', sans-serif;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+#headercontainer .logo {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
 }
 #headercontainer .topcoat-button-bar {
   float: right;
