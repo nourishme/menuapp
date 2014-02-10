@@ -157,7 +157,9 @@ exports.loopToCalcPmi = // assumes ordered results & actual objects... loop the 
 
   for (var i = 0; i < possibleIng.length; i++) {
     // console.log('increment: ', i ,  ' total: ', total, ' countRecNow: ', countRecNow, ' possibleIng[i].row[2]: ', possibleIng[i].row[2], 'recPoss[i].data[0].row: ', recPoss[i].data[0].row[0]);
-    
+    if(!recPoss[i].data[0]){
+      continue;
+    };
     pmiScoresForClient.push({
       PMI: calcPmiForIngredients(countRecNow, possibleIng[i].row[1], recPoss[i].data[0].row[0], total),
       ingredientName: possibleIng[i].row[0],
