@@ -2,7 +2,7 @@
 <div class="section smallCol  animate-enter" ng-show="showCook" >
 
   <div class="subsection">
-    <div class="sectionHeader">You've selected:</div>
+    <div class="sectionHeader">You've selected</div>
     <div class=" sectionBody selectedIngredients">
       <button class="topcoat-button--large animate-enter animate-leave" ng-repeat="ingredient in toCook" ng-click="removeFromToCook(ingredient)">{{ingredient.ingredientName}}</button>
     </div>
@@ -15,7 +15,8 @@
 
 
   <div class="subsection">
-    <div class="sectionHeader">Here are some ingredients that commonly occur with that:</div>
+    <!-- <div class="sectionHeader">Here are some ingredients that commonly occur with that:</div> -->
+      <div class="sectionHeader">Try adding one of these ingredients</div>
       <div class="ingredientButton" ng-repeat="ingredient in suggestedIngredients | limitTo:12"  ng-click="addToCook(ingredient)" >
         <button class="topcoat-button--large--cta animate-enter animate-leave" >{{ingredient.ingredientName}}</button>
       </div>
@@ -30,7 +31,7 @@
   </div>
 
   <div class="subsection">
-    <div class="sectionHeader" ng-show="showCook">Or add something else:</div>
+    <div class="sectionHeader" ng-show="showCook">Or add something else</div>
     <form id="ingredientSearchForm">
       <input type="text" class="topcoat-text-input--large" ng-model="ingredientSearch" placeholder="Ingredient"></input>
     </form>
