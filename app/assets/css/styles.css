@@ -188,6 +188,10 @@ button {
   margin-top: 3px;
   margin-right: 3px;
 }
+.noResult {
+  font-size: 1rem;
+  padding: 5px;
+}
 .recipeBox {
   display: -webkit-box;
   display: -moz-box;

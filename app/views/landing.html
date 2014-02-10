@@ -20,6 +20,8 @@
       <div class="ingredientButton" ng-repeat="ingredient in suggestedIngredients | limitTo:12"  ng-click="addToCook(ingredient)" >
         <button class="topcoat-button--large--cta animate-enter animate-leave" >{{ingredient.ingredientName}}</button>
       </div>
+      <!-- If no ingredients are found display message below -->
+      <div class="noResult" ng-show="suggestedIngredientsError">We couldn't find any ingredients to suggest.<br><br>Please add or remove an ingredient and try again.</div>
   </div>
 
 </div>
