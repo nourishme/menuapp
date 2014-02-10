@@ -213,7 +213,10 @@ var relNextBatch = function(err,result) {
 };
 
 var saveRelationshipsToDB = function(recipes){
-  writeRelationships(recipes[0], recipes[0].ingredients[0]);
+  if(!recipes[0]){
+    return;
+  }
+    writeRelationships(recipes[0], recipes[0].ingredients[0]);
 };
 
 

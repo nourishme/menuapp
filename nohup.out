@@ -1,0 +1,171 @@
+[33mwarn[39m:    --minUptime not set. Defaulting to: 1000ms
+[33mwarn[39m:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Express app started on port 3000
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+error: Forever detected script was killed by signal: SIGKILL
+error: Forever restarting script for 1 time
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Express app started on port 3000
+Got response: 200
+Got response: 200
+
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+Error: read ECONNRESET
+    at errnoException (net.js:901:11)
+    at TCP.onread (net.js:556:19)
+error: Forever detected script exited with code: 8
+error: Forever restarting script for 2 time
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Express app started on port 3000
+
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+Error: connect ECONNREFUSED
+    at errnoException (net.js:901:11)
+    at Object.afterConnect [as oncomplete] (net.js:892:19)
+error: Forever detected script exited with code: 8
+error: Forever restarting script for 3 time
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Express app started on port 3000
+
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+Error: connect ECONNREFUSED
+    at errnoException (net.js:901:11)
+    at Object.afterConnect [as oncomplete] (net.js:892:19)
+error: Forever detected script exited with code: 8
+error: Forever restarting script for 0 time
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Express app started on port 3000
+Got response: 200
+Got response: 200
+
+/home/ubuntu/menuapp/node_modules/node-neo4j/main.js:1429
+	var to = url.indexOf('/', from);	// Next slash
+	             ^
+TypeError: Cannot call method 'indexOf' of undefined
+    at Neo4j.getId (/home/ubuntu/menuapp/node_modules/node-neo4j/main.js:1429:15)
+    at Neo4j.addTransactionId (/home/ubuntu/menuapp/node_modules/node-neo4j/main.js:1450:18)
+    at /home/ubuntu/menuapp/node_modules/node-neo4j/main.js:1027:11
+    at Request.callback (/home/ubuntu/menuapp/node_modules/node-neo4j/node_modules/superagent/lib/node/index.js:630:3)
+    at Request.<anonymous> (/home/ubuntu/menuapp/node_modules/node-neo4j/node_modules/superagent/lib/node/index.js:131:10)
+    at Request.EventEmitter.emit (events.js:95:17)
+    at IncomingMessage.<anonymous> (/home/ubuntu/menuapp/node_modules/node-neo4j/node_modules/superagent/lib/node/index.js:773:12)
+    at IncomingMessage.EventEmitter.emit (events.js:117:20)
+    at _stream_readable.js:920:16
+    at process._tickCallback (node.js:415:13)
+error: Forever detected script exited with code: 8
+error: Forever restarting script for 1 time
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Express app started on port 3000
+
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+Error: connect ECONNREFUSED
+    at errnoException (net.js:901:11)
+    at Object.afterConnect [as oncomplete] (net.js:892:19)
+error: Forever detected script exited with code: 8
+error: Forever restarting script for 2 time
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Express app started on port 3000
+
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+Error: connect ECONNREFUSED
+    at errnoException (net.js:901:11)
+    at Object.afterConnect [as oncomplete] (net.js:892:19)
+error: Forever detected script exited with code: 8
+error: Forever restarting script for 0 time
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Express app started on port 3000
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+
+/home/ubuntu/menuapp/server/middleware/saveRecipesToDB.js:216
+  writeRelationships(recipes[0], recipes[0].ingredients[0]);
+                                           ^
+TypeError: Cannot read property 'ingredients' of undefined
+    at saveRelationshipsToDB (/home/ubuntu/menuapp/server/middleware/saveRecipesToDB.js:216:44)
+    at saveIngredientsToDB (/home/ubuntu/menuapp/server/middleware/saveRecipesToDB.js:161:14)
+    at Object.exports.saveRecipeToDB (/home/ubuntu/menuapp/server/middleware/saveRecipesToDB.js:88:3)
+    at searchResultBigCallback (/home/ubuntu/menuapp/server/middleware/dbinventory.js:115:22)
+    at IncomingMessage.<anonymous> (/home/ubuntu/menuapp/server/middleware/callyummly.js:31:9)
+    at IncomingMessage.EventEmitter.emit (events.js:117:20)
+    at _stream_readable.js:920:16
+    at process._tickCallback (node.js:415:13)
+error: Forever detected script exited with code: 8
+error: Forever restarting script for 1 time
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Express app started on port 3000
+***CREATEUSERSEARCHERROR**:  [Error: HTTP Error 400 when running the cypher query against neo4j.
+undefined not defined (line 1, column 29)
+"match (u: User) where id(u)=undefined match (s: Search) where s.params="13731, 13739" create (u)-[r:SEARCHED]->(s) return u; "
+                             ^]
+Got response: 200
+Got response: 200
+***CREATEUSERSEARCHERROR**:  [Error: HTTP Error 400 when running the cypher query against neo4j.
+undefined not defined (line 1, column 29)
+"match (u: User) where id(u)=undefined match (s: Search) where s.params="12206, 13875" create (u)-[r:SEARCHED]->(s) return u; "
+                             ^]
+Got response: 200
+Got response: 200
+Got response: 200
+Got response: 200
+***CREATEUSERSEARCHERROR**:  [Error: HTTP Error 400 when running the cypher query against neo4j.
+undefined not defined (line 1, column 29)
+"match (u: User) where id(u)=undefined match (s: Search) where s.params="12252" create (u)-[r:SEARCHED]->(s) return u; "
+                             ^]
+[33mwarn[39m:    --minUptime not set. Defaulting to: 1000ms
+[33mwarn[39m:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Express app started on port 3000
+Got response: 200
+Got response: 200
+***CREATEUSERSEARCHERROR**:  [Error: HTTP Error 400 when running the cypher query against neo4j.
+undefined not defined (line 1, column 29)
+"match (u: User) where id(u)=undefined match (s: Search) where s.params="12808" create (u)-[r:SEARCHED]->(s) return u; "
+                             ^]
