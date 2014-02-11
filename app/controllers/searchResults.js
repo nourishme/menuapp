@@ -48,10 +48,14 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
       data: ingredients
     })
     .success(function(data, status) {
-      console.log("recipe success");
-      console.log(data,status);
+      // console.log("recipe success");
+      // console.log(data,status);
       $scope.searchResults = data;
-      $scope.suggestedRecipeError = false;
+      if ($scope.searchResults.matches.length > 0){
+        $scope.suggestedRecipeError = false;
+      } else {
+        $scope.suggestedRecipeError = true;
+      }
 
       //Add placeholder image where needed
       for(var i = 0 ; i < 20 && i < $scope.searchResults.matches.length ; i++){
