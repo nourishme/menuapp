@@ -48,8 +48,10 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
       data: ingredients
     })
     .success(function(data, status) {
-
+      console.log("recipe success");
+      console.log(data,status);
       $scope.searchResults = data;
+      $scope.suggestedRecipeError = false;
 
       //Add placeholder image where needed
       for(var i = 0 ; i < 20 && i < $scope.searchResults.matches.length ; i++){
@@ -62,6 +64,8 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
     })
     .error(function(data, status){
       console.log(data,status);
+      console.log("recipe fail");
+      $scope.suggestedRecipeError = true;
     });
 
     $http({
@@ -71,7 +75,6 @@ app.controller('searchResults', function($http,$location,$scope,ingredientMethod
     })
     .success(function(data, status) {
       $scope.recByIng = data;
-      // console.log(data);
     })
     .error(function(data, status){
       console.log(data,status);

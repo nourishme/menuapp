@@ -9,26 +9,28 @@
   </div>
 
   <div class="subsection">
-    <div class="sectionHeader">Or add:</div>
+    <div class="sectionHeader">Try adding one of these ingredients</div>
     <div class="sectionBody suggestedIngredients">
       <button class="topcoat-button--large" ng-repeat="ingredient in suggestedIngredients | limitTo:10" ng-click="addAndSearch(ingredient)" >{{ingredient.ingredientName}}</button>
     </div>
+    <!-- If no ingredients are found display message below -->
+    <div class="noResult" ng-show="suggestedIngredientsError">We couldn't find any ingredients to suggest.<br><br>Please add or remove an ingredient and try again.</div>
   </div>
 
 </div>
 
 <div class="section bigCol">
   <div class="subSection">
-    <div class="sectionHeader">Here's Some Recipes:</div>
+    <div class="sectionHeader">Here Are Some Recipes:</div>
     <div class="sectionBody">
+      <!-- If no ingredients are found display message below -->
+      <div class="noResult" ng-show="suggestedRecipeError">We couldn't find any recipes with that list of ingredients.<br><br>Please add or remove an ingredient and try again.</div>
       <div class="recipeBox animate-enter animate-leave" ng-repeat="recipe in searchResults.matches | limitTo:12" ng-click="getRecipe(recipe.id)">
-
         <!-- added anchor for demo -->
           <div class="recipe topcoat-button--large">
             <div class="recipeImage"><img src={{recipe.smallImageUrls[0]}}></div>
             <div class="recipeName">{{recipe.recipeName}}</div>
           </div>
-
           <!-- Commented Out for Demo -->
           <!-- <div class="recipeButtons">
             <div><button class="topcoat-button--large--cta" ng-click="getRecipe(recipe.id)">View Recipe</button></div>
