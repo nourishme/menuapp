@@ -56,7 +56,7 @@ exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {
 };
 
 /***
-Recipes by Ingredients Object
+Recipes by Ingredients Object 
 ***/
 
 exports.makeRecObjByIngredient = makeRecObjByIngredient = function(recipes){
@@ -130,7 +130,7 @@ exports.getRecipesByIngredientsNeeded = getRecipesByIngredientsNeeded = function
       paramsForYumSearch += result[i].data[0].row[0].ingredientName+ ' ';
     }
     //todo: change back to 900
-    paramsForYumSearch900=paramsForYumSearch +'&maxResult=900';
+    paramsForYumSearch900=paramsForYumSearch +'&maxResult=15';
     yum.searchRecipe(paramsForYumSearch900, callbackWrapper( req, res, searchResultBigCallback ));
   };
 

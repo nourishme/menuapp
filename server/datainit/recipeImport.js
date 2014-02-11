@@ -121,7 +121,7 @@ var recipesCreate =function(ing){
 
 
 
-var ing = convertObjToArray( allRecipesInArray());
+var ing = convertObjToArray( allRecipesInObj());
 
 recipesCreate(ing);
 
