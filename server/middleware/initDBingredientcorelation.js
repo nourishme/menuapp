@@ -56,7 +56,7 @@ var getListToProcess = function(timestamp, listsize) {
   var daysbetweenprocess = 2,
     msBetween = daysbetweenprocess * 86400;
   listsize = listsize || 1;
-  timestamp = timestamp - msBetween || 1; // all further steps rely on this value being present
+  timestamp =  3; // all further steps rely on this value being present
   // Starting from a list of 100 ingredients where i.pmiTime = timestamp
   //   MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient {pmiTime: 1}) 
   //     WITH DISTINCT id(i) as ingredientids 
@@ -98,7 +98,7 @@ var nextIngredient = function(err,result, start, timestamp) {
 };
 
 // INIT here:
-// getListToProcess(1, 100);
+ getListToProcess(2, 100);
 
 // testing here:
 // var date = new Date().getTime();
