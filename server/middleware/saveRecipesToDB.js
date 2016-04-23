@@ -1,7 +1,7 @@
 exports.neo4j = require('node-neo4j');
 
 
-var db = new neo4j('http://localhost:7474');
+// var db = new neo4j('http://localhost:7474');
 var recipes;
 
 //for all nodes
@@ -72,7 +72,7 @@ var recipeNextbatch = function(err,result) {
   }
   if (done !== false) {
     // console.log('recipetriggerdone');
-    
+
     db.commitTransaction(result._id, msg, errthrow );
   } else {
     // console.log('****MSGSTMNT****: ', msg.statements);
@@ -135,7 +135,7 @@ var ingNextBatch = function(err,result) {
   }
   if (done !== false) {
     // console.log('ingtriggerdone');
-    
+
     db.commitTransaction(result._id, msg, errthrow );
   } else {
     // console.log('****MSGSTMNT****: ', msg.statements);

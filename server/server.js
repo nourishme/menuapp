@@ -8,7 +8,7 @@ var neo4jDB        = require('./neo4jDB.js'),
 
     config         = require('./config/configfile'),
     routes         = require('./routes.js'),
-    passportConfig = require('./config/passport'),
+    // passportConfig = require('./config/passport'),
     authRoutes     = require('./authRoutes.js'),
     yummly         = require('./middleware/callyummly.js');
 
@@ -18,13 +18,13 @@ app.set('title', 'menuapp');
 app.use(express.static('public'));
 app.use(express.cookieParser());
 app.use(express.bodyParser());
-app.use(express.session({ secret: config.ids.facebook.secret }));
-app.use(passportConfig.passport.initialize());
-app.use(passportConfig.passport.session());
+// app.use(express.session({ secret: config.ids.facebook.secret }));
+// app.use(passportConfig.passport.initialize());
+// app.use(passportConfig.passport.session());
 app.use(app.router);
 
 // Start the app
-var port = config.port || 3000;
+var port = 3000;
 app.listen(port);
 console.log('Express app started on port ' + port);
 

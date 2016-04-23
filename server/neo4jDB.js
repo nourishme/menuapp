@@ -1,5 +1,5 @@
 exports.neo4j = neo4j = require('node-neo4j');
-exports.db = db = new neo4j('http://localhost:7474');
+exports.db = db = new neo4j('https://198.168.99.100:7474');
 
 
 var savecb = function (err, node) {
@@ -28,7 +28,7 @@ exports.createStatementFromObject =
     // {
     //   changeType: 'inventoryUpdate',
     //   changes: {
-    //     add: [thing1object,thing2object,thing3object], 
+    //     add: [thing1object,thing2object,thing3object],
     //     remove: [thing4object,thing4object,thing4object]
     //   }
     // }
@@ -36,7 +36,7 @@ exports.createStatementFromObject =
 
 // use this to init the server ingredient data
 
-// exports.ing = require('./datainit/initDBwithIngredientList.js').ingredient; 
+// exports.ing = require('./datainit/initDBwithIngredientList.js').ingredient;
 
 
 
@@ -44,7 +44,7 @@ exports.createStatementFromObject =
 // exports.ing = require('./datainit/ingImport.js');
 // exports.ing = require('./datainit/relationshipFactory.js');
 
-// Calculate PMI Scores here: 
+// Calculate PMI Scores here:
 // exports.ing = require('./datainit/initDBingredientcorelation.js');
 
 module.exports = exports;

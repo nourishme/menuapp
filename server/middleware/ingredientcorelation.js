@@ -1,10 +1,10 @@
 var neo4jDB = require('../neo4jDB.js');
 exports.neo4j = neo4j = require('node-neo4j');
-exports.db = db = new neo4j('http://localhost:7474');
+// exports.db = db = new neo4j('http://localhost:7474');
 exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 
-/* 
- * We use this module by invoking getCoOccursPlusOne. 
+/*
+ * We use this module by invoking getCoOccursPlusOne.
  * That starts a chain of events which find PMI scores for common
  * occurring ingredients. Which is awesome.
  */
@@ -41,7 +41,7 @@ exports.getTotalRecipeCount = // get global recipe count
 
 exports.queryTemplate = // generate a message to find recipes count with our ingredients
  queryTemplate = function(ingredients, typestring) {
-  //     MATCH (A:Ingredient)<--(r:Recipe) WHERE id(A)=12345, 
+  //     MATCH (A:Ingredient)<--(r:Recipe) WHERE id(A)=12345,
   //           (B:Ingredient)<--(r:Recipe) WHERE id(B)=54321,
   var msg = '';
   var template = function(key, id) {
@@ -59,23 +59,23 @@ exports.queryTemplate = // generate a message to find recipes count with our ing
       msg += 'RETURN count(DISTINCT r)';
       // console.log(" countall queryTemplate with typestring: ",typestring, ' and msg: ',msg)
       return msg;
-      
+
     case 'countMore': //todo: i think this case is unnecessary
-      
+
       msg += ' MATCH (C:Ingredient)<-[:HAS_INGREDIENT]-(r:Recipe) RETURN count(DISTINCT C)';
       // console.log(" countMore queryTemplate with typestring: ",typestring, ' and msg: ',msg)
       return msg;
 
     case 'findMore':
       msg = msg.slice(0,msg.length-2);
-      msg += ' MATCH (C:Ingredient )<-[:HAS_INGREDIENT]-(r:Recipe)  '; 
+      msg += ' MATCH (C:Ingredient )<-[:HAS_INGREDIENT]-(r:Recipe)  ';
       msg += ' RETURN DISTINCT C.ingredientName AS ingredientName, '+
        ' C.containedIn AS containedIn, '+
        ' id(C) AS id LIMIT 150';
       // console.log(" findMore queryTemplate with typestring: ",typestring, ' and msg: ',msg)
-      return msg;    
+      return msg;
     default:
-      return "no (or incorrect) typestring in template"; 
+      return "no (or incorrect) typestring in template";
   }
 };
 
@@ -109,10 +109,10 @@ exports.setResultOfCoOccursPlusOne = // we'll set our result to a global
 
 exports.findMoreIngredients = // now we'll find more ingredients to match with our current selection
  findMoreIngredients = function(req, res) {
-  // console.log("*******findMoreIngredients needs currentSelection.ingredientGroup: ",currentSelection.ingredientGroup); 
+  // console.log("*******findMoreIngredients needs currentSelection.ingredientGroup: ",currentSelection.ingredientGroup);
   // console.log('testing note... we have not REQ here ************* TODO *************');
   db.beginAndCommitTransaction({
-    statements:[{ 
+    statements:[{
           statement : queryTemplate(currentSelection.ingredientGroup, 'findMore')
       }
     ]
@@ -141,17 +141,17 @@ exports.getRecPlus = // LIMITED TO 100 in templateQuery this is a long query. wi
   db.beginAndCommitTransaction(trans, callbackWrapper(req, res, loopToCalcPmi));
 };
 
-exports.loopToCalcPmi = // assumes ordered results & actual objects... loop the calculation and finally send the results. 
+exports.loopToCalcPmi = // assumes ordered results & actual objects... loop the calculation and finally send the results.
  loopToCalcPmi = function(err, result, req, res) {
   var pmiScoresForClient = [];
-  var possibleIng = possibleExtras.arrayOfIngredients; 
+  var possibleIng = possibleExtras.arrayOfIngredients;
   var possibleRecPlus = possibleExtras.getRecPlus;
   // console.log("*** this is the grc... ", grc);
   var total = grc;
   var countRecNow = currentSelection.recTotalNow;
-  var recPoss = result.results; //TODO: what's the actual stuff? 
+  var recPoss = result.results; //TODO: what's the actual stuff?
   // console.log('*** what does the data in recPoss look liek?', recPoss);
-  // let's assume for now that recPoss and possibleIng are in the same order... 
+  // let's assume for now that recPoss and possibleIng are in the same order...
   // increment:  9  total:  6454  countRecNow:  3001  possibleIng[i](containedIn?):  { row: [ 'ground mustard', 8, 432082 ] } recPoss[i]:  { columns: [ 'count(DISTINCT C)' ],
   // data: [ { row: [Object] } ] }
 
@@ -170,7 +170,7 @@ exports.loopToCalcPmi = // assumes ordered results & actual objects... loop the 
   coms.res.send(pmiScoresForClient);
 };
 
-var calcPmiForIngredients = function(recNow, recAdd, recNowAdd, tot) { 
+var calcPmiForIngredients = function(recNow, recAdd, recNowAdd, tot) {
   // PMI(a,b) = log( p(a,b) / p(a)*p(b) )
   // p(a,b) = (# recipes containing a & b ) / (# recipes)
   // p(a) = (# recipes containing a) / (# recipes)

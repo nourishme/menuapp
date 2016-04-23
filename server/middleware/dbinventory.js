@@ -1,6 +1,6 @@
 var neo4jDB = require('../neo4jDB.js');
 exports.neo4j = neo4j = require('node-neo4j');
-exports.db = db = new neo4j('http://localhost:7474');
+// exports.db = db = new neo4j('http://localhost:7474');
 exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 exports.saveToDB = require('../middleware/saveRecipesToDB')
 var yum = require('../middleware/callyummly.js');
@@ -56,7 +56,7 @@ exports.getRecipeByIdString = getRecipeByIdString = function(req, res) {
 };
 
 /***
-Recipes by Ingredients Object 
+Recipes by Ingredients Object
 ***/
 
 exports.makeRecObjByIngredient = makeRecObjByIngredient = function(recipes){
@@ -138,7 +138,7 @@ exports.getRecipesByIngredientsNeeded = getRecipesByIngredientsNeeded = function
 };
 
 exports.getRecipesByIngredientSearch = getRecipesByIngredientSearch = function(req, res) {
-// curl -X POST -H "Content-Type: application/json" -d '[402112,402113,402114]' http://localhost:3000/searchForRecipes/  
+// curl -X POST -H "Content-Type: application/json" -d '[402112,402113,402114]' http://localhost:3000/searchForRecipes/
 
   var transactionBody = {};
   transactionBody.statements = [];
