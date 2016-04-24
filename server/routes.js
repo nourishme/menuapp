@@ -4,10 +4,9 @@ var express        = require("express"),
     url            = require('url'),
 
 // Internal Modules
-    ingredients    = require('./ingredients'),
-    searchResults  = require('./searchResults'),
+    ingredients    = require('./ingredients.js'),
+    searchResults  = require('./searchResults.js'),
     yummly         = require('./middleware/callyummly.js'),
-    passportConfig = require('./config/passport');
 
 /**
  * Routes
@@ -19,8 +18,8 @@ exports.setRoutes = function(app, application_root){
   app.use('/', express.static( application_root + '/../app'));
 
   // Ingredients
-  app.get('/topIngredients/:count',ingredients.getTopIngredients);
-  app.post('/suggestedIngredients/',ingredients.getCoOccurs);
+  app.get('/topIngredients/:count', ingredients.getTopIngredients);
+  app.post('/suggestedIngredients/', ingredients.getCoOccurs);
   // app.post('/suggestedIngredients/',ingredients.getIngredientList);
   // app.post('/getCoOccurs/',ingredients.getCoOccurs);
 
@@ -41,7 +40,7 @@ exports.setRoutes = function(app, application_root){
   // app.post('/ingredientInventory/',ingredients.saveUsersList);
     // Recipes
   // app.get('/getRecipe/:id',ingredients.getRecipe);
-  // app.get('/getRecipe/:recipeNumber',ingredients.getRecipe); //todo: let's make sure this doesn't belong before we delete it. currently it's duplicated above(jfl) 
+  // app.get('/getRecipe/:recipeNumber',ingredients.getRecipe); //todo: let's make sure this doesn't belong before we delete it. currently it's duplicated above(jfl)
 
 };
 
