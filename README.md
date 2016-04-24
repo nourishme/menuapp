@@ -81,11 +81,6 @@ Your config file should look something like this, except with your own details:
 
     module.exports = exports;
 
-## getting up to speed on
-
-On a fresh ubuntu machine follow the steps [here](http://davidtsadler.com/archives/2012/05/06/installing-node-js-on-ubuntu/#via-git)) to get Node installed.
-
-You should now follow the setup instructions to install Oracle JDK or OpenJDK on your OS. After that, you'll be ready to install Neo4j. It's best to follow the instructions for your OS on the [neo4j website](http://www.neo4j.com).
 
 ## dependencies
 
@@ -103,32 +98,3 @@ Now let’s get our server upright…
     cd menuapp
     sudo npm install
     sudo bower install
-
-## making it run
-
-Now to make it run:
-
-    nohup forever server/server.js --watch &
-
-
-Make it stop:
-
-    forever stopall
-
-### Other info:
-
-neo4j db data & installed plugins are stored here:
-
-    /var/lib/neo4j/
-
-If you need run as the ‘neo4j’ user:
-
-    sudo -u neo4j service neo4j-service start
-
-Interact with neo4j as the neo4j user
-
-    sudo -i -u neo4j
-
-Port forward for Ubuntu 13.01
-
-    sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
