@@ -1,18 +1,18 @@
 var neo4jDB = require('../neo4jDB.js');
 var exports = {};
 exports.neo4j = neo4j = require('node-neo4j');
-exports.db = db = new neo4j('http://localhost:7474');
+// exports.db = db = new neo4j('http://localhost:7474');
 
 
 exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 
 var recsofar = 0;
 
-var ingArray; 
+var ingArray;
 
 // var markForUpdate = function(ida) {
 //  /*
-//   *  THIS ONLY NEEDS TO BE DONE ONE TIME EVER: 
+//   *  THIS ONLY NEEDS TO BE DONE ONE TIME EVER:
 //   *  Initialize process by setting all :Ingredient as i.pmiTime = 1
 //   *
 //   *  MATCH (i:Ingredient) SET i.pmiTime = 1
@@ -58,8 +58,8 @@ var getListToProcess = function(timestamp, listsize) {
   listsize = listsize || 1;
   timestamp = timestamp - msBetween || 1; // all further steps rely on this value being present
   // Starting from a list of 100 ingredients where i.pmiTime = timestamp
-  //   MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient {pmiTime: 1}) 
-  //     WITH DISTINCT id(i) as ingredientids 
+  //   MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient {pmiTime: 1})
+  //     WITH DISTINCT id(i) as ingredientids
   //   RETURN ingredientids LIMIT 1
   var msg = {statements:[
     {statement: "MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i:Ingredient) WHERE  i.pmiTime < "+
@@ -70,7 +70,7 @@ var getListToProcess = function(timestamp, listsize) {
   db.beginAndCommitTransaction(msg, pmiLoop);
 };
 
-var pmiLoop = function(err, results, timestamp) {  
+var pmiLoop = function(err, results, timestamp) {
   console.log(err, results);
   // recsofar++;
   console.log('result in nextIngredient: ',results.results[0].data);
@@ -80,7 +80,7 @@ var pmiLoop = function(err, results, timestamp) {
 
 var nextIngredient = function(err,result, start, timestamp) {
   if (err) throw console.log("****ERR****: ", err);
-  
+
   recsofar++;
   if (recsofar > 98) {
     getListToProcess(1, 100);
@@ -111,7 +111,7 @@ var nextIngredient = function(err,result, start, timestamp) {
 //     MATCH (ia:Ingredient)<-[:HAS_INGREDIENT]-(recab:Recipe)-[:HAS_INGREDIENT]->(ib:Ingredient)
 //       WHERE id(ia)=430878 AND ib.pmitime = 1
 //     RETURN id(ab)
-// */  
+// */
 //   var msg = "MATCH (ia:Ingredient)<-[recHasA:HAS_INGREDIENT]-(recab:Recipe)-[recHasB:HAS_INGREDIENT]->(ib:Ingredient)" +
 //     " WHERE id(ia)=" + ida +
 //     " AND ib.pmiTime =" + timestamp +
@@ -119,7 +119,7 @@ var nextIngredient = function(err,result, start, timestamp) {
 //     " WHERE id(i)=" + ida +
 //     " WITH DISTINCT id(i) AS idA, count(DISTINCT r) AS recA, idB, recAB, recB"+
 //     " RETURN idA, recA, idB, recB, recAB";
-//   db.cypherQuery(msg, callbackWrapper(req,res, processCoIngredient)); 
+//   db.cypherQuery(msg, callbackWrapper(req,res, processCoIngredient));
 // };
 
 // var getOccurrenceDetails = function(ida, idb) {
@@ -135,12 +135,12 @@ var nextIngredient = function(err,result, start, timestamp) {
 //   }
 // };
 
-// var calcPmiForIngredients = function(reca, recb, recab, totalRec) { 
+// var calcPmiForIngredients = function(reca, recb, recab, totalRec) {
 //   // PMI(a,b) = log( p(a,b) / p(a)*p(b) )
 //   // p(a,b) = (# recipes containing a & b ) / (# recipes)
 //   // p(a) = (# recipes containing a) / (# recipes)
 //   // p(b) = (# recipes containing b) / (# recipes)
-    
+
 //   var pcalc = function(contain, totalRec) {
 //     return contain/totalRec;
 //   };
@@ -164,10 +164,10 @@ var nextIngredient = function(err,result, start, timestamp) {
 //     Create a relationship between A&B, SET coocur weight & SET pdate = timestamp() & SET ia.pmiTime = timestamp()
 
 //     CREATE (ia)-[pmi:PMI]-(i) SET pmi.weight = pairPMI, pmi.pmiTime = timestamp
-//       WHERE id(ia)=430878 AND id(ib)=430905 
-//       SET ia.pmiTime = timestamp, ib.pmiTime = timestamp  
+//       WHERE id(ia)=430878 AND id(ib)=430905
+//       SET ia.pmiTime = timestamp, ib.pmiTime = timestamp
 // */
 
-// }; 
+// };
 
 

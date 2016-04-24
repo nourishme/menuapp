@@ -1,12 +1,17 @@
 var neo4jDB = require('../neo4jDB.js');
 exports.neo4j = neo4j = require('node-neo4j');
-// exports.db = db = new neo4j('http://localhost:7474');
+
 exports.phrases = ph = require('../middleware/db.phrase.templates.js');
 exports.saveToDB = require('../middleware/saveRecipesToDB')
 var yum = require('../middleware/callyummly.js');
 
+exports = {
+  getTopIngredientsList: getTopIngredientsList,
+  updateUserInventory: update,
+}
+exports.getUserInventory = getinventory;
 
-var callbackWrapper = function (req, res, altCallback){
+function callbackWrapper(req, res, altCallback){
   resultSendCallback = function(err, result) {
     if (err) console.log(err);
     res.send( result);
@@ -15,7 +20,8 @@ var callbackWrapper = function (req, res, altCallback){
   return callback;
 };
 
-exports.updateUserInventory = update = function(req, res) {
+
+function update(req, res) {
   var userid = req.user;
   invChangeArray = req.body;
   var statement = ph.updateLikeStatusStatementFromObject(userid, invChangeArray);
@@ -26,7 +32,8 @@ exports.updateUserInventory = update = function(req, res) {
   );
 };
 
-exports.getUserInventory = getinventory = function(req, res) {
+
+function getinventory(req, res) {
   // match (n)-[:HAS_INVENTORY]->(i) where id(n)=406842 return i
   msg = "match (n)-[:HAS_INVENTORY]->(i) where id(n) = "+req.user+" return i";
   db.cypherQuery(msg, callbackWrapper(req, res));
@@ -37,7 +44,8 @@ exports.getIngredientList = getIngredientList = function(req, res) {
   db.cypherQuery(msg, callbackWrapper(req, res));
 };
 
-exports.getTopIngredientsList = getTopIngredientsList = function(req, res) {
+
+function getTopIngredientsList (req, res) {
   var topIngreds = [];
   var count = req.param('count') || 10;
   msg = "match (i:Ingredient) return i LIMIT "+count;

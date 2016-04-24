@@ -1,7 +1,5 @@
 exports.neo4j = require('node-neo4j');
 
-
-// var db = new neo4j('http://localhost:7474');
 var recipes;
 
 //for all nodes
