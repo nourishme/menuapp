@@ -32,4 +32,16 @@ console.log('Welcome friend, visit us on port ' + port);
  routes.setRoutes(app, __dirname); // Set Routes
  authRoutes.setRoutes(app);
 */
+/* reboot
+  preload ur db bruh
+  we are starting rebuild with the array of ingredients...
+  .. what comes next?
+
+*/
+// uncomment these
+// var ingredient_init = require('./tempInitCode/ingredient_init.js');
+// ingredient_init(apiRoutes).init();
+
+
+
 module.exports = app;
