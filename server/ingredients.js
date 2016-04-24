@@ -1,8 +1,16 @@
-var test= require('./testData.js');
-var dbinventory = require('./middleware/dbinventory.js');
-var pmi = require('./middleware/ingredientcorelation.js');
+// var test= require('./testData.js');
+// var dbinventory = require('./middleware/dbinventory.js');
+// var pmi = require('./middleware/ingredientcorelation.js');
 
 module.exports = {
+  getTopIngredients: function(req, res) {
+    // getTopIngredients/
+    // getTopIngredients/:count
+    // empty request
+    // returns array of ingredient objects
+    dbinventory.getTopIngredientsList(req, res);
+  },
+
   getUsersRecipeList: function(req,res){
     // GET: ingredientInventory/
     dbinventory.getUserInventory(req,res);
@@ -14,7 +22,7 @@ module.exports = {
   },
 
   likeIngredientList: function(req, res){
-    
+
   },
 
   getIngredientList: function(req, res) {
@@ -28,13 +36,6 @@ module.exports = {
     // returns recipe object
     dbinventory.getRecipeByIdString(req, res);
     // routes.yumGet(req, res);
-  },
-  getTopIngredients: function(req, res) {
-    // getTopIngredients/
-    // getTopIngredients/:count
-    // empty request
-    // returns array of ingredient objects
-    dbinventory.getTopIngredientsList(req, res);
   },
   searchForRecipes: function(req, res) {
     // searchForRecipes/
