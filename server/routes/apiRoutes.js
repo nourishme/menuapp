@@ -7,6 +7,7 @@ var Rx = require('rx');
 var api_root = 'http://192.168.99.100:7474';
 
 
+
 // HACK: http://neo4j.com/docs/stable/rest-api-security.html
 var usernamepassword = "neo4j:password"; // username:"password"
 // base 64 encoded username/password http://base64encode.net
@@ -30,7 +31,6 @@ function postWithData(data){
     var uri = api_root + path;
     var options = {
       method: 'POST',
-      port: port,
       form: data,
     };
     return http$.post(uri, options)
