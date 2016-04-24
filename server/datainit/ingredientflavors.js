@@ -13,7 +13,7 @@ exports.neo4j = require('node-neo4j');
 
 exports.neo4j = neo4j = require('node-neo4j');
 
-var allRecipes = [recipes1, recipes2, recipes3, recipes4, recipes5, recipes6, recipes7, recipes8, recipes9, recipes10, recipes11]
+// var allRecipes = [recipes1, recipes2, recipes3, recipes4, recipes5, recipes6, recipes7, recipes8, recipes9, recipes10, recipes11]
 
 var allRecipesInArray = function() {
   recipesArray = []
@@ -24,7 +24,7 @@ var allRecipesInArray = function() {
 };
 
 
-var db = new neo4j('http://localhost:7474');
+// var db = new neo4j('http://localhost:7474');
 
 // var createIngredientArray = function(){
 //   var ingredients = []
@@ -114,7 +114,7 @@ var nextbatch = function(err,result) {
 var createPropertyObject = function(recipe){
   var propertyObj = {};
   for (var key in recipe){
-    if(!propertyObj[key] && key!== "ingredients" && key!== "flavors" && key!== "attributes" && key!== "imageUrlsBySize" && 
+    if(!propertyObj[key] && key!== "ingredients" && key!== "flavors" && key!== "attributes" && key!== "imageUrlsBySize" &&
       recipe[key]!== null) {
       propertyObj[key] = recipe[key];
     }

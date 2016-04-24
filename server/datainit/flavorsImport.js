@@ -24,7 +24,7 @@ var allRecipesInArray = function() {
 };
 
 
-var db = new neo4j('http://localhost:7474');
+// var db = new neo4j('http://localhost:7474');
 
 // var createIngredientArray = function(){
 //   var ingredients = []
@@ -114,7 +114,7 @@ var nextbatch = function(err,result) {
 var createPropertyObject = function(recipe){
   var propertyObj = {};
   for (var key in recipe){
-    if(!propertyObj[key] && key!== "ingredients" && key!== "flavors" && key!== "attributes" && key!== "imageUrlsBySize" && 
+    if(!propertyObj[key] && key!== "ingredients" && key!== "flavors" && key!== "attributes" && key!== "imageUrlsBySize" &&
       recipe[key]!== null) {
       propertyObj[key] = recipe[key];
     }

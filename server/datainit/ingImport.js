@@ -1,19 +1,19 @@
 exports.neo4j = require('node-neo4j');
-var recipes1 = require('./1.js').recipes;
-var recipes2 = require('./2.js').recipes;
-var recipes3 = require('./3.js').recipes;
-var recipes4 = require('./4.js').recipes;
-var recipes5 = require('./5.js').recipes;
-var recipes6 = require('./6.js').recipes;
-var recipes7 = require('./7.js').recipes;
-var recipes8 = require('./8.js').recipes;
-var recipes9 = require('./9.js').recipes;
-var recipes10 = require('./10.js').recipes;
-var recipes11 = require('./11.js').recipes;
+// var recipes1 = require('./1.js').recipes;
+// var recipes2 = require('./2.js').recipes;
+// var recipes3 = require('./3.js').recipes;
+// var recipes4 = require('./4.js').recipes;
+// var recipes5 = require('./5.js').recipes;
+// var recipes6 = require('./6.js').recipes;
+// var recipes7 = require('./7.js').recipes;
+// var recipes8 = require('./8.js').recipes;
+// var recipes9 = require('./9.js').recipes;
+// var recipes10 = require('./10.js').recipes;
+// var recipes11 = require('./11.js').recipes;
 
 exports.neo4j = neo4j = require('node-neo4j');
 
-var allRecipes = [recipes1, recipes2, recipes3, recipes4, recipes5, recipes6, recipes7, recipes8, recipes9, recipes10, recipes11]
+// var allRecipes = [recipes1, recipes2, recipes3, recipes4, recipes5, recipes6, recipes7, recipes8, recipes9, recipes10, recipes11]
 
 // var allRecipesInArray = function() {
 //   recipesArray = []
